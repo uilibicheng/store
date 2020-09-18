@@ -1,0 +1,21 @@
+module.exports = {
+  genTicketTips: function (tickets) {
+    var type = tickets.map(function (ticket) {
+      return ticket.type.name
+    }).join('、')
+    return '供' + type + ' ' + tickets.length + ' ' + '种类型可选择'
+  },
+
+  sum: function (tickets) {
+    return tickets.reduce(function (sum, ticket) {
+      return Math.round((sum + ticket.total_price) * 100) / 100
+    }, 0)
+  },
+
+  sumRMB: function (tickets, exchangeRate) {
+    var thb = tickets.reduce(function (sum, ticket) {
+      return Math.round((sum + ticket.total_price) * 100) / 100
+    }, 0)
+    return Math.round(thb * exchangeRate * 100) / 100
+  },
+}

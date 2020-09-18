@@ -1,0 +1,25 @@
+<!--pages/order-list/order-list.wxml-->
+<wxs src="./tools.wxs" module="tools" />
+<view class='container'>
+  <!-- .order-wait: 待付款，.order-paid: 已付款，.order-cancel: 已取消/已过期 -->
+  <view class='order-item' wx:for="{{orders}}" wx:key="{{item.id}}" data-id="{{item.id}}" bindtap="navToOrderDetail" style='background-image: url({{item.cover_order_list}});'>
+    <view class='order-info'>
+      <view class='ticket-name'>{{item.tickets[0].bundle_name}}</view>
+      <view class='order-date'>{{item.reservation_date}}</view>
+      <view class='order-status {{tools.getCardClass(item)}}'>{{tools.getOrderStatusCn(item)}}</view>
+    </view>
+    <view class='ticket-counter' wx:for="{{tools.groupTicketsBySku(item.tickets)}}" wx:key="{{item.type}}">
+      <view class='counter-num'>{{item.type}} x {{item.count}}</view>
+      <view class='counter-price'>{{item.total_price}} JPY</view>
+    </view>
+    <view class='order-total'>
+      <view class='order-amount'><text>共</text> {{item.tickets.length}} <text>张</text></view>
+      <view class='order-totalprice'>{{item.amount}} JPY</view>
+    </view>
+  </view>
+
+  <view class='hint2' wx:if="{{!hasMore && orders.length === 0}}">暂无相关订单</view>
+  <view class='hint' wx:elif="{{!hasMore}}">已经没有更多的订单啦~</view>
+  <view class='hint2' wx:else>加载中...</view>
+</view>
+<alert-modal wx:if="{{errorMsg}}" title="" content="{{errorMsg}}" bind:onConfirm="closeErrorAlert" />

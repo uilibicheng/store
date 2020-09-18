@@ -1,0 +1,50 @@
+<!--pages/aquarium-info/aquarium-info.wxml-->
+<import src="../../lib/wxParser/index.wxml"/>
+<view class='header'>
+  <swiper indicator-dots="true" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#fff" autoplay="true" class='banner' wx:if="{{info.banners.length > 1}}">
+    <swiper-item class='banner-item' wx:for="{{info.banners}}" wx:key="{{index}}">
+      <image src="{{item}}" mode="aspectFill" />
+    </swiper-item>
+  </swiper>
+  <image class='single-img' src='{{info.banners[0]}}' mode="aspectFill" wx:else></image>
+</view>
+
+<view class='content'>
+  <view class='title-en'>{{info.english_name}}</view>
+  <view class='title-cn'>{{info.name}}</view>
+
+  <!-- <block wx:for='{{info.intros}}' wx:key="{{index}}">
+    <view class='info-title' wx:if="{{item.title !== ''}}">{{item.title}}</view>
+    <text class='info-content'>{{item.content}}</text>
+  </block> -->
+  <template is="wxParser" data="{{wxParserData: introduction.nodes}}"/>
+
+  <view class='image-tail'>
+    <image src='../../assets/images/lego/scene1.png'></image>
+  </view>
+
+</view>
+
+<view class='footer'>
+  <view class='footer-tab'>
+    <view class='item' bindtap="redirectToIndex">
+      <image src='../../assets/images/lego/icon-home.png'></image>
+      <text>首页</text>
+    </view>
+    <view class='item'>
+      <image src='../../assets/images/lego/icon-house-actived.png' class='active'></image>
+      <text>介绍</text>
+    </view>
+    <view class='item' bindtap='navToPark'>
+      <image src='../../assets/images/lego/icon-paradise.png'></image>
+      <text>乐园</text>
+    </view>
+    <view class='item' bindtap='redirectToPersonal'>
+      <submsg tmplIds="{{['ApmJv2esJcoKEvPHR6E-0jVeNMHl1T0AqGmPMBqpPjE', 'qKPC7qAEjFcUBOBfWv8bkCPITPEUjpXVABe-_pqu7Dk']}}">
+        <image src='../../assets/images/lego/icon-personal.png'></image>
+        <text>个人</text>
+      </submsg>
+    </view>
+  </view>
+  <footer-ipx />
+</view>

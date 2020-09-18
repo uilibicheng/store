@@ -1,0 +1,88 @@
+<view class="page">
+  <view wx:if="{{!hasInviter}}" class="sticker-unlock" style="background-image: url('https://cloud-minapp-27037.cloud.ifanrusercontent.com/1had29CmL8C48aD4.png')">
+    <view class="title">贴纸解锁</view>
+    <view class="unlock-desc">
+      <view>点击下面的分享按钮，将贴纸分享给好友。通过2个好友的点赞，您就可以使用该贴纸。</view>
+    </view>
+
+    <swiper class="swiper" previous-margin="40rpx" next-margin="20rpx"
+      circular="{{true}}" current="{{currentStickerIndex}}" bindchange="onSwiperChange">
+      <swiper-item wx:for="{{stickers}}" wx:key="{{item.id}}" class="swiper-item">
+        <template is="stickerContent" data="{{...item}}" />
+      </swiper-item>
+    </swiper>
+
+    <view class="btn-group">
+      <view wx:if="{{hasScanQrcodeBtn}}" class="scan-btn" bindtap="scanQrcode"
+        style="background-image: url('https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hdAuNS1gJHwJn6W.png')">
+        扫码解锁
+      </view>
+      <button wx:if="{{hasShareBtn}}" open-type="share" class="share-btn"
+        style="background-image: url('https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hdAuNhoF3FV1OuE.png')">
+        分享给好友
+      </button>
+    </view>
+  </view>
+
+  <view wx:elif="{{afterScanQrcode}}" class="sticker-unlock" style="background-image: url('https://cloud-minapp-27037.cloud.ifanrusercontent.com/1had29CmL8C48aD4.png')">
+    <view class="title">解锁成功！</view>
+    <view class="unlock-desc">
+      <view>您已扫码解锁成功</view>
+      <view>快去解锁下一个贴纸吧～</view>
+    </view>
+
+    <view class="sticker-content--has-inviter">
+      <template is="stickerContent" data="{{...unlockSticker, hasInviter}}" />
+    </view>
+
+    <view class="btn-group">
+      <view class="home-btn" bindtap="navBack"
+        style="background-image: url('https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hdAuN5f0U72cL1n.png')">
+        返回
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="sticker-unlock" style="background-image: url('https://cloud-minapp-27037.cloud.ifanrusercontent.com/1had29CmL8C48aD4.png')">
+    <view class="title">点赞成功！</view>
+    <view class="unlock-desc">
+      <view>你已帮助好友点赞成功</view>
+      <view>前往首页发现日本乐高乐园更多乐趣～</view>
+    </view>
+
+    <view class="sticker-content--has-inviter">
+      <template is="stickerContent" data="{{...unlockSticker, hasInviter}}" />
+    </view>
+
+    <view class="btn-group">
+      <view class="home-btn" bindtap="navToHome"
+        style="background-image: url('https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hdAuN5f0U72cL1n.png')">
+        返回首页
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<template name="stickerContent">
+  <view class="swiper-content">
+    <view class="swiper-content__body">
+      <view wx:if="{{poi_name}}" class="poi-name">{{poi_name}}</view>
+      <image class="poi-image" src="{{poi_image}}" />
+      <view class="sticker" style="background-image: url({{image}})">
+        <view wx:if="{{(!scanedQrcode && unlockCount < 2)}}" class="lock-mask">
+          <image class="lock-icon" src="./images/lock.png" />
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{hasShareBtn && !hasInviter && (!scanedQrcode && unlockCount < 2)}}" class="swiper-content__footer">
+      <view class="unlock-tip">2 个好友点赞即可解锁贴纸</view>
+      <view class="friend-list">
+        <image class="friend-item" src="./images/friend-1.png" />
+        <view class="dash-line"></view>
+        <image class="friend-item" src="./images/friend-2.png" />
+      </view>
+    </view>
+  </view>
+</template>

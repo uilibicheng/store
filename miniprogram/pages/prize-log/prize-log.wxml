@@ -1,0 +1,3 @@
+<!--pages/prize-log/prize-log.wxml-->
+<import src="../prize/prize.wxml"/>
+<template is="prizeInfo" data="{{prize: prize, isLogPage: true, showCard: showCard, log: log, PRIZE_TYPE, canvasImgSrc, isReferrer, logStatus, isLotteryPrize}}"></template>

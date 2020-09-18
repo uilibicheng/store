@@ -1,0 +1,7 @@
+{
+  "disableScroll": true,
+  "usingComponents": {
+    "sticker-controller": "/components/sticker-controller/sticker-controller",
+    "share-card": "./share-card/share-card"
+  }
+}

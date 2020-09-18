@@ -1,0 +1,11 @@
+<!--pages/auth/auth.wxml-->
+<view class="page">
+  <view class="page-content">
+    <image class="logo" mode="scaleToFill" src="https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hOImDABfDYRDlXQ.png"></image>
+    <view class="welcome-info">
+      <view>欢迎来到日本乐高商店</view>
+      <view>开启你的欢乐之旅吧</view>
+    </view>
+    <button class="start-btn" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">开启旅行</button>
+  </view>
+</view>

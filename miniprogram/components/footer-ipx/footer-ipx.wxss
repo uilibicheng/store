@@ -1,0 +1,5 @@
+/* components/footer-ipx/footer-ipx.wxss */
+.footer-ipx {
+  width: 100%;
+  height: 30rpx;
+}

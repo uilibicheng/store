@@ -1,0 +1,115 @@
+<!--pages/purchase/purchase.wxml-->
+<wxs src="./tools.wxs" module="tools" />
+
+<view class='header'>
+  <view class='ticket-info'>
+    <view class='ticket-name-ch'>{{ticketBundle.name}}</view>
+    <view class='ticket-tips'>{{tools.genTicketTips(tickets)}}</view>
+    <view class='ticket-name-en'>{{ticketBundle.english_name}}</view>
+  </view>
+  <view class='buy-hint' bindtap="handleShowTicketPolicyAlert" data-id="{{ticketBundle.id}}">购票须知</view>
+</view>
+
+<view class='content'>
+  <view class='content-header' style="background-image: url({{ticketBundle.cover_in_details}})">
+    <view class='title'>使用日期</view>
+    <!-- <picker mode="date" value="{{reservationDate}}" start="{{startDate}}" end="2030-12-31" bindchange="handlePickerChange">
+      <view class='date-picker'>
+        <text class='date' wx:if="{{reservationDate}}">{{reservationDate}}</text>
+        <text class='hint' wx:else>请选择使用日期 ></text>
+        <image src='../../assets/images/lego/icon-calendar.png'></image>
+      </view>
+      <burying-form />
+    </picker> -->
+    <customized-date-picker bind:onChange="handlePickerChange">
+      <view class='date-picker'>
+        <text class='date' wx:if="{{reservationDate}}">{{reservationDate}}</text>
+        <text class='hint' wx:else>请选择使用日期 ></text>
+        <image src='../../assets/images/lego/icon-calendar.png'></image>
+      </view>
+    </customized-date-picker>
+    <view class='title'>购买数量</view>
+
+    <view class='purchase-counter'>
+      <view class='counter-item' wx:for="{{tickets}}" wx:key="{{item.id}}">
+        <view class='ticket-type'>{{item.type.name}}</view>
+
+        <view class='price'>{{item.total_price}} JPY</view>
+
+        <view class='counter'>
+          <view class='counter-reduce {{item.count === 0 ? "get-edge" : ""}}' bindtap="handleCountChange" data-type="reduce" data-sku="{{item.sku}}"> - </view>
+          <view class='counter-num {{item.count !== 0 ? "not-zero" : ""}}'>{{item.count}}</view>
+          <view class='counter-add {{item.count >= ticketAddCountLimitation ? "get-edge" : ""}}' bindtap="handleCountChange" data-type="add" data-sku="{{item.sku}}"> + </view>
+        </view>
+
+      </view>
+    </view>
+
+  </view>
+
+  <view class='content-body'>
+    <block wx:if="{{ticketBundle.special_ticket_type === 'prize_buy_one_get_one_free'}}">
+      <view class='title'>
+        赠送票
+        <view class='complimentary-desc'>额外赠送一张免费票</view>
+      </view>
+
+      <view class='complimentary-block'>
+        <view class='complimentary-item' wx:for="{{complimentaryTickets}}" wx:key="{{item.id}}">
+
+          <view class='ticket-type'>{{item.type.name}}</view>
+
+          <view class='counter'>
+            <view class='counter-reduce {{item.count === 0 ? "get-edge" : ""}}' bindtap="{{item.count === 0 ?  '' : 'handleComplimentaryCountChange'}}" data-type="reduce" data-sku="{{item.sku}}">-</view>
+            <view class='counter-num {{item.count !== 0 ? "not-zero" : ""}}'>{{item.count}}</view>
+            <view class="counter-add {{(item.count >= 1) || (item.count === 0 && complimentaryJudgment.hasFreeSelected) || (item.price > complimentaryJudgment.highestPrice) ? 'get-edge' : ''}}" bindtap="{{(item.count >= 1) || (item.count === 0 && complimentaryJudgment.hasFreeSelected) || (item.price > complimentaryJudgment.highestPrice) ? '' : 'handleComplimentaryCountChange'}}"
+              data-type="add" data-sku="{{item.sku}}">+</view>
+          </view>
+
+        </view>
+      </view>
+    </block>
+
+    <view class='title'>取票信息</view>
+
+    <view class='fake-input' wx:if="{{ !isInputtingName }}" bindtap='handleNameInput'>
+      <text class='value' wx:if="{{name !== ''}}">{{name}}</text>
+      <text class='placeholder' wx:else>联系人</text>
+      <burying-form />
+    </view>
+    <input type='text' value="{{name}}" class='input-border' placeholder='联系人' placeholder-class='input-placeholder' bindinput="handleInputChange" data-label="name" wx:else focus bindblur="handleNameInput">{{name}}</input>
+
+    <view class='fake-input' wx:if="{{ !isInputtingPhone }}" bindtap='handlePhoneInput'>
+      <text class='value' wx:if="{{phone !== ''}}">{{phone}}</text>
+      <text class='placeholder' wx:else>联系手机</text>
+      <burying-form />
+    </view>
+    <input type='text' value="{{phone}}" class='input-border' placeholder='联系手机' placeholder-class='input-placeholder' bindinput="handleInputChange" data-label="phone" wx:else focus bindblur="handlePhoneInput">{{phone}}</input>
+  </view>
+
+</view>
+
+<view class="footer">
+  <view class='order-info'>
+    <view class='order-text'>合计金额</view>
+    <view class='order-num'>
+      约 {{tools.sumRMB(tickets, exchangeRate)}} CNY
+      <text class='JPY-num'>{{tools.sum(tickets)}} JPY</text>
+    </view>
+    <footer-ipx />
+  </view>
+  <view class='submit' bindtap="handleSubmit">
+    <view class='sumit-text'>微信支付</view>
+    <burying-form />
+  </view>
+</view>
+
+<alert-modal wx:if="{{alertMsg}}" content="{{alertMsg}}" bind:onConfirm="handleAlertConfirm" />
+
+<import src="../../lib/wxParser/index.wxml" />
+
+<alert-modal wx:if="{{showTicketPolicy}}" contentAlignLeft title="购票须知" bind:onConfirm="handleTicketPolicyAlertConfirm">
+  <view slot="content">
+    <template is="wxParser" data="{{wxParserData:ticketPolicy.nodes}}" />
+  </view>
+</alert-modal>

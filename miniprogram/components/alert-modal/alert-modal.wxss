@@ -1,0 +1,12 @@
+/* .confirm {
+  color: #0074EF;
+} */
+.confirm {
+  /* background-image: linear-gradient(135deg, #2F6CD0 0%, #4B1CF3 100%); */
+  background-color: #006CBA;
+  box-shadow: 0 0 32rpx 0 rgba(0, 29, 255, 0.20);
+  font-family: PingFangSC-Semibold;
+  font-weight: bold;
+  font-size: 36rpx;
+  color: #FFFFFF;
+}

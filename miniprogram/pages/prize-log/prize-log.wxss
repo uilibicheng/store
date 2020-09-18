@@ -1,0 +1,2 @@
+/* pages/prize-log/prize-log.wxss */
+@import "../prize/prize.wxss";

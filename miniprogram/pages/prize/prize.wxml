@@ -1,0 +1,81 @@
+<!--pages/prize-redemption/prize-redemption.wxml-->
+<template name="prizeInfo">
+  <view class='header'>
+    <swiper indicator-dots="true" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#fff" autoplay="true" class='banner' wx:if="{{prize.images.length > 1}}">
+      <swiper-item class='banner-item' wx:for="{{prize.images}}" wx:key="{{index}}">
+        <image src="{{item}}" mode="aspectFill" />
+      </swiper-item>
+    </swiper>
+    <image class='single-img' src='{{prize.images[0]}}' mode="aspectFill" wx:else></image>
+  </view>
+
+  <view class='content'>
+    <button class='share-btn2' open-type="share" plain>
+      <view>
+        <image src='../../assets/images/share.svg'></image>
+      </view>
+    </button>
+
+    <view class='prize-title'>{{prize.name}}</view>
+    <view class='prize-title-en'>{{prize.english_name}}</view>
+
+    <view class='prize-text'>
+      <view wx:if="{{prize.type === PRIZE_TYPE.PROMOTIONAL_BUNDLE && !isLogPage}}">剩余数量：{{prize.total_count - prize.redeemed_count}}</view>
+      <view wx:if="{{prize.type === PRIZE_TYPE.PROMOTIONAL_BUNDLE && !isLogPage}}">可领取数量：{{redemptionQuantity}}</view>
+      <view wx:if="{{isLotteryPrize && !isLogPage}}">抽奖礼品</view>
+      <view wx:if="{{isLogPage}}">{{logStatus[log.status]}}</view>
+    </view>
+
+    <image class='decorative-img' src='../../assets/images/lego/scene2.png'></image>
+
+    <block wx:if="{{!isLogPage}}">
+      <view style='margin-bottom: 40rpx;' wx:if="{{prize.type === PRIZE_TYPE.PROMOTIONAL_BUNDLE}}">* 通过小程序购票后即可领取新人大礼。请找商店工作人员点击「领取按钮」，请不要自行操作点击「领取按钮」，自行操作将不能领取新人大礼。</view>
+      <view class='redemption-btn' wx:if="{{prize.type === PRIZE_TYPE.PROMOTIONAL_BUNDLE}}" bindtap="handleShowRedeemConfirmation">限量领取（由工作人员点击）</view>
+      <view class='redemption-btn' wx:elif="{{isLotteryPrize}}" bindtap="handleShowRedeemConfirmation">立即兑换</view>
+    </block>
+
+    <block wx:elif="{{isLogPage}}">
+      <view class='barcode-container'>
+        <canvas canvas-id='barcode' class="barcode">
+          <cover-view class='mask' wx:if="{{log.status !== 'pending'}}"></cover-view>
+        </canvas>
+        <view class='log-sourcecode'>兑换码：{{log.redemption_code}}</view>
+        <view class='log-sourcecode' wx:if="{{log.status !== 'redeemed'}}">过期时间：{{log.valid_time}}</view>
+        <view class='log-sourcecode' wx:if="{{log.status === 'redeemed' && prize.type === PRIZE_TYPE.PROMOTIONAL_BUNDLE}}}">兑换时间：{{log.created_time}}</view>
+      </view>
+    </block>
+
+    <view wx:if="{{isLogPage && log.status === 'pending'}}" class='pending-hint'>说明：请持凭证码到线下指定店铺领取礼物</view>
+  </view>
+
+  <!-- <view class='share-mask' wx:if="{{showCard}}">
+    <view class='share-close' bindtap='closeCanvasCard'></view>
+    <image class='share-img' src='{{canvasImgSrc}}'></image>
+  </view> -->
+  <!-- <canvas class='canvas' canvas-id="shareCanvas"></canvas> -->
+
+  <!-- <view class='go-game-minapp' wx:if="{{isLogPage && (prize.type !== PRIZE_TYPE.PROMOTIONAL_BUNDLE)}}">
+    <view wx:if="{{!isReferrer}}">
+      <navigator target="miniProgram" app-id="{{GAME_MINAPP_ID}}" version="develop">
+        <image src="../../assets/images/goGame.svg"></image>
+      </navigator>
+    </view>
+    <view wx:else bindtap='navigateBackMiniProgram'>
+      <image src="../../assets/images/goGame.svg"></image>
+    </view>
+  </view> -->
+</template>
+
+<template is="prizeInfo" data="{{prize: prize, isLogPage: false, PRIZE_TYPE, isLotteryPrize, redemptionQuantity}}"></template>
+<confirmation-modal wx:if="{{showRedeemConfirmation}}" title="提醒" bind:onCancel="closeRedeemConfirmation" bind:onConfirm="handleRedeem">
+  <view slot="content">请找商店工作人员点击「领取按钮」，请不要自行操作点击「领取按钮」，自行操作将不能领取新人大礼。是否确认领取？</view>
+</confirmation-modal>
+<!-- <custom-modal wx:if="{{pointNotEnoughErrorMsg}}" title="提醒" content="{{pointNotEnoughErrorMsg}}">
+  <view slot="btns" class="btn-cancel" bindtap="closeNotEnoughErrorModal">取消</view>
+  <view slot="btns" class="btn-confirm" bindtap="closeNotEnoughErrorModal">
+    <navigator target="miniProgram" app-id="{{GAME_MINAPP_ID}}" version="develop">确定</navigator>
+  </view>
+</custom-modal> -->
+<alert-modal wx:if="{{showRedeemFailModal}}" title="提醒" content="{{(prize.type !== PRIZE_TYPE.PROMOTIONAL_BUNDLE) ? '兑换失败' : '领取失败'}}" bind:onConfirm="closeRedeemFailModal" />
+
+<alert-modal wx:if="{{showNewUserModal}}" title="提醒" content="通过小程序购票后即可领取新人大礼，赶紧购票领取吧~" bind:onConfirm="closeNewUserModal" />

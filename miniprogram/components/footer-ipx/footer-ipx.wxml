@@ -1,0 +1,3 @@
+<!--components/footer-ipx/footer-ipx.wxml-->
+<!-- .footer-ipx: 如果是 iPhone X 系列则启用此类名 -->
+<view class="{{ isiPhoneX ? 'footer-ipx' : '' }}"></view>

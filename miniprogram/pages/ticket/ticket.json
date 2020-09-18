@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "alert-modal": "/components/alert-modal/alert-modal",
+    "footer-ipx": "/components/footer-ipx/footer-ipx",
+    "burying-form": "/components/burying-form/burying-form",
+    "with-login": "/components/with-login/with-login"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/auth/auth",
+    "pages/ticket/ticket",
+    "pages/discount-ticket-list/discount-ticket-list",
+    "pages/purchase/purchase",
+    "pages/order-list/order-list",
+    "pages/order/order",
+    "pages/prize/prize",
+    "pages/aquarium-info/aquarium-info",
+    "pages/ticket-policy/ticket-policy",
+    "pages/personal/personal",
+    "pages/prize-log/prize-log",
+    "pages/ticket-bundle-list/ticket-bundle-list",
+    "pages/prize-list/prize-list",
+    "pages/lottery/lottery",
+    "pages/sticker-camera/sticker-camera",
+    "pages/sticker-unlock/sticker-unlock",
+    "pages/sticker-canvas/sticker-canvas"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#006CBA",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "日本乐高乐园商店",
+    "backgroundColor": "#006CBA"
+  },
+  "plugins": {
+    "sdkPlugin": {
+      "version": "3.4.0",
+      "provider": "wxc6b86e382a1e3294"
+    },
+    "lotteryPlugin": {
+      "version": "0.0.11",
+      "provider": "wxc1f09e5b32e50d96"
+    }
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wxb3b1ddc14ebfbed0",
+    "wxc1f09e5b32e50d96"
+  ],
+  "sitemapLocation": "sitemap.json"
+}

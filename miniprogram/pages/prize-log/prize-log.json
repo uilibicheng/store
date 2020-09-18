@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "alert-modal": "/components/alert-modal/alert-modal",
+    "footer-ipx": "/components/footer-ipx/footer-ipx"
+  },
+  "navigationBarBackgroundColor": "#D9EFFF",
+  "navigationBarTextStyle": "black"
+}

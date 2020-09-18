@@ -1,0 +1,18 @@
+.formitem-uploader .ant-upload.ant-upload-select-picture-card {
+  width: 150px;
+  height: 150px;
+  margin: 0;
+}
+
+.formitem-uploader .ant-upload-list-picture-card .ant-upload-list-item {
+  width: 150px;
+  height: 150px;
+  background-color: #fafafa;
+  border: 1px dashed #d9d9d9;
+}
+
+.formitem-uploader .ant-upload-list-picture-card .ant-upload-list-item .ant-upload-list-item-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

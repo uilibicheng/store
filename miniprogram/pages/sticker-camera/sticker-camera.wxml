@@ -1,0 +1,13 @@
+<view>
+  <view class="camera-container" style="height: {{cameraHeight}}px;">
+    <camera wx:if="{{showCamera}}" class="camera" mode="normal" device-position="{{devicePosition}}" flash="off" binderror="onCameraError" style="width: 100%; height: {{cameraHeight}}px; z-index: 1;" />
+    <cover-image class="picture" src="./images/picture.png" bindtap="onChooseImage"/>
+    <cover-image class="trans" src="./images/trans.png" bindtap="transDevicePosition"/>
+
+    <cover-image wx:if="{{sticker}}" class="sticker" src="{{sticker}}" />
+    <cover-image class="take-photo" src="./images/camera.png"  bindtap="onTakePhoto"/>
+  </view>
+  <button wx:if="{{!showCamera}}" class="camera-auth" open-type="openSetting" bindopensetting="onOpenSetting">点击开启摄像头权限</button>
+
+  <sticker-controller id="sticker-controller" bind:onSelect="onSelect" bind:selecteDefaultSticker="onSelect"></sticker-controller>
+</view>

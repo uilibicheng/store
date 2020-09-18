@@ -1,0 +1,106 @@
+module.exports = {
+  getChoseTicketsInfo: function (tickets) {
+    return tickets.map(function (ticket) {
+      return ticket.count + ' 张' + ticket.type.name
+    }).join('，')
+  },
+
+  getChoseComplimentaryTicketsInfo: function (tickets) {
+    return tickets.map(function (ticket) {
+      if (ticket.count > 0) {
+        return ticket.count + ' 张免费' + ticket.type.name
+      }
+    }).join('')
+  },
+
+  getPriceRange: function (tickets) {
+    var prices = tickets.map(function (ticket) {
+      if (ticket.is_discount) {
+        return ticket.discount_price
+      } else {
+        return ticket.price
+      }
+    }).sort(function (a, b) {
+      return a - b
+    })
+    if (prices.length === 1) {
+      return prices
+    } else if (prices.length > 1) {
+      return prices[0] + '-' + prices.slice(-1)
+    }
+  },
+
+  getRMBPriceRange: function (tickets, exchangeRate) {
+    var prices = tickets.map(function (ticket) {
+      if (ticket.is_discount) {
+        return ticket.discount_price
+      } else {
+        return ticket.price
+      }
+    }).sort(function (a, b) {
+      return a - b
+    })
+    if (prices.length === 1) {
+      return Math.round(prices * exchangeRate * 100) / 100
+    } else if (prices.length > 1) {
+      return (Math.round(prices[0] * exchangeRate * 100) / 100) + '-'
+        + (Math.round(prices.slice(-1) * exchangeRate * 100) / 100)
+    }
+  },
+
+  getOriginPriceRange: function (tickets) {
+    var prices = tickets.map(function (ticket) {
+      return ticket.price
+    }).sort(function (a, b) {
+      return a - b
+    })
+    if (prices.length === 1) {
+      return prices
+    } else if (prices.length > 1) {
+      return prices[0] + '-' + prices.slice(-1)
+    }
+  },
+
+  getRMBOriginPriceRange: function (tickets, exchangeRate) {
+    var prices = tickets.map(function (ticket) {
+      return ticket.price
+    }).sort(function (a, b) {
+      return a - b
+    })
+    if (prices.length === 1) {
+      return Math.round(prices * exchangeRate * 100) / 100
+    } else if (prices.length > 1) {
+      return (Math.round(prices[0] * exchangeRate * 100) / 100) + '-'
+        + (Math.round(prices.slice(-1) * exchangeRate * 100) / 100)
+    }
+  },
+
+  getDiscount: function (tickets) {
+    var discounts = tickets.map(function (ticket) {
+      if (ticket.is_discount) {
+        return ticket.discount_price / ticket.price
+      } else {
+        return 1
+      }
+    }).sort(function (a, b) {
+      return a - b
+    })
+
+    var discount = discounts[0]
+    if (discount.toString() === 'NaN') {
+      return 0
+    } else {
+      return 100 - Math.round(discount * 100)
+    }
+  },
+
+  canSubmit: function (tickets) {
+    var result = true
+    tickets.forEach(function (ticket) {
+      if (ticket.count > 0) {
+        result = false
+      }
+    })
+    return result
+  },
+}

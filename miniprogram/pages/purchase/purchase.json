@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "alert-modal": "/components/alert-modal/alert-modal",
+    "footer-ipx": "/components/footer-ipx/footer-ipx",
+    "burying-form": "/components/burying-form/burying-form",
+    "customized-date-picker": "/components/customized-date-picker/customized-date-picker"
+  }
+}

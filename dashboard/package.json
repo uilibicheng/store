@@ -1,0 +1,45 @@
+{
+  "name": "aquarium-store-dashboard",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "antd": "3.9.2",
+    "axios": "^0.18.0",
+    "copy-to-clipboard": "^3.0.8",
+    "core-js": "^2.6.1",
+    "i18n-utils": "github:ifanrx/i18n-utils",
+    "moment-timezone": "^0.5.23",
+    "nprogress": "^0.2.0",
+    "react": "^16.4.2",
+    "react-app-rewire-less": "^2.1.2",
+    "react-app-rewired": "^1.5.2",
+    "react-dom": "^16.4.2",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "react-ueditor": "git+ssh://git@github.com/ifanrx/react-ueditor.git#2f54322d7586e9429e209187d8debaf223b7eb6e",
+    "uuid": "^3.3.2"
+  },
+  "scripts": {
+    "start": "npm run i18n && react-app-rewired start",
+    "build": "npm run i18n && react-app-rewired build",
+    "format": "prettier --write '**/*.js'",
+    "lint": "eslint src/ --fix",
+    "i18n": "node src/i18n",
+    "precommit": "yarn i18n && yarn format && yarn lint"
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "babel-plugin-import": "^1.8.0",
+    "csv-parse": "^4.3.0",
+    "eslint": "^5.6.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-react": "^7.0.2",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "fs-extra": "^7.0.1",
+    "prettier": "^1.14.3"
+  }
+}

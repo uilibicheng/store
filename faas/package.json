@@ -1,0 +1,28 @@
+{
+  "name": "legoland-store",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "deploy-prod": "npm run build && ./deploy.sh",
+    "deploy-dev": "npm run build-dev && ./deploy.sh"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^1.0.0",
+    "mincloud": "^1.0.5",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "fast-deep-equal": "^2.0.1",
+    "moment-timezone": "^0.5.23",
+    "node-xlsx": "^0.14.1",
+    "validator": "^10.10.0"
+  }
+}

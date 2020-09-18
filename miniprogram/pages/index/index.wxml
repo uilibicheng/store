@@ -1,0 +1,88 @@
+<!--index.wxml-->
+<view class="page-container-home">
+  <view class="header">
+    <image class="logo" mode="scaleToFill" src="https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hOImDABfDYRDlXQ.png"></image>
+    <button plain open-type="contact" class='service'></button>
+  </view>
+  <view class='header-color-block'></view>
+
+  <swiper
+    class="banner"
+    indicator-dots="true"
+    previous-margin="30rpx"
+    next-margin="30rpx"
+    indicator-color="rgba(255, 255, 255, .5)"
+    indicator-active-color="#fff"
+    autoplay="true"
+    wx:if="{{settings.banner.length > 1}}"
+  >
+    <swiper-item wx:for="{{settings.banner}}" wx:key="{{index}}" class="banner-i">
+      <image bindtap="{{item.url ? 'handleBannerClick' : ''}}" data-url="{{item.url}}" class="banner-item" src="{{item.img}}" mode="aspectFill" />
+    </swiper-item>
+  </swiper>
+  <image class='single-swiper' bindtap="handleBannerClick" data-url="{{settings.banner[0].url}}" src="{{settings.banner[0].img}}" mode="aspectFill" wx:elif="{{settings.banner.length === 1}}"></image>
+
+  <view class="title">
+    <text class="title-ch">门票</text>
+    <text class="title-en">TICKET</text>
+    <view class="view-more" bindtap="handleViewMoreTicket">更多
+      <burying-form />
+    </view>
+  </view>
+  <scroll-view class="ticket-bundle-list" scroll-x>
+    <view class="ticket-bundle-view">
+      <image wx:for="{{ticketBundles}}" mode="aspectFill" wx:key="{{item.id}}" class="ticket-bundle-item" src="{{item.cover}}" data-id="{{item.id}}" bindtap="navToTicket">
+        <burying-form />
+      </image>
+      <view class='mr'></view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class='footer'>
+  <view class='footer-tab'>
+    <view class='item'>
+      <image src='../../assets/images/lego/icon-home-actived.png' class='active'></image>
+      <text>首页</text>
+    </view>
+    <view class='item' bindtap="redirectToInfo">
+      <image src='../../assets/images/lego/icon-house.png'></image>
+      <text>介绍</text>
+    </view>
+    <view class='item' bindtap='navToPark'>
+      <image src='../../assets/images/lego/icon-paradise.png'></image>
+      <text>乐园</text>
+    </view>
+    <view class='item' bindtap='redirectToPersonal'>
+      <submsg tmplIds="{{['ApmJv2esJcoKEvPHR6E-0jVeNMHl1T0AqGmPMBqpPjE', 'qKPC7qAEjFcUBOBfWv8bkCPITPEUjpXVABe-_pqu7Dk']}}">
+        <image src='../../assets/images/lego/icon-personal.png'></image>
+        <text>个人</text>
+      </submsg>
+    </view>
+  </view>
+  <footer-ipx />
+</view>
+
+<with-login method="getUserInfo" bind:onSuccess="handleRedeemPromotionalBundle"  bind:onFail="noop">
+  <view class='free-prize-modal' wx:if="{{!isPromotionalBundleRedeemed && showPromotionalBundleTooltip}}">
+      <view class='icon'>
+        <image src='../../assets/images/lego/icon-gift.png' class='icon-img'></image>
+      </view>
+      <view class='hint'>恭喜您，获得 LEGOLAND® Japan 新人大礼包
+        <burying-form />
+      </view>
+      <view class='close-block' catchtap="handleCloseTooltip">
+        <image class='close' src='../../assets/images/close.svg'></image>
+      </view>
+  </view>
+</with-login>
+
+<submsg
+  wx:if='{{lotterySettings.entrance_legoland}}'
+  class='lottery-entrance'
+  tmplIds="{{['4RBWC9cvI1VdxrLaa0TV0N2hz-ZSajq3953OiBUJ_2A','qKPC7qAEjFcUBOBfWv8bkCPITPEUjpXVABe-_pqu7Dk']}}"
+  bindtap='navToLottery'>
+  <image src='../../assets/images/lego/lottery.png' class='lottery-entrance'></image>
+</submsg>
+
+<lottery-modal></lottery-modal>

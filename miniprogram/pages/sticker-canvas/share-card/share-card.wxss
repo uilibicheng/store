@@ -1,0 +1,177 @@
+.draw {
+  box-sizing: content-box;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .64);
+  z-index: 9;
+}
+
+.container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-56%);
+  width: 644rpx;
+  background-color: rgba(0, 0, 0, 0);
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.card {
+  position: relative;
+  font-size: 0;
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
+}
+
+.header {
+  display: flex;
+  padding-top: 54rpx;
+  margin: 0 40rpx;
+}
+
+.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border: 4rpx solid #F9FAFC;
+  box-shadow: 0 8rpx 16rpx 0 rgba(0, 0, 0, .14);
+  border-radius: 96rpx;
+}
+
+.header--right {
+  margin-top: 30rpx;
+  margin-left: 16rpx;
+}
+
+.username {
+  font-weight: 500;
+  font-size: 36rpx;
+  line-height: 36rpx;
+  color: #ffffff;
+}
+
+.msg {
+  margin-top: 16rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #49536D;
+}
+
+.poster {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 644rpx;
+  height: 400rpx;
+}
+
+.prize {
+  margin: 32rpx 40rpx 0;
+  font-weight: 500;
+  font-size: 32rpx;
+  color: #FFF;
+  line-height: 48rpx;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 644rpx;
+  height: 356rpx;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 4;
+}
+
+.content {
+  position: relative;
+  padding: 48rpx;
+  font-size: 28rpx;
+  line-height: 46rpx;
+  color: #fff;
+}
+
+.icon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 274rpx;
+  height: 162rpx;
+}
+
+.qrcode-container {
+  position: absolute;
+  z-index: 6;
+  right: 24rpx;
+  bottom: 24rpx;
+  display: flex;
+  align-self: center;
+}
+
+.qrcode-container__left {
+  display: inline-block;
+  margin-right: 20rpx;
+}
+
+.logo {
+  position: relative;
+  z-index: 8;
+  width: 140rpx;
+  height: 52rpx;
+}
+
+.note {
+  position: relative;
+  z-index: 8;
+  margin-top: 20rpx;
+  font-size: 20rpx;
+  color: #fff;
+}
+
+.qrcode {
+  position: relative;
+  z-index: 8;
+  display: inline-block;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 120rpx;
+}
+
+
+.save-btn {
+  position: absolute;
+  bottom: 48rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-weight: 500;
+  font-size: 36rpx;
+  color: #FFF;
+  text-align: center;
+  text-shadow: 0 4rpx 48rpx rgba(4, 4, 4, .12);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.disabled {
+  background-image: none;
+  background-color: #CCC;
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: -200%;
+}

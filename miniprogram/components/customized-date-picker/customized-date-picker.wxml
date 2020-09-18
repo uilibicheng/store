@@ -1,0 +1,5 @@
+<!--components/customized-date-picker/customized-date-picker.wxml-->
+<picker mode="multiSelector" bindchange="handleSubmit" bindcolumnchange="bindColumnChange" value="{{dateValue}}" range="{{rangeArray}}">
+  <slot></slot>
+  <burying-form />
+</picker>

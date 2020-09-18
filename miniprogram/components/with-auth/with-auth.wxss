@@ -1,0 +1,13 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+.wrapper {
+  position: initial;
+  overflow: initial;
+  font-size: inherit;
+  line-break: inherit;
+  color: inherit;
+  text-align: inherit;
+}

@@ -1,0 +1,18 @@
+<view class="container" catchtouchmove="xxxx">
+  <view class="modal">
+    <view class="title">{{title}}</view>
+    <scroll-view scroll-y class="content-wrapper" wx:if="{{content}}">
+      <view class="content">
+        {{content}}
+      </view>
+    </scroll-view>
+    <scroll-view scroll-y class="content-wrapper" style="text-align: {{contentAlignLeft ? 'left' : 'center'}}" wx:else>
+      <view class="content">
+        <slot name="content"></slot>
+      </view>
+    </scroll-view>
+    <view class="btns {{type === 0 ? 'flex' : ''}}">
+      <slot name="btns"></slot>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+page {
+  height: 100%;
+}
+
+.go-to-index {
+  position: fixed;
+  bottom: 60rpx;
+  right: 30rpx;
+  z-index: 999;
+  width: 114rpx;
+  height: 114rpx;
+}

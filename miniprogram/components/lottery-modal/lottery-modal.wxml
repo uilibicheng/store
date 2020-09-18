@@ -1,0 +1,12 @@
+<view wx:if="{{show}}" class="mask" catchtap="onClose">
+  <view class="container" catchtap="noop">
+    <image class="image" src="./image.png" />
+    <image class="close" src="./close.png" catchtap="onClose"/>
+    <view class="title">日本乐高商店抽奖福利</view>
+    <view class="footer">
+      <submsg ext-class="btn" bindtap="navToLottery" tmplIds="{{['4RBWC9cvI1VdxrLaa0TV0N2hz-ZSajq3953OiBUJ_2A','qKPC7qAEjFcUBOBfWv8bkCPITPEUjpXVABe-_pqu7Dk']}}">
+        进入抽奖
+      </submsg>
+    </view>
+  </view>
+</view>

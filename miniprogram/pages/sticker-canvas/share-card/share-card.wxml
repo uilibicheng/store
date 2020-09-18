@@ -1,0 +1,43 @@
+<view class="mask" catchtap="closeShareCard">
+  <view class="container" style="width: {{cardWidth}}px; height: {{posterHeight + 330}}rpx;" catchtap="noop">
+    <image class="poster draw" src="{{poster}}" style="height: {{posterHeight}}rpx;"
+      data-type="image" data-url="{{poster}}"/>
+    <view class="card draw" style="height: {{posterHeight + 330}}rpx;">
+      <view class="header draw">
+        <image class="avatar draw" src="{{currentUser.avatar}}"
+          data-type="radius-image" data-url="{{currentUser.avatar}}"/>
+        <view class="header--right">
+          <view class="username draw" data-type="text" data-text="{{currentUser.nickname}}">{{currentUser.nickname}}</view>
+        </view>
+      </view>
+
+      <view class="footer draw" data-type="background-image" mode="aspectFit" data-url="https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hWFQEFJNgZmTBsG.png"
+        style="background-image: url('https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hWFQEFJNgZmTBsG.png')">
+        <view class="content draw" data-type="text" data-text="我在日本乐高成功解锁贴纸，并 DIY 图片进行分享，快来一起参与互动游戏吧～～">我在日本乐高成功解锁贴纸，并 DIY 图片进行分享，快来一起参与互动游戏吧～～</view>
+
+        <image class="icon draw" src="https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hdHV3XpE8IpMzqn.png"
+         data-type="image" data-url="https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hdHV3XpE8IpMzqn.png"/>
+
+        <view class="qrcode-container">
+          <view class="qrcode-container__left">
+            <image class="logo draw" src="https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hdGMOOuvBOxofP9.png" mode='widthFix'
+              data-type="image" data-url="https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hdGMOOuvBOxofP9.png">
+            </image>
+            <view class="note draw" data-type="text" data-text="长按识别小程序">长按识别小程序</view>
+          </view>
+          <image class="qrcode draw" src="https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hdR28MTpGJmweeL.jpg"
+            data-type="radius-image" data-url="https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hdR28MTpGJmweeL.jpg"/>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view hidden="{{disabled}}" class="save-btn" catchtap="{{saveBtnEvent}}"
+    style="background-image:url(https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hdAuNhoF3FV1OuE.png);">
+    保存卡片
+  </view>
+
+  <canvas canvas-id="canvas" class="canvas"
+    style="width: {{cardWidth}}px; height: {{posterHeight + 330}}rpx;">
+  </canvas>
+</view>

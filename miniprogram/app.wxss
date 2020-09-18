@@ -1,0 +1,36 @@
+/**app.wxss**/
+@import './lib/wxParser/index.wxss';
+
+page {
+  font-size: 28rpx;
+  background-color: #006CBA;
+}
+
+.clearfix::after {
+  content: "";
+  height: 0;
+  line-height: 0;
+  display: block;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.wx-swiper-dot{
+  width: 8rpx !important;
+  height: 8rpx !important;
+}
+
+.wx-swiper-dot-active {
+  width: 24rpx !important;
+  border-radius: 4rpx !important;
+}
+
+.single-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

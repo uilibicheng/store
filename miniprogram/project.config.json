@@ -1,0 +1,172 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.7.1",
+	"appid": "wxdc10b0aab890a622",
+	"projectname": "%E6%97%A5%E6%9C%AC%E4%B9%90%E9%AB%98%E5%95%86%E5%BA%97",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 17,
+			"list": [
+				{
+					"id": 0,
+					"name": "订单确认页",
+					"pathName": "pages/purchase/purchase",
+					"query": "id=5c1766e2cf3d3c2bb3ac7dfb&tickets=%5B%7B%22sku%22%3A%225c1766e2cf3d3c2bb3ac7dfb-5c1c3ebf097b295aa36f992e%22%2C%22count%22%3A1%7D%5D"
+				},
+				{
+					"id": -1,
+					"name": "订单列表页",
+					"pathName": "pages/order-list/order-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人中心页",
+					"pathName": "pages/personal/personal",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "门票详情页",
+					"pathName": "pages/ticket/ticket",
+					"query": "id=5ce79c4ed0254067be46c4f9",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "奖品兑换页",
+					"pathName": "pages/prize/prize",
+					"query": "id=5c206f5dba648b45af856ab4"
+				},
+				{
+					"id": -1,
+					"name": "奖品记录页",
+					"pathName": "pages/prize-log/prize-log",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "优惠门票页",
+					"pathName": "pages/discount-ticket-list/discount-ticket-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "海洋馆介绍页",
+					"pathName": "pages/aquarium-info/aquarium-info",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "门票列表页",
+					"pathName": "pages/ticket-bundle-list/ticket-bundle-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "奖品列表页",
+					"pathName": "pages/prize-list/prize-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单详情页",
+					"pathName": "pages/purchase/purchase",
+					"query": "id=5c1766e2cf3d3c2bb3ac7dfb&tickets=%5B%7B%22sku%22%3A%225c1766e2cf3d3c2bb3ac7dfb-5c1c3ebf097b295aa36f992e%22%2C%22count%22%3A1%7D%5D"
+				},
+				{
+					"id": -1,
+					"name": "门票介绍页",
+					"pathName": "pages/ticket/ticket",
+					"query": "id=5c1766e2cf3d3c2bb3ac7dfb"
+				},
+				{
+					"id": -1,
+					"name": "order",
+					"pathName": "pages/order/order",
+					"query": "id=5c2321e3eb69002a03081c2a"
+				},
+				{
+					"id": -1,
+					"name": "授权",
+					"pathName": "pages/auth/auth",
+					"query": "url=%2Fpages%2Findex%2Findex"
+				},
+				{
+					"id": -1,
+					"name": "门票列表页",
+					"pathName": "pages/prize-list/prize-list",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "买一送一门票页",
+					"pathName": "pages/ticket/ticket",
+					"query": "id=5cb00d06d1f72d60564aa015&prize_redemption_log_id=5cb0457dd1f72d27234a9c68&utm_source=assistance&utm_medium=海洋游乐园买一送一优惠门票",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "授权页",
+					"pathName": "pages/auth/auth",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "lottery",
+					"pathName": "pages/lottery/lottery",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

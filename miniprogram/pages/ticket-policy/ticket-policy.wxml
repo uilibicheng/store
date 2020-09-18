@@ -1,0 +1,3 @@
+<!--pages/ticket-policy/ticket-policy.wxml-->
+<import src="../../lib/wxParser/index.wxml"/>
+<template is="wxParser" data="{{wxParserData:ticketPolicy.nodes}}"/>

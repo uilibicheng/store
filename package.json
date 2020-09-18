@@ -1,0 +1,25 @@
+{
+  "name": "aquarium-store",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "^6.12 || ^8.10"
+  },
+  "scripts": {
+    "lint": "eslint '**/*.js' --cache --fix",
+    "format": "prettier --write '**/*.js'",
+    "precommit": "yarn format && yarn lint",
+    "commit": "yarn precommit && hg commit --"
+  },
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "prettier": "^1.14.3"
+  }
+}

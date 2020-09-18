@@ -1,0 +1,90 @@
+module.exports = {
+  getCardClass: function (order) {
+    if (!order) {
+      return
+    }
+    if (order.status === 'not_paid') {
+      return 'order-wait'
+    } else if (order.status === 'paid') {
+      return 'order-paid'
+    } else if (order.status === 'cancelled') {
+      return 'order-cancel'
+    } else {
+      return 'order-cancel'
+    }
+  },
+
+  getOrderStatusCn: function (order) {
+    if (!order) {
+      return
+    }
+    if (order.status === 'not_paid') {
+      return '待付款'
+    } else if (order.status === 'paid') {
+      return '已付款'
+    } else if (order.status === 'cancelled') {
+      return '已取消'
+    } else if (order.status === 'closed') {
+      return '已关闭'
+    } else if (order.status === 'refunded') {
+      return '已退款'
+    } else {
+      return ''
+    }
+  },
+
+  groupTicketsBySku: function (tickets) {
+    if (!tickets) {
+      return
+    }
+    var ticketMap = {}
+    var keys = []
+    var result = []
+    tickets.forEach(function (ticket) {
+      if (ticket.bundle_special_ticket_type === 'complimentary') {
+        ticketMap['免费' + ticket.ticket_type_name] = {
+          name: ticket.ticket_name,
+          bundle_name: ticket.bundle_name,
+          ticket_type_name: ticket.ticket_type_name,
+          price: 0,
+          type: '免费' + ticket.ticket_type_name,
+          count: 1,
+          barcode: [ticket.barcode],
+          qrcode: [ticket.qrcode],
+          total_price: 0,
+          package_name: ticket.package_name,
+          origin_type: ticket.origin_type,
+        }
+        keys.push('免费' + ticket.ticket_type_name)
+      } else {
+        if (!ticketMap[ticket.ticket_type_name]) {
+          ticketMap[ticket.ticket_type_name] = {
+            name: ticket.ticket_name,
+            bundle_name: ticket.bundle_name,
+            ticket_type_name: ticket.ticket_type_name,
+            price: ticket.is_discount ? ticket.discount_price : ticket.price,
+            type: ticket.ticket_type_name,
+            count: 1,
+            barcode: [ticket.barcode],
+            qrcode: [ticket.qrcode],
+            total_price: ticket.is_discount ? ticket.discount_price : ticket.price,
+            package_name: ticket.package_name,
+            origin_type: ticket.origin_type,
+          }
+          keys.push(ticket.ticket_type_name)
+        } else {
+          ticketMap[ticket.ticket_type_name].count += 1
+          ticketMap[ticket.ticket_type_name].total_price += ticket.is_discount ? ticket.discount_price : ticket.price
+          ticketMap[ticket.ticket_type_name].total_price = Math.round(ticketMap[ticket.ticket_type_name].total_price * 100) / 100
+          ticketMap[ticket.ticket_type_name].barcode.push(ticket.barcode)
+          ticketMap[ticket.ticket_type_name].qrcode.push(ticket.qrcode)
+        }
+      }
+    })
+    keys.forEach(function (key) {
+      ticketMap[key].sku_count = keys.length
+      result.push(ticketMap[key])
+    })
+    return result
+  },
+}

@@ -1,0 +1,14 @@
+<!--pages/ticket-bundle-list/ticket-bundle-list.wxml-->
+<view class='container'>
+  <!-- <view class='header'>
+    <image class="logo" src="../../assets/images/ClusterLogo.png"></image>
+  </view> -->
+
+  <view class='ticket-item' wx:for="{{ticketBundles}}" wx:key="{{item.id}}" data-id="{{item.id}}" bindtap="navToTicket">
+    <image src='{{item.cover_in_list}}' mode="aspectFill"></image>
+    <burying-form />
+  </view>
+  
+  <view class='hint' wx:if="{{!hasMore}}">已经没有更多啦~</view>
+  <view class='hint' wx:else>加载中~</view>
+</view>

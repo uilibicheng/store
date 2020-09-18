@@ -1,0 +1,9 @@
+.confirm {
+  color: #FF5A00;
+  font-weight: bold;
+}
+
+.cancel {
+  color: #0F42E7;
+  font-weight: bold;
+}

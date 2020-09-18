@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "confirmation-modal": "/components/confirmation-modal/confirmation-modal",
+    "alert-modal": "/components/alert-modal/alert-modal",
+    "footer-ipx": "/components/footer-ipx/footer-ipx"
+  }
+}

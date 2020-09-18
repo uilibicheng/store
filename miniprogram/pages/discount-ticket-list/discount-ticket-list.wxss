@@ -1,0 +1,136 @@
+/* pages/discount-ticket-list/discount-ticket-list.wxss */
+.container {
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0 0 100rpx;
+}
+
+.header {
+  height: 136rpx;
+  position: relative;
+  margin-top: 44rpx;
+}
+
+.header .logo {
+  display: block;
+  position: absolute;
+  width: 294rpx;
+  height: 135rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 40rpx;
+}
+
+.header .go-index {
+  box-sizing: border-box;
+  width: 220rpx;
+  height: 76rpx;
+  border-radius: 39rpx;
+  text-align: center;
+  line-height: 74rpx;
+  font-family: PingFangSC-Medium;
+  font-size: 32rpx;
+  color: #FFF;
+  border: 3rpx solid #FFF;
+  position: absolute;
+  right: 40rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.discount-ticket {
+  overflow: hidden;
+  padding-bottom: 24rpx;
+}
+
+.discount-ticket-block {
+  border-radius: 32rpx;
+  box-shadow: 0 4rpx 32rpx 0 rgba(4, 55, 139, .2);
+  width: 670rpx;
+  height: 892rpx;
+  margin: 40rpx auto 40rpx;
+  position: relative;
+}
+
+.discount-ticket-img {
+  width: 100%;
+  height: 100%;
+  border-radius:18rpx;
+  background-image: linear-gradient(180deg, rgba(0,50,84,0.00) 43%, #003254 74%);
+}
+
+.discount-ticket-off {
+  position: absolute;
+  box-sizing: border-box;
+  width: 192rpx;
+  height: 192rpx;
+  background: #F9C607;
+  /* background-image: linear-gradient(180deg, #FAD961 0%, #FF000F 100%); */
+  border: 6rpx solid #FFFFFF;
+  box-shadow: 0 0 16rpx 0 rgba(21, 65, 136, 0.20);
+  border-radius: 96rpx;
+  right: -10rpx;
+  bottom: -40rpx;
+  transform: rotate(-20deg);
+}
+
+.discount-ticket-off .num {
+  display: block;
+  font-size: 66rpx;
+  text-align: center;
+  line-height: 64rpx;
+  font-family: SFProText-Bold;
+  font-weight: bold;
+  color: #ED1C23;
+  margin: 40rpx 0 10rpx;
+}
+
+.discount-ticket-off .text {
+  display: block;
+  font-size: 44rpx;
+  line-height: 40rpx;
+  /* position: absolute; */
+  font-family: SFProText-Bold;
+  font-weight: bold;
+  color: #ED1C23;
+  /* bottom: 30rpx;
+  right: 30rpx; */
+  text-align: center;
+}
+
+.discount-ticket-name {
+  width: 670rpx;
+  line-height: 64rpx;
+  font-family: SFProText-Semibold;
+  font-size: 40rpx;
+  color: #12408C;
+  font-weight: bold;
+  margin: 0 auto 16rpx;
+}
+
+.discount-ticket-price {
+  width: 670rpx;
+  font-family: SFProText-Bold;
+  font-size: 64rpx;
+  color: #FFB800;
+  font-weight: bold;
+  line-height: 76rpx;
+  margin: 0 auto;
+}
+
+.discount-ticket-price text {
+  opacity: 0.32;
+  font-size: 40rpx;
+  color: #49536D;
+  text-decoration: line-through;
+  margin-left: 10rpx;
+}
+
+.hint {
+  font-size: 26rpx;
+  color: #FFF;
+  width: 100%;
+  line-height: 34rpx;
+  text-align: center;
+  margin: 60rpx 0;
+}

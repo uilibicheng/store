@@ -1,0 +1,1586 @@
+{
+  "zh-CN": {
+    "charset": "utf-8",
+    "translations": {
+      "": {
+        "海洋馆信息管理": { "msgid": "海洋馆信息管理", "msgstr": [""] },
+        "景区管理": { "msgid": "景区管理", "msgstr": [""] },
+        "景区列表": { "msgid": "景区列表", "msgstr": [""] },
+        "游戏管理": { "msgid": "游戏管理", "msgstr": [""] },
+        "题库管理": { "msgid": "题库管理", "msgstr": [""] },
+        "角色管理": { "msgid": "角色管理", "msgstr": [""] },
+        "角色列表": { "msgid": "角色列表", "msgstr": [""] },
+        "生物管理": { "msgid": "生物管理", "msgstr": [""] },
+        "生物列表": { "msgid": "生物列表", "msgstr": [""] },
+        "产品管理": { "msgid": "产品管理", "msgstr": [""] },
+        "门票列表": { "msgid": "门票列表", "msgstr": [""] },
+        "门票管理": { "msgid": "门票管理", "msgstr": [""] },
+        "产品列表": { "msgid": "产品列表", "msgstr": [""] },
+        "奖品管理": { "msgid": "奖品管理", "msgstr": [""] },
+        "奖品列表": { "msgid": "奖品列表", "msgstr": [""] },
+        "条形码管理": { "msgid": "条形码管理", "msgstr": [""] },
+        "条形码列表": { "msgid": "条形码列表", "msgstr": [""] },
+        "订单管理": { "msgid": "订单管理", "msgstr": [""] },
+        "产品订单": { "msgid": "产品订单", "msgstr": [""] },
+        "兑换记录": { "msgid": "兑换记录", "msgstr": [""] },
+        "设置": { "msgid": "设置", "msgstr": [""] },
+        "库存预警": { "msgid": "库存预警", "msgstr": [""] },
+        "banner 设置": { "msgid": "banner 设置", "msgstr": [""] },
+        "海洋馆名称": { "msgid": "海洋馆名称", "msgstr": [""] },
+        "新增内容": { "msgid": "新增内容", "msgstr": [""] },
+        "标题": { "msgid": "标题", "msgstr": [""] },
+        "请输入内容": { "msgid": "请输入内容", "msgstr": [""] },
+        "内容": { "msgid": "内容", "msgstr": [""] },
+        "请输入标题": { "msgid": "请输入标题", "msgstr": [""] },
+        "新增景区": { "msgid": "新增景区", "msgstr": [""] },
+        "景区名称": { "msgid": "景区名称", "msgstr": [""] },
+        "楼层": { "msgid": "楼层", "msgstr": [""] },
+        "景区介绍": { "msgid": "景区介绍", "msgstr": [""] },
+        "所在楼层": { "msgid": "所在楼层", "msgstr": [""] },
+        "景区位置 X": { "msgid": "景区位置 X", "msgstr": [""] },
+        "景区位置 Y": { "msgid": "景区位置 Y", "msgstr": [""] },
+        "关联优惠券": { "msgid": "关联优惠券", "msgstr": [""] },
+        "关联题目": { "msgid": "关联题目", "msgstr": [""] },
+        "关联生物": { "msgid": "关联生物", "msgstr": [""] },
+        "题目": { "msgid": "题目", "msgstr": [""] },
+        "发布时间": { "msgid": "发布时间", "msgstr": [""] },
+        "选项": { "msgid": "选项", "msgstr": [""] },
+        "答案": { "msgid": "答案", "msgstr": [""] },
+        "选项图片": { "msgid": "选项图片", "msgstr": [""] },
+        "正确答案": { "msgid": "正确答案", "msgstr": [""] },
+        "答案解析": { "msgid": "答案解析", "msgstr": [""] },
+        "请输入答案解析": { "msgid": "请输入答案解析", "msgstr": [""] },
+        "请录入该题的可选答案，并标记正确选项": {
+          "msgid": "请录入该题的可选答案，并标记正确选项",
+          "msgstr": [""]
+        },
+        "答对积分：{num} 积分": {
+          "msgid": "答对积分：{num} 积分",
+          "msgstr": [""]
+        },
+        "答错积分：{num} 积分": {
+          "msgid": "答错积分：{num} 积分",
+          "msgstr": [""]
+        },
+        "等级": { "msgid": "等级", "msgstr": [""] },
+        "角色名称": { "msgid": "角色名称", "msgstr": [""] },
+        "答对题目数": { "msgid": "答对题目数", "msgstr": [""] },
+        "分享配图": { "msgid": "分享配图", "msgstr": [""] },
+        "角色介绍": { "msgid": "角色介绍", "msgstr": [""] },
+        "生物名称": { "msgid": "生物名称", "msgstr": [""] },
+        "生物介绍": { "msgid": "生物介绍", "msgstr": [""] },
+        "请输入生物介绍": { "msgid": "请输入生物介绍", "msgstr": [""] },
+        "门票名称": { "msgid": "门票名称", "msgstr": [""] },
+        "新增门票": { "msgid": "新增门票", "msgstr": [""] },
+        "列表封面图": { "msgid": "列表封面图", "msgstr": [""] },
+        "详情页轮播图": { "msgid": "详情页轮播图", "msgstr": [""] },
+        "订单图": { "msgid": "订单图", "msgstr": [""] },
+        "门票说明": { "msgid": "门票说明", "msgstr": [""] },
+        "购买须知": { "msgid": "购买须知", "msgstr": [""] },
+        "票种名称": { "msgid": "票种名称", "msgstr": [""] },
+        "票种描述": { "msgid": "票种描述", "msgstr": [""] },
+        "新增票种": { "msgid": "新增票种", "msgstr": [""] },
+        "票价": { "msgid": "票价", "msgstr": [""] },
+        "库存": { "msgid": "库存", "msgstr": [""] },
+        "新增产品": { "msgid": "新增产品", "msgstr": [""] },
+        "是否限购": { "msgid": "是否限购", "msgstr": [""] },
+        "是否促销门票": { "msgid": "是否促销门票", "msgstr": [""] },
+        "优惠价格": { "msgid": "优惠价格", "msgstr": [""] },
+        "产品图片": { "msgid": "产品图片", "msgstr": [""] },
+        "奖品名称": { "msgid": "奖品名称", "msgstr": [""] },
+        "奖品分类": { "msgid": "奖品分类", "msgstr": [""] },
+        "积分": { "msgid": "积分", "msgstr": [""] },
+        "优惠大礼": { "msgid": "优惠大礼", "msgstr": [""] },
+        "区域优惠券": { "msgid": "区域优惠券", "msgstr": [""] },
+        "游戏礼物": { "msgid": "游戏礼物", "msgstr": [""] },
+        "兑换条件": { "msgid": "兑换条件", "msgstr": [""] },
+        "是否限制兑换": { "msgid": "是否限制兑换", "msgstr": [""] },
+        "奖品数量": { "msgid": "奖品数量", "msgstr": [""] },
+        "选择门票名称": { "msgid": "选择门票名称", "msgstr": [""] },
+        "选择票种": { "msgid": "选择票种", "msgstr": [""] },
+        "批量删除": { "msgid": "批量删除", "msgstr": [""] },
+        "是否已经备份导出对应的数据": {
+          "msgid": "是否已经备份导出对应的数据",
+          "msgstr": [""]
+        },
+        "票务系统订单号": { "msgid": "票务系统订单号", "msgstr": [""] },
+        "条形码": { "msgid": "条形码", "msgstr": [""] },
+        "有效期开始时间": { "msgid": "有效期开始时间", "msgstr": [""] },
+        "有效期结束时间": { "msgid": "有效期结束时间", "msgstr": [""] },
+        "订单号": { "msgid": "订单号", "msgstr": [""] },
+        "订单状态": { "msgid": "订单状态", "msgstr": [""] },
+        "联系人": { "msgid": "联系人", "msgstr": [""] },
+        "手机号": { "msgid": "手机号", "msgstr": [""] },
+        "数量": { "msgid": "数量", "msgstr": [""] },
+        "订单总额": { "msgid": "订单总额", "msgstr": [""] },
+        "支付方式": { "msgid": "支付方式", "msgstr": [""] },
+        "联系人信息": { "msgid": "联系人信息", "msgstr": [""] },
+        "下单时间": { "msgid": "下单时间", "msgstr": [""] },
+        "请输入兑换码": { "msgid": "请输入兑换码", "msgstr": [""] },
+        "名称": { "msgid": "名称", "msgstr": [""] },
+        "兑换码": { "msgid": "兑换码", "msgstr": [""] },
+        "核销时间": { "msgid": "核销时间", "msgstr": [""] },
+        "兑换时间": { "msgid": "兑换时间", "msgstr": [""] },
+        "操作人": { "msgid": "操作人", "msgstr": [""] },
+        "启用库存预警功能": { "msgid": "启用库存预警功能", "msgstr": [""] },
+        "设置默认库存预警值": { "msgid": "设置默认库存预警值", "msgstr": [""] },
+        "预警信息提示邮箱": { "msgid": "预警信息提示邮箱", "msgstr": [""] },
+        "banner 图": { "msgid": "banner 图", "msgstr": [""] },
+        "跳转地址": { "msgid": "跳转地址", "msgstr": [""] },
+        "新增 banner": { "msgid": "新增 banner", "msgstr": [""] },
+        "上架": { "msgid": "上架", "msgstr": [""] },
+        "下架": { "msgid": "下架", "msgstr": [""] },
+        "编辑": { "msgid": "编辑", "msgstr": [""] },
+        "核销": { "msgid": "核销", "msgstr": [""] },
+        "二维码": { "msgid": "二维码", "msgstr": [""] },
+        "删除": { "msgid": "删除", "msgstr": [""] },
+        "退款": { "msgid": "退款", "msgstr": [""] },
+        "查看": { "msgid": "查看", "msgstr": [""] },
+        "已上架": { "msgid": "已上架", "msgstr": [""] },
+        "已下架": { "msgid": "已下架", "msgstr": [""] },
+        "已支付": { "msgid": "已支付", "msgstr": [""] },
+        "交易关闭": { "msgid": "交易关闭", "msgstr": [""] },
+        "已退款": { "msgid": "已退款", "msgstr": [""] },
+        "待支付": { "msgid": "待支付", "msgstr": [""] },
+        "已取消": { "msgid": "已取消", "msgstr": [""] },
+        "未兑换": { "msgid": "未兑换", "msgstr": [""] },
+        "处理中": { "msgid": "处理中", "msgstr": [""] },
+        "已售出": { "msgid": "已售出", "msgstr": [""] },
+        "已过期": { "msgid": "已过期", "msgstr": [""] },
+        "已兑换": { "msgid": "已兑换", "msgstr": [""] },
+        "否": { "msgid": "否", "msgstr": [""] },
+        "是": { "msgid": "是", "msgstr": [""] },
+        "导出列表": { "msgid": "导出列表", "msgstr": [""] },
+        "查询": { "msgid": "查询", "msgstr": [""] },
+        "选择状态": { "msgid": "选择状态", "msgstr": [""] },
+        "状态": { "msgid": "状态", "msgstr": [""] },
+        "图片": { "msgid": "图片", "msgstr": [""] },
+        "所在位置": { "msgid": "所在位置", "msgstr": [""] },
+        "操作": { "msgid": "操作", "msgstr": [""] },
+        "取消": { "msgid": "取消", "msgstr": [""] },
+        "保存": { "msgid": "保存", "msgstr": [""] },
+        "详情页大图": { "msgid": "详情页大图", "msgstr": [""] },
+        "封面图": { "msgid": "封面图", "msgstr": [""] },
+        "中文名称": { "msgid": "中文名称", "msgstr": [""] },
+        "英文名称": { "msgid": "英文名称", "msgstr": [""] },
+        "序号": { "msgid": "序号", "msgstr": [""] },
+        "请输入门票名称": { "msgid": "请输入门票名称", "msgstr": [""] },
+        "请输入门票英文名称": { "msgid": "请输入门票英文名称", "msgstr": [""] },
+        "请选择封面图": { "msgid": "请选择封面图", "msgstr": [""] },
+        "请选择列表图": { "msgid": "请选择列表图", "msgstr": [""] },
+        "请选择详情页大图": { "msgid": "请选择详情页大图", "msgstr": [""] },
+        "请输入票种名称": { "msgid": "请输入票种名称", "msgstr": [""] },
+        "请输入票种描述": { "msgid": "请输入票种描述", "msgstr": [""] },
+        "请选择门票名称": { "msgid": "请选择门票名称", "msgstr": [""] },
+        "请选择票种": { "msgid": "请选择票种", "msgstr": [""] },
+        "请输入票价": { "msgid": "请输入票价", "msgstr": [""] },
+        "请上传产品图片": { "msgid": "请上传产品图片", "msgstr": [""] },
+        "请输入奖品名称": { "msgid": "请输入奖品名称", "msgstr": [""] },
+        "请上传奖品图片": { "msgid": "请上传奖品图片", "msgstr": [""] },
+        "请输入兑换条件": { "msgid": "请输入兑换条件", "msgstr": [""] },
+        "请输入奖品数量": { "msgid": "请输入奖品数量", "msgstr": [""] },
+        "注意：导出列表操作频率最多为一分钟一次，否则会导出失败": {
+          "msgid": "注意：导出列表操作频率最多为一分钟一次，否则会导出失败",
+          "msgstr": [""]
+        },
+        "请上传 banner 图": { "msgid": "请上传 banner 图", "msgstr": [""] },
+        "请输入跳转地址": { "msgid": "请输入跳转地址", "msgstr": [""] },
+        "请输入中文名称": { "msgid": "请输入中文名称", "msgstr": [""] },
+        "请输入英文名称": { "msgid": "请输入英文名称", "msgstr": [""] },
+        "请输入景区中文名称": { "msgid": "请输入景区中文名称", "msgstr": [""] },
+        "请输入景区英文名称": { "msgid": "请输入景区英文名称", "msgstr": [""] },
+        "请选择景区所在楼层": { "msgid": "请选择景区所在楼层", "msgstr": [""] },
+        "请输入景区的 X 坐标": {
+          "msgid": "请输入景区的 X 坐标",
+          "msgstr": [""]
+        },
+        "请输入景区的 Y 坐标": {
+          "msgid": "请输入景区的 Y 坐标",
+          "msgstr": [""]
+        },
+        "请上传详情页大图": { "msgid": "请上传详情页大图", "msgstr": [""] },
+        "请输入题目": { "msgid": "请输入题目", "msgstr": [""] },
+        "请输入答案": { "msgid": "请输入答案", "msgstr": [""] },
+        "保存成功": { "msgid": "保存成功", "msgstr": [""] },
+        "请输入正确的内容": { "msgid": "请输入正确的内容", "msgstr": [""] },
+        "数据导入成功": { "msgid": "数据导入成功", "msgstr": [""] },
+        "数据导入失败": { "msgid": "数据导入失败", "msgstr": [""] },
+        "库存已更新": { "msgid": "库存已更新", "msgstr": [""] },
+        "上架成功": { "msgid": "上架成功", "msgstr": [""] },
+        "下架成功": { "msgid": "下架成功", "msgstr": [""] },
+        "预警": { "msgid": "预警", "msgstr": [""] },
+        "请输入校验条件": { "msgid": "请输入校验条件", "msgstr": [""] },
+        "请输入正确的限制条件": {
+          "msgid": "请输入正确的限制条件",
+          "msgstr": [""]
+        },
+        "保存失败": { "msgid": "保存失败", "msgstr": [""] },
+        "请选择正确的文件": { "msgid": "请选择正确的文件", "msgstr": [""] },
+        "图片大小不能超过 200 K": {
+          "msgid": "图片大小不能超过 200 K",
+          "msgstr": [""]
+        },
+        "图片上传成功": { "msgid": "图片上传成功", "msgstr": [""] },
+        "支持 PNG，JPG，图片大小不超过 200 K，建议像素为": {
+          "msgid": "支持 PNG，JPG，图片大小不超过 200 K，建议像素为",
+          "msgstr": [""]
+        },
+        "数据导出失败": { "msgid": "数据导出失败", "msgstr": [""] },
+        "删除成功": { "msgid": "删除成功", "msgstr": [""] },
+        "确定执行本次核销操作": {
+          "msgid": "确定执行本次核销操作",
+          "msgstr": [""]
+        },
+        "待核销": { "msgid": "待核销", "msgstr": [""] },
+        "已核销": { "msgid": "已核销", "msgstr": [""] },
+        "已关闭": { "msgid": "已关闭", "msgstr": [""] },
+        "确认删除": { "msgid": "确认删除", "msgstr": [""] },
+        "每个微信ID号 {num} 天内可购买 {num} 份": {
+          "msgid": "每个微信ID号 {num} 天内可购买 {num} 份",
+          "msgstr": [""]
+        },
+        "每个微信ID号 {num} 天内可兑换 {num} 次": {
+          "msgid": "每个微信ID号 {num} 天内可兑换 {num} 次",
+          "msgstr": [""]
+        },
+        "创建时间": { "msgid": "创建时间", "msgstr": [""] },
+        "新增生物": { "msgid": "新增生物", "msgstr": [""] },
+        "编辑景区": { "msgid": "编辑景区", "msgstr": [""] },
+        "温馨提示": { "msgid": "温馨提示", "msgstr": [""] },
+        "该题目已与景区产生绑定关系，点击「OK」前往景区列表解绑后才能下架": {
+          "msgid": "该题目已与景区产生绑定关系，点击「OK」前往景区列表解绑后才能下架",
+          "msgstr": [""]
+        },
+        "共 {num} 条数据": { "msgid": "共 {num} 条数据", "msgstr": [""] },
+        "编辑生物": { "msgid": "编辑生物", "msgstr": [""] },
+        "题库列表": { "msgid": "题库列表", "msgstr": [""] },
+        "编辑题目": { "msgid": "编辑题目", "msgstr": [""] },
+        "票种列表": { "msgid": "票种列表", "msgstr": [""] },
+        "确定执行此操作": { "msgid": "确定执行此操作", "msgstr": [""] },
+        "编辑票种": { "msgid": "编辑票种", "msgstr": [""] },
+        "导入": { "msgid": "导入", "msgstr": [""] },
+        "修改": { "msgid": "修改", "msgstr": [""] },
+        "票种": { "msgid": "票种", "msgstr": [""] },
+        "库存紧张": { "msgid": "库存紧张", "msgstr": [""] },
+        "约 {sum} 人民币": { "msgid": "约 {sum} 人民币", "msgstr": [""] },
+        "请输入优惠价格": { "msgid": "请输入优惠价格", "msgstr": [""] },
+        "奖品类型": { "msgid": "奖品类型", "msgstr": [""] },
+        "新增奖品": { "msgid": "新增奖品", "msgstr": [""] },
+        "编辑奖品": { "msgid": "编辑奖品", "msgstr": [""] },
+        "是否限制兑换次数": { "msgid": "是否限制兑换次数", "msgstr": [""] },
+        "请选择奖品类型": { "msgid": "请选择奖品类型", "msgstr": [""] },
+        "关联订单号": { "msgid": "关联订单号", "msgstr": [""] },
+        "未售出": { "msgid": "未售出", "msgstr": [""] },
+        "产品信息": { "msgid": "产品信息", "msgstr": [""] },
+        "票务系统状态": { "msgid": "票务系统状态", "msgstr": [""] },
+        "兑换记录详情": { "msgid": "兑换记录详情", "msgstr": [""] },
+        "推送邮箱": { "msgid": "推送邮箱", "msgstr": [""] },
+        "你输入的似乎不是一个邮箱": {
+          "msgid": "你输入的似乎不是一个邮箱",
+          "msgstr": [""]
+        },
+        "请上传banner图片": { "msgid": "请上传banner图片", "msgstr": [""] },
+        "请上传封面图": { "msgid": "请上传封面图", "msgstr": [""] },
+        "请上传分享配图": { "msgid": "请上传分享配图", "msgstr": [""] },
+        "海洋馆乐园": { "msgid": "海洋馆乐园", "msgstr": [""] },
+        "海底商店": { "msgid": "海底商店", "msgstr": [""] },
+        "全部": { "msgid": "全部", "msgstr": [""] },
+        "新增题目": { "msgid": "新增题目", "msgstr": [""] },
+        "二维码管理": { "msgid": "二维码管理", "msgstr": [""] },
+        "二维码列表": { "msgid": "二维码列表", "msgstr": [""] },
+        "编辑角色": { "msgid": "编辑角色", "msgstr": [""] },
+        "优先级": { "msgid": "优先级", "msgstr": [""] },
+        "请输入优先级": { "msgid": "请输入优先级", "msgstr": [""] },
+        "确定退款": { "msgid": "确定退款", "msgstr": [""] },
+        "确定": { "msgid": "确定", "msgstr": [""] },
+        "小封面图": { "msgid": "小封面图", "msgstr": [""] },
+        "未上架": { "msgid": "未上架", "msgstr": [""] },
+        "跳转页面": { "msgid": "跳转页面", "msgstr": [""] },
+        "示例": { "msgid": "示例", "msgstr": [""] },
+        "至少关联2条题目": { "msgid": "至少关联2条题目", "msgstr": [""] },
+        "请填写默认库存预警值": {
+          "msgid": "请填写默认库存预警值",
+          "msgstr": [""]
+        },
+        "确认": { "msgid": "确认", "msgstr": [""] },
+        "成人票": { "msgid": "成人票", "msgstr": [""] },
+        "儿童票": { "msgid": "儿童票", "msgstr": [""] },
+        "优惠门票列表": { "msgid": "优惠门票列表", "msgstr": [""] },
+        "门票详情": { "msgid": "门票详情", "msgstr": [""] },
+        "奖品详情": { "msgid": "奖品详情", "msgstr": [""] },
+        "刷新库存": { "msgid": "刷新库存", "msgstr": [""] },
+        "库存量将在5分钟后自动更新数据": {
+          "msgid": "库存量将在5分钟后自动更新数据",
+          "msgstr": [""]
+        },
+        "操作成功": { "msgid": "操作成功", "msgstr": [""] },
+        "支付时间": { "msgid": "支付时间", "msgstr": [""] },
+        "操作者": { "msgid": "操作者", "msgstr": [""] },
+        "无": { "msgid": "无", "msgstr": [""] },
+        "产品": { "msgid": "产品", "msgstr": [""] },
+        "数据导出成功": { "msgid": "数据导出成功", "msgstr": [""] },
+        "编辑产品": { "msgid": "编辑产品", "msgstr": [""] },
+        "刷新成功": { "msgid": "刷新成功", "msgstr": [""] },
+        "刷新失败": { "msgid": "刷新失败", "msgstr": [""] },
+        "请选择是否促销": { "msgid": "请选择是否促销", "msgstr": [""] },
+        "是否隐藏": { "msgid": "是否隐藏", "msgstr": [""] },
+        "编辑门票": { "msgid": "编辑门票", "msgstr": [""] },
+        "请选择小封面图": { "msgid": "请选择小封面图", "msgstr": [""] },
+        "关联项目": { "msgid": "关联项目", "msgstr": [""] },
+        "取消关联": { "msgid": "取消关联", "msgstr": [""] },
+        "新增角色": { "msgid": "新增角色", "msgstr": [""] },
+        "请输入解锁角色需要答对得题目数量": {
+          "msgid": "请输入解锁角色需要答对得题目数量",
+          "msgstr": [""]
+        },
+        "请输入角色中文名称": { "msgid": "请输入角色中文名称", "msgstr": [""] },
+        "请输入角色英文名称": { "msgid": "请输入角色英文名称", "msgstr": [""] },
+        "请上传角色图片": { "msgid": "请上传角色图片", "msgstr": [""] },
+        "请选择正确答案": { "msgid": "请选择正确答案", "msgstr": [""] },
+        "编辑banner": { "msgid": "编辑banner", "msgstr": [""] },
+        "数据正在导出，请耐心等待": {
+          "msgid": "数据正在导出，请耐心等待",
+          "msgstr": [""]
+        },
+        "请输入英文题目": { "msgid": "请输入英文题目", "msgstr": [""] },
+        "英文题目": { "msgid": "英文题目", "msgstr": [""] },
+        "权限管理": { "msgid": "权限管理", "msgstr": [""] },
+        "用户列表": { "msgid": "用户列表", "msgstr": [""] },
+        "进入成员后台": { "msgid": "进入成员后台", "msgstr": [""] },
+        "添加用户": { "msgid": "添加用户", "msgstr": [""] },
+        "编辑用户": { "msgid": "编辑用户", "msgstr": [""] },
+        "邮箱": { "msgid": "邮箱", "msgstr": [""] },
+        "用户名称": { "msgid": "用户名称", "msgstr": [""] },
+        "新增时间": { "msgid": "新增时间", "msgstr": [""] },
+        "第一步：进入成员后台添加成员——第二步：返回该后台添加用户并设置权限，添加用户填写的邮箱必须是成员后台已存在的邮箱，否则用户无法享用对应的权限": {
+          "msgid": "第一步：进入成员后台添加成员——第二步：返回该后台添加用户并设置权限，添加用户填写的邮箱必须是成员后台已存在的邮箱，否则用户无法享用对应的权限",
+          "msgstr": [""]
+        },
+        "权限设置": { "msgid": "权限设置", "msgstr": [""] },
+        "请输入邮箱地址": { "msgid": "请输入邮箱地址", "msgstr": [""] },
+        "请输入用户名称": { "msgid": "请输入用户名称", "msgstr": [""] },
+        "操作记录": { "msgid": "操作记录", "msgstr": [""] },
+        "选择用户": { "msgid": "选择用户", "msgstr": [""] },
+        "选择页面": { "msgid": "选择页面", "msgstr": [""] },
+        "操作页面": { "msgid": "操作页面", "msgstr": [""] },
+        "操作时间": { "msgid": "操作时间", "msgstr": [""] },
+        "消息管理": { "msgid": "消息管理", "msgstr": [""] },
+        "活动消息发布": { "msgid": "活动消息发布", "msgstr": [""] },
+        "消息标题": { "msgid": "消息标题", "msgstr": [""] },
+        "发送类型": { "msgid": "发送类型", "msgstr": [""] },
+        "发送时间": { "msgid": "发送时间", "msgstr": [""] },
+        "新增消息": { "msgid": "新增消息", "msgstr": [""] },
+        "已激活": { "msgid": "已激活", "msgstr": [""] },
+        "未激活": { "msgid": "未激活", "msgstr": [""] },
+        "重新发送": { "msgid": "重新发送", "msgstr": [""] },
+        "编辑消息": { "msgid": "编辑消息", "msgstr": [""] },
+        "中文标题": { "msgid": "中文标题", "msgstr": [""] },
+        "英文标题": { "msgid": "英文标题", "msgstr": [""] },
+        "即时发送": { "msgid": "即时发送", "msgstr": [""] },
+        "定时发送": { "msgid": "定时发送", "msgstr": [""] },
+        "每天": { "msgid": "每天", "msgstr": [""] },
+        "请输入中文标题": { "msgid": "请输入中文标题", "msgstr": [""] },
+        "请输入英文标题": { "msgid": "请输入英文标题", "msgstr": [""] },
+        "该产品已存在，请前往门票管理新增门票": {
+          "msgid": "该产品已存在，请前往门票管理新增门票",
+          "msgstr": [""]
+        },
+        "新增": { "msgid": "新增", "msgstr": [""] },
+        "票种英文描述": { "msgid": "票种英文描述", "msgstr": [""] },
+        "请输入票种英文描述": { "msgid": "请输入票种英文描述", "msgstr": [""] },
+        "温馨提示（英文）": { "msgid": "温馨提示（英文）", "msgstr": [""] },
+        "请输入英文提示": { "msgid": "请输入英文提示", "msgstr": [""] },
+        "请输入温馨提示": { "msgid": "请输入温馨提示", "msgstr": [""] },
+        "立即发送": { "msgid": "立即发送", "msgstr": [""] },
+        "模版下载": { "msgid": "模版下载", "msgstr": [""] },
+        "添加权限": { "msgid": "添加权限", "msgstr": [""] },
+        "勾选后，该用户即可有权查看到对应的页面，并进行新增、编辑等操作": {
+          "msgid": "勾选后，该用户即可有权查看到对应的页面，并进行新增、编辑等操作",
+          "msgstr": [""]
+        },
+        "确定后，该用户即可有权查看{pages}页面，并进行新增、编辑等操作": {
+          "msgid": "确定后，该用户即可有权查看{pages}页面，并进行新增、编辑等操作",
+          "msgstr": [""]
+        },
+        "答案图片": { "msgid": "答案图片", "msgstr": [""] },
+        "请上传答案图片": { "msgid": "请上传答案图片", "msgstr": [""] },
+        "退款时间": { "msgid": "退款时间", "msgstr": [""] },
+        "已发送": { "msgid": "已发送", "msgstr": [""] },
+        "未发送": { "msgid": "未发送", "msgstr": [""] },
+        "请选择发送类型": { "msgid": "请选择发送类型", "msgstr": [""] },
+        "请输入用户邮箱": { "msgid": "请输入用户邮箱", "msgstr": [""] },
+        "支付流水号": { "msgid": "支付流水号", "msgstr": [""] },
+        "退款流水号": { "msgid": "退款流水号", "msgstr": [""] },
+        "退款备注": { "msgid": "退款备注", "msgstr": [""] },
+        "至少要选择一项": { "msgid": "至少要选择一项", "msgstr": [""] },
+        "优先按天筛选": { "msgid": "优先按天筛选", "msgstr": [""] },
+        "价格": { "msgid": "价格", "msgstr": [""] },
+        "过期时间": { "msgid": "过期时间", "msgstr": [""] },
+        "是否售出": { "msgid": "是否售出", "msgstr": [""] },
+        "退出登录": { "msgid": "退出登录", "msgstr": [""] },
+        "微信用户列表": { "msgid": "微信用户列表", "msgstr": [""] },
+        "请输入用户昵称": { "msgid": "请输入用户昵称", "msgstr": [""] },
+        "用户昵称": { "msgid": "用户昵称", "msgstr": [""] },
+        "最近登录时间": { "msgid": "最近登录时间", "msgstr": [""] },
+        "最近 7 天": { "msgid": "最近 7 天", "msgstr": [""] },
+        "最近 30 天": { "msgid": "最近 30 天", "msgstr": [""] },
+        "抽奖管理": { "msgid": "抽奖管理", "msgstr": [""] },
+        "抽奖列表": { "msgid": "抽奖列表", "msgstr": [""] },
+        "抽奖入口": { "msgid": "抽奖入口", "msgstr": [""] },
+        "开启中": { "msgid": "开启中", "msgstr": [""] },
+        "更改": { "msgid": "更改", "msgstr": [""] },
+        "新增抽奖": { "msgid": "新增抽奖", "msgstr": [""] },
+        "开始时间": { "msgid": "开始时间", "msgstr": [""] },
+        "结束时间": { "msgid": "结束时间", "msgstr": [""] },
+        "活动状态": { "msgid": "活动状态", "msgstr": [""] },
+        "未开始": { "msgid": "未开始", "msgstr": [""] },
+        "进行中": { "msgid": "进行中", "msgstr": [""] },
+        "已开奖": { "msgid": "已开奖", "msgstr": [""] },
+        "参与人数": { "msgid": "参与人数", "msgstr": [""] },
+        "抽奖人数": { "msgid": "抽奖人数", "msgstr": [""] },
+        "实际中奖": { "msgid": "实际中奖", "msgstr": [""] },
+        "查看中奖信息": { "msgid": "查看中奖信息", "msgstr": [""] },
+        "微信昵称": { "msgid": "微信昵称", "msgstr": [""] },
+        "姓名": { "msgid": "姓名", "msgstr": [""] },
+        "电话号码": { "msgid": "电话号码", "msgstr": [""] },
+        "省份": { "msgid": "省份", "msgstr": [""] },
+        "城市": { "msgid": "城市", "msgstr": [""] },
+        "地区": { "msgid": "地区", "msgstr": [""] },
+        "详情地址": { "msgid": "详情地址", "msgstr": [""] },
+        "抽奖开始时间": { "msgid": "抽奖开始时间", "msgstr": [""] },
+        "抽奖结束时间": { "msgid": "抽奖结束时间", "msgstr": [""] },
+        "奖品": { "msgid": "奖品", "msgstr": [""] },
+        "中奖人数": { "msgid": "中奖人数", "msgstr": [""] },
+        "图片上传": { "msgid": "图片上传", "msgstr": [""] },
+        "实物": { "msgid": "实物", "msgstr": [""] },
+        "虚拟奖品（海底商店券）": {
+          "msgid": "虚拟奖品（海底商店券）",
+          "msgstr": [""]
+        },
+        "关联海底商店物品": { "msgid": "关联海底商店物品", "msgstr": [""] },
+        "不关联": { "msgid": "不关联", "msgstr": [""] },
+        "商店兑换券": { "msgid": "商店兑换券", "msgstr": [""] },
+        "门票优惠券": { "msgid": "门票优惠券", "msgstr": [""] },
+        "购票方式": { "msgid": "购票方式", "msgstr": [""] },
+        "关联券": { "msgid": "关联券", "msgstr": [""] },
+        "门票类型": { "msgid": "门票类型", "msgstr": [""] },
+        "普通门票": { "msgid": "普通门票", "msgstr": [""] },
+        "特殊门票": { "msgid": "特殊门票", "msgstr": [""] },
+        "助力活动": { "msgid": "助力活动", "msgstr": [""] },
+        "抽奖活动": { "msgid": "抽奖活动", "msgstr": [""] },
+        "默林分享": { "msgid": "默林分享", "msgstr": [""] },
+        "默林分享（小程序分享）": {
+          "msgid": "默林分享（小程序分享）",
+          "msgstr": [""]
+        },
+        "是否折扣优惠类门票": { "msgid": "是否折扣优惠类门票", "msgstr": [""] },
+        "请选择是否折扣优惠类门票": {
+          "msgid": "请选择是否折扣优惠类门票",
+          "msgstr": [""]
+        },
+        "折扣优惠价格": { "msgid": "折扣优惠价格", "msgstr": [""] },
+        "请输入折扣价格": { "msgid": "请输入折扣价格", "msgstr": [""] },
+        "请选择门票类型": { "msgid": "请选择门票类型", "msgstr": [""] },
+        "特殊门票类型": { "msgid": "特殊门票类型", "msgstr": [""] },
+        "请选择特殊门票类型": { "msgid": "请选择特殊门票类型", "msgstr": [""] },
+        "分享-折扣票": { "msgid": "分享-折扣票", "msgstr": [""] },
+        "活动-折扣票": { "msgid": "活动-折扣票", "msgstr": [""] },
+        "活动-买一送一票": { "msgid": "活动-买一送一票", "msgstr": [""] },
+        "活动-赠送票": { "msgid": "活动-赠送票", "msgstr": [""] },
+        "绑定赠送票": { "msgid": "绑定赠送票", "msgstr": [""] },
+        "请选择赠送票": { "msgid": "请选择赠送票", "msgstr": [""] },
+        "默林游助力活动": { "msgid": "默林游助力活动", "msgstr": [""] },
+        "曼谷分享": { "msgid": "曼谷分享", "msgstr": [""] },
+        "默林乐高商店": { "msgid": "默林乐高商店", "msgstr": [""] },
+        "乐高商店信息管理": { "msgid": "乐高商店信息管理", "msgstr": [""] },
+        "过期提醒": { "msgid": "过期提醒", "msgstr": [""] },
+        "启用门票过期提醒功能": {
+          "msgid": "启用门票过期提醒功能",
+          "msgstr": [""]
+        },
+        "设置门票剩余有效天数": {
+          "msgid": "设置门票剩余有效天数",
+          "msgstr": [""]
+        },
+        "门票过期提示邮箱": { "msgid": "门票过期提示邮箱", "msgstr": [""] },
+        "请填写门票剩余有效天数": {
+          "msgid": "请填写门票剩余有效天数",
+          "msgstr": [""]
+        },
+        "闭园日期": { "msgid": "闭园日期", "msgstr": [""] },
+        "请选择闭园日期": { "msgid": "请选择闭园日期", "msgstr": [""] },
+        "已选择闭园日期": { "msgid": "已选择闭园日期", "msgstr": [""] },
+        "请勿重复选择": { "msgid": "请勿重复选择", "msgstr": [""] },
+        "贴纸管理": { "msgid": "贴纸管理", "msgstr": [""] },
+        "贴纸列表": { "msgid": "贴纸列表", "msgstr": [""] },
+        "新增贴纸": { "msgid": "新增贴纸", "msgstr": [""] },
+        "点击图片下载小程序二维码": {
+          "msgid": "点击图片下载小程序二维码",
+          "msgstr": [""]
+        },
+        "是否需要解锁": { "msgid": "是否需要解锁", "msgstr": [""] },
+        "展示小图": { "msgid": "展示小图", "msgstr": [""] },
+        "解锁大图": { "msgid": "解锁大图", "msgstr": [""] },
+        "解锁方式": { "msgid": "解锁方式", "msgstr": [""] },
+        "扫码解锁": { "msgid": "扫码解锁", "msgstr": [""] },
+        "分享解锁": { "msgid": "分享解锁", "msgstr": [""] },
+        "扫码地点": { "msgid": "扫码地点", "msgstr": [""] },
+        "请选择是否需要解锁": { "msgid": "请选择是否需要解锁", "msgstr": [""] },
+        "请选择展示小图": { "msgid": "请选择展示小图", "msgstr": [""] },
+        "请选择解锁大图": { "msgid": "请选择解锁大图", "msgstr": [""] },
+        "请选择解锁方式": { "msgid": "请选择解锁方式", "msgstr": [""] },
+        "请输入扫码地点": { "msgid": "请输入扫码地点", "msgstr": [""] },
+        "园区人流通知": { "msgid": "园区人流通知", "msgstr": [""] },
+        "新增通知": { "msgid": "新增通知", "msgstr": [""] },
+        "普通奖品": { "msgid": "普通奖品", "msgstr": [""] },
+        "新人优惠大礼": { "msgid": "新人优惠大礼", "msgstr": [""] },
+        "排序": { "msgid": "排序", "msgstr": [""] },
+        "数值越大，显示越靠前": {
+          "msgid": "数值越大，显示越靠前",
+          "msgstr": [""]
+        },
+        "兑换份数": { "msgid": "兑换份数", "msgstr": [""] },
+        "使用时间": { "msgid": "使用时间", "msgstr": [""] },
+        "折扣价": { "msgid": "折扣价", "msgstr": [""] }
+      }
+    }
+  },
+  "en": {
+    "charset": "utf-8",
+    "translations": {
+      "": {
+        "海洋馆信息管理": {
+          "msgid": "海洋馆信息管理",
+          "msgstr": ["Aquarium information management"]
+        },
+        "景区管理": {
+          "msgid": "景区管理",
+          "msgstr": ["Scenic spot management"]
+        },
+        "景区列表": { "msgid": "景区列表", "msgstr": ["Scenic spot list"] },
+        "游戏管理": { "msgid": "游戏管理", "msgstr": ["Game management"] },
+        "题库管理": {
+          "msgid": "题库管理",
+          "msgstr": ["Question database management"]
+        },
+        "角色管理": { "msgid": "角色管理", "msgstr": ["Role management"] },
+        "角色列表": { "msgid": "角色列表", "msgstr": ["Role list"] },
+        "生物管理": { "msgid": "生物管理", "msgstr": ["Creature management"] },
+        "生物列表": { "msgid": "生物列表", "msgstr": ["Creature list"] },
+        "产品管理": { "msgid": "产品管理", "msgstr": ["Product management"] },
+        "门票列表": { "msgid": "门票列表", "msgstr": ["Ticket list"] },
+        "门票管理": { "msgid": "门票管理", "msgstr": ["Ticket management"] },
+        "产品列表": { "msgid": "产品列表", "msgstr": ["Product list"] },
+        "奖品管理": { "msgid": "奖品管理", "msgstr": ["Prize management"] },
+        "奖品列表": { "msgid": "奖品列表", "msgstr": ["Prize list"] },
+        "条形码管理": {
+          "msgid": "条形码管理",
+          "msgstr": ["Barcode management"]
+        },
+        "条形码列表": { "msgid": "条形码列表", "msgstr": ["Barcode list"] },
+        "订单管理": { "msgid": "订单管理", "msgstr": ["Order management"] },
+        "产品订单": { "msgid": "产品订单", "msgstr": ["Sales record"] },
+        "兑换记录": { "msgid": "兑换记录", "msgstr": ["Redemption record"] },
+        "设置": { "msgid": "设置", "msgstr": ["Settings"] },
+        "库存预警": {
+          "msgid": "库存预警",
+          "msgstr": ["WeChat store-low inventory"]
+        },
+        "banner 设置": {
+          "msgid": "banner 设置",
+          "msgstr": ["Banner settings"]
+        },
+        "海洋馆名称": { "msgid": "海洋馆名称", "msgstr": ["Aquarium name"] },
+        "新增内容": { "msgid": "新增内容", "msgstr": ["Add new content"] },
+        "标题": { "msgid": "标题", "msgstr": ["Title"] },
+        "请输入内容": {
+          "msgid": "请输入内容",
+          "msgstr": ["Please enter content"]
+        },
+        "内容": { "msgid": "内容", "msgstr": ["Content"] },
+        "请输入标题": {
+          "msgid": "请输入标题",
+          "msgstr": ["Please enter a title"]
+        },
+        "新增景区": {
+          "msgid": "新增景区",
+          "msgstr": ["Add a new scenic spot"]
+        },
+        "景区名称": { "msgid": "景区名称", "msgstr": ["Scenic spot name"] },
+        "楼层": { "msgid": "楼层", "msgstr": ["Floor"] },
+        "景区介绍": {
+          "msgid": "景区介绍",
+          "msgstr": ["Scenic spot description"]
+        },
+        "所在楼层": { "msgid": "所在楼层", "msgstr": ["Current floor"] },
+        "景区位置 X": {
+          "msgid": "景区位置 X",
+          "msgstr": ["Scenic spot location X"]
+        },
+        "景区位置 Y": {
+          "msgid": "景区位置 Y",
+          "msgstr": ["Scenic spot location Y"]
+        },
+        "关联优惠券": {
+          "msgid": "关联优惠券",
+          "msgstr": ["Associated coupon"]
+        },
+        "关联题目": { "msgid": "关联题目", "msgstr": ["Associated question"] },
+        "关联生物": { "msgid": "关联生物", "msgstr": ["Associated creature"] },
+        "题目": { "msgid": "题目", "msgstr": ["Question"] },
+        "发布时间": { "msgid": "发布时间", "msgstr": ["Released time"] },
+        "选项": { "msgid": "选项", "msgstr": ["Options"] },
+        "答案": { "msgid": "答案", "msgstr": ["Answer"] },
+        "选项图片": { "msgid": "选项图片", "msgstr": ["Option picture"] },
+        "正确答案": { "msgid": "正确答案", "msgstr": ["Correct answer"] },
+        "答案解析": { "msgid": "答案解析", "msgstr": ["Answer explanation"] },
+        "请输入答案解析": {
+          "msgid": "请输入答案解析",
+          "msgstr": ["Please enter the answer explanation"]
+        },
+        "请录入该题的可选答案，并标记正确选项": {
+          "msgid": "请录入该题的可选答案，并标记正确选项",
+          "msgstr": [
+            "Please enter an optional answer for this question, and mark the correct option"
+          ]
+        },
+        "答对积分：{num} 积分": {
+          "msgid": "答对积分：{num} 积分",
+          "msgstr": ["Points for correct answer: {num} points"]
+        },
+        "答错积分：{num} 积分": {
+          "msgid": "答错积分：{num} 积分",
+          "msgstr": ["Points for wrong answer: {num} points"]
+        },
+        "等级": { "msgid": "等级", "msgstr": ["Level"] },
+        "角色名称": { "msgid": "角色名称", "msgstr": ["Role name"] },
+        "答对题目数": {
+          "msgid": "答对题目数",
+          "msgstr": ["Total number of correct answers"]
+        },
+        "分享配图": { "msgid": "分享配图", "msgstr": ["Share the picture"] },
+        "角色介绍": { "msgid": "角色介绍", "msgstr": ["Role description"] },
+        "生物名称": { "msgid": "生物名称", "msgstr": ["Creature name"] },
+        "生物介绍": { "msgid": "生物介绍", "msgstr": ["Creature description"] },
+        "请输入生物介绍": {
+          "msgid": "请输入生物介绍",
+          "msgstr": ["Please enter the creature description"]
+        },
+        "门票名称": { "msgid": "门票名称", "msgstr": ["Ticket name"] },
+        "新增门票": { "msgid": "新增门票", "msgstr": ["Add tickets"] },
+        "列表封面图": { "msgid": "列表封面图", "msgstr": ["List cover image"] },
+        "详情页轮播图": {
+          "msgid": "详情页轮播图",
+          "msgstr": ["Detailed page image carousel"]
+        },
+        "订单图": { "msgid": "订单图", "msgstr": ["Order picture"] },
+        "门票说明": { "msgid": "门票说明", "msgstr": ["Ticket description"] },
+        "购买须知": { "msgid": "购买须知", "msgstr": ["Purchase information"] },
+        "票种名称": { "msgid": "票种名称", "msgstr": ["Ticket category name"] },
+        "票种描述": {
+          "msgid": "票种描述",
+          "msgstr": ["Ticket category description"]
+        },
+        "新增票种": {
+          "msgid": "新增票种",
+          "msgstr": ["Add a ticket category"]
+        },
+        "票价": { "msgid": "票价", "msgstr": ["Ticket price"] },
+        "库存": { "msgid": "库存", "msgstr": ["Inventory"] },
+        "新增产品": { "msgid": "新增产品", "msgstr": ["New product"] },
+        "是否限购": {
+          "msgid": "是否限购",
+          "msgstr": ["Whether to limit purchases"]
+        },
+        "是否促销门票": {
+          "msgid": "是否促销门票",
+          "msgstr": ["Whether to offer a discount for the ticket price"]
+        },
+        "优惠价格": { "msgid": "优惠价格", "msgstr": ["Discounted price"] },
+        "产品图片": { "msgid": "产品图片", "msgstr": ["Product picture"] },
+        "奖品名称": { "msgid": "奖品名称", "msgstr": ["Prize name"] },
+        "奖品分类": { "msgid": "奖品分类", "msgstr": ["Prize category"] },
+        "积分": { "msgid": "积分", "msgstr": ["Points"] },
+        "优惠大礼": { "msgid": "优惠大礼", "msgstr": ["Welcome offer"] },
+        "区域优惠券": { "msgid": "区域优惠券", "msgstr": ["Promotion coupon"] },
+        "游戏礼物": { "msgid": "游戏礼物", "msgstr": ["Game gift"] },
+        "兑换条件": {
+          "msgid": "兑换条件",
+          "msgstr": ["Redemption conditions"]
+        },
+        "是否限制兑换": {
+          "msgid": "是否限制兑换",
+          "msgstr": ["Whether to limit redemption"]
+        },
+        "奖品数量": { "msgid": "奖品数量", "msgstr": ["Number of prizes"] },
+        "选择门票名称": {
+          "msgid": "选择门票名称",
+          "msgstr": ["Select a ticket name"]
+        },
+        "选择票种": {
+          "msgid": "选择票种",
+          "msgstr": ["Select a ticket category"]
+        },
+        "批量删除": { "msgid": "批量删除", "msgstr": ["Batch delete"] },
+        "是否已经备份导出对应的数据": {
+          "msgid": "是否已经备份导出对应的数据",
+          "msgstr": [
+            "Whether the corresponding data has been backed up and exported"
+          ]
+        },
+        "票务系统订单号": {
+          "msgid": "票务系统订单号",
+          "msgstr": ["Ticketing system order number"]
+        },
+        "条形码": { "msgid": "条形码", "msgstr": ["Barcode"] },
+        "有效期开始时间": {
+          "msgid": "有效期开始时间",
+          "msgstr": ["Start of validity period"]
+        },
+        "有效期结束时间": {
+          "msgid": "有效期结束时间",
+          "msgstr": ["End of validity period"]
+        },
+        "订单号": { "msgid": "订单号", "msgstr": ["WeChat Order number"] },
+        "订单状态": { "msgid": "订单状态", "msgstr": ["Order status"] },
+        "联系人": { "msgid": "联系人", "msgstr": ["Contact person"] },
+        "手机号": { "msgid": "手机号", "msgstr": ["Mobile number"] },
+        "数量": { "msgid": "数量", "msgstr": ["Quantity"] },
+        "订单总额": {
+          "msgid": "订单总额",
+          "msgstr": ["Total amount for the order"]
+        },
+        "支付方式": { "msgid": "支付方式", "msgstr": ["Payment method"] },
+        "联系人信息": {
+          "msgid": "联系人信息",
+          "msgstr": ["Details of contact person"]
+        },
+        "下单时间": { "msgid": "下单时间", "msgstr": ["Order time"] },
+        "请输入兑换码": {
+          "msgid": "请输入兑换码",
+          "msgstr": ["Please enter the redemption code"]
+        },
+        "名称": { "msgid": "名称", "msgstr": ["Name"] },
+        "兑换码": { "msgid": "兑换码", "msgstr": ["Redemption code"] },
+        "核销时间": { "msgid": "核销时间", "msgstr": ["Write-off time"] },
+        "兑换时间": { "msgid": "兑换时间", "msgstr": ["Redemption time"] },
+        "操作人": { "msgid": "操作人", "msgstr": ["Operator"] },
+        "启用库存预警功能": {
+          "msgid": "启用库存预警功能",
+          "msgstr": ["Enable weChat store-low inventory"]
+        },
+        "设置默认库存预警值": {
+          "msgid": "设置默认库存预警值",
+          "msgstr": ["Set default weChat store-low inventory value"]
+        },
+        "预警信息提示邮箱": {
+          "msgid": "预警信息提示邮箱",
+          "msgstr": ["Alert information mailbox"]
+        },
+        "banner 图": { "msgid": "banner 图", "msgstr": ["Banner image"] },
+        "跳转地址": { "msgid": "跳转地址", "msgstr": ["Jump to address"] },
+        "新增 banner": {
+          "msgid": "新增 banner",
+          "msgstr": ["Add a new banner"]
+        },
+        "上架": { "msgid": "上架", "msgstr": ["Add to shelf"] },
+        "下架": { "msgid": "下架", "msgstr": ["Remove from shelf"] },
+        "编辑": { "msgid": "编辑", "msgstr": ["Edit"] },
+        "核销": { "msgid": "核销", "msgstr": ["Write-off"] },
+        "二维码": { "msgid": "二维码", "msgstr": ["QR code"] },
+        "删除": { "msgid": "删除", "msgstr": ["Delete"] },
+        "退款": { "msgid": "退款", "msgstr": ["Refund"] },
+        "查看": { "msgid": "查看", "msgstr": ["View"] },
+        "已上架": { "msgid": "已上架", "msgstr": ["Added to shelf"] },
+        "已下架": { "msgid": "已下架", "msgstr": ["Removed from shelf"] },
+        "已支付": { "msgid": "已支付", "msgstr": ["Paid"] },
+        "交易关闭": { "msgid": "交易关闭", "msgstr": ["Transaction closed"] },
+        "已退款": { "msgid": "已退款", "msgstr": ["Refunded"] },
+        "待支付": { "msgid": "待支付", "msgstr": ["To be paid"] },
+        "已取消": { "msgid": "已取消", "msgstr": ["Cancelled"] },
+        "未兑换": { "msgid": "未兑换", "msgstr": ["Not redeemed"] },
+        "处理中": { "msgid": "处理中", "msgstr": ["Processing"] },
+        "已售出": { "msgid": "已售出", "msgstr": ["Sold"] },
+        "已过期": { "msgid": "已过期", "msgstr": ["Expired"] },
+        "已兑换": { "msgid": "已兑换", "msgstr": ["Redeemed"] },
+        "否": { "msgid": "否", "msgstr": ["No"] },
+        "是": { "msgid": "是", "msgstr": ["Yes"] },
+        "导出列表": { "msgid": "导出列表", "msgstr": ["Export list"] },
+        "查询": { "msgid": "查询", "msgstr": ["Inquire"] },
+        "选择状态": { "msgid": "选择状态", "msgstr": ["Select status"] },
+        "状态": { "msgid": "状态", "msgstr": ["Status"] },
+        "图片": { "msgid": "图片", "msgstr": ["Image"] },
+        "所在位置": { "msgid": "所在位置", "msgstr": ["Current location"] },
+        "操作": { "msgid": "操作", "msgstr": ["Operate"] },
+        "取消": { "msgid": "取消", "msgstr": ["Cancel"] },
+        "保存": { "msgid": "保存", "msgstr": ["Save"] },
+        "详情页大图": {
+          "msgid": "详情页大图",
+          "msgstr": ["Big picture for detailed page"]
+        },
+        "封面图": { "msgid": "封面图", "msgstr": ["Cover image"] },
+        "中文名称": { "msgid": "中文名称", "msgstr": ["Chinese name"] },
+        "英文名称": { "msgid": "英文名称", "msgstr": ["English name"] },
+        "序号": { "msgid": "序号", "msgstr": ["Serial number"] },
+        "请输入门票名称": {
+          "msgid": "请输入门票名称",
+          "msgstr": ["Please enter the ticket name"]
+        },
+        "请输入门票英文名称": {
+          "msgid": "请输入门票英文名称",
+          "msgstr": ["Please enter the ticket name in English"]
+        },
+        "请选择封面图": {
+          "msgid": "请选择封面图",
+          "msgstr": ["Please select the cover image"]
+        },
+        "请选择列表图": {
+          "msgid": "请选择列表图",
+          "msgstr": ["Please select the list image"]
+        },
+        "请选择详情页大图": {
+          "msgid": "请选择详情页大图",
+          "msgstr": ["Please select the big picture for detailed page"]
+        },
+        "请输入票种名称": {
+          "msgid": "请输入票种名称",
+          "msgstr": ["Please enter the ticket category name"]
+        },
+        "请输入票种描述": {
+          "msgid": "请输入票种描述",
+          "msgstr": ["Please enter the ticket category description"]
+        },
+        "请选择门票名称": {
+          "msgid": "请选择门票名称",
+          "msgstr": ["Please select the ticket name"]
+        },
+        "请选择票种": {
+          "msgid": "请选择票种",
+          "msgstr": ["Please select the ticket category"]
+        },
+        "请输入票价": {
+          "msgid": "请输入票价",
+          "msgstr": ["Please enter the ticket price"]
+        },
+        "请上传产品图片": {
+          "msgid": "请上传产品图片",
+          "msgstr": ["Please upload the product picture"]
+        },
+        "请输入奖品名称": {
+          "msgid": "请输入奖品名称",
+          "msgstr": ["Please enter the prize name"]
+        },
+        "请上传奖品图片": {
+          "msgid": "请上传奖品图片",
+          "msgstr": ["Please upload a prize picture"]
+        },
+        "请输入兑换条件": {
+          "msgid": "请输入兑换条件",
+          "msgstr": ["Please enter the redemption conditions"]
+        },
+        "请输入奖品数量": {
+          "msgid": "请输入奖品数量",
+          "msgstr": ["Please enter the number of prizes"]
+        },
+        "注意：导出列表操作频率最多为一分钟一次，否则会导出失败": {
+          "msgid": "注意：导出列表操作频率最多为一分钟一次，否则会导出失败",
+          "msgstr": [
+            "Note: The export list can be operated only once per minute, otherwise the export will fail."
+          ]
+        },
+        "请上传 banner 图": {
+          "msgid": "请上传 banner 图",
+          "msgstr": ["Please upload the banner image"]
+        },
+        "请输入跳转地址": {
+          "msgid": "请输入跳转地址",
+          "msgstr": ["Please enter an address to jump to"]
+        },
+        "请输入中文名称": {
+          "msgid": "请输入中文名称",
+          "msgstr": ["Please enter the Chinese name"]
+        },
+        "请输入英文名称": {
+          "msgid": "请输入英文名称",
+          "msgstr": ["Please enter the English name"]
+        },
+        "请输入景区中文名称": {
+          "msgid": "请输入景区中文名称",
+          "msgstr": ["Please enter the Chinese name of this scenic spot"]
+        },
+        "请输入景区英文名称": {
+          "msgid": "请输入景区英文名称",
+          "msgstr": ["Please enter the English name of this scenic spot"]
+        },
+        "请选择景区所在楼层": {
+          "msgid": "请选择景区所在楼层",
+          "msgstr": ["Please select the floor of the scenic spot"]
+        },
+        "请输入景区的 X 坐标": {
+          "msgid": "请输入景区的 X 坐标",
+          "msgstr": ["Please enter the X coordinate of the scenic spot"]
+        },
+        "请输入景区的 Y 坐标": {
+          "msgid": "请输入景区的 Y 坐标",
+          "msgstr": ["Please enter the Y coordinate of the scenic spot"]
+        },
+        "请上传详情页大图": {
+          "msgid": "请上传详情页大图",
+          "msgstr": ["Please upload the big picture for detailed page"]
+        },
+        "请输入题目": {
+          "msgid": "请输入题目",
+          "msgstr": ["Please enter a question"]
+        },
+        "请输入答案": {
+          "msgid": "请输入答案",
+          "msgstr": ["Please enter the answer"]
+        },
+        "保存成功": { "msgid": "保存成功", "msgstr": ["Saved"] },
+        "请输入正确的内容": {
+          "msgid": "请输入正确的内容",
+          "msgstr": ["Please enter the correct content"]
+        },
+        "数据导入成功": {
+          "msgid": "数据导入成功",
+          "msgstr": ["Data imported"]
+        },
+        "数据导入失败": {
+          "msgid": "数据导入失败",
+          "msgstr": ["Data import failed"]
+        },
+        "库存已更新": {
+          "msgid": "库存已更新",
+          "msgstr": ["Inventory updated"]
+        },
+        "上架成功": { "msgid": "上架成功", "msgstr": ["Added to shelf"] },
+        "下架成功": { "msgid": "下架成功", "msgstr": ["Removed from shelf"] },
+        "预警": { "msgid": "预警", "msgstr": ["Alert"] },
+        "请输入校验条件": {
+          "msgid": "请输入校验条件",
+          "msgstr": ["Please enter the verification conditions"]
+        },
+        "请输入正确的限制条件": {
+          "msgid": "请输入正确的限制条件",
+          "msgstr": ["Please enter the correct restrictions"]
+        },
+        "保存失败": { "msgid": "保存失败", "msgstr": ["Failed to save"] },
+        "请选择正确的文件": {
+          "msgid": "请选择正确的文件",
+          "msgstr": ["Please select the correct file"]
+        },
+        "图片大小不能超过 200 K": {
+          "msgid": "图片大小不能超过 200 K",
+          "msgstr": ["Picture size cannot exceed 200K"]
+        },
+        "图片上传成功": {
+          "msgid": "图片上传成功",
+          "msgstr": ["Picture uploaded"]
+        },
+        "支持 PNG，JPG，图片大小不超过 200 K，建议像素为": {
+          "msgid": "支持 PNG，JPG，图片大小不超过 200 K，建议像素为",
+          "msgstr": [
+            "Supports PNG, JPG, picture size cannot exceed 200K, recommended pixels are"
+          ]
+        },
+        "数据导出失败": {
+          "msgid": "数据导出失败",
+          "msgstr": ["Failed to export data"]
+        },
+        "删除成功": { "msgid": "删除成功", "msgstr": ["Deleted"] },
+        "确定执行本次核销操作": {
+          "msgid": "确定执行本次核销操作",
+          "msgstr": ["Confirm that you want to execute the write-off operation"]
+        },
+        "待核销": { "msgid": "待核销", "msgstr": ["To be write-off"] },
+        "已核销": { "msgid": "已核销", "msgstr": ["Written-off"] },
+        "已关闭": { "msgid": "已关闭", "msgstr": ["Closed"] },
+        "确认删除": {
+          "msgid": "确认删除",
+          "msgstr": ["Confirm you want to delete"]
+        },
+        "每个微信ID号 {num} 天内可购买 {num} 份": {
+          "msgid": "每个微信ID号 {num} 天内可购买 {num} 份",
+          "msgstr": ["Each WeChat ID can purchase {num} copies in {num} days"]
+        },
+        "每个微信ID号 {num} 天内可兑换 {num} 次": {
+          "msgid": "每个微信ID号 {num} 天内可兑换 {num} 次",
+          "msgstr": ["Each WeChat ID can redeem {num} times in {num} days"]
+        },
+        "创建时间": { "msgid": "创建时间", "msgstr": ["Time created"] },
+        "新增生物": { "msgid": "新增生物", "msgstr": ["Add creature"] },
+        "编辑景区": { "msgid": "编辑景区", "msgstr": ["Edit scenic spot"] },
+        "温馨提示": { "msgid": "温馨提示", "msgstr": ["Tips"] },
+        "该题目已与景区产生绑定关系，点击「OK」前往景区列表解绑后才能下架": {
+          "msgid": "该题目已与景区产生绑定关系，点击「OK」前往景区列表解绑后才能下架",
+          "msgstr": [
+            "The question has been associated to the scenic spot. Click \"OK\" to go to the scenic spot list to dissociate it before you can remove it."
+          ]
+        },
+        "共 {num} 条数据": {
+          "msgid": "共 {num} 条数据",
+          "msgstr": ["{num} data total"]
+        },
+        "编辑生物": { "msgid": "编辑生物", "msgstr": ["Edit creature"] },
+        "题库列表": { "msgid": "题库列表", "msgstr": ["Question list"] },
+        "编辑题目": { "msgid": "编辑题目", "msgstr": ["Edit question"] },
+        "票种列表": { "msgid": "票种列表", "msgstr": ["Ticket category list"] },
+        "确定执行此操作": {
+          "msgid": "确定执行此操作",
+          "msgstr": ["Confirm that you want to execute this operation"]
+        },
+        "编辑票种": { "msgid": "编辑票种", "msgstr": ["Edit ticket category"] },
+        "导入": { "msgid": "导入", "msgstr": ["Import"] },
+        "修改": { "msgid": "修改", "msgstr": ["Modify"] },
+        "票种": { "msgid": "票种", "msgstr": ["Ticket category"] },
+        "库存紧张": { "msgid": "库存紧张", "msgstr": ["Tight inventory"] },
+        "约 {sum} 人民币": {
+          "msgid": "约 {sum} 人民币",
+          "msgstr": ["About {sum} CNY"]
+        },
+        "请输入优惠价格": {
+          "msgid": "请输入优惠价格",
+          "msgstr": ["Please enter the discounted price"]
+        },
+        "奖品类型": { "msgid": "奖品类型", "msgstr": ["Prize type"] },
+        "新增奖品": { "msgid": "新增奖品", "msgstr": ["Add a new prize"] },
+        "编辑奖品": { "msgid": "编辑奖品", "msgstr": ["Edit prize"] },
+        "是否限制兑换次数": {
+          "msgid": "是否限制兑换次数",
+          "msgstr": ["Whether to limit redemption times"]
+        },
+        "请选择奖品类型": {
+          "msgid": "请选择奖品类型",
+          "msgstr": ["Please select prize category"]
+        },
+        "关联订单号": {
+          "msgid": "关联订单号",
+          "msgstr": ["Wechat order number"]
+        },
+        "未售出": { "msgid": "未售出", "msgstr": ["Not sold"] },
+        "产品信息": { "msgid": "产品信息", "msgstr": ["Product information"] },
+        "票务系统状态": {
+          "msgid": "票务系统状态",
+          "msgstr": ["Ticketing system status"]
+        },
+        "兑换记录详情": {
+          "msgid": "兑换记录详情",
+          "msgstr": ["Redemption record details"]
+        },
+        "推送邮箱": { "msgid": "推送邮箱", "msgstr": ["Push mailbox"] },
+        "你输入的似乎不是一个邮箱": {
+          "msgid": "你输入的似乎不是一个邮箱",
+          "msgstr": ["It seems you didn't enter an email address"]
+        },
+        "请上传banner图片": {
+          "msgid": "请上传banner图片",
+          "msgstr": ["Please upload a banner image"]
+        },
+        "请上传封面图": {
+          "msgid": "请上传封面图",
+          "msgstr": ["Please upload a cover image"]
+        },
+        "请上传分享配图": {
+          "msgid": "请上传分享配图",
+          "msgstr": ["Please upload an image for sharing"]
+        },
+        "海洋馆乐园": {
+          "msgid": "海洋馆乐园",
+          "msgstr": ["Aquarium Paradise"]
+        },
+        "海底商店": { "msgid": "海底商店", "msgstr": ["Underwater store"] },
+        "全部": { "msgid": "全部", "msgstr": ["All"] },
+        "新增题目": { "msgid": "新增题目", "msgstr": ["Add question"] },
+        "二维码管理": {
+          "msgid": "二维码管理",
+          "msgstr": ["Inventory management"]
+        },
+        "二维码列表": { "msgid": "二维码列表", "msgstr": ["Inventory list"] },
+        "编辑角色": { "msgid": "编辑角色", "msgstr": ["Edit role"] },
+        "优先级": { "msgid": "优先级", "msgstr": ["Priority"] },
+        "请输入优先级": {
+          "msgid": "请输入优先级",
+          "msgstr": ["Please enter a priority"]
+        },
+        "确定退款": { "msgid": "确定退款", "msgstr": ["Confirm refund"] },
+        "确定": { "msgid": "确定", "msgstr": ["Confirm"] },
+        "小封面图": { "msgid": "小封面图", "msgstr": ["Small cover image"] },
+        "未上架": { "msgid": "未上架", "msgstr": ["Not on the shelf"] },
+        "跳转页面": { "msgid": "跳转页面", "msgstr": ["Jump to page"] },
+        "示例": { "msgid": "示例", "msgstr": ["Example"] },
+        "至少关联2条题目": {
+          "msgid": "至少关联2条题目",
+          "msgstr": ["Associate at least 2 questions"]
+        },
+        "请填写默认库存预警值": {
+          "msgid": "请填写默认库存预警值",
+          "msgstr": [
+            "Please fill in a default weChat store-low inventory value"
+          ]
+        },
+        "确认": { "msgid": "确认", "msgstr": ["Confirm"] },
+        "成人票": { "msgid": "成人票", "msgstr": ["Adult ticket"] },
+        "儿童票": { "msgid": "儿童票", "msgstr": ["Child ticket"] },
+        "优惠门票列表": {
+          "msgid": "优惠门票列表",
+          "msgstr": ["Discounted ticket list"]
+        },
+        "门票详情": { "msgid": "门票详情", "msgstr": ["Ticket details"] },
+        "奖品详情": { "msgid": "奖品详情", "msgstr": ["Prize details"] },
+        "刷新库存": { "msgid": "刷新库存", "msgstr": ["Refresh inventory"] },
+        "库存量将在5分钟后自动更新数据": {
+          "msgid": "库存量将在5分钟后自动更新数据",
+          "msgstr": [
+            "Inventory data will be automatically updated 5 minutes later"
+          ]
+        },
+        "操作成功": { "msgid": "操作成功", "msgstr": ["Operation successful"] },
+        "支付时间": { "msgid": "支付时间", "msgstr": ["Payment time"] },
+        "操作者": { "msgid": "操作者", "msgstr": ["Operator"] },
+        "无": { "msgid": "无", "msgstr": ["N/A"] },
+        "产品": { "msgid": "产品", "msgstr": ["Product"] },
+        "数据导出成功": {
+          "msgid": "数据导出成功",
+          "msgstr": ["data exported"]
+        },
+        "编辑产品": { "msgid": "编辑产品", "msgstr": ["Edit product"] },
+        "刷新成功": { "msgid": "刷新成功", "msgstr": ["Refreshed"] },
+        "刷新失败": { "msgid": "刷新失败", "msgstr": ["Failed to refresh"] },
+        "请选择是否促销": {
+          "msgid": "请选择是否促销",
+          "msgstr": ["Please select whether to offer a discount"]
+        },
+        "是否隐藏": { "msgid": "是否隐藏", "msgstr": ["Hidden from webstore"] },
+        "编辑门票": { "msgid": "编辑门票", "msgstr": ["Edit ticket"] },
+        "请选择小封面图": {
+          "msgid": "请选择小封面图",
+          "msgstr": ["Please select a small cover image"]
+        },
+        "关联项目": { "msgid": "关联项目", "msgstr": ["Associate item"] },
+        "取消关联": { "msgid": "取消关联", "msgstr": ["Dissociate item"] },
+        "新增角色": { "msgid": "新增角色", "msgstr": ["Add a new role"] },
+        "请输入解锁角色需要答对得题目数量": {
+          "msgid": "请输入解锁角色需要答对得题目数量",
+          "msgstr": [
+            "Please enter the number of correct answers required to unlock a role"
+          ]
+        },
+        "请输入角色中文名称": {
+          "msgid": "请输入角色中文名称",
+          "msgstr": ["Please enter the Chinese name of the role"]
+        },
+        "请输入角色英文名称": {
+          "msgid": "请输入角色英文名称",
+          "msgstr": ["Please enter the English name of the role"]
+        },
+        "请上传角色图片": {
+          "msgid": "请上传角色图片",
+          "msgstr": ["Please upload a picture for the role"]
+        },
+        "请选择正确答案": {
+          "msgid": "请选择正确答案",
+          "msgstr": ["Please select a correct answer"]
+        },
+        "编辑banner": { "msgid": "编辑banner", "msgstr": ["Edit banner"] },
+        "数据正在导出，请耐心等待": {
+          "msgid": "数据正在导出，请耐心等待",
+          "msgstr": ["Data is being exported, please be patient"]
+        },
+        "请输入英文题目": {
+          "msgid": "请输入英文题目",
+          "msgstr": ["Please enter an English question"]
+        },
+        "英文题目": { "msgid": "英文题目", "msgstr": ["English question"] },
+        "权限管理": {
+          "msgid": "权限管理",
+          "msgstr": ["Permission management"]
+        },
+        "用户列表": { "msgid": "用户列表", "msgstr": ["User list"] },
+        "进入成员后台": {
+          "msgid": "进入成员后台",
+          "msgstr": ["Go to member backend"]
+        },
+        "添加用户": { "msgid": "添加用户", "msgstr": ["Add user"] },
+        "编辑用户": { "msgid": "编辑用户", "msgstr": ["Edit user"] },
+        "邮箱": { "msgid": "邮箱", "msgstr": ["Email"] },
+        "用户名称": { "msgid": "用户名称", "msgstr": ["Username"] },
+        "新增时间": { "msgid": "新增时间", "msgstr": ["Add time"] },
+        "第一步：进入成员后台添加成员——第二步：返回该后台添加用户并设置权限，添加用户填写的邮箱必须是成员后台已存在的邮箱，否则用户无法享用对应的权限": {
+          "msgid": "第一步：进入成员后台添加成员——第二步：返回该后台添加用户并设置权限，添加用户填写的邮箱必须是成员后台已存在的邮箱，否则用户无法享用对应的权限",
+          "msgstr": [
+            "First step: Go to member backend to add a new member - second step: return to the backend to add a user and set permissions. The email you fill out when you are adding a new user must be an email address that already exists in the member backend, otherwise the user cannot have the relevant permission."
+          ]
+        },
+        "权限设置": { "msgid": "权限设置", "msgstr": ["Permission settings"] },
+        "请输入邮箱地址": {
+          "msgid": "请输入邮箱地址",
+          "msgstr": ["Please enter your email address"]
+        },
+        "请输入用户名称": {
+          "msgid": "请输入用户名称",
+          "msgstr": ["Please enter your username"]
+        },
+        "操作记录": { "msgid": "操作记录", "msgstr": ["Operation record"] },
+        "选择用户": { "msgid": "选择用户", "msgstr": ["Select user"] },
+        "选择页面": { "msgid": "选择页面", "msgstr": ["Select page"] },
+        "操作页面": { "msgid": "操作页面", "msgstr": ["Operation page"] },
+        "操作时间": { "msgid": "操作时间", "msgstr": ["Operating time"] },
+        "消息管理": { "msgid": "消息管理", "msgstr": ["Message management"] },
+        "活动消息发布": {
+          "msgid": "活动消息发布",
+          "msgstr": ["Event announcement"]
+        },
+        "消息标题": { "msgid": "消息标题", "msgstr": ["Message title"] },
+        "发送类型": { "msgid": "发送类型", "msgstr": ["Sending type"] },
+        "发送时间": { "msgid": "发送时间", "msgstr": ["Sending time"] },
+        "新增消息": { "msgid": "新增消息", "msgstr": ["Add a new message"] },
+        "已激活": { "msgid": "已激活", "msgstr": ["Activated"] },
+        "未激活": { "msgid": "未激活", "msgstr": ["Inactivated"] },
+        "重新发送": { "msgid": "重新发送", "msgstr": ["Resend"] },
+        "编辑消息": { "msgid": "编辑消息", "msgstr": ["Edit message"] },
+        "中文标题": { "msgid": "中文标题", "msgstr": ["Chinese title"] },
+        "英文标题": { "msgid": "英文标题", "msgstr": ["English title"] },
+        "即时发送": { "msgid": "即时发送", "msgstr": ["Send now"] },
+        "定时发送": { "msgid": "定时发送", "msgstr": ["Send on time"] },
+        "每天": { "msgid": "每天", "msgstr": ["Daily"] },
+        "请输入中文标题": {
+          "msgid": "请输入中文标题",
+          "msgstr": ["Please enter a Chinese title"]
+        },
+        "请输入英文标题": {
+          "msgid": "请输入英文标题",
+          "msgstr": ["Please enter an English title"]
+        },
+        "该产品已存在，请前往门票管理新增门票": {
+          "msgid": "该产品已存在，请前往门票管理新增门票",
+          "msgstr": [
+            "This product already exists, please go to ticket management to add new tickets"
+          ]
+        },
+        "新增": { "msgid": "新增", "msgstr": ["Add"] },
+        "票种英文描述": {
+          "msgid": "票种英文描述",
+          "msgstr": ["Ticket category English description"]
+        },
+        "请输入票种英文描述": {
+          "msgid": "请输入票种英文描述",
+          "msgstr": ["Please enter the Ticket category English description"]
+        },
+        "温馨提示（英文）": {
+          "msgid": "温馨提示（英文）",
+          "msgstr": ["Tips (English)"]
+        },
+        "请输入英文提示": {
+          "msgid": "请输入英文提示",
+          "msgstr": ["Please enter tips in English"]
+        },
+        "请输入温馨提示": {
+          "msgid": "请输入温馨提示",
+          "msgstr": ["Please enter tips"]
+        },
+        "立即发送": { "msgid": "立即发送", "msgstr": ["Send now"] },
+        "模版下载": { "msgid": "模版下载", "msgstr": ["Download template"] },
+        "添加权限": { "msgid": "添加权限", "msgstr": ["Add permissions"] },
+        "勾选后，该用户即可有权查看到对应的页面，并进行新增、编辑等操作": {
+          "msgid": "勾选后，该用户即可有权查看到对应的页面，并进行新增、编辑等操作",
+          "msgstr": [
+            "Once ticked，the user will have the permissions to view the corresponding page，and make additions and do editings，etc."
+          ]
+        },
+        "确定后，该用户即可有权查看{pages}页面，并进行新增、编辑等操作": {
+          "msgid": "确定后，该用户即可有权查看{pages}页面，并进行新增、编辑等操作",
+          "msgstr": [
+            "Once confirmed，the user will have the permissions to view the {pages}，and make additions and do editings，etc."
+          ]
+        },
+        "答案图片": {
+          "msgid": "答案图片",
+          "msgstr": ["Picture for the answer"]
+        },
+        "请上传答案图片": {
+          "msgid": "请上传答案图片",
+          "msgstr": ["Please upload an answer picture"]
+        },
+        "退款时间": { "msgid": "退款时间", "msgstr": ["Refund time"] },
+        "已发送": { "msgid": "已发送", "msgstr": ["Sent"] },
+        "未发送": { "msgid": "未发送", "msgstr": ["Unsent"] },
+        "请选择发送类型": {
+          "msgid": "请选择发送类型",
+          "msgstr": ["Please choose a sending method"]
+        },
+        "请输入用户邮箱": {
+          "msgid": "请输入用户邮箱",
+          "msgstr": ["Please enter the user email"]
+        },
+        "支付流水号": {
+          "msgid": "支付流水号",
+          "msgstr": ["Payment transaction number"]
+        },
+        "退款流水号": {
+          "msgid": "退款流水号",
+          "msgstr": ["Refund transaction number"]
+        },
+        "退款备注": { "msgid": "退款备注", "msgstr": ["Refund note"] },
+        "至少要选择一项": {
+          "msgid": "至少要选择一项",
+          "msgstr": ["At least one item needs to be selected"]
+        },
+        "优先按天筛选": {
+          "msgid": "优先按天筛选",
+          "msgstr": ["Time priority by Day."]
+        },
+        "价格": { "msgid": "价格", "msgstr": ["Price"] },
+        "过期时间": { "msgid": "过期时间", "msgstr": ["Expire date"] },
+        "是否售出": { "msgid": "是否售出", "msgstr": ["Whether it is sold"] },
+        "退出登录": { "msgid": "退出登录", "msgstr": ["Sign out"] },
+        "微信用户列表": {
+          "msgid": "微信用户列表",
+          "msgstr": ["WeChat user list"]
+        },
+        "请输入用户昵称": {
+          "msgid": "请输入用户昵称",
+          "msgstr": ["Please enter a user nickname"]
+        },
+        "用户昵称": { "msgid": "用户昵称", "msgstr": ["Nickname"] },
+        "最近登录时间": {
+          "msgid": "最近登录时间",
+          "msgstr": ["Recent login time"]
+        },
+        "最近 7 天": { "msgid": "最近 7 天", "msgstr": ["Last 7 days"] },
+        "最近 30 天": { "msgid": "最近 30 天", "msgstr": ["Last 30 days"] },
+        "抽奖管理": { "msgid": "抽奖管理", "msgstr": ["Lottery management"] },
+        "抽奖列表": { "msgid": "抽奖列表", "msgstr": ["Lottery list"] },
+        "抽奖入口": { "msgid": "抽奖入口", "msgstr": ["Lottery entry"] },
+        "开启中": { "msgid": "开启中", "msgstr": ["Currently open"] },
+        "更改": { "msgid": "更改", "msgstr": ["Change"] },
+        "新增抽奖": { "msgid": "新增抽奖", "msgstr": ["Add a lottery"] },
+        "开始时间": { "msgid": "开始时间", "msgstr": ["Starting time"] },
+        "结束时间": { "msgid": "结束时间", "msgstr": ["End time"] },
+        "活动状态": { "msgid": "活动状态", "msgstr": ["Event status"] },
+        "未开始": { "msgid": "未开始", "msgstr": ["It has not started"] },
+        "进行中": { "msgid": "进行中", "msgstr": ["It has started"] },
+        "已开奖": { "msgid": "已开奖", "msgstr": ["Prize announced"] },
+        "参与人数": {
+          "msgid": "参与人数",
+          "msgstr": ["The number of participants"]
+        },
+        "抽奖人数": {
+          "msgid": "抽奖人数",
+          "msgstr": ["The number of people entered the draws"]
+        },
+        "实际中奖": { "msgid": "实际中奖", "msgstr": ["Number of winners"] },
+        "查看中奖信息": {
+          "msgid": "查看中奖信息",
+          "msgstr": ["View lottery results"]
+        },
+        "微信昵称": { "msgid": "微信昵称", "msgstr": ["WeChat nickname"] },
+        "姓名": { "msgid": "姓名", "msgstr": ["Full name"] },
+        "电话号码": { "msgid": "电话号码", "msgstr": ["Mobile number"] },
+        "省份": { "msgid": "省份", "msgstr": ["Province"] },
+        "城市": { "msgid": "城市", "msgstr": ["City"] },
+        "地区": { "msgid": "地区", "msgstr": ["District"] },
+        "详情地址": { "msgid": "详情地址", "msgstr": ["Address"] },
+        "抽奖开始时间": {
+          "msgid": "抽奖开始时间",
+          "msgstr": ["Starting time of the draw"]
+        },
+        "抽奖结束时间": {
+          "msgid": "抽奖结束时间",
+          "msgstr": ["End time of the draw"]
+        },
+        "奖品": { "msgid": "奖品", "msgstr": ["Prize"] },
+        "中奖人数": {
+          "msgid": "中奖人数",
+          "msgstr": ["The number of winners"]
+        },
+        "图片上传": { "msgid": "图片上传", "msgstr": ["Upload a picture"] },
+        "实物": { "msgid": "实物", "msgstr": ["Physical item"] },
+        "虚拟奖品（海底商店券）": {
+          "msgid": "虚拟奖品（海底商店券）",
+          "msgstr": ["Virtual prize (Underwater store coupon)"]
+        },
+        "关联海底商店物品": {
+          "msgid": "关联海底商店物品",
+          "msgstr": ["Associate underwater store items"]
+        },
+        "不关联": { "msgid": "不关联", "msgstr": ["Not associated"] },
+        "商店兑换券": { "msgid": "商店兑换券", "msgstr": ["Store voucher"] },
+        "门票优惠券": {
+          "msgid": "门票优惠券",
+          "msgstr": ["Entry ticket coupon"]
+        },
+        "购票方式": {
+          "msgid": "购票方式",
+          "msgstr": ["Ticket purchase method"]
+        },
+        "关联券": { "msgid": "关联券", "msgstr": ["Associated coupon"] },
+        "门票类型": { "msgid": "门票类型", "msgstr": ["Ticket type"] },
+        "普通门票": { "msgid": "普通门票", "msgstr": ["Regular ticket"] },
+        "特殊门票": { "msgid": "特殊门票", "msgstr": ["Special ticket"] },
+        "助力活动": { "msgid": "助力活动", "msgstr": ["Additional activity"] },
+        "抽奖活动": { "msgid": "抽奖活动", "msgstr": ["Luckydraw"] },
+        "默林分享": { "msgid": "默林分享", "msgstr": ["Molin share"] },
+        "默林分享（小程序分享）": {
+          "msgid": "默林分享（小程序分享）",
+          "msgstr": ["Molin share (MiniApp share)"]
+        },
+        "是否折扣优惠类门票": {
+          "msgid": "是否折扣优惠类门票",
+          "msgstr": ["Is this a discounted ticket"]
+        },
+        "请选择是否折扣优惠类门票": {
+          "msgid": "请选择是否折扣优惠类门票",
+          "msgstr": ["Please select whether you have a discounted ticket"]
+        },
+        "折扣优惠价格": {
+          "msgid": "折扣优惠价格",
+          "msgstr": ["Discounted price"]
+        },
+        "请输入折扣价格": {
+          "msgid": "请输入折扣价格",
+          "msgstr": ["Please enter the discounted price"]
+        },
+        "请选择门票类型": {
+          "msgid": "请选择门票类型",
+          "msgstr": ["Please select your ticket type"]
+        },
+        "特殊门票类型": {
+          "msgid": "特殊门票类型",
+          "msgstr": ["Special ticket type"]
+        },
+        "请选择特殊门票类型": {
+          "msgid": "请选择特殊门票类型",
+          "msgstr": ["Please select your special ticket type"]
+        },
+        "分享-折扣票": {
+          "msgid": "分享-折扣票",
+          "msgstr": ["Share - discounted ticket"]
+        },
+        "活动-折扣票": {
+          "msgid": "活动-折扣票",
+          "msgstr": ["Promotion - discounted ticket"]
+        },
+        "活动-买一送一票": {
+          "msgid": "活动-买一送一票",
+          "msgstr": ["Promotion - buy one get one free"]
+        },
+        "活动-赠送票": {
+          "msgid": "活动-赠送票",
+          "msgstr": ["Promotion - Gift ticket"]
+        },
+        "绑定赠送票": {
+          "msgid": "绑定赠送票",
+          "msgstr": ["Associate your gift ticket"]
+        },
+        "请选择赠送票": {
+          "msgid": "请选择赠送票",
+          "msgstr": ["Please select your gift ticket"]
+        },
+        "默林游助力活动": {
+          "msgid": "默林游助力活动",
+          "msgstr": ["Merlinmagic"]
+        },
+        "曼谷分享": { "msgid": "曼谷分享", "msgstr": ["SLBK share"] },
+        "默林乐高商店": {
+          "msgid": "默林乐高商店",
+          "msgstr": ["Merlin Lego Store"]
+        },
+        "乐高商店信息管理": {
+          "msgid": "乐高商店信息管理",
+          "msgstr": ["LLJ wechat store general information"]
+        },
+        "过期提醒": { "msgid": "过期提醒", "msgstr": ["Expiration reminder"] },
+        "启用门票过期提醒功能": {
+          "msgid": "启用门票过期提醒功能",
+          "msgstr": ["AEnable weChat store expiry alert"]
+        },
+        "设置门票剩余有效天数": {
+          "msgid": "设置门票剩余有效天数",
+          "msgstr": ["Days before expiry date"]
+        },
+        "门票过期提示邮箱": {
+          "msgid": "门票过期提示邮箱",
+          "msgstr": ["Alert information mailbox"]
+        },
+        "请填写门票剩余有效天数": {
+          "msgid": "请填写门票剩余有效天数",
+          "msgstr": ["Please enter the remaining days before ticket expiration"]
+        },
+        "闭园日期": { "msgid": "闭园日期", "msgstr": ["Park closure date"] },
+        "请选择闭园日期": {
+          "msgid": "请选择闭园日期",
+          "msgstr": ["Please select the closing date"]
+        },
+        "已选择闭园日期": {
+          "msgid": "已选择闭园日期",
+          "msgstr": ["Closing date selected"]
+        },
+        "请勿重复选择": {
+          "msgid": "请勿重复选择",
+          "msgstr": ["Please do not select again"]
+        },
+        "贴纸管理": { "msgid": "贴纸管理", "msgstr": ["Sticker management"] },
+        "贴纸列表": { "msgid": "贴纸列表", "msgstr": ["Sticker list"] },
+        "新增贴纸": { "msgid": "新增贴纸", "msgstr": ["Add sticker"] },
+        "点击图片下载小程序二维码": {
+          "msgid": "点击图片下载小程序二维码",
+          "msgstr": ["Click on the image to download the MiniApp QR code"]
+        },
+        "是否需要解锁": {
+          "msgid": "是否需要解锁",
+          "msgstr": ["Does it need to be unlocked"]
+        },
+        "展示小图": { "msgid": "展示小图", "msgstr": ["Show small image"] },
+        "解锁大图": { "msgid": "解锁大图", "msgstr": ["Unlock large image"] },
+        "解锁方式": { "msgid": "解锁方式", "msgstr": ["Unlocking method"] },
+        "扫码解锁": {
+          "msgid": "扫码解锁",
+          "msgstr": ["Scan QR code to unlock"]
+        },
+        "分享解锁": { "msgid": "分享解锁", "msgstr": ["Share to unlock"] },
+        "扫码地点": {
+          "msgid": "扫码地点",
+          "msgstr": ["Location for scanning QR code"]
+        },
+        "请选择是否需要解锁": {
+          "msgid": "请选择是否需要解锁",
+          "msgstr": ["Please select whether you need to unlock it"]
+        },
+        "请选择展示小图": {
+          "msgid": "请选择展示小图",
+          "msgstr": ["Please select to show small image"]
+        },
+        "请选择解锁大图": {
+          "msgid": "请选择解锁大图",
+          "msgstr": ["Please select to unlock large image"]
+        },
+        "请选择解锁方式": {
+          "msgid": "请选择解锁方式",
+          "msgstr": ["Please select an unlocking method"]
+        },
+        "请输入扫码地点": {
+          "msgid": "请输入扫码地点",
+          "msgstr": ["Please enter the location for scanning QR code"]
+        },
+        "园区人流通知": {
+          "msgid": "园区人流通知",
+          "msgstr": ["Park flow notification"]
+        },
+        "新增通知": { "msgid": "新增通知", "msgstr": ["Add a new message"] },
+        "普通奖品": { "msgid": "普通奖品", "msgstr": ["Lucky draw prize"] },
+        "新人优惠大礼": {
+          "msgid": "新人优惠大礼",
+          "msgstr": ["Welcome offer"]
+        },
+        "排序": { "msgid": "排序", "msgstr": ["Sort"] },
+        "数值越大，显示越靠前": {
+          "msgid": "数值越大，显示越靠前",
+          "msgstr": ["The larger the value, the higher the display"]
+        },
+        "兑换份数": { "msgid": "兑换份数", "msgstr": ["Redemption quantity"] },
+        "使用时间": { "msgid": "使用时间", "msgstr": ["Visit time"] },
+        "折扣价": { "msgid": "折扣价", "msgstr": ["Discounted price"] }
+      }
+    }
+  }
+}

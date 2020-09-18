@@ -1,0 +1,24 @@
+<view class="container {{!hasPrevNext && 'container--has-share'}}" style="background-image: url('https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hWFQEFJNgZmTBsG.png');">
+  <cover-view wx:if="{{!hideCoverBar}}" class="cover">
+    <cover-image src="https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hWFQEFJNgZmTBsG.png" style="height: 330rpx;"></cover-image>
+  </cover-view>
+
+  <block wx:if="{{stickers.length}}">
+    <scroll-view class="list" scroll-y="{{true}}">
+      <block wx:for="{{stickers}}" wx:key="{{item.tempFilePath}}">
+        <image wx:if="{{!item.has_lock || item.scanedQrcode || item.unlockCount >= 2}}" class="sticker {{hasPrevNext && index == currentIndex && 'active'}}" bindtap="onSelect" data-index="{{index}}" src="{{item.tempFilePath}}" />
+        <view wx:else class="sticker locked-sticker-container" data-id="{{item.id}}" bindtap="navToUnlockSticker">
+          <image class="locked-sticker" src="{{item.tempFilePath}}" />
+          <image class="sticker__lock" src="./images/lock.png"/>
+        </view>
+      </block>
+
+      <view class="sticker tip">敬请期待</view>
+    </scroll-view>
+
+    <view wx:if="{{!hasPrevNext}}" class="create-share-poster" bindtap="onCreateSharePoster">生成分享卡片</view>
+  </block>
+
+  <cover-image wx:if="{{hasPrevNext}}" class="prev" src="./images/left.png" bindtap="onPrev"></cover-image>
+  <cover-image wx:if="{{hasPrevNext}}" class="next" src="./images/right.png" bindtap="onNext"></cover-image>
+</view>

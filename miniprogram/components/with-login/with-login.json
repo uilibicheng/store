@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "with-auth": "../with-auth/with-auth"
+  }
+}

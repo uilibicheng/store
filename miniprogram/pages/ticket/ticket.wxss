@@ -1,0 +1,544 @@
+/* pages/ticket/ticket.wxss */
+
+.wx-swiper-dots.wx-swiper-dots-horizontal {
+  margin-bottom: 210rpx;
+}
+
+.content {
+  padding: 0 40rpx 220rpx;
+  overflow: hidden;
+}
+
+.content-placeholder {
+  height: 250rpx;
+  background-color: rgb(241, 245, 252);
+}
+
+.footer {
+  width: 100%;
+  background: #F1BF00;
+  box-shadow: 0 -1px 17px 0 rgba(108, 108, 108, .5);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  border-radius: 16rpx 16rpx 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer.zero {
+  background: #C3C3C3;
+}
+
+.content .content-corner {
+  width: 100%;
+  height: 40rpx;
+  display: block;
+}
+
+.content-header2 {
+  min-height: 140rpx;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding-bottom: 20rpx;
+}
+
+.content-header2 .ticket-name {
+  font-family: PingFangSC-Semibold;
+  font-size: 48rpx;
+  color: #FFF;
+  line-height: 66rpx;
+  margin-top: 48.4rpx;
+  max-width: 440rpx;
+}
+
+.content-header2 .decorative-img {
+  width: 206rpx;
+  height: 122rpx;
+  /* margin-top: 47rpx;
+  margin-right: 25rpx; */
+  position: absolute;
+  right: 25rpx;
+  bottom: 0;
+}
+
+.content .content-header {
+  width: 100%;
+  height: 180rpx;
+  box-sizing: border-box;
+  border-radius: 32rpx 32rpx 0 0;
+  color: #FFF;
+  overflow: hidden;
+  background-size: 100%;
+}
+
+.content-header .destination {
+  display: flex;
+  margin-top: 32rpx;
+}
+
+.content-header .destination .logo {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 36rpx;
+  margin-top: 10rpx;
+}
+
+.content-header .destination .text {
+  font-family: PingFangSC-Semibold;
+  font-size: 36rpx;
+  line-height: 50rpx;
+  margin-left: 8rpx;
+}
+
+.content-header .intro {
+  padding-left: 78rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  margin-top: 16rpx;
+}
+
+.content-header .opening-time {
+  padding-left: 72rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  margin-top: 16rpx;
+}
+
+.content .purchase-content {
+  width: 100%;
+  background: #FFF;
+  /* overflow: hidden; */
+  padding-bottom: 20rpx;
+  border-radius:  0 0 32rpx 32rpx;
+  position: relative;
+  border-top: 1rpx solid #fff;
+}
+
+.content .purchase-content::before, .content .purchase-content::after {
+  content: '';
+  position: absolute;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  top: -19rpx;
+  left: -18rpx;
+  background-color: #006CBA;
+  z-index: 0;
+}
+
+.content .purchase-content::after {
+  left: auto;
+  right: -18rpx;
+}
+
+.purchase-content .purchase-price {
+  width: 100%;
+  height: 120rpx;
+  clear: both;
+  margin-top: 40rpx;
+  position: relative;
+  font-family: SFProText-Bold;
+  font-weight: 700;
+}
+
+.purchase-content .purchase-price.discount {
+  height: 155rpx;
+}
+
+.purchase-price .title-tickets, .purchase-price .title-discount {
+  font-size: 28rpx;
+  color: #383838;
+  line-height: 40rpx;
+  position: absolute;
+  left: 20rpx;
+  top: 8rpx;
+  font-family: PingFangSC-Semibold;
+}
+
+.purchase-price .title-discount {
+  left: auto;
+  right: 32rpx;
+}
+
+.purchase-price .info-discount {
+  top: 55rpx !important;
+}
+
+.purchase-price .info-tickets, .purchase-price .info-discount {
+  font-size: 36rpx;
+  color: #30A0DF;
+  position: absolute;
+  left: 20rpx;
+  top: 60rpx;
+  line-height: 56rpx;
+  font-family: PingFangSC-Semibold;
+}
+
+.purchase-price .rmb-price {
+  font-size: 26rpx;
+  color: #748caf;
+  position: absolute;
+  top: 120rpx;
+  left: 32rpx;
+}
+
+.purchase-price .origin-price {
+  font-size: 24rpx;
+  color: #748caf;
+  text-decoration: line-through;
+  position: absolute;
+  top: 123rpx;
+  right: 32rpx;
+  opacity: 0.3;
+}
+
+.purchase-price .info-discount {
+  left: auto;
+  right: 40rpx;
+  color: #EDB700;
+}
+
+.purchase-price .info-discount .discount-off {
+  font-size: 28rpx;
+  position: relative;
+  top: -4rpx;
+}
+
+.purchase-price .RMB-view {
+  height: 100%;
+  position: absolute;
+  padding-right: 20rpx;
+  top: 0;
+  right: 0;
+}
+
+.RMB-view .title-rmb {
+  font-size: 28rpx;
+  color: #383838;
+  line-height: 40rpx;
+  font-family: PingFangSC-Semibold;
+  margin-top: 8rpx;
+}
+
+.RMB-view .info-rmb {
+  color: #EDB700;
+  font-family: PingFangSC-Semibold;
+  font-size: 36rpx;
+  line-height: 56rpx;
+  margin-top: 10rpx;
+}
+
+.purchase-content .purchase-selector {
+  margin-top: 20rpx;
+  height: 645rpx;
+}
+
+.purchase-content .purchase-selector.origin-zone {
+  margin-top: 20rpx;
+}
+
+.purchase-content .ticket-view {
+  display: flex;
+  padding-left: 32rpx;
+}
+
+.purchase-selector .ticket-type {
+  flex-shrink: 0;
+  width: 314rpx;
+  height: 645rpx;
+  position: relative;
+}
+
+.ticket-type .ticket-board {
+  width: 292rpx;
+  height: 512rpx;
+  background-size: 100% 100%;
+  text-align: center;
+  /* margin: 0 auto; */
+  overflow: hidden;
+  border-radius: 16rpx;
+}
+
+.ticket-board .price-THB {
+  font-family: PingFangSC-Semibold;
+  font-size: 40rpx;
+  color: #fff;
+  font-weight: bold;
+  line-height: 56rpx;
+  margin-top: 32rpx;
+}
+
+.ticket-board .price-RMB {
+  font-family: PingFangSC-Semibold;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 34rpx;
+  margin-top: 16rpx;
+  opacity: 0.8;
+}
+
+.ticket-board .type-name {
+  font-family: PingFangSC-Semibold;
+  font-size: 40rpx;
+  color: #fff;
+  line-height: 56rpx;
+  margin-top: 228rpx;
+}
+
+.ticket-board .type-explain {
+  font-family: PingFangSC-Semibold;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 34rpx;
+  margin-top: 16rpx;
+  opacity: 0.8;
+}
+
+.ticket-type .counter {
+  width: 292rpx;
+  height: 64rpx;
+  box-sizing: border-box;
+  border-radius: 16rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40rpx;
+}
+
+.ticket-type:nth-child(odd) .counter {
+  border: 1rpx solid #30A0DF;
+}
+
+.ticket-type:nth-child(even) .counter {
+  border: 1rpx solid #F1BF00;
+}
+
+.ticket-type .counter view {
+  width: 62rpx;
+  height: 62rpx;
+  font-size: 40rpx;
+  text-align: center;
+}
+
+.ticket-type .counter .counter-reduce,
+.ticket-type .counter .counter-add {
+  font-family: PingFangSC-Regular;
+  color: #CF0F12;
+  line-height: 55rpx;
+}
+
+.ticket-type .counter .get-edge {
+  color: #C3C3C3;
+}
+
+.ticket-type .counter .counter-num {
+  font-family: PingFangSC-Semibold;
+  color: #C3C3C3;
+  line-height: 62rpx;
+}
+
+.ticket-type:nth-child(odd) .counter .not-zero {
+  color: #30A0DF;
+}
+
+.ticket-type:nth-child(even) .counter .not-zero {
+  color: #F1BF00;
+}
+
+.content .purchase-richtext {
+  /* height: 500rpx; */
+  background-color: #FFF;
+  overflow: hidden;
+  padding: 40rpx;
+  margin-top: 40rpx;
+  border-radius: 32rpx;
+}
+
+.footer .order-info {
+  /* height: 134rpx; */
+  /* position: relative; */
+  box-sizing: border-box;
+  padding: 16rpx 0 24rpx 40rpx;
+  width: 520rpx;
+}
+
+.order-info .order-text {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #fff;
+  letter-spacing: 1rpx;
+}
+
+.order-info .order-amount {
+  font-size: 36rpx;
+  color: #fff;
+  line-height: 50rpx;
+  font-family: PingFangSC-Semibold;
+  margin-top: 4rpx;
+}
+
+.footer .submit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 530rpx;
+  background: #CF0F12;
+}
+
+.footer .submit .sumit-text {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-family: PingFangSC-Semibold;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  letter-spacing: 1rpx;
+}
+
+.footer.zero .submit {
+  background: #B2B2B2;
+}
+
+.wxParser-h1, .wxParser-h2, .wxParser-h3, .wxParser-h4, .wxParser-h5,
+.wxParser-h6, .wxParser-b, .wxParser-strong {
+  margin: 40rpx 0 24rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: bold;
+  font-size: 36rpx;
+  color: #12408c;
+  box-sizing: border-box;
+  padding-left: 24rpx;
+  position: relative;
+}
+
+.wxParser-h1::before, .wxParser-h2::before, .wxParser-h3::before,
+.wxParser-h4::before, .wxParser-h5::before, .wxParser-h6::before,
+.wxParser-b::before, .wxParser-strong::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 12rpx;
+  height: 12rpx;
+  background: #ffb800;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  border-radius: 6rpx;
+}
+
+.wxParser-div, .wxParser-p {
+  font-size: 32rpx;
+  color: #49536d;
+  line-height: 56rpx;
+}
+
+.ticket-not-found {
+  font-size: 26rpx;
+  color: #383838;
+  width: 100%;
+  line-height: 34rpx;
+  text-align: center;
+  background-color: #FFF;
+  padding: 60rpx 0;
+  border-radius: 0 0 32rpx 32rpx;
+}
+
+.complimentary-block {
+  box-sizing: border-box;
+  padding: 0 32rpx 48rpx;
+  overflow: hidden;
+  margin-top: 40rpx;
+  background-color: #FFF;
+  border-radius: 32rpx;
+}
+
+.complimentary-block .complimentary-header {
+  display: flex;
+  height: 56rpx;
+  margin-top: 48rpx;
+}
+
+.complimentary-header .complimentary-title {
+  font-family: PingFangSC-Semibold;
+  font-size: 40rpx;
+  color: #383838;
+  line-height: 56rpx;
+  letter-spacing: 2rpx;
+  margin-right: 20rpx;
+}
+
+.complimentary-header .complimentary-desc {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #7D7D7D;
+  line-height: 56rpx;
+  letter-spacing: 1rpx;
+}
+
+.complimentary-block .complimentary-item {
+  height: 64rpx;
+  margin-top: 32rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.complimentary-item .type-name {
+  font-size: 28rpx;
+  color: #383838;
+  line-height: 64rpx;
+}
+
+.complimentary-item .counter {
+  width: 236rpx;
+  height: 64rpx;
+  box-sizing: border-box;
+  border-radius: 16rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.complimentary-item:nth-child(even) .counter {
+  border: 1rpx solid #30A0DF;
+}
+
+.complimentary-item:nth-child(odd) .counter {
+  border: 1rpx solid #F1BF00;
+}
+
+.complimentary-item .counter view {
+  width: 62rpx;
+  height: 62rpx;
+  font-size: 40rpx;
+  text-align: center;
+}
+
+.complimentary-item .counter .counter-reduce,
+.complimentary-item .counter .counter-add {
+  font-family: PingFangSC-Regular;
+  color: #CF0F12;
+  line-height: 55rpx;
+}
+
+.complimentary-item .counter .get-edge {
+  color: #C3C3C3;
+}
+
+.complimentary-item .counter .counter-num {
+  font-family: PingFangSC-Semibold;
+  color: #C3C3C3;
+  line-height: 62rpx;
+}
+
+.complimentary-item:nth-child(even) .counter .not-zero {
+  color: #30A0DF;
+}
+
+.complimentary-item:nth-child(odd) .counter .not-zero {
+  color: #F1BF00;
+}

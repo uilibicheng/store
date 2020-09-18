@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "lottery": "plugin://lotteryPlugin/lottery"
+  }
+}

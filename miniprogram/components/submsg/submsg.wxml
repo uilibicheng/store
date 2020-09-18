@@ -1,0 +1,3 @@
+<view class="ext-class" bindtap='onTap'>
+  <slot></slot>
+</view>

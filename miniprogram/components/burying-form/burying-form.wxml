@@ -1,0 +1,4 @@
+<!--components/burying-form/burying-form.wxml-->
+<form class="burying-form" bindsubmit="handleEmptyFormSubmit" report-submit>
+  <button class="burying-btn" form-type="submit"></button>
+</form>

@@ -1,0 +1,398 @@
+/* pages/purchase/purchase.wxss */
+picker {
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  padding: 40rpx;
+  box-sizing:border-box;
+}
+
+.content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 40rpx 220rpx;
+  position: relative;
+}
+
+.content::before {
+  content: '';
+  position: absolute;
+  width: 206rpx;
+  height: 122rpx;
+  background-image: url('https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hV6NtABgA4W8TDB.png');
+  background-size: 100% 100%;
+  top: -122rpx;
+  right: 63rpx;
+}
+
+.footer {
+  width: 100%;
+  background: #F1BF00;
+  box-shadow: 0 -1px 17px 0 rgba(108, 108, 108, .5);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  border-radius: 16rpx 16rpx 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header .ticket-info {
+  width: 464rpx;
+}
+
+.ticket-info .ticket-name-ch {
+  font-family: PingFangSC-Semibold;
+  font-size: 48rpx;
+  color: #FFFFFF;
+  letter-spacing: 1.72rpx;
+  line-height: 66rpx;
+}
+
+.ticket-info .ticket-name-en {
+  margin-top: 16rpx;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  letter-spacing: 1rpx;
+  line-height: 40rpx;
+}
+
+.ticket-info .ticket-tips {
+  line-height: 40rpx;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  letter-spacing: 1rpx;
+  margin-top: 30rpx;
+}
+
+.header .buy-hint {
+  width: 100rpx;
+  height: 40rpx;
+  background-image: url('https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hU8PuvoF7Ulvr1o.png');
+  background-size: 100% 100%;
+  display: block;
+  position: absolute;
+  top: 52rpx;
+  right: 40rpx;
+  font-size: 20rpx;
+  color: #FFFFFF;
+  text-align: center;
+  letter-spacing: .72rpx;
+  line-height: 43rpx;
+}
+
+.content-header {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 32rpx 32rpx 0 0;
+  color: #FFF;
+  overflow: hidden;
+  background-size: 100% 100%;
+  padding: 32rpx;
+}
+
+.content-header .title {
+  font-family: PingFangSC-Medium;
+  font-size: 40rpx;
+  color: #FFF;
+  line-height: 56rpx;
+}
+
+.content-header .date-picker {
+  line-height: 48rpx;
+  margin: 24rpx 0 64rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.date-picker .date {
+  line-height: 48rpx;
+  font-family: SFProText-Bold;
+  font-size: 32rpx;
+  color: #FFF;
+  font-weight: 900;
+}
+
+.date-picker .hint {
+  line-height: 48rpx;
+  font-family: PingFangSC-Medium;
+  font-size: 28rpx;
+  color: #FFF;
+  font-weight: 500;
+}
+
+.date-picker image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.content-header .purchase-counter {
+  margin: 15rpx 0 30rpx;
+}
+
+.purchase-counter .counter-item {
+  height: 64rpx;
+  margin-top: 32rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.counter-item .ticket-type {
+  width: 132rpx;
+  font-size: 28rpx;
+  color: #FFF;
+  line-height: 64rpx;
+}
+
+.counter-item .price {
+  font-family: PingFangSC-Semibold;
+  font-size: 20px;
+  color: #FFFFFF;
+  line-height: 64rpx;
+  flex: 1;
+}
+
+.counter-item .counter {
+  width: 236rpx;
+  height: 64rpx;
+  box-sizing: border-box;
+  border-radius: 16rpx;
+  display: flex;
+  justify-content: space-between;
+  border: 1rpx solid #FFF
+}
+
+.counter-item .counter view {
+  width: 62rpx;
+  height: 62rpx;
+  font-size: 40rpx;
+  text-align: center;
+}
+
+.counter-item .counter .counter-reduce,
+.counter-item .counter .counter-add {
+  font-family: PingFangSC-Regular;
+  color: #FFF;
+  line-height: 55rpx;
+}
+
+.counter-item .counter .get-edge {
+  opacity: .5;
+}
+
+.counter-item .counter .counter-num {
+  font-family: PingFangSC-Semibold;
+  color: #FFF;
+  line-height: 62rpx;
+  opacity: .5;
+}
+
+.counter-item .counter .not-zero {
+  opacity: 1;
+}
+
+.content-body {
+  width: 100%;
+  background: #FFF;
+  /* overflow: hidden; */
+  padding: 46rpx 32rpx 32rpx;
+  border-radius: 0 0 32rpx 32rpx;
+  position: relative;
+  box-sizing: border-box;
+  border-top: 1rpx solid #fff;
+}
+
+.content-body::before, .content-body::after {
+  content: '';
+  position: absolute;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  top: -19rpx;
+  left: -18rpx;
+  background-color: #006CBA;
+  z-index: 0;
+}
+
+.content-body::after {
+  left: auto;
+  right: -18rpx;
+}
+
+.content-body .title {
+  display: flex;
+  font-family: PingFangSC-Semibold;
+  font-size: 40rpx;
+  color: #383838;
+  letter-spacing: 2rpx;
+  line-height: 56rpx;
+}
+
+.complimentary-desc {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #7D7D7D;
+  letter-spacing: 1rpx;
+  line-height: 56rpx;
+  margin-left: 20rpx;
+}
+
+.complimentary-block {
+  margin-bottom: 55rpx;
+}
+
+.complimentary-block .complimentary-item {
+  height: 64rpx;
+  margin-top: 32rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.complimentary-item .ticket-type {
+  font-size: 28rpx;
+  color: #383838;
+  line-height: 64rpx;
+}
+
+.complimentary-item .counter {
+  width: 236rpx;
+  height: 64rpx;
+  box-sizing: border-box;
+  border-radius: 16rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.complimentary-item:nth-child(even) .counter {
+  border: 1rpx solid #F1BF00;
+}
+
+.complimentary-item:nth-child(odd) .counter {
+  border: 1rpx solid #30A0DF;
+}
+
+.complimentary-item .counter view {
+  width: 62rpx;
+  height: 62rpx;
+  font-size: 40rpx;
+  text-align: center;
+}
+
+.complimentary-item .counter .counter-reduce,
+.complimentary-item .counter .counter-add {
+  font-family: PingFangSC-Regular;
+  color: #CF0F12;
+  line-height: 55rpx;
+}
+
+.complimentary-item .counter .get-edge {
+  color: #C3C3C3;
+}
+
+.complimentary-item .counter .counter-num {
+  font-family: PingFangSC-Semibold;
+  color: #C3C3C3;
+  line-height: 62rpx;
+}
+
+.complimentary-item:nth-child(even) .counter .not-zero {
+  color: #F1BF00;
+}
+
+.complimentary-item:nth-child(odd) .counter .not-zero {
+  color: #30A0DF;
+}
+
+.content-body .input-border {
+  border-radius: 12rpx;
+  color: #666;
+  height: 96rpx;
+  padding-left: 23rpx;
+  margin: 40rpx 0;
+  /* background: rgba(193, 204, 220, 0.24); */
+  background: #F4F4F4;
+  font-family: PingFangSC-Regular;
+}
+
+.input-placeholder {
+  color: rgba(125, 125, 125, .6);
+}
+
+.footer .order-info {
+  box-sizing: border-box;
+  padding: 16rpx 0 24rpx 40rpx;
+  width: 520rpx;
+}
+
+.order-info .order-text {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #fff;
+  letter-spacing: 1rpx;
+}
+
+.order-info .order-num {
+  font-size: 36rpx;
+  color: #fff;
+  line-height: 50rpx;
+  font-family: PingFangSC-Semibold;
+  margin-top: 4rpx;
+  letter-spacing: 1.28rpx;
+}
+
+.order-info .order-num .JPY-num {
+  display: inline-block;
+  line-height: 50rpx;
+  margin-left: 36rpx;
+  font-size: 28rpx;
+  letter-spacing: 1rpx;
+}
+
+.footer .submit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 530rpx;
+  background: #CF0F12;
+}
+
+.footer .submit .sumit-text {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-family: PingFangSC-Semibold;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  letter-spacing: 1rpx;
+}
+
+.fake-input {
+  border-radius: 12rpx;
+  color: #666;
+  height: 96rpx;
+  padding-left: 23rpx;
+  margin: 40rpx 0;
+  line-height: 96rpx;
+  /* background: rgba(193, 204, 220, 0.24); */
+  background: #F4F4F4;
+  font-family: PingFangSC-Regular;
+  position: relative;
+}
+
+.fake-input .value {
+  line-height: 96rpx;
+  color: #666;
+  font-family: PingFangSC-Regular;
+}
+
+.fake-input .placeholder {
+  line-height: 96rpx;
+  color: rgba(125, 125, 125, .6);
+}
