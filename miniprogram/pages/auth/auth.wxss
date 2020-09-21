@@ -1,47 +1,65 @@
 /* pages/auth/auth.wxss */
-.page {
-  display: flex;
-  flex-flow: column;
-  width: 100%;
-  height: 100vh;
-  background: #006CBA;
-}
-
-.page-content {
-  flex-grow: 1;
-  flex-shrink: 1;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.logo {
-  width: 454rpx;
-  height: 228rpx;
-}
-
-.welcome-info {
-  position: relative;
-  top: -140rpx;
-}
-
-.welcome-info view {
-  font-family: PingFangSC-Semibold;
+.title {
   font-size: 40rpx;
-  color: #FFFFFF;
-  letter-spacing: 2rpx;
+  color: #4B5767;
+  line-height: 56rpx;
+  margin-top: 96rpx;
   text-align: center;
-  line-height: 80rpx;  
 }
 
-.start-btn {
-  width: 672rpx;
-  height: 112rpx;
-  background: #FFFFFF;
-  border-radius: 8rpx;
-  line-height: 112rpx;
-  font-family: PingFangSC-Semibold;
-  font-size: 40rpx;
-  color: #006CBA;
+.tips {
+  width: 654rpx;
+  border-radius: 16rpx;
+  opacity: .6;
+  background-color: #fff;
+  padding: 30rpx 32rpx 26rpx;
+  font-size: 26rpx;
+  color: #999999;
+  line-height: 40rpx;
+  margin: 46rpx auto 0;
+}
+
+.function-title {
+  font-size: 28rpx;
+  color: #4B5767;
+  line-height: 40rpx;
+  margin-top: 100rpx;
+  text-align: center;
+}
+
+.function-intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 36rpx;
+  height: 36rpx;
+  font-size: 26rpx;
+  color: #856E5D;
+  margin-top: 52rpx;
+}
+
+.function-intro image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 15rpx;
+}
+
+.btn-panel {
+  margin-top: 226rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 60rpx;
+}
+
+.btn-panel .btn {
+  width: 240rpx;
+  height: 84rpx;
+  border: 1px solid #8C7565;
+  border-radius: 42rpx;
+  line-height: 82rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #8C7565;
+  background-color: initial;
 }

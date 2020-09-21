@@ -2,19 +2,18 @@
   <slot></slot>
 </view>
 
-<view wx:if="{{forceShowModal || showModal}}" class="mask" catchtap="onFail">
+<view wx:if="{{forceShowModal || showModal}}" class="mask" catchtap="onFail" catchtouchmove="noop">
   <view class="container" catchtap="noop">
-    <image class="header" src="./header.png" />
-    <image class="close" src="./close.png" catchtap="onFail"/>
     <view class="title">您还未登录</view>
     <view class="subtitle">请先登录再操作</view>
+    <image class="logo" src="./pic-login.png" />
     <view class="footer">
       <view class="btn" bindtap="onFail">暂不登录</view>
       <with-auth
         method="getUserInfo"
         bind:onSuccess="onSuccess"
         bind:onFail="noop"
-        class="btn btn-login">
+        class="btn-login">
         立即登录
       </with-auth>
     </view>

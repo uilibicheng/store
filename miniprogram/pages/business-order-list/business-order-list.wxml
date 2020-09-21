@@ -1,0 +1,212 @@
+<view class="order-list-page">
+  <page-header selfStyle="background-color: #E7E0D6;" />
+
+  <view class="search-section" style="top: {{navBarHeight}}px;">
+    <image class="search-icon" src="./images/icon-search.png"></image>
+    <input
+      class="search"
+      confirm-type="search"
+      placeholder="请输入要搜索的订单号/客户名称"
+      placeholder-class="search-placeholder"
+      bindconfirm="handleSearchOrder"></input>
+  </view>
+
+  <view class="order-by-panel" style="top: calc({{navBarHeight}}px + 104rpx);">
+    <view class="order-by-item" data-type='contact_name_spelling' catchtap="handleOrderTypeChange">
+      客户名称
+      <view class="order-by-arrow-group">
+        <image class="{{orderSortType === 'contact_name_spelling' && orderSortMode === 'ascending' ? 'active' : ''}}" src="./images/icon-arrow-black-up.png"></image>
+        <image class="{{orderSortType === 'contact_name_spelling' && orderSortMode === 'descending' ? 'active' : ''}}" src="./images/icon-arrow-black-down.png"></image>
+      </view>
+    </view>
+    <view class="order-by-item" data-type='created_at' catchtap="handleOrderTypeChange">
+      时间
+      <view class="order-by-arrow-group">
+        <image class="{{orderSortType === 'created_at' && orderSortMode === 'ascending' ? 'active' : ''}}" src="./images/icon-arrow-black-up.png"></image>
+        <image class="{{orderSortType === 'created_at' && orderSortMode === 'descending' ? 'active' : ''}}" src="./images/icon-arrow-black-down.png"></image>
+      </view>
+    </view>
+    <view class="order-by-item" catchtap="handleShowStatusSelector">
+      {{orderStatus.name}}
+      <image class="single-arrow {{showStatusSelector && 'active'}}" src="./images/icon-arrow-black-down.png"></image>
+    </view>
+  </view>
+
+  <view style="height: 184rpx;"></view>
+
+  <scroll-view
+    scroll-y class="order-list"
+    enable-back-to-top
+    refresher-enabled
+    refresher-triggered="{{refreshTriggered}}"
+    bindrefresherrefresh="onRefresh"
+    bindscrolltolower="onScrollToLower"
+    style="height: calc(100vh - {{navBarHeight}}px - 104rpx - 80rpx);">
+  <view style="min-height: 101%">
+
+    <view style="height: 1px;"></view>
+
+    <view class="order-item" wx:for="{{orderList}}" wx:key="id" catchtap="navToOrderDetail" data-index="{{index}}">
+      <view class="order-header">
+        <text class="order-header-text">{{item.contact_name}}</text>
+        <view class="order-header-qrcode-btn">
+          {{item.related_at ? '' : '订单未关联客户'}}
+          <image catchtap="showOrderQRCode" data-index="{{index}}" class="{{!item.related_at && 'unbind'}}" src="./images/icon-qrcode.png" />
+        </view>
+      </view>
+      <view class="order-info">
+        <view class="order-info-item">
+          <view class="name">订单号</view>
+          <view class="status">{{item.order_id}}</view>
+        </view>
+        <view class="order-info-item">
+          <view class="name">时间</view>
+          <view class="status">{{item.created_at_format}}</view>
+        </view>
+        <view class="order-info-item" wx:if="{{item.contact_phone}}">
+          <view class="name">联系方式</view>
+          <view class="status">
+            <image catchtap="handleMakePhoneCall" data-tel="{{item.contact_phone}}" class="icon-phone" src="./images/icon-phone.png"></image>
+            {{item.contact_phone}}
+          </view>
+        </view>
+        <view
+          class="order-info-item"
+          wx:for="{{item.product_list}}"
+          wx:for-item="orderItem"
+          wx:for-index="orderIndex"
+          wx:key="orderIndex"
+          wx:if="{{orderIndex < 5 || item.show_all_item}}">
+          <view class="name">
+            {{clothesType[orderItem.clothes_type]}}
+            <text class="name-index">{{orderItem.clothes_type_index}}</text>
+          </view>
+          <view class="status">
+            {{orderStatusType[orderItem.status]}}
+            {{orderItem.status === 'send_out' ? '寄出第 ' + orderItem.send_out_count + ' 次' : ''}}
+            {{orderItem.status === 'send_back' ? '寄回第 ' + orderItem.send_back_count + ' 次' : ''}}
+          </view>
+        </view>
+
+        <view
+          class="show-more-order-info"
+          catchtap="showOrderAllItem"
+          wx:if="{{item.product_list.length > 5 && !item.show_all_item}}"
+          data-index="{{index}}">
+          展开全部
+          <image src="./images/icon-arrow-black-down.png"></image>
+        </view>
+      </view>
+      <view class="order-footer">
+        <text class="order-footer-edit" catchtap="handleModifyOrderShow" data-index="{{index}}">修改订单状态</text>
+        <text class="order-footer-edit" wx:if="{{item.tailored_id}}">查看量体数据</text>
+        <text class="order-footer-upload" wx:elif="{{item.tailored_image.length === 0}}">上传量体数据</text>
+      </view>
+    </view>
+
+    <view class="no-order-list-data" wx:if="{{!orderList || orderList.length === 0}}">
+      <image src="https://cloud-minapp-32931.cloud.ifanrusercontent.com/1jE5v1a49ITEOdHB.png"></image>
+      暂无相关订单
+    </view>
+
+    <view style="height: 180rpx;"></view>
+
+  </view>
+  </scroll-view>
+
+</view>
+
+<view
+  class="filter-mask"
+  style="top: calc({{navBarHeight}}px + 184rpx);"
+  wx:if="{{showStatusSelector}}"
+  catchtap="handleShowStatusSelector" catchtouchmove="noop">
+  <view class="filter-panel" catchtap="noop">
+
+    <view class="filter-type-list">
+      <view
+        wx:for="{{orderStatusList}}"
+        wx:key="index"
+        class="filter-type-item {{orderStatus.name === item.name && 'active'}}"
+        data-status="{{item}}"
+        catchtap="handleOrderStatusSelected">{{item.name}}</view>
+    </view>
+
+  </view>
+</view>
+
+<business-nav-bar />
+
+<create-order-entrance />
+
+<modal-container wx:if="{{showRelateOrderModal}}" bind:onClose="hideRelateOrderModal">
+  <view class="relate-order-modal">
+    <view class="qrcode">
+      <image src="{{relateOrderQRCode}}"></image>
+    </view>
+    <view class="hint">
+      {{relateOrderObj.related_at ? '订单已关联客户' : '订单未关联客户！'}}
+    </view>
+    <view class="avatar-container" wx:if="{{relateOrderObj.related_at}}">
+      <view class="role-container">
+        <image src="{{storeInfo.logo}}" class="role-avatar"></image>
+        <view class="role-name">{{storeInfo.name}}</view>
+      </view>
+      <image src="./images/icon-link.png" class="icon-link"></image>
+      <view class="role-container">
+        <image src="{{relateOrderObj.avatar}}" class="role-avatar"></image>
+        <view class="role-name">{{relateOrderObj.contact_name}}</view>
+      </view>
+    </view>
+  </view>
+</modal-container>
+
+<modal-container wx:if="{{showModifyOrderModal}}" bind:onClose="hideModifyOrderModal" backgroundColor="#fff" adjustPosition="{{true}}">
+  <view class="modify-order-modal">
+    <view class="title">修改订单状态</view>
+    <scroll-view class="modify-order-scroller" scroll-y>
+      <view class="modify-order-info">
+        <view class="modify-order-info-item" wx:for="{{modifiedOrderObj.product_list}}" wx:key="index">
+          <view class="product-status">
+            <view class="name">
+              {{clothesType[item.clothes_type]}}
+              <text class="name-index">{{item.clothes_type_index}}</text>
+            </view>
+            <picker
+              range="{{orderStatusListPicker}}"
+              range-key="name"
+              value="{{orderStatusListIndex[item.status]}}"
+              data-product-index="{{index}}"
+              bindchange="handleModifyOrderStatus">
+              <view class="status-picker">
+                {{orderStatusType[item.status]}}
+                <image src="./images/picker-arrow.png"></image>
+              </view>
+            </picker>
+          </view>
+          <view class="send-amount" wx:if="{{item.status === 'send_out' || item.status === 'send_back'}}">
+            <text style="margin-right: 8rpx;">第</text>
+            <normal-counter
+              data-product-index="{{index}}"
+              amount="{{item.status === 'send_out' ? (item.send_out_count || 1) : (item.send_back_count || 1)}}"
+              bind:add="addStatusCount"
+              bind:minus="minusStatusCount" />
+            <text style="margin-left: 8rpx;">次</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="store-note">
+      <view class="label">备注</view>
+      <textarea
+        class="store-note-input"
+        placeholder="请在此处填写备注"
+        placeholder-class="store-note-input-placeholder"
+        value="{{modifiedOrderObj.store_note}}"
+        bindinput="handleModifyStoreNoteInput"></textarea>
+    </view>
+    <view class="submit-btn" catchtap="submitModifyOrder">提交</view>
+  </view>
+</modal-container>
+
+<contact-entrance />

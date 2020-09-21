@@ -1,0 +1,91 @@
+<!--pages/business-info/business-info.wxml-->
+<scroll-view scroll-y class="page-scroll-container">
+
+<page-header selfStyle="background-color: #E7E0D6;" />
+
+<view class="title">完善信息</view>
+
+<view class="hint">完善信息有助于你管理自己的页面以及相关客户页面</view>
+
+<view class="form-label">
+  <view class="form-label-name">商家 Logo</view>
+</view>
+<view class="upload-img" wx:if="{{storeLogoList.length > 0}}">
+  <image
+    catchtap="deleteStoreLogo"
+    class="delete"
+    src="https://cloud-minapp-32931.cloud.ifanrusercontent.com/1j9VCl7lrsTc6HiT.png"></image>
+  <image class="img" src="{{storeLogoList[0]}}"></image>
+</view>
+<view class="upload-btn" bindtap="uploadStoreLogo" wx:else>
+  <image src="./images/icon-addpic.png"></image>
+</view>
+
+<view class="form-label">
+  <view class="form-label-name">商家名称 <text class="required">*</text></view>
+</view>
+<input
+  class="form-input"
+  placeholder="请填写商家名称"
+  placeholder-class="form-input-placeholder"
+  value="{{storeName}}"
+  bindinput="handleStoreNameInput"></input>
+
+<view class="form-label">
+  <view class="form-label-name">联系方式 <text class="required">*</text></view>
+</view>
+<input
+  class="form-input"
+  placeholder="请填写联系方式"
+  placeholder-class="form-input-placeholder"
+  value="{{storeTel}}"
+  bindinput="handleStoreTelInput"></input>
+
+<view class="form-label">
+  <view class="form-label-name">商家地址</view>
+  <view class="add-address" bindtap="addAddress"><image src="./images/icon-addlist.png" /> 添加地址</view>
+</view>
+<view class="form-input-panel" wx:for="{{storeAddressList}}" wx:key="index">
+  <input style="width: 584rpx; margin-top: 0; margin-left: 0;"
+    class="form-input"
+    placeholder="请填写商家地址"
+    placeholder-class="form-input-placeholder"
+    value="{{storeAddressList[index]}}"
+    data-index="{{index}}"
+    bindinput="handleStoreAddressInput"></input>
+    <with-auth
+      method="chooseLocation"
+      bind:onSuccess="handleChooseLocation"
+      data-index="{{index}}"
+      bind:onFail="noop">
+        <image class="icon-location" src="./images/icon-location.png"></image>
+    </with-auth>
+    <image
+      class="cancel-btn"
+      src="./images/icon-cancel.png"
+      wx:if="{{storeAddressList && storeAddressList.length > 1}}"
+      data-index="{{index}}"
+      catchtap="deleteAddressItem"></image>
+</view>
+
+<view class="form-label">
+  <view class="form-label-name">公众号二维码</view>
+</view>
+<view class="upload-img" wx:if="{{storeQRCodeList.length > 0}}">
+  <image
+    catchtap="deleteStoreQRCode"
+    class="delete"
+    src="https://cloud-minapp-32931.cloud.ifanrusercontent.com/1j9VCl7lrsTc6HiT.png"></image>
+  <image class="img" src="{{storeQRCodeList[0]}}"></image>
+</view>
+<view class="upload-btn" bindtap="uploadStoreQRCode" wx:else>
+  <image src="./images/icon-addpic.png"></image>
+</view>
+
+<view class="btn" bindtap="submitInfo">{{invitationCode ? '提交并进入首页' : '提交修改'}}</view>
+
+<view style="height: 150rpx;"></view>
+
+<contact-entrance />
+
+</scroll-view>

@@ -1,68 +1,54 @@
 // app.js
 import * as constants from './config/constants'
-import moment from './lib/moment-timezone'
-import io from './io/index'
-moment.tz.add(constants.TIMEZONE_DATA)
-
-// import pay from './utils/pay'
+// import router from './lib/router'
+// import io from './io/index'
+import baas from './lib/baas'
 
 App({
   isDev: constants.DEV,
-  stickerPhoto: null, // 贴纸游戏拍摄相片
-  stickerImage: null, // 贴纸游戏贴纸图片
 
   onLaunch() {
     this.applicationHotUpdate()
     wx.BaaS = requirePlugin('sdkPlugin')
     wx.BaaS.wxExtend(wx.login, wx.getUserInfo, wx.requestPayment)
-    wx.BaaS.init(constants.BAAS_CLIENT_ID, {autoLogin: true})
+    wx.BaaS.init(constants.BAAS_CLIENT_ID, {autoLogin: true, env: constants.DEV ? constants.ENV_ID : undefined})
 
-    // wx.BaaS._config.DEBUG = true
-    // wx.BaaS.init('90c434bd89286374f67b', { autoLogin: true })
-    // wx.BaaS._config.API_HOST = 'https://viac2-p.eng-vm.can.corp.ifanr.com'
-    // wx.BaaS._config.API_HOST_PATTERN = /^https:\/\/[\w-.]+\.ifanr\.com/
-    // wx.BaaS.auth.getCurrentUser()
-    // return pay('23424535536', [1, 2, 33333], 'test name', 2)
+    // wx.checkSession({
+    //   success: res => {
+    //     console.log('checkSession success', res)
+    //     baas.authLogin().then(user => {
+    //       console.log('app.js user =>', user)
+    //       this.globalData.isStoreUser = !!user.is_store_user
+    //     })
+    //   },
+    //   fail: err => {
+    //     console.log('checkSession fail', err)
+    //     wx.BaaS.auth.logout()
+    //     baas.authLogin().then(user => {
+    //       console.log('app.js user =>', user)
+    //       this.globalData.isStoreUser = !!user.is_store_user
+    //     })
+    //   },
+    // })
 
-    io.updateUserLoginTime()
-  },
-
-  onShow() {
-    io.updateUserLastLogin()
-  },
-
-  auth(url) {
-    return new Promise((resolve, reject) => {
-      const userInfo = wx.BaaS.storage.get('userinfo')
-      if (!userInfo || !userInfo.unionid) {
-        wx.reLaunch({
-          url: `/${constants.ROUTE.AUTH}?url=${encodeURIComponent(url)}`,
-        })
-        reject(new Error('用户未授权'))
-      } else {
-        resolve(userInfo)
-      }
+    baas.authLogin().then(user => {
+      console.log('app.js user =>', user)
+      this.globalData.isStoreUser = !!user.is_store_user
     })
-  },
 
-  getUserID() {
-    if (this.userID) {
-      return this.userID
-    }
-    let userID = wx.BaaS.storage.get('uid')
-    this.userID = userID ? Number(userID) : userID
-    return this.userID
+    let coverIndex = baas.getStorage('cover_index')
+    if (!coverIndex) coverIndex === 0
+    baas.setStorage('cover_index', ++coverIndex)
   },
 
   /**
    * 热更新程序代码
    */
   applicationHotUpdate() {
-    // console.log('热更新')
     const updateManager = wx.getUpdateManager()
     updateManager.onCheckForUpdate(function(res) {
       // 请求完新版本信息的回调
-      console.log('hasUpdate: ', res.hasUpdate)
+      // console.log('hasUpdate: ', res.hasUpdate)
     })
     updateManager.onUpdateReady(function() {
       wx.showModal({
@@ -83,19 +69,15 @@ App({
     })
   },
 
-  setStickerPhoto(tempPath) {
-    this.stickerPhoto = tempPath
-  },
-
-  getStickerPhoto() {
-    return this.stickerPhoto
-  },
-
-  setStickerImage(tempPath) {
-    this.stickerImage = tempPath
-  },
-
-  getStickerImage() {
-    return this.stickerImage
+  globalData: {
+    // indexCoverIndex: 0,
+    isStoreUser: false,
+    userStoreInfo: null, // 更新用户信息时使用
+    orderInfo: null, // 进入订单详情页、量体详情页使用
+    orderInfoIndex: null, // 记录进入的订单 index，返回列表时使用
+    modifiedOrderInfo: null, // 修改了订单信息时使用
+    articleInfo: null, // 进入文章页使用
+    tagName: null, // 进入图鉴页使用
+    autoFocus: false, // 进入订单列表页是否自动对焦
   },
 })

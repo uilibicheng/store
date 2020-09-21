@@ -1,104 +1,97 @@
-export const BAAS_CLIENT_ID = '8c7dcfb70cc1f3312dd3'
+export const BAAS_CLIENT_ID = '3663caaf1f7c50e85579'
 
-export const DEV = false
+export const ENV_ID = 'ec67c77e63eb627a9cb5'
 
-export const BAAS_SCHEMA_ID_PROD = {
-  ticket_bundle: 73273,
-  ticket: 73277,
-  ticket_inventory: 73281,
-  order: 73271,
-  settings: 73289,
-  prize: 73286,
-  prize_redemption_log: 73288,
-  user: 73294,
-  prize_redemption_log_assistance: 72860,
-  prize_redemption_log_lottery: 70522,
-  sticker: 75450,
-  sticker_unlock_log: 75452,
-  lottery_settings: 70940,
+export const DEV = false  // 测试环境开关
+
+export const BAAS_SCHEMA_ID = {
+  order: 'order',
+  store: 'store',
+  invitation_code: 'invitation_code',
+  settings: 'settings',
+  tailored_parameter: 'tailored_parameter',
+  article_category: 'article_category',
+  article: 'article',
+  tailored: 'tailored',
 }
-
-export const BAAS_SCHEMA_ID_DEV = {
-  ticket_bundle: 73274,
-  ticket: 73278,
-  ticket_inventory: 73282,
-  order: 73272,
-  settings: 73292,
-  prize: 73290,
-  prize_redemption_log: 73291,
-  user: 73293,
-  prize_redemption_log_assistance: 70427,
-  prize_redemption_log_lottery: 70529,
-  sticker: 75449,
-  sticker_unlock_log: 75451,
-  lottery_settings: 70941,
-}
-
-export const BAAS_SCHEMA_ID = DEV ? BAAS_SCHEMA_ID_DEV : BAAS_SCHEMA_ID_PROD
-
-export const ROUTE = {
-  INDEX: 'pages/index/index',
-  AUTH: 'pages/auth/auth',
-  TICKET: 'pages/ticket/ticket',
-  DISCOUNT_TICKET_LIST: 'pages/discount-ticket-list/discount-ticket-list',
-  PURCHASE: 'pages/purchase/purchase',
-  ORDER_LIST: 'pages/order-list/order-list',
-  ORDER: 'pages/order/order',
-  PRIZE: 'pages/prize/prize',
-  AQUARIUM_INFO: 'pages/aquarium-info/aquarium-info',
-  TICKET_POLICY: 'pages/ticket-policy/ticket-policy',
-  PERSONAL: 'pages/personal/personal',
-  PRIZE_LOG: 'pages/prize-log/prize-log',
-  TICKET_BUNDLE_LIST: 'pages/ticket-bundle-list/ticket-bundle-list',
-  PRIZE_LIST: 'pages/prize-list/prize-list',
-  LOTTERY: 'pages/lottery/lottery',
-  STICKER_CAMERA: 'pages/sticker-camera/sticker-camera',
-  STICKER_CANVAS: 'pages/sticker-canvas/sticker-canvas',
-  STICKER_UNLOCK: 'pages/sticker-unlock/sticker-unlock',
-}
-
-export const EXCHANGE_RATE = 0.061
 
 const REMOTE_FUNCTION_PROD = {
-  CREATE_ORDER: 'create_order',
-  CANCEL_ORDER: 'cancel_order',
-  REDEEM_PRIZE: 'redeem_prize',
-  GET_ORDER: 'get_order',
-  GET_GAME_USER: 'get_game_user',
-  CREATE_USER: 'create_user',
-  GET_TICKET_INVENTORY: 'get_ticket_inventory',
+  add_phone_number: 'add_phone_number',
+  delete_phone_number: 'delete_phone_number',
+  get_store_by_order_id: 'get_store_by_order_id',
+  relate_order: 'relate_order',
+  verify_invitation_code: 'verify_invitation_code',
+  create_store: 'create_store',
+  modify_store: 'modify_store',
+  create_order: 'create_order',
+  modify_order: 'modify_order',
+  get_store_by_batch_no: 'get_store_by_batch_no',
 }
 
 const REMOTE_FUNCTION_DEV = {
-  CREATE_ORDER: 'dev_create_order',
-  CANCEL_ORDER: 'dev_cancel_order',
-  REDEEM_PRIZE: 'dev_redeem_prize',
-  GET_ORDER: 'dev_get_order',
-  GET_GAME_USER: 'dev_get_game_user',
-  CREATE_USER: 'dev_create_user',
-  GET_TICKET_INVENTORY: 'dev_get_ticket_inventory',
-}
-
-export const PRIZE_TYPE = {
-  NORMAL: 'normal',
-  PROMOTIONAL_BUNDLE: 'promotional_bundle',
-  AREA_LIMIT: 'area_limit',
+  add_phone_number: 'dev_add_phone_number',
+  delete_phone_number: 'dev_delete_phone_number',
+  get_store_by_order_id: 'dev_get_store_by_order_id',
+  relate_order: 'dev_relate_order',
+  verify_invitation_code: 'dev_verify_invitation_code',
+  create_store: 'dev_create_store',
+  modify_store: 'dev_modify_store',
+  create_order: 'dev_create_order',
+  modify_order: 'dev_modify_order',
+  get_store_by_batch_no: 'dev_get_store_by_batch_no',
 }
 
 export const REMOTE_FUNCTION = DEV ? REMOTE_FUNCTION_DEV : REMOTE_FUNCTION_PROD
 
-export const TICKET_ADD_COUNT_LIMITATION = 20
+export const ORDER_STATUS = {
+  measured: '已量体',
+  booked: '已订料',
+  arrived: '已到料',
+  making: '制衣中',
+  send_out: '半成品寄出',
+  send_back: '半成品寄回',
+  delivered: '已交付',
+}
 
-export const TIMEZONE_DATA = [
-  'Asia/Tokyo|LMT JST JDT|-9i.X -90 -a0|0121212121|-3jE90 2qSo0 Rc0 1lc0 14o0 1zc0 Oo0 1zc0 Oo0|38e6',
+export const ORDER_STATUS_LIST = [
+  {name: '全部状态', value: ''},
+  {name: '已量体', value: 'measured'},
+  {name: '已订料', value: 'booked'},
+  {name: '已到料', value: 'arrived'},
+  {name: '制衣中', value: 'making'},
+  {name: '半成品寄出', value: 'send_out'},
+  {name: '半成品寄回', value: 'send_back'},
+  {name: '已交付', value: 'delivered'},
 ]
 
-export const TIMEZONE = 'Asia/Tokyo'
+export const ORDER_STATUS_LIST_PICKER = [
+  {name: '已量体', value: 'measured'},
+  {name: '已订料', value: 'booked'},
+  {name: '已到料', value: 'arrived'},
+  {name: '制衣中', value: 'making'},
+  {name: '半成品寄出', value: 'send_out'},
+  {name: '半成品寄回', value: 'send_back'},
+  {name: '已交付', value: 'delivered'},
+]
 
-export const PARK_MINAPP_ID = 'wxb3b1ddc14ebfbed0'
+export const CLOTHES_TYPE = {
+  jacket: '上衣',
+  pants: '裤子',
+  waistcoat: '马甲',
+  shirt: '衬衫',
+  overcoat: '大衣',
+}
 
-export const SPECIAL_TICKET_TYPE = {
-  SHARE_DISCOUNT: 'share_discount',
-  PRIZE_BUY_ONE_GET_ONE_FREE: 'prize_buy_one_get_one_free',
-  PRIZE_DISCOUNT: 'prize_discount',
+export const CLOTHES_TYPE_LIST = [
+  {name: '上衣', value: 'jacket'},
+  {name: '裤子', value: 'pants'},
+  {name: '马甲', value: 'waistcoat'},
+  {name: '衬衫', value: 'shirt'},
+  {name: '大衣', value: 'overcoat'},
+]
+
+export const WIKI_TYPE = {
+  outfit: '搭配',
+  product: '单品',
+  picture: '图鉴',
 }

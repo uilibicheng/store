@@ -1,0 +1,35 @@
+/* components/normal-counter/normal-counter.wxss */
+.normal-counter-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter-btn {
+  width: 52rpx;
+  height: 52rpx;
+  border: 1rpx solid #DADADA;
+  border-radius: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter-btn image {
+  width: 16rpx;
+  height: 16rpx;
+}
+
+.counter-num {
+  width: 76rpx;
+  height: 52rpx;
+  border: 1rpx solid #DADADA;
+  border-radius: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 28rpx;
+  color: #8C7565;
+  margin: 0 8rpx;
+}

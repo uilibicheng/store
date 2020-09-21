@@ -1,0 +1,97 @@
+/* pages/relate-order/relate-order.wxss */
+.page-scroll-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.title {
+  font-family: PingFangSC-Regular;
+  font-size: 40rpx;
+  color: #4B5767;
+  line-height: 56rpx;
+  text-align: center;
+  margin: 96rpx auto 15rpx;
+}
+
+.order-num-item {
+  width: 452rpx;
+  margin: 24rpx auto 0;
+  text-align: center;
+  padding: 14rpx 30rpx;
+  line-height: 40rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #4B5767;
+  background: #E7E0D6;
+  border-radius: 8rpx;
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 88rpx;
+}
+
+.icon-link {
+  width: 82rpx;
+  height: 66rpx;
+  margin: 30rpx 30rpx 0;
+}
+
+.role-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.role-avatar {
+  width: 118rpx;
+  height: 118rpx;
+  border-radius: 50%;
+  border: 6rpx solid #CBBDAB;
+  overflow: hidden;
+}
+
+.role-name {
+  margin-top: 10rpx;
+  font-weight: 700;
+  font-size: 32rpx;
+  color: #4B5767;
+  line-height: 44rpx;
+  min-width: 118rpx;
+  width: 180rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.hint {
+  width: 654rpx;
+  opacity: .6;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 48rpx auto 0;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 40rpx;
+  padding: 32rpx;
+}
+
+.btn {
+  width: 296rpx;
+  height: 84rpx;
+  border: 2rpx solid #8C7565;
+  border-radius: 45rpx;
+  text-align: center;
+  line-height: 80rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #8C7565;
+  margin: 82rpx auto 0;
+}

@@ -1,36 +1,52 @@
 /**app.wxss**/
-@import './lib/wxParser/index.wxss';
-
 page {
-  font-size: 28rpx;
-  background-color: #006CBA;
+  /* font-family: PingFangSC-Regular; */
+  /* background-color: green; */
+  background-image: url('https://cloud-minapp-32931.cloud.ifanrusercontent.com/1jDmBV1Vs9IgyBVc.jpg');
+  background-size: 360rpx 360rpx;
+  background-repeat: repeat;
 }
 
-.clearfix::after {
-  content: "";
+page,
+view,
+button,
+cover-image,
+cover-view,
+image,
+input,
+navigator,
+scroll-view,
+text,
+textarea {
+  word-wrap: break-word;
+  box-sizing: border-box;
+  font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 0;
   height: 0;
-  line-height: 0;
-  display: block;
-  clear: both;
-  visibility: hidden;
+  color: transparent;
+  display: none;
 }
 
-.clearfix {
-  zoom: 1;
-}
+/* .common-page {
+  background-color: green;
+  position: relative;
+  min-height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+} */
 
-.wx-swiper-dot{
-  width: 8rpx !important;
-  height: 8rpx !important;
-}
-
-.wx-swiper-dot-active {
-  width: 24rpx !important;
-  border-radius: 4rpx !important;
-}
-
-.single-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
+/* .common-page::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-image: url('https://cloud-minapp-30347.cloud.ifanrusercontent.com/1i9nmnZF54wIX9G6.png');
+  background-size: 68rpx 46rpx;
+  background-repeat: repeat;
+} */

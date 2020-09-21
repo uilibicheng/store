@@ -1,0 +1,54 @@
+/* pages/wiki-picture/wiki-picture.wxss */
+page {
+  background-color: rgba(130, 111, 95, 1) !important;
+  background-image: initial !important;
+}
+
+.wiki-picture-page {
+  background-color: rgba(130, 111, 95, 1);
+  width: 100vw;
+  overflow: hidden;
+}
+
+.picture {
+  width: 654rpx;
+  /* height: auto; */
+  margin: 64rpx auto 0;
+  display: block;
+  /* background-color: yellowgreen; */
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.tag-panel {
+  padding-left: 48rpx;
+  margin-top: 40rpx;
+  display: flex;
+  flex-flow: wrap;
+}
+
+.tag-item {
+  height: 64pr;
+  text-align: center;
+  line-height: 64rpx;
+  background-color: rgba(0, 0, 0, .24);
+  border-radius: 33rpx;
+  padding: 0 28rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  margin: 0 16rpx 18rpx 0;
+}
+
+.text-content {
+  padding: 32rpx 48rpx 100rpx;
+}
+
+.intro-text {
+  width: 654rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #E7E0D6;
+  line-height: 40rpx;
+  margin: 0 auto;
+}

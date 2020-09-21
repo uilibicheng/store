@@ -1,0 +1,48 @@
+<!--pages/wiki-article/wiki-article.wxml-->
+<scroll-view scroll-y class="page-scroll-container">
+
+<page-header selfStyle="background-color: #E7E0D6;" />
+
+<view class="wiki-article-page">
+  <view class="title">{{articleInfo.title}}</view>
+  <view class="date">{{articleInfo.created_at_format}}</view>
+  <rich-text class="rich-text-content" nodes="{{articleInfo.description}}"></rich-text>
+</view>
+
+<view class="link-container {{isIpx && 'pb34'}}" wx:if="{{articleInfo.store_data && articleInfo.store_data.name}}">
+  <view class="link-panel">
+  <view class="link-info">
+    <view class="link-store">{{articleInfo.store_data.name}}</view>
+    <view class="link-slogan">手慢无！快去点击预约购买吧！</view>
+  </view>
+  <view class="link-btn" catchtap="showStoreDataModal">好的！</view>
+  </view>
+</view>
+
+<modal-container wx:if="{{showModal}}" bind:onClose="hideModal">
+  <view class="modal-contanier">
+    <view class="title">{{articleInfo.store_data.name}}</view>
+    <view class="modal-store-info">
+      <view class="label">商家名称</view>
+      <view class="value">{{articleInfo.store_data.name}}</view>
+    </view>
+    <view class="modal-store-info">
+      <view class="label">联系方式</view>
+      <view class="value">{{articleInfo.store_data.phone}}</view>
+      <image src="./images/icon-phone.png" catchtap="handlePhoneCall"></image>
+    </view>
+    <block wx:if="{{articleInfo.store_data.options && articleInfo.store_data.options.length > 0}}">
+      <view class="modal-separator"></view>
+      <view class="modal-buy-hint">复制链接前往浏览器选购</view>
+      <view class="modal-options" wx:for="{{articleInfo.store_data.options}}" wx:key="index">
+        <view class="label">{{item.label}}</view>
+        <view class="btn" wx:if="{{item.type === 'link'}}" catchtap="handleCopyLink" data-url="{{item.url}}">一键复制</view>
+        <view class="btn" wx:if="{{item.type === 'miniapp'}}" catchtap="handleNavToMiniapp" data-url="{{item.url}}">进入小程序</view>
+      </view>
+    </block>
+  </view>
+</modal-container>
+
+<contact-entrance />
+
+</scroll-view>

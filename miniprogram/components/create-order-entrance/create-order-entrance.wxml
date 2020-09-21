@@ -1,0 +1,4 @@
+<!--components/create-order-entrance/create-order-entrance.wxml-->
+<view class="container" catchtap="navToCreateOrder">
+  <view class="content">创建订单</view>
+</view>

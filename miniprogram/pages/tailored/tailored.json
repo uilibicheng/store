@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "page-header": "/components/page-header/page-header",
+    "tailored-cascader": "/components/tailored-cascader/tailored-cascader",
+    "modal-container": "/components/modal-container/modal-container",
+    "contact-entrance": "/components/contact-entrance/contact-entrance"
+  },
+  "disableScroll": true
+}

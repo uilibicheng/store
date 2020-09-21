@@ -1,6 +1,0 @@
-{
-  "disableScroll": true,
-  "usingComponents": {
-    "sticker-controller": "/components/sticker-controller/sticker-controller"
-  }
-}

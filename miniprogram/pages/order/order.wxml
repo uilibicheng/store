@@ -1,157 +1,68 @@
 <!--pages/order/order.wxml-->
-<wxs src="../order-list/tools.wxs" module="tools" />
-<view class='container'>
-  <!-- .order-wait: 待付款，.order-paid: 已付款，.order-cancel: 已取消/已过期 -->
-  <view class='order-header {{tools.getCardClass(order)}}' style="background-image: url({{order.cover_in_details}})">
-    <view class='order-status'>
-      <view class='status-title' wx:if="{{order.status === 'not_paid'}}">{{tools.getOrderStatusCn(order)}}</view>
-      <view class='status-title' wx:elif="{{order.status === 'paid'}}">取票信息</view>
-      <view class='status-title' wx:else>订单信息</view>
-      <view class='status-btn' bindtap="handleCancelOrderClick" data-id="{{order.id}}" wx:if="{{order.status === 'not_paid'}}">取消</view>
-      <view class='status-text' wx:else>{{tools.getOrderStatusCn(order)}}</view>
-    </view>
-    <view class='order-info'>
-      <view class='order-info-item clearfix' wx:if="{{order.status !== 'paid'}}">
-        <view class='order-info-title'>订单编号</view>
-        <view class='order-info-value'>{{order.order_id}}</view>
-      </view>
-      <view class='order-info-item clearfix' wx:if="{{order.status !== 'paid'}}">
-        <view class='order-info-title'>订单总额</view>
-        <view class='order-info-value'>{{order.amount}} JPY</view>
-      </view>
-      <view class='order-info-item clearfix' wx:if="{{order.status === 'paid'}}">
-        <view class='order-info-title'>取票人</view>
-        <view class='order-info-value'>{{order.pickup_person}}</view>
-      </view>
-      <view class='order-info-item clearfix' wx:if="{{order.status === 'paid'}}">
-        <view class='order-info-title'>联系手机</view>
-        <view class='order-info-value'>{{order.phone}}</view>
-      </view>
-    </view>
-    <view class="order-amount {{ order.tickets.length === 1 ? 'only' : '' }}">
-      <view class='order-amount-num'>共 {{order.tickets.length}} 张</view>
-      <view class="order-amount-item" wx:for="{{tools.groupTicketsBySku(order.tickets)}}" wx:key="{{item.type}}">{{item.type}} x {{item.count}}</view>
-    </view>
+<scroll-view scroll-y class="page-scroll-container" bindscroll="onScrollerScroll">
+
+<page-header title="订单详情" selfStyle="{{pageHeaderStyle}}" />
+
+<view class="order-header">
+  <view class="order-header-num">
+    <view class="label">订单号</view>
+    <view class="value">{{orderInfo.order_id}}</view>
   </view>
+  <view class="order-header-date">
+    <view class="label">订单日期</view>
+    <view class="value">{{orderInfo.created_at_format}}</view>
+  </view>
+</view>
 
-  <view class='content'>
-    <scroll-view class='order-item-list' scroll-x>
-      <view class='order-item-view'>
-        <!-- .just-one: 仅有一张票时的宽度样式 -->
-        <view class="order-core-content {{item.sku_count === 1 ? 'just-one' : ''}}" wx:for="{{tools.groupTicketsBySku(order.tickets)}}" wx:key="{{index}}">
-          <view class="order-info-container info-container">
-            <view class='content-ticket-name'>
-              <image
-                src="{{item.origin_type !== 'Adult (12+)' ? 'https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hVUtdEQ5cKdtbTD.png' : 'https://cloud-minapp-27037.cloud.ifanrusercontent.com/1hVUtd5a6KjyExQ9.png' }}"></image>
-              <view class='product'>
-                <view class='bundle'>{{item.bundle_name}}</view>
-                <view class='type'>{{item.ticket_type_name}}</view>
-              </view>
-            </view>
+<view class="order-detail">
 
-            <view class='content-item'>
-              <view class='content-item-title'>使用日期</view>
-              <view class='content-item-value'>{{order.reservation_date}}</view>
-            </view>
-            <view class='content-item'>
-              <view class='content-item-title'>购买份数</view>
-              <view class='content-item-value'>{{item.price}} JPY x {{item.count}}</view>
-            </view>
-            <view class='content-item'>
-              <view class='content-item-title'>园区地址</view>
-              <view class='content-item-value'>日本名古屋市港区金城码头二井目</view>
-            </view>
-
-            <view class='qrcode-view' wx:if="{{order.status == 'paid'}}">
-              <swiper
-                class="qrcode-swiper"
-                indicator-dots
-                indicator-color="rgba(255, 255, 255, .7)"
-                indicator-active-color="#FFFFFF">
-                <swiper-item wx:for="{{item.qrcode}}" wx:for-item="image" wx:key="index">
-                  <image class="qrcode-image" src="{{image}}" mode="aspectFill"></image>
-                </swiper-item>
-              </swiper>
-              <view class='qrcode-text'>扫描二维码</view>
-              <view class='qrcode-text'>{{item.package_name}} - {{item.origin_type}}</view>
-              <view class='qrcode-text' wx:for="{{item.barcode}}" wx:for-item="barcode" wx:key="index">{{barcode}}</view>
-              <!-- <view class='qrcode-text supplement'></view>
-              <view class='qrcode-text supplement'></view> -->
-            </view>
-
-          </view>
+  <view>
+    <view class="order-info-item" wx:for="{{orderInfo.product_list}}" wx:key="index">
+      <view class="name-and-status">
+        <view class="name">
+          <image src="./images/icon-list-{{item.clothes_type}}.png" />{{clothesType[item.clothes_type]}}
+          <text class="index">{{item.clothes_type_index}}</text>
         </view>
-        <view class='mr'></view>
+        <view class="status">
+          {{orderStatus[item.status]}}
+          {{item.status === 'send_out' ? '寄出第 ' + item.send_out_count + ' 次' : ''}}
+          {{item.status === 'send_back' ? '寄回第 ' + item.send_back_count + ' 次' : ''}}
+        </view>
       </view>
-    </scroll-view>
-
-    <view class='ticket-policy'>
-      <view class='content-email-title'>使用说明</view>
-      <rich-text class='content-email-value' nodes="{{ticketPolicy}}"></rich-text>
-    </view>
-
-    <view class='content-email-hint'>
-      <view>有任何购票问题请发邮件到</view>
-      <view>LLJ.store@merlinentertainments.biz 咨询。</view>
+      <view class="progress">
+        <view class="progress-bar">
+          <view class="progress-bar-value" style="width: {{item.progress}}%;"></view>
+        </view>
+        <view class="progress-num">{{item.progress}}%</view>
+      </view>
     </view>
   </view>
 
-  <view class='info-view'>
-    <view class='info-view-title'>取票信息</view>
-    <view class='info-view-item' wx:if="{{order.status !== 'paid'}}">
-      <view class='item-lebal'>取票人</view>
-      <view class='item-value'>{{order.pickup_person}}</view>
-    </view>
-    <view class='info-view-item' wx:if="{{order.status !== 'paid'}}">
-      <view class='item-lebal'>联系手机</view>
-      <view class='item-value'>{{order.phone}}</view>
-    </view>
-    <view class='info-view-item' wx:if="{{order.status === 'paid'}}">
-      <view class='item-lebal'>订单编号</view>
-      <view class='item-value'>{{order.order_id}}</view>
-    </view>
-    <view class='info-view-item' wx:if="{{order.status === 'paid'}}">
-      <view class='item-lebal'>实付款额</view>
-      <view class='item-value'>{{order.amount}} JPY</view>
-    </view>
-    <view class='info-view-item' wx:if="{{order.status === 'paid'}}">
-      <view class='item-lebal'>支付方式</view>
-      <view class='item-value'>微信支付</view>
-    </view>
-    <view class='info-view-item' wx:if="{{order.status === 'paid'}}">
-      <view class='item-lebal'>创建时间</view>
-      <view class='item-value'>{{order.created_at}}</view>
-    </view>
-
-    <block wx:if="{{order.status !== 'paid'}}">
-      <view class='info-view-title'>订单信息</view>
-      <view class='info-view-item'>
-        <view class='item-lebal'>创建时间</view>
-        <view class='item-value'>{{order.created_at}}</view>
-      </view>
-      <view class='info-view-item'>
-        <view class='item-lebal'>支付方式</view>
-        <view class='item-value'>微信支付</view>
-      </view>
-    </block>
+  <view class="order-remark" wx:if="{{orderInfo.store_note}}">
+    <view class="label">备注</view>
+    <view class="remark">{{orderInfo.store_note || '-'}}</view>
   </view>
-  <!-- <view class='order-statement'>本产品由泰国****有限公司及具有合法资质的供应商提供相关服务。</view> -->
+
+  <view class="tailored-entrance">
+    <text
+      wx:if="{{orderInfo.tailored_id}}"
+      bindtap="navToTailored">查看量体数据 ></text>
+  </view>
 
 </view>
 
-<view class="footer" wx:if="{{order.status === 'not_paid'}}">
-  <view class='order-info'>
-    <view class='order-text'>合计金额</view>
-    <view class='order-num'>
-      约 {{rmbAmount}} CNY
-      <text class='JPY-num'>{{order.amount}} JPY</text>
-    </view>
-    <footer-ipx />
+<view class="order-store">
+  <view class="order-store-name">
+    商家名称 <text>{{orderInfo.store_name}}</text>
   </view>
-  <view class='submit' bindtap="handlePay" data-order="{{order}}">
-    <view class='sumit-text'>微信支付</view>
+  <view class="order-store-tel" bindtap="handlePhoneCall">
+    联系方式 <text>{{orderInfo.store_phone}}</text>
+    <image src="./images/icon-phone.png" />
   </view>
 </view>
 
-<confirmation-modal wx:if="{{showCancelOrderAlert}}" title="提醒" content="确认取消订单？" bind:onCancel="handleCancelOrderAlertCancel" bind:onConfirm="handleCancelOrderAlertConfirm" />
-<alert-modal wx:if="{{errorMsg}}" title="" content="{{errorMsg}}" bind:onConfirm="closeErrorAlert" />
+<view style="height: 100rpx;"></view>
+
+<contact-entrance />
+
+</scroll-view>

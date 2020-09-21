@@ -1,0 +1,15 @@
+<!--components/page-header/page-header.wxml-->
+<view
+  class="header"
+  style="padding-top: {{statusBarHeight}}px; height: {{navBarHeight}}px; {{selfStyle}}">
+
+  <image src='./images/icon-back.png' wx:if="{{showBackBtn && !whiteMode}}" bindtap='goBack' class='back-btn' />
+  <image src='./images/icon-back-white.png' wx:if="{{showBackBtn && whiteMode}}" bindtap='goBack' class='back-btn' />
+  <image src='./images/icon-home.png' wx:if="{{showIndexBtn}}" bindtap='goIndex' class='home-btn' />
+  <view class='title' style="color: {{whiteMode ? '#fff' : '#000'}};">{{title}}</view>
+
+</view>
+<view
+  wx:if="{{showPlaceholder}}"
+  class="header-placeholder"
+  style="padding-top: {{statusBarHeight}}px; height: {{navBarHeight}}px;" />

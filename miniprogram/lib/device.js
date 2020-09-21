@@ -1,17 +1,19 @@
+import retry from './retry'
+
 const ANDROID_NAV_BAR_BASE_HEIGHT = 48
 const IOS_NAV_BAR_BASE_HEIGHT = 44
 const IOS_STATUS_BAR_HEIGHT = 20
 
-let systemInfo = null
-
-function getSystemInfo() {
-  if (systemInfo) return systemInfo
-  systemInfo = wx.getSystemInfoSync()
-  return systemInfo
-}
+const getSystemInfo = retry(() => wx.getSystemInfoSync())
 
 export default {
   getSystemInfo,
+
+  isIos() {
+    return getSystemInfo()
+      .system.toLowerCase()
+      .includes('ios')
+  },
 
   getWindowWidth() {
     return getSystemInfo().windowWidth
@@ -21,8 +23,26 @@ export default {
     return getSystemInfo().windowHeight
   },
 
+  getStatusBarHeight() {
+    return getSystemInfo().statusBarHeight
+  },
+
   getPixelRatio() {
     return getSystemInfo().pixelRatio
+  },
+
+  isIpx() {
+    return this.isIos() && this.getStatusBarHeight() > IOS_STATUS_BAR_HEIGHT
+  },
+
+  getNavbarHeight() {
+    const baseHeight = this.isIos() ? IOS_NAV_BAR_BASE_HEIGHT : ANDROID_NAV_BAR_BASE_HEIGHT
+    return baseHeight + this.getStatusBarHeight()
+  },
+
+  // 获取基础库版本
+  getBaseLibVersion() {
+    return this.getSystemInfo().SDKVersion
   },
 
   rpx2px(width) {
@@ -33,24 +53,5 @@ export default {
   px2rpx(width) {
     const ratio = width / this.getWindowWidth()
     return Math.ceil((ratio * 750).toPrecision(12))
-  },
-
-  isIos() {
-    return getSystemInfo()
-      .system.toLowerCase()
-      .includes('ios')
-  },
-
-  isIpx() {
-    return this.isIos() && this.getStatusBarHeight() > IOS_STATUS_BAR_HEIGHT
-  },
-
-  getStatusBarHeight() {
-    return getSystemInfo().statusBarHeight
-  },
-
-  getNavbarHeight() {
-    const baseHeight = this.isIos() ? IOS_NAV_BAR_BASE_HEIGHT : ANDROID_NAV_BAR_BASE_HEIGHT
-    return baseHeight + this.getStatusBarHeight()
   },
 }

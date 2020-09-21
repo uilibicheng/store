@@ -1,0 +1,28 @@
+<!--pages/relate-order/relate-order.wxml-->
+<scroll-view scroll-y class="page-scroll-container">
+
+<page-header selfStyle="background-color: #E7E0D6;" showIndexBtn />
+
+<view class="title">订单号</view>
+
+<view class="order-num-item" wx:if="{{storeInfo}}" wx:for="{{storeInfo.order_id_list}}" wx:key="index">{{item}}</view>
+
+<view class="avatar-container">
+  <view class="role-container">
+    <image src="{{storeInfo.logo}}" class="role-avatar"></image>
+    <view class="role-name">{{storeInfo.name}}</view>
+  </view>
+  <image src="./images/icon-link.png" class="icon-link"></image>
+  <view class="role-container">
+    <view class="role-avatar"><open-data type="userAvatarUrl"></open-data></view>
+    <view class="role-name"><open-data type="userNickName"></open-data></view>
+  </view>
+</view>
+
+<view class="hint">请关联订单二维码，以便订单能直接关联您的订单中心，方便您使用小程序查看订单进度</view>
+
+<view class="btn" bindtap="handleRelateOrder">确认关联</view>
+
+<view style="height: 100rpx;"></view>
+
+</scroll-view>

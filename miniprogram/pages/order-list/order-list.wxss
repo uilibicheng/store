@@ -1,125 +1,182 @@
 /* pages/order-list/order-list.wxss */
-.container {
-  padding: 40rpx 40rpx 100rpx;
-  min-height: 91vh;
+.order-list-page {
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+
+.search-section {
+  width: 100vw;
+  height: 104rpx;
+  background-color: #E7E0D6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  z-index: 10;
+}
+
+.search-icon {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 77rpx;
+}
+
+.search {
+  width: 638rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  opacity: .71;
+  background-color: #fff;
+  border-radius: 38rpx;
+  font-size: 26rpx;
+  color: #856E5D;
+  padding-left: 62rpx;
+  padding-right: 30rpx;
+}
+
+.search-placeholder {
+  color: #A7978B;
+}
+
+.order-list {
+  width: 100vw;
 }
 
 .order-item {
-  min-height: 336rpx;
-  box-sizing: border-box;
-  position: relative;
-  margin-bottom: 40rpx;
-  background-size: 100% 100%;
-  padding-bottom: 84rpx;
+  background: #FFFFFF;
+  box-shadow: 0 4rpx 20rpx 0 rgba(0, 0, 0, .13);
+  border-radius: 16rpx;
+  width: 654rpx;
+  margin: 32rpx auto 0;
 }
 
-.order-wait {
-  color: #CF0F12;
-}
+/* .order-item:last-child {
+  margin-bottom: 190rpx;
+} */
 
-.order-paid {
-  color: #009D2F;
-}
-
-.order-cancel {
-  color: #006CBA;
-}
-
-.order-item .order-info {
-  height: 108rpx;
+.order-header {
+  height: 92rpx;
+  border-bottom: 2rpx solid rgba(151, 151, 151, .13);
   display: flex;
-  margin-bottom: 20rpx;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32rpx;
 }
 
-.order-info .ticket-name {
-  font-family: PingFangSC-Medium;
-  font-size: 40rpx;
-  color: #383838;
-  max-width: 330rpx;
-  line-height: 108rpx;
+.order-header-text {
+  /* font-weight: 700; */
+  font-weight: 900;
+  font-size: 32rpx;
+  color: #4B5767;
+}
+
+.order-header-num {
+  font-size: 28rpx;
+  color: #4B5767;
+  max-width: 75%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin: 0 32rpx;
 }
 
-.order-info .order-date {
+.order-footer {
+  height: 93rpx;
+  border-top: 2rpx solid rgba(151, 151, 151, .13);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 28rpx 0 32rpx;
+}
+
+.order-footer-store {
+  font-size: 28rpx;
+  color: #383F53;
+  max-width: 420rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.order-footer-date {
   font-size: 24rpx;
-  color: #7D7D7D;
-  line-height: 108rpx;
-  flex: 1;
+  color: #A5ABBF;
 }
 
-.order-info .order-status {
-  font-size: 28rpx;
-  line-height: 108rpx;
-  margin-right: 30rpx;
-  align-self: flex-end;
-  width: 90rpx;
-  text-align: right;
+.order-info {
+  padding: 31rpx 32rpx 1rpx;
+  transition: all .4s;
 }
 
-.order-item .ticket-counter {
-  height: 40rpx;
-  display: flex;
-  margin-bottom: 12rpx;
+.order-info-item {
   line-height: 40rpx;
-  font-size: 28rpx;
-  color: #FFF;
-  font-weight: 500;
-}
-
-.ticket-counter .counter-num {
-  margin-left: 32rpx;
-  min-width: 226rpx;
-}
-
-.order-item .order-total {
-  height: 60rpx;
   display: flex;
-  color: #FFF;
-  line-height: 60rpx;
-  font-size: 44rpx;
-  font-family: PingFangSC-Semibold;
-  position: absolute;
-  left: 0;
-  bottom: 24rpx;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
 }
 
-.order-item .order-amount {
-  margin-left: 32rpx;
-  min-width: 200rpx;
-}
-
-.order-item .order-amount text {
+.order-info-item .name {
   font-size: 28rpx;
+  color: #856E5D;
+  display: flex;
+  align-items: center;
+}
+
+.order-info-item .status {
+  font-size: 28rpx;
+  color: #4B5767;
   font-family: PingFangSC-Regular;
 }
 
-.no-data {
-  font-size: 32rpx;
-  color: #FFF;
-  width: 100%;
-  line-height: 34rpx;
+.order-info-item .name .name-index {
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
   text-align: center;
-  margin-top: 200rpx;
-}
-
-.hint {
+  font-weight: 700;
   font-size: 24rpx;
-  color: #FFF;
-  width: 100%;
-  line-height: 34rpx;
-  text-align: center;
-  margin: 40rpx 0 60rpx;
+  color: #856E5D;
+  background-color: #E2D7CD;
+  border-radius: 50%;
+  margin-left: 3rpx;
 }
 
-.hint2 {
-  font-size:32rpx;
-  font-weight:600;
-  color:#FFF;
-  width:100%;
-  line-height:40rpx;
-  text-align:center;
-  margin:500rpx 0 0;
+.show-more-order-info {
+  display: flex;
+  font-size: 24rpx;
+  color: #A5ABBF;
+  height: 34rpx;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 14rpx;
+}
+
+.show-more-order-info image {
+  width: 16rpx;
+  height: 8rpx;
+  margin-left: 10rpx;
+}
+
+.no-order-list-data {
+  text-align: center;
+  margin: 500rpx auto 0;
+  font-size: 28rpx;
+  color: rgba(133, 110, 93, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  opacity: .8;
+}
+
+.no-order-list-data image {
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 10rpx;
 }

@@ -52,7 +52,7 @@ Component({
           this.setData({event: 'onWithoutAuth'})
           this.onFail({errMsg})
         } else {
-          wx.BaaS.auth.loginWithWechat(e, {createUser: true, syncUserProfile: 'overwrite'}).then(res => {
+          wx.BaaS.auth.loginWithWechat(e).then(res => {
             this.onSuccess(res.data)
             this.setData({isAuth: baas.isAuth()})
           })
@@ -67,19 +67,29 @@ Component({
     onAuth() {
       const {method, params} = this.data
 
-      wx[method]({
-        ...params,
-        success: res => {
-          this.onSuccess(res)
-        },
-        fail: err => {
-          const {errMsg} = err
-          if (/auth deny/.test(errMsg)) {
-            console.log('auth deny')
-            this.setData({event: 'onWithoutAuth'})
-          }
-          this.onFail(err)
-        },
+      const authSettingScope = wxUtils.getAuthSettingScope(method)
+      this.setData({authSettingScope})
+      wxUtils.getSetting(authSettingScope).then(res => {
+        console.log('getSetting', authSettingScope, res)
+
+        if (res || res === undefined) {
+          wx[method]({
+            ...params,
+            success: res => {
+              this.onSuccess(res)
+            },
+            fail: err => {
+              const {errMsg} = err
+              if (/auth deny/.test(errMsg)) {
+                console.log('auth deny')
+                this.setData({event: 'onWithoutAuth'})
+              }
+              this.onFail(err)
+            },
+          })
+        } else {
+          this.onWithoutAuth()
+        }
       })
     },
 

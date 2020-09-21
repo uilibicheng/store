@@ -1,170 +1,160 @@
 import axios from 'axios'
 import np from 'nprogress'
-import {genUserLogRecord} from '../utils/user-log'
+import {message} from 'antd'
 
 const URL = {
-  v1: 'https://cloud.minapp.com/userve/v1/',
-  v13: 'https://cloud.minapp.com/userve/v1.3/',
-  v15: 'https://cloud.minapp.com/userve/v1.5/',
-  v18: 'https://cloud.minapp.com/userve/v1.8/',
+  BASE: 'https://cloud.minapp.com/userve/v2.1/',
+  USER_INFO: 'https://cloud.minapp.com/userve/v1/',
+  CLOUD: 'https://cloud.minapp.com/userve/v1.3/cloud-function/',
 }
 
 const client = axios.create({
-  baseURL: URL.v18, // user dash api 的请求地址
+  baseURL: URL.BASE,
   withCredentials: true, // 必须手动开启为 true，允许跨域请求发送身份凭证信息
 })
 
-client.interceptors.request.use(
-  function(config) {
-    np.start()
-    genUserLogRecord(config)
-    return config
-  },
-  function(error) {
-    np.done()
-  }
-)
+const fileDownloadClient = axios.create({
+  responseType: 'blob',
+})
 
-client.interceptors.response.use(
-  response => {
-    np.done()
-    return response
-  },
-  error => {
-    np.done()
-    return Promise.reject(error)
-  }
-)
+var initClient = client => {
+  client.interceptors.request.use(
+    req => {
+      np.start()
+      return req
+    },
+    err => {
+      np.done()
+      message.error(err.toString())
+      return Promise.reject(err)
+    }
+  )
 
-const newClient = axios.create({})
-newClient.interceptors.request.use(
-  req => {
-    np.start()
-    genUserLogRecord(req)
-    return req
-  },
-  err => np.done()
-)
-newClient.interceptors.response.use(
-  res => {
-    np.done()
-    return res
-  },
-  err => {
-    np.done()
-    return Promise.reject(err)
-  }
-)
+  client.interceptors.response.use(
+    res => {
+      np.done()
+      return res
+    },
+    err => {
+      np.done()
+      message.error(err.toString())
+      return Promise.reject(err)
+    }
+  )
+}
+
+initClient(client)
+initClient(fileDownloadClient)
 
 export default {
-  getRecordList(tableId, {offset = 0, limit = 20, where, order_by = ''}) {
-    return client.get(`table/${tableId}/record/`, {
+  client,
+  getUserInfo() {
+    return client.get('user-profile/', {baseURL: URL.USER_INFO})
+  },
+
+  getUserList(params = {}) {
+    const {offset = 0, limit = 20, where, orderBy = '-created_at', expand = ''} = params
+    return client.get('miniapp/user_profile/', {
       params: {
         where,
         offset,
         limit,
-        order_by: order_by || '-created_at',
+        order_by: orderBy,
+        expand,
       },
     })
   },
 
-  getInventoryRecordList(tableId, {offset = 0, limit = 20, where}) {
-    return client.get(`table/${tableId}/record/`, {
+  /**
+   * 数据操作
+   * 与 JS SDK 定义一致，find 方法查询数据列表，get 方法根据 id 获取单条数据
+   * 定义 frist 方法根据查询条件获取第一条数据
+   */
+  find(table, params = {}) {
+    const {offset = 0, limit = 20, where, orderBy = '-created_at', expand = ''} = params
+    return client.get(`table/${table}/record/`, {
       params: {
         where,
         offset,
         limit,
-        order_by: '-priority',
-        expand: 'ticket,bundle,type',
+        order_by: orderBy,
+        expand,
       },
     })
   },
 
-  getProductList(tableId, {offset = 0, limit = 20, where}) {
-    return client.get(`table/${tableId}/record/`, {
+  first(...args) {
+    return this.find(...args).then(res => {
+      const objects = res.data.objects || []
+      res.data = objects[0] || null
+      return res
+    })
+  },
+
+  get(table, id) {
+    return client.get(`table/${table}/record/${id}/`)
+  },
+
+  create(table, data) {
+    return client.post(`table/${table}/record/`, data)
+  },
+
+  update(table, recordId, data) {
+    return client.put(`table/${table}/record/${recordId}/`, data)
+  },
+
+  delete(table, recordId) {
+    return client.delete(`table/${table}/record/${recordId}/`)
+  },
+
+  // 批量更新
+  updateByQuery(table, data, params = {}) {
+    const {offset = 0, limit = 20, where} = params
+    return client.put(`table/${table}/record/`, data, {
       params: {
         where,
         offset,
-        limit,
-        order_by: '-priority',
-        expand: 'type,bundle',
+        limit: limit === -1 ? undefined : limit, // limit = -1 时不设 limit, 使用大批量异步更新接口
       },
     })
   },
 
-  getRecordById(tableId, id) {
-    return client.get(`table/${tableId}/record/${id}/`)
-  },
-
-  getProductRecordById(tableId, id) {
-    return client.get(`table/${tableId}/record/${id}/`, {
-      params: {
-        expand: 'bundle',
-      },
-    })
-  },
-
-  getRecord(tableId, recordId) {
-    return client.get(`table/${tableId}/record/${recordId}/`)
-  },
-
-  deleteRecord(tableId, recordId) {
-    return client.delete(`table/${tableId}/record/${recordId}/`)
-  },
-
-  deleteRecordList(tableId, params) {
-    return client.delete(`table/${tableId}/record/`, {
-      params,
-    })
-  },
-
-  createRecord(tableId, data) {
-    return client.post(`table/${tableId}/record/`, data)
-  },
-
-  updateRecord(tableId, recordId, data) {
-    return client.put(`table/${tableId}/record/${recordId}/`, data)
-  },
-
-  updateRecordList(tableId, data, {offset = 0, limit = 20, where}) {
-    return client.put(`table/${tableId}/record/`, data, {
+  // 批量删除
+  deleteByQuery(table, params = {}) {
+    const {offset = 0, limit = 20, where} = params
+    return client.delete(`table/${table}/record/`, {
       params: {
         where,
         offset,
-        limit,
+        limit: limit === -1 ? undefined : limit, // limit = -1 时不设 limit, 使用大批量异步更新接口
       },
     })
   },
 
+  /**
+   * 文件上传
+   */
   getUploadFileConfig(data) {
-    return newClient.post(`${URL.v1}upload/`, data, {
-      withCredentials: true,
-    })
+    return client.post('upload/', data)
   },
 
   uploadFile(config, onUploadProgress = () => {}) {
-    let formData = new FormData()
+    const formData = new FormData()
     formData.append('file', config.file)
     formData.append('policy', config.policy)
     formData.append('authorization', config.authorization)
-    return newClient.post(config.upload_url, formData, {
+
+    return client.post(config.upload_url, formData, {
       headers: {'Content-Type': 'multipart/form-data'},
       withCredentials: false,
       onUploadProgress,
     })
   },
 
-  uploadData(recordId, data) {
-    return newClient.post(`${URL.v18}table/${recordId}/record/?enable_trigger=0&opt_type=import`, data, {
-      withCredentials: true,
-    })
-  },
-
-  getUserInfo() {
-    return client.get(`${URL.v1}user-profile/`)
-  },
-
-  getContentList(contentGroupId, params) {
+  /**
+   * 内容库
+   */
+  findContent(contentGroupId, params) {
     return client.get(`content/${contentGroupId}/text/`, {params})
   },
 
@@ -176,31 +166,31 @@ export default {
     return client.put(`content/${contentGroupId}/text/${contentId}/`, data)
   },
 
-  createExportJob(tableId, data) {
-    return newClient.post(`${URL.v15}schema/${tableId}/export/`, data, {
-      withCredentials: true,
+  /**
+   * 文件
+   */
+  getFileCategory(categroyId) {
+    return client.get(`file/`, {
+      params: {
+        category: categroyId,
+      },
+      baseURL: 'https://cloud.minapp.com/userve/v2.2/',
     })
   },
 
-  checkExportJobResult(tableId, jobId) {
-    return newClient.get(`${URL.v15}schema/${tableId}/export/${jobId}/`, {
-      withCredentials: true,
-    })
-  },
-
-  refundOrder(data) {
-    return newClient.post(`${URL.v1}wechat/refund/`, data, {
-      withCredentials: true,
-    })
-  },
-
-  invokeCloudFunction(cloudFunctionName, data = {}) {
-    return newClient.post(
-      `${URL.v13}cloud-function/${cloudFunctionName}/job/`,
-      {data},
+  /**
+   * 云函数
+   */
+  invokeCloudFunc(functionName, data, sync = true) {
+    return client.post(
+      `${functionName}/job/`,
       {
-        withCredentials: true,
-      }
+        data,
+        sync,
+      },
+      {baseURL: URL.CLOUD}
     )
   },
 }
+
+export {fileDownloadClient}

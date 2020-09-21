@@ -1,0 +1,123 @@
+<!--pages/business-order/business-order.wxml-->
+<scroll-view scroll-y class="page-scroll-container" bindscroll="onScrollerScroll" bindscrolltolower="onScrollerBottom">
+
+<page-header selfStyle="background-color: #E7E0D6;" />
+
+<view class="form-label">
+  <view class="form-label-name">客户名称 <text class="required">*</text></view>
+</view>
+<view class="form-view" wx:if="{{!modifyMode}}">{{orderInfo.contact_name}}</view>
+<input
+  class="form-input"
+  wx:if="{{modifyMode}}"
+  value="{{modifiedOrderInfo.contact_name}}"
+  bindinput="handleModifyContackNameInput"></input>
+
+<view class="form-label">
+  <view class="form-label-name">订单号 <text class="required">*</text></view>
+</view>
+<view class="form-view" wx:if="{{!modifyMode}}">{{orderInfo.order_id}}</view>
+<input
+  class="form-input"
+  wx:if="{{modifyMode}}"
+  value="{{modifiedOrderInfo.order_id}}"
+  bindinput="handleModifOrderIdInput"></input>
+
+<view class="form-label">
+  <view class="form-label-name">备注</view>
+</view>
+<view class="form-view" wx:if="{{!modifyMode}}">{{orderInfo.store_note || '-'}}</view>
+<textarea
+  class="form-textarea"
+  wx:if="{{modifyMode}}"
+  value="{{modifiedOrderInfo.store_note}}"
+  bindinput="handleModifyStoreNoteInput"></textarea>
+
+<view class="form-label">
+  <view class="form-label-name">品类 <text class="required">*</text></view>
+</view>
+<view class="order-clothing-info" wx:if="{{!modifyMode}}">
+  <view class="order-clothing-item" wx:for="{{orderInfo.product_list}}" wx:key="index">
+    <view class="name">
+      {{clothesType[item.clothes_type]}}
+      <text class="name-index">{{item.clothes_type_index}}</text>
+    </view>
+    <view class="status">
+      {{orderStatusType[item.status]}}
+      {{item.status === 'send_out' ? '寄出第 ' + item.send_out_count + ' 次' : ''}}
+      {{item.status === 'send_back' ? '寄回第 ' + item.send_back_count + ' 次' : ''}}
+    </view>
+  </view>
+</view>
+<view class="order-clothing-info" wx:if="{{modifyMode}}">
+  <view class="order-clothing-item" wx:for="{{modifiedOrderInfo.product_list}}" wx:key="index">
+    <view class="name">
+      {{clothesType[item.clothes_type]}}
+      <text class="name-index">{{item.clothes_type_index}}</text>
+    </view>
+    <view class="status">
+      <picker
+        range="{{orderStatusListPicker}}"
+        range-key="name"
+        value="{{orderStatusListIndex[item.status]}}"
+        data-product-index="{{index}}"
+        bindchange="handleModifyOrderStatus">
+        <view class="status-picker">
+          {{orderStatusType[item.status]}}
+          <image src="./images/picker-arrow.png"></image>
+        </view>
+      </picker>
+      <view class="send-amount" wx:if="{{item.status === 'send_out' || item.status === 'send_back'}}">
+        <text style="margin-right: 8rpx;">第</text>
+        <normal-counter
+          data-product-index="{{index}}"
+          amount="{{item.status === 'send_out' ? (item.send_out_count || 1) : (item.send_back_count || 1)}}"
+          bind:add="addStatusCount"
+          bind:minus="minusStatusCount" />
+        <text style="margin-left: 8rpx;">次</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="form-label">
+  <view class="form-label-name">上传量体数据</view>
+  <view
+    class="check-attachment"
+    wx:if="{{!modifyMode && orderInfo.tailored_image.length > 0}}"
+    catchtap="reviewTailoredImage">查看附件 <text>></text></view>
+</view>
+<view class="upload-panel">
+  <view class="uploaded-img" wx:if="{{modifyMode}}" wx:for="{{modifiedOrderInfo.tailored_image}}" wx:key="index">
+    <image src="{{item}}"></image>
+    <image
+      catchtap="deleteTailoredImage"
+      data-imgindex="{{index}}"
+      class="delete"
+      src="https://cloud-minapp-32931.cloud.ifanrusercontent.com/1j9VCl7lrsTc6HiT.png" />
+  </view>
+  <view class="upload-btn" wx:if="{{modifyMode}}" catchtap="uploadTailoredImage">
+    <image src="./images/icon-addpic.png"></image>
+  </view>
+  <view class="no-data-hint"
+    wx:if="{{(modifyMode && modifiedOrderInfo.tailored_image.length === 0) || (!modifyMode && orderInfo.tailored_image.length === 0)}}">
+    <image src="./images/icon-warn.png"></image>
+    暂未上传量体图
+  </view>
+</view>
+
+<tailored-panel orderInfo="{{orderInfo}}" wx:if="{{orderInfo.tailored_id && !modifyMode}}" />
+<tailored-modify-panel
+  orderInfo="{{modifiedOrderInfo}}"
+  modifiedTailoredData="{{modifiedTailoredData}}"
+  wx:elif="{{orderInfo.tailored_id && modifyMode}}"
+  bind:ontailoredchange="onTailoredDataChange" />
+
+<view class="submit-btn" wx:if="{{!modifyMode}}" catchtap="switchToModifyMode">修改订单</view>
+<view class="submit-btn" wx:if="{{modifyMode}}" catchtap="submitModifyOrder">提交修改</view>
+<view class="submit-mask"></view>
+<view class="submit-mask-placeholder"></view>
+
+<contact-entrance />
+
+</scroll-view>

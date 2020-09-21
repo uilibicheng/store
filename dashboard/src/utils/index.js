@@ -1,24 +1,27 @@
-import * as time from './time'
-import * as localStorage from './local-storage'
+import breadcrumb from './breadcrumb'
+import pagination from './pagination'
+import common from './common'
+import form from './form'
+import format from './format'
+import time from './time'
 
 export default {
-  ...time,
-  ...localStorage,
+  breadcrumb,
+  pagination,
+  ...common,
+  form,
+  format,
+  time,
   convertToTable(data) {
     data = data.toString()
-    let table = []
+    const table = []
     let rows = []
-    let splitStr = data.indexOf('\r\n') > -1 ? '\r\n' : '\r'
-    rows = data.split(splitStr)
+    rows = data.split(/[\r\n]/)
     for (let i = 0; i < rows.length; i++) {
-      table.push(rows[i].split(',').map(v => v.toString()))
+      if (rows[i]) {
+        table.push(rows[i].split(',').map(v => v.toString()))
+      }
     }
     return table
-  },
-  isPC() {
-    let ua = navigator.userAgent
-    let reg = /Android|iPhone|SymbianOS|Windows Phone|iPad|iPod|Mobile/gi
-
-    return !reg.test(ua)
   },
 }

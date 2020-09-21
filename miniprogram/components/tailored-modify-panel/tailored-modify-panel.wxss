@@ -1,0 +1,93 @@
+/* components/tailored-panel/tailored-panel.wxss */
+.container {
+  width: 654rpx;
+  margin: 0 auto;
+}
+
+.switch-bar {
+  display: flex;
+  justify-content: center;
+  height: 98rpx;
+}
+
+.switch-item {
+  opacity: .48;
+  font-family: PingFangSC-Regular;
+  font-size: 36rpx;
+  color: #1B1A19;
+  line-height: 50rpx;
+  position: relative;
+  margin: 17rpx 56rpx 0;
+}
+
+.switch-item.active {
+  font-weight: 700;
+  color: #846B5A;
+  opacity: 1;
+}
+
+.switch-item.active::after {
+  content: '';
+  position: absolute;
+  width: 42rpx;
+  height: 8rpx;
+  border-radius: 4rpx;
+  background-color: #846B5A;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 17rpx;
+}
+
+.content {
+  width: 100%;
+  background: #F9F8F6;
+  box-shadow: 0 4rpx 20rpx 0 rgba(0, 0, 0, .09);
+  border-radius: 16rpx;
+  padding: 32rpx 20rpx;
+}
+
+.clothes-selector {
+  height: 46rpx;
+  margin-bottom: 28rpx;
+  display: flex;
+  align-items: center;
+}
+
+.clothes-type {
+  width: 78rpx;
+  height: 46rpx;
+  margin-right: 20rpx;
+  background-color: #EEEAE4;
+  border: 1rpx solid #846B5A;
+  border-radius: 8rpx;
+  line-height: 44rpx;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #846B5A;
+  opacity: .5;
+}
+
+.clothes-type.active {
+  opacity: 1;
+}
+
+.clothes-picker {
+  width: 122rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #8C7565;
+  padding: 0 10rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+}
+
+.clothes-picker image {
+  width: 18rpx;
+  height: 12rpx;
+}

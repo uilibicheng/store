@@ -1,0 +1,54 @@
+<!--components/tailored-cascader/tailored-cascader.wxml-->
+<view class="tailored-cascader-container" wx:if="{{tailoredData && tailoredData.length > 0}}">
+
+  <view class="tailored-cascader-item" wx:for="{{tailoredData}}" wx:key="index">
+    <view class="tailored-cascader-title {{tailoredSwitch[index] ? '' : 'hide'}}" data-index="{{index}}" catchtap="switchDataItemShow">
+      {{item.name}}
+      <image src="./images/arrow.png"></image>
+    </view>
+
+    <view class="tailored-cascader-content {{tailoredSwitch[index] ? '' : 'hide'}}">
+      <view class="text-content" wx:if="{{item.type === 'text'}}">
+        <view
+          wx:for="{{item.options}}"
+          wx:for-item="textItem"
+          wx:for-index="textIndex"
+          wx:key="textIndex"
+          class="text-content-item {{(textIndex % 4 === 2) || (textIndex % 4 === 3) ? 'bgc-white' : ''}}">
+          {{textItem.name}} <text>{{textItem.value || '-'}}</text>
+        </view>
+      </view>
+
+      <view class="checkbox-content" wx:if="{{item.type === 'checkbox'}}">
+        <view
+          class="checkbox-content-item"
+          wx:for="{{item.options}}"
+          wx:for-item="checkboxItem"
+          wx:for-index="checkboxIndex"
+          wx:key="checkboxIndex"
+          wx:if="{{checkboxItem.value}}">{{checkboxItem.name}}</view>
+      </view>
+
+      <view class="select-content" wx:if="{{item.type === 'select'}}">
+        <view
+          class="select-content-item"
+          wx:for="{{item.options}}"
+          wx:for-item="selectItem"
+          wx:for-index="selectIndex"
+          wx:key="selectIndex">
+          {{selectItem.name}} <text>{{selectItem.value || '-'}}</text>
+        </view>
+      </view>
+
+      <view class="textarea-content" wx:if="{{item.type === 'textarea'}}">
+        {{item.value || '-'}}
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<view class="no-tailored-data" wx:if="{{!tailoredData || tailoredData.length === 0}}">
+  <image src="https://cloud-minapp-32931.cloud.ifanrusercontent.com/1jE5v1a49ITEOdHB.png"></image>
+  暂无相关量体数据
+</view>

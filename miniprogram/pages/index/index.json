@@ -1,11 +1,9 @@
 {
+  "component": true,
   "usingComponents": {
-    "alert-modal": "/components/alert-modal/alert-modal",
-    "footer-ipx": "/components/footer-ipx/footer-ipx",
-    "burying-form": "/components/burying-form/burying-form",
-    "with-login": "/components/with-login/with-login",
-    "lottery-modal": "/components/lottery-modal/lottery-modal",
-    "submsg": "/components/submsg/submsg"
+    "page-header": "/components/page-header/page-header",
+    "nav-bar": "/components/nav-bar/nav-bar",
+    "contact-entrance": "/components/contact-entrance/contact-entrance"
   },
-  "enablePullDownRefresh": true
+  "disableScroll": true
 }

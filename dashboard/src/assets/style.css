@@ -1,0 +1,41 @@
+/* 优化表单 */
+.ant-form-item-children .ant-btn {
+  margin-right: 18px;
+}
+
+.ant-form-item-children input[type='text'],
+.ant-form-item-children .ant-select {
+  width: 50%;
+}
+
+.ant-form-item-children .ant-calendar-picker {
+  width: 50%  !important;
+}
+
+/* 优化表格 */
+.ant-table-wrapper {
+  background: #fff;
+}
+
+.ant-table-row .ant-btn {
+  margin: 4px 4px;
+}
+
+/* nprogress 加载图标 */
+#nprogress .spinner {
+  top: 4px;
+  right: 4px;
+}
+
+/* 原子样式 */
+.hpct100{height: 100% !important;}
+
+.mt12 {margin-top: 12px !important;}
+.mr12 {margin-right: 12px !important;}
+.mb12 {margin-bottom: 12px !important;}
+.ml12 {margin-left: 12px !important;}
+
+.mt24 {margin-top: 24px !important;}
+.mr24 {margin-right: 24px !important;}
+.mb24 {margin-bottom: 24px !important;}
+.ml24 {margin-left: 24px !important;}

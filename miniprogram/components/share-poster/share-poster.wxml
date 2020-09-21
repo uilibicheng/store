@@ -1,0 +1,52 @@
+<view class="mask" catchtap="hidePoster">
+  <view class="container">
+    <view class="board draw" catchtap="noop">
+
+      <view class="board-header">
+        <view class="board-header-bar draw" data-type="text"></view>
+        <view class="board-header-container draw" data-type="text">
+          <view class="board-header-content draw" data-type="text">
+            <image class="pic-xi draw" src="/assets/images/poster/pic-xi.png"
+              data-type="image" data-url="/assets/images/poster/pic-xi.png" />
+            <view class="text draw" data-type="text" data-text="悦享积分 码上有礼">悦享积分 码上有礼</view>
+          </view>
+        </view>
+        <view class="board-header-bar draw" data-type="text"></view>
+      </view>
+
+      <view class="board-card draw" data-type="image" data-url="https://cloud-minapp-30347.cloud.ifanrusercontent.com/1iDkbyVjnsWdgpTP.png">
+        <view wx:for="{{shareCardContent}}" wx:key="index"
+          class="board-card-text draw" data-type="text" data-text="{{item}}" data-delay='1'>{{item}}</view>
+      </view>
+
+      <view class="board-content">
+        <image class="board-content-cap draw" src="https://cloud-minapp-30347.cloud.ifanrusercontent.com/1iBDT0qenLH7KuEQ.png"
+          data-type="image" data-url="https://cloud-minapp-30347.cloud.ifanrusercontent.com/1iBDT0qenLH7KuEQ.png" />
+        <image class="board-content-coner-left draw" src="/assets/images/poster/pic-card-coner-left.png"
+          data-type="image" data-url="/assets/images/poster/pic-card-coner-left.png" />
+        <image class="board-content-coner-right draw" src="/assets/images/poster/pic-card-coner-right.png"
+          data-type="image" data-url="/assets/images/poster/pic-card-coner-right.png" />
+        <image class="board-content-lace draw" src="https://cloud-minapp-30347.cloud.ifanrusercontent.com/1i9oRqwQ8uhu1fLY.png"
+          data-type="image" data-url="https://cloud-minapp-30347.cloud.ifanrusercontent.com/1i9oRqwQ8uhu1fLY.png" />
+
+        <view class="board-content-qrcode" data-type="text">
+          <image class="qrcode draw" src="{{qrcode}}"
+            data-type="image" data-base64="1" data-url="{{qrcode}}" />
+        </view>
+        <view class="board-content-hint draw" data-type="text" data-text="扫码体验小程序">扫码体验小程序</view>
+      </view>
+
+    </view>
+
+    <view class="save-btn-container" catchtap="noop">
+      <with-auth
+        method="saveImageToPhotosAlbum" params="{{saveImageParams}}" bind:onSuccess="saveImage"  bind:onFail="saveImageFail">
+        <view class="save-btn">保存图片</view>
+      </with-auth>
+    </view>
+  </view>
+</view>
+
+<canvas canvas-id="canvas" class="canvas"
+  style="width: {{cardWidth}}px; height: {{cardHeight}}px;">
+</canvas>

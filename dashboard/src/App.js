@@ -1,222 +1,121 @@
-import React from 'react'
-import {Menu, Layout, Button, Alert} from 'antd'
-import {Route, HashRouter, NavLink, withRouter, matchPath} from 'react-router-dom'
-import {_, localeInit, getUserLanguage} from 'i18n-utils'
-import toggerImg from './assets/image/arrow.png'
+import React, {Suspense} from 'react'
+import {HashRouter, Route, Switch} from 'react-router-dom'
+import {ConfigProvider, Layout, Row, Col, Button, Alert} from 'antd'
+import zh_CN from 'antd/es/locale/zh_CN'
+import css from 'styled-jsx/css'
 
-import locales from './assets/locales.json'
-import routePath from './config/route-path'
-import {LANG, SIGN_OUT_URL} from './config/constants'
-import utils from './utils'
+import {getAcl} from './utils/acl'
+import MenuPanel from './menu-panel'
+import PageLoading from './components/page-loading'
+import RouterBreadcrumb from './components/router-breadcrumb'
 
-import Acl from './utils/acl'
+const {Sider, Content} = Layout
 
-const langStorageKey = 'WINDOW_LANG'
-window.LANG = utils.getStorage(langStorageKey) || getUserLanguage()
-localeInit(locales)
+const Welcome = () => <Alert message='欢迎进入【小裁神 SUITLIFE】运营后台' />
+const WithoutAccess = () => <Alert banner message='您没有当前页面的访问权限，请向管理员申请' />
 
-const {Content, Sider} = Layout
-const SubMenu = Menu.SubMenu
-
-// 初始化 Acl
-const acl = new Acl()
-
-const MenuComponent = withRouter(({history, menuList, togger, handleClickTogger}) => {
-  let openKeys = []
-  let selectedKeys = []
-  for (const main of menuList) {
-    const {path, children, key: mainKey} = main
-    const isMatch = !!path && !!matchPath(history.location.pathname, {path, exact: main.exact})
-    if (isMatch) {
-      selectedKeys = [mainKey]
-      break
-    }
-    if (children && children.length) {
-      for (const sub of children) {
-        const {path, key: subKey} = sub
-        const isMatch = !!path && !!matchPath(history.location.pathname, {path, exact: sub.exact})
-        if (isMatch) {
-          openKeys = [mainKey]
-          selectedKeys = [subKey]
-        }
-      }
-    }
-  }
-
-  const changeLang = () => {
-    const currentLang = window.LANG
-    utils.setStorage(langStorageKey, currentLang === LANG.ZH ? LANG.EN : LANG.ZH)
-    window.location.reload()
-  }
-
-  return (
-    <Sider style={styl.sider} width={togger ? 40 : 260}>
-      {!togger && (
-        <div style={styl.siderTitle}>
-          <span>{_('默林乐高商店')}</span>
-          <Button ghost size='small' shape='circle' style={styl.langBtn} onClick={changeLang}>
-            {window.LANG === LANG.ZH ? 'EN' : '中'}
-          </Button>
-        </div>
-      )}
-      {!togger && (
-        <Menu
-          className='nav nav-tabs'
-          mode='inline'
-          theme='dark'
-          defaultSelectedKeys={[routePath.aquariumInfo]}
-          selectedKeys={selectedKeys}
-          defaultOpenKeys={openKeys}
-        >
-          {menuList
-            .map(menu => {
-              if (!menu.label) return null
-              if (!menu.children) {
-                return (
-                  <Menu.Item key={menu.key}>
-                    <NavLink to={menu.path}>{_(menu.label)}</NavLink>
-                  </Menu.Item>
-                )
-              }
-              if (menu.children.length) {
-                return (
-                  <SubMenu title={_(menu.label)} key={menu.key}>
-                    {menu.children
-                      .map(subMenu => {
-                        if (!subMenu.label) return null
-                        return (
-                          <Menu.Item key={subMenu.key}>
-                            <NavLink to={subMenu.path}>{_(subMenu.label)}</NavLink>
-                          </Menu.Item>
-                        )
-                      })
-                      .filter(Boolean)}
-                  </SubMenu>
-                )
-              }
-              return null
-            })
-            .filter(Boolean)}
-        </Menu>
-      )}
-      <div onClick={handleClickTogger} style={togger ? styl.siderToggerNone : styl.siderTogger}>
-        <div style={styl.toggerImg} className={togger ? 'collapsed' : ''} />
-      </div>
-    </Sider>
-  )
-})
-
-class App extends React.Component {
+export default class App extends React.Component {
   state = {
     loading: true,
-    togger: false,
+    acl: {accessList: []},
   }
 
-  componentWillMount() {
-    acl.init().then(() => this.setState({loading: false}))
+  componentDidMount() {
+    getAcl().then(acl => this.setState({acl, loading: false}))
   }
 
-  get routeList() {
-    const routeList = []
+  renderRoute(route, list = []) {
+    const {key, path, component, subRoute = [], hasAccess} = route
 
-    acl.routeListWithPerm.forEach(route => {
-      const {path, component, exact} = route
-      routeList.push({path, component, exact})
-    })
-    return routeList
+    if (path && component) {
+      list.push(<Route exact key={key} path={path} component={hasAccess ? component : WithoutAccess} />)
+    }
+
+    const subList = subRoute.map(sub => this.renderRoute(sub, list))
+    list.concat(subList)
+
+    return list
   }
 
-  handleClickTogger = () => {
-    const {togger} = this.state
-    this.setState({
-      togger: !togger,
-    })
-  }
-
-  handleSignOut = () => {
-    window.location.href = SIGN_OUT_URL
+  logout = () => {
+    const origin = window.location.origin
+    window.location.href = 'https://cloud.minapp.com/logout/?next=' + origin
   }
 
   render() {
-    const {canAccess} = acl
-    const {loading, togger} = this.state
-    if (loading) return null
-    if (!canAccess) return <Alert message={_('不具备访问权限，请向管理员申请')} banner />
-    return (
+    const {loading, acl} = this.state
+    const {isSuperAdmin, accessList = [], routeListWithAccess = []} = acl
+    const hasDashboardAccess = isSuperAdmin || accessList.length
+
+    return loading ? (
+      <PageLoading />
+    ) : (
       <HashRouter>
-        <Layout>
-          <MenuComponent handleClickTogger={this.handleClickTogger} menuList={acl.menuListWithPerm} togger={togger} />
-          <Layout style={togger ? styl.contentWrapNone : styl.contentWrap}>
-            <Button type='danger' ghost style={styl.logOut} onClick={this.handleSignOut}>
-              {_('退出登录')}
-            </Button>
-            <Content style={styl.content}>
-              <div style={styl.controllerWrap}>
-                {this.routeList.map((props, index) => (
-                  <Route key={index} {...props} />
-                ))}
-              </div>
+        <ConfigProvider locale={zh_CN} autoInsertSpaceInButton={false}>
+          <Layout>
+            <Sider {...style('sider')}>
+              <h1 className='title'>小裁神</h1>
+              <MenuPanel acl={acl} />
+            </Sider>
+
+            <Content {...style('content')}>
+              <Row type='flex' align='middle' justify='space-between' {...style('header')}>
+                <Col span={21}>
+                  <RouterBreadcrumb />
+                </Col>
+                <Col>
+                  <Button ghost type='danger' onClick={this.logout}>
+                    退出登录
+                  </Button>
+                </Col>
+              </Row>
+
+              <Suspense fallback={<PageLoading />}>
+                <Switch>
+                  <Route exact path='/' component={() => (hasDashboardAccess ? <Welcome /> : <WithoutAccess />)} />
+                  {routeListWithAccess.map(route => this.renderRoute(route))}
+                </Switch>
+              </Suspense>
             </Content>
+
+            <style jsx>{styles}</style>
+            {componentStyles.styles}
           </Layout>
-        </Layout>
+        </ConfigProvider>
       </HashRouter>
     )
   }
 }
 
-export default App
+const styles = css`
+  .title {
+    padding: 12px 24px;
+    font-size: 24px;
+    color: #fff;
+  }
+`
 
-const styl = {
-  langBtn: {fontSize: 12, transform: 'scale(.7)', verticalAlign: 'super'},
-  sider: {overflow: 'auto', height: '100vh', position: 'fixed', left: 0},
-  siderTitle: {height: 32, color: '#fff', margin: 16, fontSize: 18, width: 240},
-  siderTogger: {
-    position: 'fixed',
-    bottom: 0,
-    paddingRight: 10,
-    paddingTop: 10,
-    paddingBottom: 50,
-    width: 260,
-    height: 100,
-    transition: 'all .25s',
-    backgroundColor: '#001529',
-  },
-  siderToggerNone: {
-    position: 'fixed',
-    bottom: 0,
-    paddingRight: 10,
-    paddingTop: 10,
-    paddingBottom: 50,
-    width: 40,
-    height: 100,
-    transition: 'none',
-    backgroundColor: '#001529',
-  },
-  toggerImg: {
-    width: 20,
-    height: 20,
-    float: 'right',
-    backgroundSize: 'cover',
-    backgroundImage: `url(${toggerImg})`,
-    transition: 'all .25s',
-    transform: 'rotate(180deg)',
-  },
-  contentWrap: {
-    marginLeft: 260,
-    zIndex: 0,
-    transition: 'none',
-  },
-  contentWrapNone: {
-    marginLeft: 40,
-    zIndex: 0,
-    transition: 'all .25s',
-  },
-  logOut: {
-    position: 'absolute',
-    right: '2.5vw',
-    top: 10,
-    width: 80,
-  },
-  content: {padding: '35px 16px 0', overflow: 'auto', minHeight: '100vh'},
-  controllerWrap: {padding: 24, minWidth: 960},
+const style = className => {
+  return {className: `${componentStyles.className} ${className}`}
 }
+
+const componentStyles = css.resolve`
+  .sider {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 200px;
+    overflow: auto;
+  }
+
+  .content {
+    padding: 16px 24px 24px;
+    margin-left: 200px;
+    min-height: 100vh;
+  }
+
+  .header {
+    padding-bottom: 16px;
+  }
+`

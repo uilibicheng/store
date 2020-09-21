@@ -24,15 +24,39 @@ export default {
     return getStorage('unionid') || userInfo.unionid
   },
 
+  // isLogin() {
+  //   return !!getStorage('auth_token')
+  // },
   isLogin() {
-    return !!getStorage('auth_token')
-  },
-
-  isAuth() {
-    return this.isLogin() && !!this.getUnionid()
+    return !!getStorage('auth_token') && !!getStorage('auth_userinfo')
   },
 
   ensureLogin() {
-    return this.isLogin() ? Promise.resolve() : wx.BaaS.auth.loginWithWechat()
+    return this.isLogin() ? Promise.resolve() : wx.BaaS.login(false)
+  },
+
+  // isAuth() {
+  //   return this.isLogin() && !!this.getUnionid()
+  // },
+  isAuth() {
+    const userInfo = this.getAuthUserInfo() || {}
+    return this.isLogin() && userInfo.is_authorized
+  },
+
+  authLogin(data = undefined) {
+    return wx.BaaS.auth.loginWithWechat(data)
+      .then(() => {
+        return wx.BaaS.auth.getCurrentUser()
+      })
+      .then(user => {
+        const userInfo = user.toJSON()
+        console.log('authLogin =>', userInfo)
+        setStorage('auth_userinfo', userInfo)
+        return userInfo
+      })
+  },
+
+  getAuthUserInfo() {
+    return getStorage('auth_userinfo')
   },
 }

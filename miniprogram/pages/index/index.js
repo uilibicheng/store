@@ -1,182 +1,296 @@
-// index.js
+import router from '../../lib/router'
+import device from '../../lib/device'
+import baas from '../../lib/baas'
+import format from '../../lib/format'
 import io from '../../io/index'
-import {ROUTE, PRIZE_TYPE, PARK_MINAPP_ID} from '../../config/constants'
+import * as constants from '../../config/constants'
+
 const app = getApp()
 
-Page({
+const INDEX_COVER_LSIT = [
+  'https://cloud-minapp-32931.cloud.ifanrusercontent.com/1j4i1JXo4jg496x4.png',
+  'https://cloud-minapp-32931.cloud.ifanrusercontent.com/1j4i1JrufTYvGmjp.png',
+]
+
+let _getWikiContentLocked = false
+
+Component({
+  properties: {
+  },
+
   data: {
-    ticketBundles: [],
-    settings: {},
-    promotionalBundlePrize: null,
-    isPromotionalBundleRedeemed: true,
-    showPromotionalBundleTooltip: false,
-    lotterySettings: {},
+    statusBarHeight: device.getStatusBarHeight(),
+    navBarHeight: device.getNavbarHeight(),
+    orderStatus: constants.ORDER_STATUS,
+    clothesType: constants.CLOTHES_TYPE,
+    showPage: false,
+    isAuth: baas.isAuth(),
+    indexCoverList: INDEX_COVER_LSIT,
+    coverIndex: null,
+    pageHeaderStyle: '',
+    userPhoneList: [],
+    userOrderInfo: null,
+    wikiContentList: [],
+    wikiContentOffset: 0,
+    refreshTriggered: false,
+    storeNameList: [],
+    slogan: '',
   },
 
-  onLoad() {
-    this.dataInit()
-  },
-
-  dataInit() {
-    wx.showLoading({
-      mask: true,
-    })
-    return Promise.all([this.fetchTicketBundle(), this.getSettings(), this.getLotterySettings()])
-      .catch(err => console.log(err))
-      .then(wx.hideLoading)
-  },
-
-  onShow() {
-    this.checkPromotionalBundleRedeemed().catch(err => console.log(err))
-    this.getPromotionalBundlePrize().catch(err => console.log(err))
-  },
-
-  checkPromotionalBundleRedeemed() {
-    return io
-      .checkPromotionalBundleRedeemed()
-      .then(isRedeemed =>
-        this.setData({
-          isPromotionalBundleRedeemed: isRedeemed,
-        })
-      )
-      .catch(err => {
-        console.log('判断是否已兑换优惠大礼包时错误', err)
-        throw err
+  methods: {
+    onLoad(options) {
+      wx.showLoading({
+        mask: true,
       })
-  },
-
-  handleCloseTooltip() {
-    this.setData({
-      showPromotionalBundleTooltip: false,
-    })
-  },
-
-  fetchTicketBundle() {
-    return io
-      .fetchTicketBundle(false)
-      .then(res =>
-        this.setData({
-          ticketBundles: res.data.objects,
+      if(!baas.isLogin()) {
+        baas.authLogin().then(res => {
+          this.initOnLoad(options)
         })
-      )
-      .catch(err => {
-        console.log('获取套票列表时错误', err)
-        throw err
-      })
-  },
+      } else {
+        this.initOnLoad(options)
+      }
+    },
 
-  getPromotionalBundlePrize() {
-    return io
-      .fetchPrize(PRIZE_TYPE.PROMOTIONAL_BUNDLE)
-      .then(res => {
-        if (!res.data.objects.length) {
-          throw new Error('优惠大礼包未找到')
+    initOnLoad(options) {
+      // console.log('options:', options)
+      this.setData({
+        isAuth: baas.isAuth(),
+      })
+      if (!baas.isAuth()) { // 未授权
+        wx.hideLoading()
+        // 如果带着订单号进来，带参重定向去授权页
+        if (options && options.scene) {
+          router.relaunch({
+            name: 'auth',
+            data: {
+              scene: options.scene,
+            },
+          })
+        } else {
+          // 普通途径进来，显示首页等待授权
+          this.setData({
+            showPage: true,
+          })
+          // 获取小百科
+          this.getWikiContent()
+
+          this.handleIncreaseCoverIndex()
+
+          this.getSloganSetting()
         }
-        if (res.data.objects[0].total_count - res.data.objects[0].redeemed_count <= 0) {
-          throw new Error('优惠大礼包已无库存')
-        }
-        this.setData({
-          promotionalBundlePrize: res.data.objects[0],
-          showPromotionalBundleTooltip: true,
+
+      } else {  // 已授权
+
+        wx.BaaS.auth.getCurrentUser().then(user => {
+          const userInfo = user.toJSON()
+          wx.hideLoading()
+          // 如果是商家，重定向到商家首页
+          if (userInfo.is_store_user) {
+            app.globalData.isStoreUser = true
+            router.relaunch({
+              name: 'business-index',
+            })
+          } else if (options && options.scene) {
+            // 客户带参进来，判断是否已经绑定手机号，重定向到关联订单页或授权手机页
+            if (userInfo.phone.length > 0) {
+              router.relaunch({
+                name: 'relate-order',
+                data: {
+                  scene: options.scene,
+                },
+              })
+            } else {
+              router.relaunch({
+                name: 'auth',
+                data: {
+                  scene: options.scene,
+                },
+              })
+            }
+          } else {
+            // 普通已授权用户
+            this.setData({
+              showPage: true,
+              userPhoneList: userInfo.phone,
+            })
+            // 查订单
+            this.getLatestUserOrder()
+            // 获取小百科
+            this.getWikiContent()
+
+            this.handleIncreaseCoverIndex()
+
+            this.getSloganSetting()
+          }
         })
+
+      }
+    },
+
+    onShow() {
+    },
+
+    onRefresh() {
+      console.log('onRefresh')
+      this.setData({
+        isAuth: baas.isAuth(),
+        wikiContentList: [],
+        wikiContentOffset: 0,
+      }, this.initOnLoad)
+    },
+
+    // onReachBottom() {
+    //   if (_getWikiContentLocked) return
+    //   _getWikiContentLocked = true
+    //   console.log('index onReachBottom')
+    //   this.getWikiContent()
+    // },
+
+    // onPageScroll(e) {
+    //   this.setData({
+    //     pageHeaderStyle: e.scrollTop > 100 ? 'background-color: #E7E0D6;' : '',
+    //   })
+    // },
+
+    onScrollerScroll(e) {
+      this.setData({
+        pageHeaderStyle: e.detail.scrollTop > 70 ? 'background-color: #E7E0D6;' : '',
       })
-      .catch(err => {
-        this.setData({
-          showPromotionalBundleTooltip: false,
+    },
+
+    onScrollerBottom() {
+      if (_getWikiContentLocked) return
+      _getWikiContentLocked = true
+      console.log('index onScrollerBottom')
+      this.getWikiContent()
+    },
+
+    userInfoHandler(data) {
+      wx.showLoading({
+        mask: true,
+      })
+      baas.authLogin(data)
+        .then(res => {
+          this.setData({
+            isAuth: baas.isAuth(),
+          })
+          this.navToAuth()
         })
-        console.log('获取优惠大礼包时错误', err)
-        throw err
-      })
-  },
-
-  handleRedeemPromotionalBundle() {
-    wx.navigateTo({
-      url: `/${ROUTE.PRIZE}?id=${this.data.promotionalBundlePrize.id}`,
-    })
-  },
-
-  getSettings() {
-    return io
-      .getSettings()
-      .then(res =>
-        this.setData({
-          settings: res.data,
+        .catch(err => {
+          console.log('err:', err)
         })
-      )
-      .catch(err => {
-        console.log('获取配置信息时错误', err)
-        throw err
-      })
-  },
+        .then(wx.hideLoading)
+    },
 
-  getLotterySettings() {
-    return io
-      .getLotterySettings()
-      .then(res =>
-        this.setData({
-          lotterySettings: res.data,
+    getLatestUserOrder() {
+      return io.getUserOrderList({limit: 1, with_count: true})
+        .then(res => {
+          if (res.data.objects.length > 0) {
+            const dataList = res.data.objects.map(item => {
+              item.created_at_format = format.formatDate(item.created_at, 'YYYY-MM-DD')
+              item.store_name_format = item.store_name ? item.store_name.replace(/有限公司$/, '') : ''
+              return item
+            })
+            res.data.objects = dataList
+
+            // 获取轮播商家名称 list
+            // let storeNameList = []
+            // res.data.objects.forEach(item => {
+            //   if (item.store_name) storeNameList.push(item.store_name)
+            // })
+            // storeNameList = [...new Set(storeNameList)]
+            // console.log('storeNameList', storeNameList)
+
+            this.setData({
+              userOrderInfo: res.data,
+              // storeNameList,
+            })
+          }
         })
-      )
-      .catch(err => {
-        console.log('获取配置信息时错误', err)
-        throw err
+    },
+
+    navToOrderDetail() {
+      app.globalData.orderInfo = this.data.userOrderInfo.objects[0]
+      router.push({
+        name: 'order',
       })
-  },
+    },
 
-  navToTicket(e) {
-    const id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: `/${ROUTE.TICKET}?id=${id}`,
-    })
-  },
+    getWikiContent() {
+      _getWikiContentLocked = true
+      let {wikiContentList, wikiContentOffset} = this.data
+      return io.getIndexWiki(wikiContentOffset)
+        .then(res => {
+          const dataList = res.data.objects.map(item => {
+            item.created_at_format = format.formatDate(item.created_at, 'YYYY-MM-DD')
+            return item
+          })
+          this.setData({
+            wikiContentList: wikiContentList.concat(dataList),
+            wikiContentOffset: wikiContentOffset + 20,
+            refreshTriggered: false,
+          }, () => {
+            _getWikiContentLocked = !res.data.meta.next
+          })
+        })
+    },
 
-  handleBannerClick(e) {
-    let url = e.currentTarget.dataset.url
-    if (!/^\//.test(url)) {
-      url = '/' + url
-    }
-    wx.navigateTo({url: url.trim()})
-  },
+    getSloganSetting() {
+      return io.getSloganSetting()
+        .then(res => {
+          this.setData({
+            slogan: res.data.objects[0].value || '',
+          })
+        })
+    },
 
-  redirectToPersonal() {
-    wx.redirectTo({
-      url: `/${ROUTE.PERSONAL}`,
-    })
-  },
+    handleIncreaseCoverIndex() {
+      let coverIndex = baas.getStorage('cover_index')
+      if (!coverIndex) coverIndex = 1
+      this.setData({
+        coverIndex: coverIndex % INDEX_COVER_LSIT.length
+      })
+    },
 
-  redirectToInfo() {
-    wx.redirectTo({
-      url: `/${ROUTE.AQUARIUM_INFO}`,
-    })
-  },
+    navToAddPhoneNumber() {
+      router.relaunch({
+        name: 'add-phone-number',
+      })
+    },
 
-  handleViewMoreTicket() {
-    wx.navigateTo({
-      url: `/${ROUTE.TICKET_BUNDLE_LIST}`,
-    })
-  },
+    navToAuth() {
+      router.relaunch({
+        name: 'auth',
+      })
+    },
 
-  navToLottery() {
-    wx.navigateTo({
-      url: `/${ROUTE.LOTTERY}`,
-    })
-  },
+    navToSearchOrder() {
+      app.globalData.autoFocus = true
+      this.navToOrderList()
+    },
 
-  onPullDownRefresh() {
-    this.dataInit().then(wx.stopPullDownRefresh)
-  },
+    navToOrderList() {
+      router.switchTab({
+        name: 'order-list',
+      })
+    },
 
-  onShareAppMessage() {
-    return {
-      title: `日本乐高商店`,
-      path: `/${ROUTE.INDEX}`,
-    }
-  },
+    navToArticle(e) {
+      const {index} = e.currentTarget.dataset
+      app.globalData.articleInfo = this.data.wikiContentList[index]
+      router.push({
+        name: 'wiki-article'
+      })
+    },
 
-  navToPark() {
-    wx.navigateToMiniProgram({
-      appId: PARK_MINAPP_ID,
-      // envVersion: 'develop',
-    })
-  },
+    onShareAppMessage() {
+      return {
+        title: '欢迎进入小裁神商店',
+        path: `/${this.route}`,
+        imageUrl: 'https://cloud-minapp-32931.cloud.ifanrusercontent.com/1j7WcnkSgSgiWoKb.png',
+      }
+    },
+
+    noop() {},
+  }
 })

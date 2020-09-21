@@ -53,7 +53,7 @@ class Wxml2Canvas {
   }
 
   draw(data = {}, that) {
-    let self = this
+    const self = this
     this.data = data
     this.fef = that
 
@@ -72,7 +72,7 @@ class Wxml2Canvas {
     if (font) {
       this.ctx.font = font
     }
-    let res = this.ctx.measureText(text) || {}
+    const res = this.ctx.measureText(text) || {}
     return res.width || 0
   }
 
@@ -100,21 +100,21 @@ class Wxml2Canvas {
 
   _drawBakcground() {
     if (this.gradientBackground) {
-      let line = this.gradientBackground.line || [0, 0, 0, this.height]
-      let color = this.gradientBackground.color || ['#fff', '#fff']
-      let style = {fill: {line, color}}
+      const line = this.gradientBackground.line || [0, 0, 0, this.height]
+      const color = this.gradientBackground.color || ['#fff', '#fff']
+      const style = {fill: {line, color}}
       this._drawRectToCanvas(0, 0, this.width, this.height, style)
     } else {
-      let style = {fill: this.background}
+      const style = {fill: this.background}
       this._drawRectToCanvas(0, 0, this.width, this.height, style)
     }
   }
 
   _draw() {
-    let self = this
+    const self = this
     let list = this.data.list || []
     let index = 0
-    let all = []
+    const all = []
     let count = 0
 
     list.forEach(item => {
@@ -151,7 +151,7 @@ class Wxml2Canvas {
     function drawList(list = [], noDelay) {
       list.forEach((item, i) => {
         all[index++] = new Promise((resolve, reject) => {
-          let attr = item.style
+          const attr = item.style
           item.progress = self.distance
           if (noDelay) {
             item.delay = 0
@@ -179,14 +179,14 @@ class Wxml2Canvas {
   }
 
   _saveCanvasToImage() {
-    let self = this
+    const self = this
 
     // 延时保存有两个原因，一个是等待绘制delay的元素，另一个是安卓上样式会错乱
     setTimeout(
       () => {
         self.progress(95)
 
-        let obj = {
+        const obj = {
           x: 0,
           y: 0,
           width: self.width,
@@ -216,15 +216,15 @@ class Wxml2Canvas {
   }
 
   _preloadImage(list = []) {
-    let self = this
-    let all = []
+    const self = this
+    const all = []
     let count = 0
 
     function imageInfo(target, url, resolve, reject) {
       wx.getImageInfo({
         src: url,
         success(res) {
-          let index = self._findPicIndex(target)
+          const index = self._findPicIndex(target)
           if (index > -1) {
             self.allPic[index].local = url
             self.allPic[index].width = res.width
@@ -253,7 +253,7 @@ class Wxml2Canvas {
             /^http:\/\/127\.0\.0\.1/.test(item.url)
           ) {
             if (item.isBase64) {
-              let fileManager = wx.getFileSystemManager()
+              const fileManager = wx.getFileSystemManager()
 
               fileManager.writeFile({
                 filePath: item.url,
@@ -276,7 +276,7 @@ class Wxml2Canvas {
                 wx.getImageInfo({
                   src: item.url,
                   success(img) {
-                    let index = self._findPicIndex(item.url)
+                    const index = self._findPicIndex(item.url)
                     if (index > -1) {
                       self.allPic[index].local = res.tempFilePath
                       self.allPic[index].width = img.width
@@ -302,14 +302,14 @@ class Wxml2Canvas {
   }
 
   _findPicIndex(url) {
-    let index = this.allPic.findIndex(pic => pic.url === url)
+    const index = this.allPic.findIndex(pic => pic.url === url)
     return index
   }
 
   _drawRect(item, style, resolve, reject, isImage, isWxml) {
-    let zoom = this.zoom
+    const zoom = this.zoom
     let leftOffset = 0
-    let topOffset = 0
+    const topOffset = 0
     let width = style.width
     let height = style.height
     let imgWidth = style.width
@@ -322,7 +322,7 @@ class Wxml2Canvas {
 
       let url
       if (isImage) {
-        let index = this._findPicIndex(item.url)
+        const index = this._findPicIndex(item.url)
         if (index > -1) {
           url = this.allPic[index].local
           imgWidth = this.allPic[index].width
@@ -491,7 +491,7 @@ class Wxml2Canvas {
   }
 
   _resetImageByMode(url, x, y, width, height, mode) {
-    let self = this
+    const self = this
     let offsetX = 0
     let offsetY = 0
     let imgWidth = mode.width
@@ -509,12 +509,12 @@ class Wxml2Canvas {
         break
       case 'aspectFit':
         if (imgWidth > imgHeight) {
-          let realHeight = width / ((imgWidth || 1) / (imgHeight || 1))
+          const realHeight = width / ((imgWidth || 1) / (imgHeight || 1))
           offsetY = -(height - realHeight) / 2
           imgWidth = width
           imgHeight = realHeight
         } else {
-          let realWidth = height / ((imgHeight || 1) / (imgWidth || 1))
+          const realWidth = height / ((imgHeight || 1) / (imgWidth || 1))
           offsetX = -(width - realWidth) / 2
           imgWidth = realWidth
           imgHeight = height
@@ -524,12 +524,12 @@ class Wxml2Canvas {
         break
       case 'aspectFill':
         if (imgWidth > imgHeight) {
-          let realWidth = imgWidth / ((imgHeight || 1) / (height || 1))
+          const realWidth = imgWidth / ((imgHeight || 1) / (height || 1))
           offsetX = (realWidth - width) / 2
           imgWidth = realWidth
           imgHeight = height
         } else {
-          let realHeight = imgHeight / ((imgWidth || 1) / (width || 1))
+          const realHeight = imgHeight / ((imgWidth || 1) / (width || 1))
           offsetY = (realHeight - height) / 2
           imgWidth = width
           imgHeight = realHeight
@@ -594,13 +594,13 @@ class Wxml2Canvas {
   }
 
   _drawText(item, style, resolve, reject, type, isWxml) {
-    let zoom = this.zoom
+    const zoom = this.zoom
     let leftOffset = 0
     let topOffset = 0
 
     try {
       style.fontSize = this._parseNumber(style.fontSize)
-      let fontSize = Math.ceil((style.fontSize || 14) * zoom)
+      const fontSize = Math.ceil((style.fontSize || 14) * zoom)
       this.ctx.setTextBaseline('top')
       this.ctx.font = `${style.fontWeight ? style.fontWeight : 'normal'} ${fontSize}px ${style.fontFamily ||
         'PingFang SC'}`
@@ -608,10 +608,10 @@ class Wxml2Canvas {
 
       let text = item.text || ''
       let textWidth = Math.floor(this.measureWidth(text, style.font || this.ctx.font))
-      let lineHeight = this._getLineHeight(style)
-      let textHeight = Math.ceil(textWidth / (style.width || textWidth)) * lineHeight
+      const lineHeight = this._getLineHeight(style)
+      const textHeight = Math.ceil(textWidth / (style.width || textWidth)) * lineHeight
       let width = Math.ceil((style.width || textWidth) * (!isWxml ? zoom : 1))
-      let whiteSpace = style.whiteSpace || 'wrap'
+      const whiteSpace = style.whiteSpace || 'wrap'
       let x = 0
       let y = 0
 
@@ -632,9 +632,9 @@ class Wxml2Canvas {
         if (item.leftOffset + textWidth > width) {
           // 如果上一个行内元素换行了，这个元素要继续在后面补足一行
           let lineNum = Math.max(Math.floor(textWidth / width), 1)
-          let length = text.length
-          let singleLength = Math.floor(length / lineNum)
-          let widthOffset = item.leftOffset ? item.leftOffset - item.originX : 0
+          const length = text.length
+          const singleLength = Math.floor(length / lineNum)
+          const widthOffset = item.leftOffset ? item.leftOffset - item.originX : 0
           let {endIndex: currentIndex, single, singleWidth} = this._getTextSingleLine(
             text,
             width,
@@ -655,7 +655,7 @@ class Wxml2Canvas {
           textWidth = Math.floor(this.measureWidth(text, style.font || this.ctx.font))
           item.x = item.originX // 还原换行后的x
           for (let i = 0; i < lineNum; i++) {
-            let {endIndex, single, singleWidth} = this._getTextSingleLine(text, width, singleLength, currentIndex)
+            const {endIndex, single, singleWidth} = this._getTextSingleLine(text, width, singleLength, currentIndex)
             currentIndex = endIndex
             if (single) {
               x = this._resetTextPositionX(item, style, singleWidth, width)
@@ -668,8 +668,8 @@ class Wxml2Canvas {
             }
           }
 
-          let last = text.substring(currentIndex, length)
-          let lastWidth = this.measureWidth(last)
+          const last = text.substring(currentIndex, length)
+          const lastWidth = this.measureWidth(last)
 
           if (last) {
             x = this._resetTextPositionX(item, style, lastWidth, width)
@@ -689,8 +689,8 @@ class Wxml2Canvas {
         // block文本，如果文本长度超过宽度换行
         if (width && textWidth > width && whiteSpace !== 'nowrap') {
           let lineNum = Math.max(Math.floor(textWidth / width), 1)
-          let length = text.length
-          let singleLength = Math.floor(length / lineNum)
+          const length = text.length
+          const singleLength = Math.floor(length / lineNum)
           let currentIndex = 0
 
           // lineClamp参数限制最多行数
@@ -699,7 +699,7 @@ class Wxml2Canvas {
           }
 
           for (let i = 0; i < lineNum; i++) {
-            let {endIndex, single, singleWidth} = this._getTextSingleLine(text, width, singleLength, currentIndex)
+            const {endIndex, single, singleWidth} = this._getTextSingleLine(text, width, singleLength, currentIndex)
             currentIndex = endIndex
             x = this._resetTextPositionX(item, style, singleWidth, width)
             y = this._resetTextPositionY(item, style, i)
@@ -710,7 +710,7 @@ class Wxml2Canvas {
           let last = text.substring(currentIndex, length)
           let lastWidth = this.measureWidth(last)
           if (lastWidth > width) {
-            let {single, singleWidth} = this._getTextSingleLine(last, width, singleLength)
+            const {single, singleWidth} = this._getTextSingleLine(last, width, singleLength)
             lastWidth = singleWidth
             last = single.substring(0, single.length - 1) + '...'
           }
@@ -744,10 +744,10 @@ class Wxml2Canvas {
 
   _drawTextBackgroud(item, style, textWidth, textHeight, isWxml) {
     if (!style.width) return
-    let zoom = isWxml ? 1 : this.zoom
+    const zoom = isWxml ? 1 : this.zoom
     let width = style.width || textWidth
     let height = style.height || textHeight
-    let rectStyle = {
+    const rectStyle = {
       fill: style.background,
       border: style.border,
     }
@@ -760,7 +760,7 @@ class Wxml2Canvas {
   }
 
   _drawCircle(item, style, resolve, reject, isImage, isWxml) {
-    let zoom = this.zoom
+    const zoom = this.zoom
     let r = style.r
     try {
       item.x = this._resetPositionX(item, style)
@@ -770,7 +770,7 @@ class Wxml2Canvas {
 
       if (isImage) {
         // url = item.url
-        let index = this._findPicIndex(item.url)
+        const index = this._findPicIndex(item.url)
         url = this.allPic[index].local
       }
 
@@ -789,7 +789,7 @@ class Wxml2Canvas {
   }
 
   _drawCircleToCanvas(x, y, r, style, url) {
-    let {fill, border, boxShadow} = style
+    const {fill, border, boxShadow} = style
 
     this.ctx.save()
 
@@ -836,12 +836,12 @@ class Wxml2Canvas {
   }
 
   _drawLine(item, style, resolve, reject, isWxml) {
-    let zoom = this.zoom
+    const zoom = this.zoom
     try {
-      let x1 = item.x * zoom + this.translateX
-      let y1 = item.y * zoom + this.translateY
-      let x2 = item.x2 * zoom + this.translateX
-      let y2 = item.y2 * zoom + this.translateY
+      const x1 = item.x * zoom + this.translateX
+      const y1 = item.y * zoom + this.translateY
+      const x2 = item.x2 * zoom + this.translateX
+      const y2 = item.y2 * zoom + this.translateY
       this._drawLineToCanvas(x1, y1, x2, y2, style)
 
       this._updateProgress(item.progress)
@@ -852,7 +852,7 @@ class Wxml2Canvas {
   }
 
   _drawLineToCanvas(x1, y1, x2, y2, style) {
-    let {stroke, dash, boxShadow} = style
+    const {stroke, dash, boxShadow} = style
 
     this.ctx.save()
     if (stroke) {
@@ -862,8 +862,8 @@ class Wxml2Canvas {
     this._drawBoxShadow(boxShadow)
 
     if (dash) {
-      let dash = [style.dash[0] || 5, style.dash[1] || 5]
-      let offset = style.dash[2] || 0
+      const dash = [style.dash[0] || 5, style.dash[1] || 5]
+      const offset = style.dash[2] || 0
       this.ctx.setLineDash(dash, offset || 0)
     }
 
@@ -876,12 +876,12 @@ class Wxml2Canvas {
   }
 
   _drawWxml(item, style, resolve, reject) {
-    let self = this
+    const self = this
     let all = []
     try {
       this._getWxml(item, style).then(results => {
         // 上 -> 下
-        let sorted = self._sortListByTop(results[0])
+        const sorted = self._sortListByTop(results[0])
         let count = 0
         let progress = 0
         Object.keys(sorted).forEach(item => {
@@ -906,10 +906,10 @@ class Wxml2Canvas {
   }
 
   _drawWxmlBlock(item, sorted, all, progress, results) {
-    let self = this
+    const self = this
     // 用来限定位置范围，取相对位置
-    let limitLeft = results ? results.left : 0
-    let limitTop = results ? results.top : 0
+    const limitLeft = results ? results.left : 0
+    const limitTop = results ? results.top : 0
     Object.keys(sorted).forEach((top, topIndex) => {
       // 左 -> 右
       let list = sorted[top].sort((a, b) => {
@@ -922,7 +922,7 @@ class Wxml2Canvas {
         all[index] = new Promise((resolve, reject) => {
           sub = self._transferWxmlStyle(sub, item, limitLeft, limitTop)
           sub.progress = progress
-          let type = sub.dataset.type
+          const type = sub.dataset.type
           if (sub.dataset.delay) {
             setTimeout(() => {
               drawWxmlItem()
@@ -949,20 +949,20 @@ class Wxml2Canvas {
   }
 
   _drawWxmlInline(item, sorted, all, progress, results) {
-    let self = this
+    const self = this
     let topOffset = 0
     let leftOffset = 0
     let lastTop = 0
-    let limitLeft = results ? results.left : 0
-    let limitTop = results ? results.top : 0
-    let p = new Promise((resolve, reject) => {
+    const limitLeft = results ? results.left : 0
+    const limitTop = results ? results.top : 0
+    const p = new Promise((resolve, reject) => {
       let maxWidth = 0
       let minLeft = Infinity
       let maxRight = 0
 
       // 找出同一top下的最小left和最大right，得到最大的宽度，用于换行
       Object.keys(sorted).forEach(top => {
-        let inlineList = sorted[top].filter(sub => sub.dataset.type && sub.dataset.type.indexOf('inline') > -1)
+        const inlineList = sorted[top].filter(sub => sub.dataset.type && sub.dataset.type.indexOf('inline') > -1)
         inlineList.forEach(sub => {
           if (sub.left < minLeft) {
             minLeft = sub.left
@@ -976,7 +976,7 @@ class Wxml2Canvas {
 
       Object.keys(sorted).forEach((top, topIndex) => {
         // 左 -> 右
-        let list = sorted[top].sort((a, b) => {
+        const list = sorted[top].sort((a, b) => {
           return a.left - b.left
         })
 
@@ -995,8 +995,8 @@ class Wxml2Canvas {
           list.push(list.splice(position, 1)[0])
         }
 
-        let inlineList = list.filter(sub => sub.dataset.type && sub.dataset.type.indexOf('inline') > -1)
-        let originLeft = inlineList[0] ? inlineList[0].left : 0
+        const inlineList = list.filter(sub => sub.dataset.type && sub.dataset.type.indexOf('inline') > -1)
+        const originLeft = inlineList[0] ? inlineList[0].left : 0
         // 换行后和top不相等时，认为是换行了，要清除左边距；当左偏移量大于最大宽度时，也要清除左边距; 当左偏移小于左边距时，也要清除
         if (
           Math.abs(topOffset + lastTop - top) > 2 ||
@@ -1012,13 +1012,13 @@ class Wxml2Canvas {
         inlineList.forEach((sub, index) => {
           sub = self._transferWxmlStyle(sub, item, limitLeft, limitTop)
           sub.progress = progress
-          let type = sub.dataset.type
+          const type = sub.dataset.type
           if (type === 'inline-text') {
-            let drawRes = self._drawWxmlInlineText(sub, leftOffset, maxWidth)
+            const drawRes = self._drawWxmlInlineText(sub, leftOffset, maxWidth)
             leftOffset = drawRes.leftOffset
             topOffset = drawRes.topOffset
           } else if (type === 'inline-image') {
-            let drawRes = self._drawWxmlImage(sub) || {}
+            const drawRes = self._drawWxmlImage(sub) || {}
             leftOffset = drawRes.leftOffset || 0
             topOffset = drawRes.topOffset || 0
           }
@@ -1037,7 +1037,7 @@ class Wxml2Canvas {
       text = text.substring(0, sub.dataset.maxlength) + '...'
     }
 
-    let textData = {
+    const textData = {
       text,
       originX: sub.left,
       x: leftOffset || sub.left,
@@ -1057,7 +1057,7 @@ class Wxml2Canvas {
       sub.background = sub.dataset.background
     }
 
-    let res = this._drawText(textData, sub, null, null, 'inline-text', 'wxml')
+    const res = this._drawText(textData, sub, null, null, 'inline-text', 'wxml')
 
     return res
   }
@@ -1068,7 +1068,7 @@ class Wxml2Canvas {
       text = text.substring(0, sub.dataset.maxlength) + '...'
     }
 
-    let textData = {
+    const textData = {
       text,
       x: sub.left,
       y: sub.top,
@@ -1088,20 +1088,20 @@ class Wxml2Canvas {
   }
 
   _drawWxmlImage(sub, resolve, reject) {
-    let imageData = {
+    const imageData = {
       url: sub.dataset.url,
       x: sub.left,
       y: sub.top,
       progress: sub.progress,
     }
 
-    let res = this._drawRect(imageData, sub, resolve, reject, 'image', 'inline-wxml')
+    const res = this._drawRect(imageData, sub, resolve, reject, 'image', 'inline-wxml')
 
     return res
   }
 
   _drawWxmlCircleImage(sub, resolve, reject) {
-    let imageData = {
+    const imageData = {
       url: sub.dataset.url,
       x: sub.left,
       y: sub.top,
@@ -1114,11 +1114,11 @@ class Wxml2Canvas {
 
   _drawWxmlBackgroundImage(sub, resolve, reject) {
     let url = sub.dataset.url
-    let index = this._findPicIndex(url)
+    const index = this._findPicIndex(url)
     url = index > -1 ? this.allPic[index].local : url
     // let size = sub.backgroundSize.replace(/px/g, '').split(' ')
 
-    let imageData = {
+    const imageData = {
       url: url,
       x: sub.left,
       y: sub.top,
@@ -1129,7 +1129,7 @@ class Wxml2Canvas {
   }
 
   _getWxml(item, style) {
-    let self = this
+    const self = this
     let query
     if (this.context) {
       query = this.context.createSelectorQuery()
@@ -1137,7 +1137,7 @@ class Wxml2Canvas {
       query = wx.createSelectorQuery()
     }
 
-    let p1 = new Promise((resolve, reject) => {
+    const p1 = new Promise((resolve, reject) => {
       // 会触发两次，要限制
       let count = 0
       query
@@ -1185,8 +1185,8 @@ class Wxml2Canvas {
           res => {
             console.log('SelectorQuery res:', res)
             if (count++ === 0) {
-              let formated = self._formatImage(res)
-              let list = formated.list
+              const formated = self._formatImage(res)
+              const list = formated.list
               res = formated.res
 
               self
@@ -1203,7 +1203,7 @@ class Wxml2Canvas {
         .exec()
     })
 
-    let p2 = new Promise((resolve, reject) => {
+    const p2 = new Promise((resolve, reject) => {
       if (!item.limit) {
         resolve({top: 0, width: self.width / self.zoom})
       }
@@ -1243,14 +1243,14 @@ class Wxml2Canvas {
   }
 
   _formatImage(res = []) {
-    let list = []
+    const list = []
     res.forEach((item, index) => {
-      let dataset = item.dataset
-      let uid = Util.getUid()
+      const dataset = item.dataset
+      const uid = Util.getUid()
       // let filename = `${wx.env.USER_DATA_PATH}/${uid}.jpg`
-      let filename = `http://tmp/${uid}.jpg`
+      const filename = `http://tmp/${uid}.jpg`
       if ((dataset.type === 'image' || dataset.type === 'radius-image') && dataset.url) {
-        let sub = {
+        const sub = {
           url: dataset.base64 ? filename : dataset.url,
           isBase64: dataset.base64 ? dataset.url : false,
         }
@@ -1258,8 +1258,8 @@ class Wxml2Canvas {
         res[index].dataset = Object.assign(res[index].dataset, sub)
         list.push(sub)
       } else if (dataset.type === 'background-image' && item.backgroundImage.indexOf('url') > -1) {
-        let url = item.backgroundImage.replace(/url\(("|')?/, '').replace(/("|')?\)$/, '')
-        let sub = {
+        const url = item.backgroundImage.replace(/url\(("|')?/, '').replace(/("|')?\)$/, '')
+        const sub = {
           url: dataset.base64 ? filename : url,
           isBase64: dataset.base64 ? url : false,
         }
@@ -1277,7 +1277,7 @@ class Wxml2Canvas {
   }
 
   _sortListByTop(list = []) {
-    let sorted = {}
+    const sorted = {}
 
     // 粗略地认为2px相差的元素在同一行
     list.forEach((item, index) => {
@@ -1306,8 +1306,8 @@ class Wxml2Canvas {
   }
 
   _transferWxmlStyle(sub, item, limitLeft, limitTop) {
-    let leftFix = +sub.dataset.left || 0
-    let topFix = +sub.dataset.top || 0
+    const leftFix = +sub.dataset.left || 0
+    const topFix = +sub.dataset.top || 0
 
     sub.width = this._parseNumber(sub.width)
     sub.height = this._parseNumber(sub.height)
@@ -1318,10 +1318,10 @@ class Wxml2Canvas {
     if (typeof padding === 'string') {
       padding = Util.transferPadding(padding)
     }
-    let paddingTop = Number(sub.paddingTop.replace('px', '')) + Number(padding[0])
-    let paddingRight = Number(sub.paddingRight.replace('px', '')) + Number(padding[1])
-    let paddingBottom = Number(sub.paddingBottom.replace('px', '')) + Number(padding[2])
-    let paddingLeft = Number(sub.paddingLeft.replace('px', '')) + Number(padding[3])
+    const paddingTop = Number(sub.paddingTop.replace('px', '')) + Number(padding[0])
+    const paddingRight = Number(sub.paddingRight.replace('px', '')) + Number(padding[1])
+    const paddingBottom = Number(sub.paddingBottom.replace('px', '')) + Number(padding[2])
+    const paddingLeft = Number(sub.paddingLeft.replace('px', '')) + Number(padding[3])
     sub.padding = [paddingTop, paddingRight, paddingBottom, paddingLeft]
 
     // 新增
@@ -1385,7 +1385,7 @@ class Wxml2Canvas {
    * @param {*} textWidth
    */
   _resetTextPositionX(item, style, textWidth, width) {
-    let textAlign = style.textAlign || 'left'
+    const textAlign = style.textAlign || 'left'
     let x = item.x
     if (textAlign === 'center') {
       x = (width - textWidth) / 2 + item.x
@@ -1393,7 +1393,7 @@ class Wxml2Canvas {
       x = width - textWidth + item.x
     }
 
-    let left = style.padding ? style.padding[3] || 0 : 0
+    const left = style.padding ? style.padding[3] || 0 : 0
 
     return x + left + this.translateX
   }
@@ -1410,13 +1410,13 @@ class Wxml2Canvas {
       zoom = 1
     }
 
-    let lineHeight = this._getLineHeight(style)
-    let fontSize = Math.ceil((style.fontSize || 14) * zoom)
+    const lineHeight = this._getLineHeight(style)
+    const fontSize = Math.ceil((style.fontSize || 14) * zoom)
 
-    let blockLineHeightFix =
+    const blockLineHeightFix =
       ((style.dataset && style.dataset.type) || '').indexOf('inline') > -1 ? 0 : (lineHeight - fontSize) / 2
 
-    let top = style.padding ? style.padding[0] || 0 : 0
+    const top = style.padding ? style.padding[0] || 0 : 0
 
     // y + lineheight偏移 + 行数 + paddingTop + 整体画布位移
     return item.y + blockLineHeightFix + lineNum * lineHeight + top + this.translateY
@@ -1464,9 +1464,9 @@ class Wxml2Canvas {
         this.ctx.setLineWidth(border.width * zoom)
 
         if (border.style === 'dashed') {
-          let dash = style.dash || [5, 5, 0]
-          let offset = dash[2] || 0
-          let array = [dash[0] || 5, dash[1] || 5]
+          const dash = style.dash || [5, 5, 0]
+          const offset = dash[2] || 0
+          const array = [dash[0] || 5, dash[1] || 5]
           this.ctx.setLineDash(array, offset)
         }
         this.ctx.setStrokeStyle(border.color)
@@ -1491,9 +1491,9 @@ class Wxml2Canvas {
       if (typeof fill === 'string') {
         this.ctx.setFillStyle(fill)
       } else {
-        let line = fill.line
-        let color = fill.color
-        let grd = this.ctx.createLinearGradient(line[0], line[1], line[2], line[3])
+        const line = fill.line
+        const color = fill.color
+        const grd = this.ctx.createLinearGradient(line[0], line[1], line[2], line[3])
         grd.addColorStop(0, color[0])
         grd.addColorStop(1, color[1])
         this.ctx.setFillStyle(grd)
@@ -1507,9 +1507,9 @@ class Wxml2Canvas {
       if (typeof stroke === 'string') {
         this.ctx.setStrokeStyle(stroke)
       } else {
-        let line = stroke.line
-        let color = stroke.color
-        let grd = this.ctx.createLinearGradient(line[0], line[1], line[2], line[3])
+        const line = stroke.line
+        const color = stroke.color
+        const grd = this.ctx.createLinearGradient(line[0], line[1], line[2], line[3])
         grd.addColorStop(0, color[0])
         grd.addColorStop(1, color[1])
         this.ctx.setStrokeStyle(grd)

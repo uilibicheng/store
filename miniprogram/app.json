@@ -2,43 +2,80 @@
   "pages": [
     "pages/index/index",
     "pages/auth/auth",
-    "pages/ticket/ticket",
-    "pages/discount-ticket-list/discount-ticket-list",
-    "pages/purchase/purchase",
+    "pages/add-phone-number/add-phone-number",
     "pages/order-list/order-list",
     "pages/order/order",
-    "pages/prize/prize",
-    "pages/aquarium-info/aquarium-info",
-    "pages/ticket-policy/ticket-policy",
-    "pages/personal/personal",
-    "pages/prize-log/prize-log",
-    "pages/ticket-bundle-list/ticket-bundle-list",
-    "pages/prize-list/prize-list",
-    "pages/lottery/lottery",
-    "pages/sticker-camera/sticker-camera",
-    "pages/sticker-unlock/sticker-unlock",
-    "pages/sticker-canvas/sticker-canvas"
+    "pages/relate-order/relate-order",
+    "pages/tailored/tailored",
+    "pages/tailored-detail/tailored-detail",
+    "pages/wiki/wiki",
+    "pages/wiki-article/wiki-article",
+    "pages/business-info/business-info",
+    "pages/business-index/business-index",
+    "pages/business-order-list/business-order-list",
+    "pages/business-order/business-order",
+    "pages/business-create-order/business-create-order",
+    "pages/wiki-picture/wiki-picture",
+    "pages/business-verification/business-verification"
   ],
-  "window": {
-    "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#006CBA",
-    "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "日本乐高乐园商店",
-    "backgroundColor": "#006CBA"
+  "tabBar": {
+    "custom": true,
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "components/nav-bar/images/icon-tab-index-normal.png",
+        "selectedIconPath": "components/nav-bar/images/icon-tab-index-pressed.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/order-list/order-list",
+        "iconPath": "components/nav-bar/images/icon-tab-order-list-normal.png",
+        "selectedIconPath": "components/nav-bar/images/icon-tab-order-list-pressed.png",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/wiki/wiki",
+        "iconPath": "components/nav-bar/images/icon-tab-wiki-normal.png",
+        "selectedIconPath": "components/nav-bar/images/icon-tab-wiki-pressed.png",
+        "text": "小百科"
+      },
+      {
+        "pagePath": "pages/business-index/business-index",
+        "iconPath": "components/business-nav-bar/images/icon-tab-business-index-normal.png",
+        "selectedIconPath": "components/business-nav-bar/images/icon-tab-business-index-pressed.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/business-order-list/business-order-list",
+        "iconPath": "components/business-nav-bar/images/icon-tab-business-order-list-normal.png",
+        "selectedIconPath": "components/business-nav-bar/images/icon-tab-business-order-list-pressed.png",
+        "text": "订单"
+      }
+    ]
   },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "小裁神",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#ffffff",
+    "navigationStyle": "custom"
+  },
+  "navigateToMiniProgramAppIdList": [],
   "plugins": {
     "sdkPlugin": {
-      "version": "3.4.0",
+      "version": "3.6.0",
       "provider": "wxc6b86e382a1e3294"
-    },
-    "lotteryPlugin": {
-      "version": "0.0.11",
-      "provider": "wxc1f09e5b32e50d96"
     }
   },
-  "navigateToMiniProgramAppIdList": [
-    "wxb3b1ddc14ebfbed0",
-    "wxc1f09e5b32e50d96"
-  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
   "sitemapLocation": "sitemap.json"
 }

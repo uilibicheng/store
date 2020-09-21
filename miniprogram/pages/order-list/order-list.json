@@ -1,6 +1,9 @@
 {
-  "enablePullDownRefresh": true,
+  "component": true,
   "usingComponents": {
-    "alert-modal": "/components/alert-modal/alert-modal"
-  }
+    "page-header": "/components/page-header/page-header",
+    "nav-bar": "/components/nav-bar/nav-bar",
+    "contact-entrance": "/components/contact-entrance/contact-entrance"
+  },
+  "disableScroll": true
 }

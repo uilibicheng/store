@@ -1,0 +1,12 @@
+syntax: glob
+
+node_modules/
+dist/
+
+.vscode
+.DS_Store
+.eslintcache
+
+*.orig
+*.swp
+*.log

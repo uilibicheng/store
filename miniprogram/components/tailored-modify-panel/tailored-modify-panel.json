@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "tailored-modify-cascader": "/components/tailored-modify-cascader/tailored-modify-cascader"
+  }
+}

@@ -1,0 +1,25 @@
+<!--pages/business-verification/business-verification.wxml-->
+<page-header selfStyle="background-color: #E7E0D6;" showIndexBtn />
+
+<view class="title">填写商家邀请码或扫商家码</view>
+
+<image src="https://cloud-minapp-32931.cloud.ifanrusercontent.com/1j7WcnkSgSgiWoKb.png" class="img"></image>
+
+<view class="input-panel">
+  <input
+    class="input"
+    placeholder="请填写商家邀请码"
+    placeholder-class="input-placeholder"
+    bindinput="handleCodeInput"
+    value="{{inputText}}"></input>
+  <image src="./images/icon-scan.png" class="scan-icon" catchtap="handleScanCode"></image>
+</view>
+
+<view class="error-tips" wx:if="{{showErrorMsg}}">
+  <image src="./images/icon-warn.png"></image>
+  该PK码不存在或已过期，请重新输入或扫码
+</view>
+
+<view class="btn" bindtap="submitInvitationCode">提交</view>
+
+<contact-entrance />

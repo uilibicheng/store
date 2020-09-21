@@ -1,7 +1,0 @@
-{
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "alert-modal": "/components/alert-modal/alert-modal",
-    "burying-form": "/components/burying-form/burying-form"
-  }
-}

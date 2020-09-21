@@ -1,0 +1,14 @@
+<!--components/tips-modal/tips-modal.wxml-->
+<view wx:if="{{showModal}}" class="mask" catchtouchmove="noop">
+  <view style="width: {{modalWidth}};" class="container {{modalSize === 'small' ? 'small-modal' : 'big-modal'}}" catchtap="noop">
+    <view class="title" wx:if="{{title}}">{{title}}</view>
+    <view class="content">
+      <slot></slot>
+    </view>
+    <view class="footer">
+      <view
+        class="btn {{btnSize === 'small' ? 'small-btn' : 'big-btn'}} {{btnDisabled && 'disabled'}}"
+        bindtap="{{btnDisabled ? 'noop' : 'onConfirm'}}">{{btnText}}</view>
+    </view>
+  </view>
+</view>

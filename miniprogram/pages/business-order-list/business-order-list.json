@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "page-header": "/components/page-header/page-header",
+    "business-nav-bar": "/components/business-nav-bar/business-nav-bar",
+    "create-order-entrance": "/components/create-order-entrance/create-order-entrance",
+    "modal-container": "/components/modal-container/modal-container",
+    "normal-counter": "/components/normal-counter/normal-counter",
+    "contact-entrance": "/components/contact-entrance/contact-entrance"
+  },
+  "disableScroll": true
+}

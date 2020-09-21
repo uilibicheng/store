@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "footer-ipx": "/components/footer-ipx/footer-ipx",
-    "burying-form": "/components/burying-form/burying-form"
-  },
-  "navigationBarBackgroundColor": "#D9EFFF",
-  "navigationBarTextStyle": "black"
-}

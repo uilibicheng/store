@@ -1,0 +1,72 @@
+/* pages/add-phone-number/add-phone-number.wxss */
+.container {
+  width: 100vw;
+  min-height: 70vh;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 166rpx;
+  height: 166rpx;
+  border-radius: 50%;
+  border: 6rpx solid #CBBDAB;
+  overflow: hidden;
+}
+
+.nickname {
+  font-weight: 700;
+  font-size: 48rpx;
+  color: #4B5767;
+  line-height: 66rpx;
+  width: 90vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  margin-top: 26rpx;
+}
+
+.tel-item {
+  font-size: 30rpx;
+  color: #4B5767;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 42rpx;
+  margin-top: 26rpx;
+}
+
+.tel-item image {
+  width: 22rpx;
+  height: 24rpx;
+  margin-left: 10rpx;
+}
+
+.tips {
+  width: 654rpx;
+  height: 144rpx;
+  border-radius: 16rpx;
+  opacity: .6;
+  background-color: #fff;
+  padding: 32rpx;
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 40rpx;
+  margin-top: 38rpx;
+}
+
+.btn {
+  width: 296rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  border: 1px solid #8C7565;
+  text-align: center;
+  line-height: 78rpx;
+  font-size: 28rpx;
+  color: #8C7565;
+  margin-top: 66rpx;
+  background-color: initial;
+}

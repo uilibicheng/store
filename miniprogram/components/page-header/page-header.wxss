@@ -1,0 +1,43 @@
+/* components/page-header/page-header.wxss */
+.header {
+  width: 100vw;
+  /* background: rgba(0, 0, 0, .1); */
+  position: fixed;
+  box-sizing: border-box;
+  z-index: 50;
+  transition: all .4s;
+}
+
+.header-placeholder {
+  width: 100vw;
+  box-sizing: border-box;
+  transition: all .4s;
+}
+
+.home-btn {
+  position: absolute;
+  width: 34rpx;
+  height: 38rpx;
+  bottom: 23rpx;
+  left: 38rpx;
+}
+
+.back-btn {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  bottom: 24rpx;
+  left: 20rpx;
+}
+
+.title {
+  position: absolute;
+  font-weight: 700;
+  font-size: 34rpx;
+  line-height: 50rpx;
+  /* color: #000; */
+  bottom: 18rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: .9;
+}

@@ -1,0 +1,29 @@
+<!--components/tailored-panel/tailored-panel.wxml-->
+<view class="container">
+  <view class="switch-bar">
+    <view class="switch-item {{dataType === 'body' ? 'active' : ''}}" catchtap="switchDataType" data-type="body">身体数据</view>
+    <view class="switch-item {{dataType === 'clothes' ? 'active' : ''}}" catchtap="switchDataType" data-type="clothes">成衣数据</view>
+  </view>
+  <view class="content">
+    <view class="clothes-selector" wx:if="{{dataType === 'clothes' && productTypeList.length > 0}}">
+      <view
+        class="clothes-type {{productTypeListIndex === index ? 'active' : ''}}"
+        wx:for="{{productTypeList}}"
+        wx:key="index"
+        data-index="{{index}}"
+        catchtap="handleProductTypeChange">{{clothesType[item]}}</view>
+      <picker
+        range="{{curTypeProductList}}"
+        range-key="name"
+        value="{{curTypeProductListIndex}}"
+        bindchange="handleCurTypeProductChange">
+        <view class="clothes-picker">
+          {{clothesType[curTypeProductList[curTypeProductListIndex].clothes_type]}}
+          {{curTypeProductList[curTypeProductListIndex].clothes_type_index}}
+          <image src="./images/picker-arrow.png"></image>
+        </view>
+      </picker>
+    </view>
+    <tailored-cascader tailoredData="{{tailoredData}}" />
+  </view>
+</view>

@@ -1,0 +1,17 @@
+<!--components/nav-bar/nav-bar.wxml-->
+<view class="nav-bar-container {{isIpx && 'pb34'}}">
+  <view
+    wx:for="{{routeList}}"
+    wx:key="index"
+    class="nav-bar-item {{active === item.route ? 'active' : ''}}"
+    bindtap="handleNavEvent"
+    data-route="{{item.route}}">
+    <image src="./images/icon-tab-{{item.route}}-{{active === item.route ? 'pressed' : 'normal'}}.png"></image>
+    <text>{{item.name}}</text>
+    <button
+      class="auth-handler"
+      open-type="getUserInfo"
+      bindgetuserinfo="userInfoHandler"
+      wx:if="{{!isAuth && (item.route === 'order-list' || item.route === 'tailored')}}" />
+  </view>
+</view>

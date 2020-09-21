@@ -1,28 +1,36 @@
 {
-  "name": "legoland-store",
+  "name": "suitlife-store-faas",
   "version": "1.0.0",
   "description": "",
   "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-dev": "webpack --mode development",
-    "build": "webpack --mode production",
-    "deploy-prod": "npm run build && ./deploy.sh",
-    "deploy-dev": "npm run build-dev && ./deploy.sh"
+    "lint": "eslint 'src/**/*.js' --cache --fix",
+    "build": "webpack --env=production",
+    "deploy": "npm run build && ./deploy.sh",
+    "build:dev": "webpack --env=development",
+    "deploy:dev": "npm run build:dev && ./deploy.sh ec67c77e63eb627a9cb5"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "clean-webpack-plugin": "^1.0.0",
-    "mincloud": "^1.0.5",
-    "webpack": "^4.27.1",
-    "webpack-cli": "^3.1.2"
+    "babel-eslint": "^10.0.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "mincloud": "^1.0.6",
+    "prettier": "^1.19.1",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "fast-deep-equal": "^2.0.1",
-    "moment-timezone": "^0.5.23",
-    "node-xlsx": "^0.14.1",
-    "validator": "^10.10.0"
+    "dayjs": "^1.8.19",
+    "moment": "^2.24.0",
+    "node-xlsx": "^0.15.0",
+    "pyfl": "^1.1.4"
   }
 }

@@ -1,0 +1,135 @@
+/* components/tailored-cascader/tailored-cascader.wxss */
+.tailored-cascader-container {
+  width: 100%;
+  border-radius: 12rpx;
+  overflow: hidden;
+  /* box-shadow: 0 4rpx 20rpx 0 rgba(0, 0, 0, .14); */
+}
+
+.tailored-cascader-title {
+  height: 72rpx;
+  line-height: 72rpx;
+  display: flex;
+  background-color: #EEEAE4;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 48rpx 0 32rpx;
+  /* font-weight: 700; */
+  font-weight: 700;
+  font-size: 28rpx;
+  color: #4B5767;
+}
+
+.tailored-cascader-title image {
+  width: 16rpx;
+  height: 8rpx;
+  transition: all .3s;
+}
+
+.tailored-cascader-title.hide image {
+  transform: rotate(90deg);
+}
+
+.tailored-cascader-content {
+  transition: all .3s;
+  overflow: hidden;
+  height: initial,
+}
+
+.tailored-cascader-content.hide {
+  height: 0 !important;
+}
+
+.text-content {
+  display: flex;
+  flex-flow: wrap;
+  background-color: #fff;
+}
+
+.text-content-item {
+  width: 50%;
+  height: 72rpx;
+  line-height: 72rpx;
+  padding-left: 32rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #4B5767;
+  background-color: #F9F8F6;
+}
+
+.text-content-item:nth-child(odd) {
+  border-right: 1rpx solid #FFFFFF;
+}
+
+.text-content-item.bgc-white {
+  background-color: #fff;
+}
+
+.text-content-item text {
+  color: #BAB9B9;
+  margin-left: 24rpx;
+}
+
+.checkbox-content {
+  display: flex;
+  flex-flow: wrap;
+  background-color: #F9F8F6;
+  padding: 16rpx 0 0 48rpx;
+}
+
+.checkbox-content-item {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #BAB9B9;
+  margin: 0 48rpx 16rpx 0;
+}
+
+.select-content {
+  background-color: #FFF;
+  font-size: 28rpx;
+}
+
+.select-content-item {
+  height: 72rpx;
+  line-height: 72rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 48rpx;
+  font-family: PingFangSC-Regular;
+  color: #4B5767;
+}
+
+.select-content-item:nth-child(odd) {
+  background-color: #F9F8F6;
+}
+
+.select-content-item text {
+  color: #BAB9B9;
+  margin-left: 56rpx;
+}
+
+.textarea-content {
+  background-color: #F9F8F6;
+  padding: 16rpx 36rpx 16rpx 48rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #BAB9B9;
+}
+
+.no-tailored-data {
+  text-align: center;
+  margin: 300rpx auto;
+  font-size: 28rpx;
+  color: #856E5D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  opacity: .8;
+}
+
+.no-tailored-data image {
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 10rpx;
+}

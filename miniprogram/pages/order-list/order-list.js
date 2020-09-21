@@ -1,123 +1,114 @@
-// pages/order-list/order-list.js
+import router from '../../lib/router'
+import device from '../../lib/device'
+// import baas from '../../lib/baas'
+import format from '../../lib/format'
 import io from '../../io/index'
-import moment from '../../lib/moment-timezone.js'
-import {ROUTE} from '../../config/constants'
-import pay from '../../utils/pay'
+import * as constants from '../../config/constants'
+
 const app = getApp()
 
-Page({
-  offset: 0,
-  limit: 10,
-  status: 'all',
-  isLoading: false,
-  errorMsg: '',
+let _getOrderListLocked = false
+
+Component({
+  properties: {
+  },
+
   data: {
-    orders: [],
-    hasMore: true,
+    statusBarHeight: device.getStatusBarHeight(),
+    navBarHeight: device.getNavbarHeight(),
+    orderStatus: constants.ORDER_STATUS,
+    clothesType: constants.CLOTHES_TYPE,
+    autoFocus: false,
+    orderList: [],
+    orderOffset: 0,
+    searchText: '',
+    refreshTriggered: false,
   },
 
-  onLoad(options) {
-    this.status = options.status
-  },
+  methods: {
+    onLoad() {
+      this.getOrderList()
+    },
 
-  onShow() {
-    this.offset = 0
-    app
-      .auth(`/${ROUTE.ORDER_LIST}?status=${this.status || 'all'}`)
-      .then(this.dataInit)
-      .catch(err => console.log(err))
-  },
-
-  dataInit() {
-    wx.showLoading({
-      mask: true,
-    })
-    return Promise.all([this.fetchOrder()])
-      .catch(err => console.log(err))
-      .then(wx.hideLoading)
-  },
-
-  fetchOrder() {
-    this.isLoading = true
-    return io
-      .fetchOrder(this.status, this.offset, this.limit)
-      .then(res => {
-        let orders = res.data.objects.map(order => {
-          order.reservation_date = moment(order.reservation_date)
-            .tz('Asia/Tokyo')
-            .format('YYYY-MM-DD')
-          return order
-        })
-        if (this.offset > 0) {
-          orders = this.data.orders.concat(orders)
-        }
-        this.offset = this.offset + this.limit
-        this.isLoading = false
+    onShow() {
+      if (app.globalData.autoFocus) {
         this.setData({
-          orders,
-          hasMore: !!res.data.meta.next,
+          autoFocus: true,
+        })
+        app.globalData.autoFocus = false
+      }
+    },
+
+    onHide() {
+      this.setData({
+        autoFocus: false,
+      })
+    },
+
+    onRefresh() {
+      console.log('onRefresh')
+      this.setData({
+        orderList: [],
+        orderOffset: 0,
+      }, this.getOrderList)
+    },
+
+    onScrollToLower() {
+      console.log('order-list onScrollToLower')
+      if (_getOrderListLocked) return
+      _getOrderListLocked = true
+      console.log('order-list onScrollToLower a')
+      this.getOrderList()
+    },
+
+    getOrderList() {
+      _getOrderListLocked = true
+      wx.showLoading({mask: true})
+      const {orderOffset, searchText} = this.data
+      let params = {
+        offset: orderOffset,
+      }
+      if (searchText) params.search_order_num = searchText
+      return io.getUserOrderList(params).then(res => {
+        const dataList = res.data.objects.map(item => {
+          item.created_at_format = format.formatDate(item.created_at, 'YYYY-MM-DD')
+          item.show_all_item = false
+          return item
+        })
+        this.setData({
+          orderList: orderOffset === 0 ? dataList : this.data.orderList.concat(dataList),
+          orderOffset: orderOffset + 20,
+          refreshTriggered: false,
+        }, () => {
+          _getOrderListLocked = !res.data.meta.next
+          wx.hideLoading()
         })
       })
-      .catch(err => {
-        console.log('获取订单列表时错误', err)
-        this.isLoading = false
-        throw err
+    },
+
+    showOrderAllItem(e) {
+      const targetIndex = e.currentTarget.dataset.index
+      let orderList = [...this.data.orderList]
+      orderList[targetIndex].show_all_item = true
+      this.setData({
+        orderList,
       })
-  },
+    },
 
-  closeErrorAlert() {
-    this.setData({
-      errorMsg: '',
-    })
-  },
+    handleSearchOrder(e) {
+      const {value} = e.detail
+      this.setData({
+        orderOffset: 0,
+        searchText: value.trim()
+      }, this.getOrderList)
+    },
 
-  navToOrderDetail(e) {
-    const id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: `/${ROUTE.ORDER}?id=${id}`,
-    })
-  },
-
-  handlePay(e) {
-    const order = e.currentTarget.dataset.order
-    wx.showLoading({
-      mask: true,
-    })
-    return pay(order.id, order.tickets, order.tickets[0].bundle_name, order.amount)
-      .then(() => {
-        wx.showLoading({
-          mask: true,
-        })
-        setTimeout(() => {
-          this.offset = 0
-          this.fetchOrder()
-            .then(wx.hideLoading)
-            .catch(wx.hideLoading)
-        }, 1000)
+    navToOrderDetail(e) {
+      const {index} = e.currentTarget.dataset
+      app.globalData.orderInfo = this.data.orderList[index]
+      router.push({
+        name: 'order',
       })
-      .catch(err => {
-        if (/payment\scancelled/.test(err.message)) {
-          this.setData({
-            errorMsg: '',
-          })
-        } else {
-          this.setData({
-            errorMsg: '付款失败',
-          })
-        }
-        console.log(err)
-      })
-      .then(wx.hideLoading)
-  },
-
-  onReachBottom() {
-    if (this.data.hasMore && !this.isLoading) {
-      this.fetchOrder()
-    }
-  },
-
-  onPullDownRefresh() {
-    this.offset = 0
-    this.fetchOrder().then(wx.stopPullDownRefresh)
-  },
+    },
+  }
 })

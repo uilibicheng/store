@@ -1,0 +1,113 @@
+<!--pages/wiki/wiki.wxml-->
+<view class="wiki-page">
+  <page-header selfStyle="background-color: #E7E0D6;" />
+
+  <view class="wiki-type-switch-tab" style="top: {{navBarHeight}}px;">
+    <view class="switch-item {{wikiType === 'outfit' ? 'active' : ''}}" data-type="outfit" catchtap="switchWikiType">搭配</view>
+    <view class="switch-item {{wikiType === 'product' ? 'active' : ''}}" data-type="product" catchtap="switchWikiType">单品</view>
+    <view class="switch-item {{wikiType === 'picture' ? 'active' : ''}}" data-type="picture" catchtap="switchWikiType">图鉴</view>
+  </view>
+
+  <view class="filter-bar" style="top: calc({{navBarHeight}}px + 92rpx);">
+    <view class="filter-selected">
+      <scroll-view scroll-x class="filter-selected-scroll">
+        <view class="filter-selected-scroll-content">
+          <view class="item" wx:for="{{curChildrenCategory}}" wx:key="index">
+            {{wikiType === 'picture' ? item.name : categoryName[item.pid] + '-' + item.name}}
+            <image src="./images/icon-cancel.png" class="cancel" data-index="{{index}}" catchtap="deleteSelectedCategory" />
+          </view>
+          <view class="placeholder"></view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="filter-btn" catchtap="handleFilterShow">筛选<image class="img {{showFilter ? 'active' : ''}}" src="./images/icon-classify.png" /></view>
+  </view>
+
+  <view style="height: 160rpx;"></view>
+
+  <scroll-view
+    scroll-y
+    class="wiki-content"
+    enable-back-to-top
+    bindscrolltolower="onScrollToLower"
+    style="height: calc(100vh - {{navBarHeight}}px - 160rpx);">
+    <view style="height: 1px;" />
+
+    <view class="wiki-article-list" wx:if="{{wikiType !== 'picture'}}">
+      <view class="wiki-article-item" wx:for="{{articleList}}" wx:key="index" data-index="{{index}}" catchtap="navToAritcle">
+        <image class="article-cover" src="{{item.cover}}"></image>
+        <view class="article-info">
+          <view class="title">{{item.title}}</view>
+          <view class="date">{{item.created_at_format}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="wiki-handbook-container" wx:if="{{wikiType === 'picture'}}">
+      <view class="wiki-handbook-list" id='leftList'>
+        <view class="wiki-handbook-item" wx:for="{{articleList[0]}}" wx:key="index" data-list="0" data-index="{{index}}" catchtap="navToPicture">
+          <image class="img" src="{{item.cover}}" mode="widthFix"></image>
+          <view class="tag-panel">
+            <view
+              class="tag"
+              wx:for="{{item.category}}"
+              wx:for-item="categoryItem"
+              wx:for-index="categoryIndex"
+              wx:key="categoryIndex">{{categoryName[categoryItem]}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="wiki-handbook-list" id='rightList'>
+        <view class="wiki-handbook-item" wx:for="{{articleList[1]}}" wx:key="index" data-list="1" data-index="{{index}}" catchtap="navToPicture">
+          <image class="img" src="{{item.cover}}" mode="widthFix"></image>
+          <view class="tag-panel">
+            <view
+              class="tag"
+              wx:for="{{item.category}}"
+              wx:for-item="categoryItem"
+              wx:for-index="categoryIndex"
+              wx:key="categoryIndex">{{categoryName[categoryItem]}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="no-list-data" wx:if="{{showNoData && wikiType !== 'picture'}}">
+      <image src="https://cloud-minapp-32931.cloud.ifanrusercontent.com/1jE5v1a49ITEOdHB.png"></image>
+      暂无相关资料
+    </view>
+    <view class="no-list-data" style="margin-top: 210rpx;" wx:if="{{showNoData && wikiType === 'picture'}}">
+      <image src="https://cloud-minapp-32931.cloud.ifanrusercontent.com/1jE5v1a49ITEOdHB.png"></image>
+      暂无相关资料
+    </view>
+  </scroll-view>
+
+</view>
+
+<nav-bar wx:if="{{!isStoreUser}}" />
+<business-nav-bar wx:if="{{isStoreUser}}" />
+
+<view class="filter-mask" style="top: calc({{navBarHeight}}px + 160rpx);" wx:if="{{showFilter}}" catchtap="handleFilterShow" catchtouchmove="noop">
+  <view class="filter-panel" catchtap="noop">
+    <view class="filter-type-list first-type">
+      <view
+        class="first-type-item {{curParentCategory.id && curParentCategory.id === item.id ? 'active' : ''}}"
+        wx:for="{{parentCategory}}"
+        wx:key="index"
+        data-index="{{index}}"
+        catchtap="switchParentCategory">{{item.name}}</view>
+    </view>
+
+    <view class="filter-type-list second-type">
+      <view class="second-type-item {{modifiedChildrenCategoryMap[item.id] ? 'active' : ''}}"
+        wx:for="{{childrenCategory}}"
+        wx:key="index"
+        data-index="{{index}}"
+        catchtap="handleChildrenCategoryClicked">{{item.name}}</view>
+    </view>
+
+    <view class="multi-btn" wx:if="{{wikiType === 'picture'}}" catchtap="handleFilterBtnClicked">确定</view>
+  </view>
+</view>
+
+<contact-entrance />

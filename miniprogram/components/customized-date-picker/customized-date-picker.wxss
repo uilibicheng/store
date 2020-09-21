@@ -1,4 +1,0 @@
-/* components/customized-date-picker/customized-date-picker.wxss */
-picker {
-  position: relative;
-}

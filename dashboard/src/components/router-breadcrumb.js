@@ -1,18 +1,32 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import {Breadcrumb} from 'antd'
-import {_} from 'i18n-utils'
+import breadcrumb from '../utils/breadcrumb'
 
-export default function RouterBreadcrumb(props) {
-  const {data, prefix = `${_('所在位置')}: `} = props
+function RouterBreadcrumb(props) {
+  const {location} = props
+  const breadcrumbList = breadcrumb.parse(location.pathname)
+
+  const parsePath = path => {
+    if (!path) return
+    return path.split('/:')[0]
+  }
+
   return (
-    <Breadcrumb {...props}>
-      {data.map((entry, index) => (
-        <Breadcrumb.Item key={entry[0]}>
-          {index === 0 && prefix ? prefix : null}
-          {entry[0] ? <Link to={entry[0]}>{entry[1]}</Link> : entry[1]}
+    <Breadcrumb>
+      {breadcrumbList.map((item, index) => (
+        <Breadcrumb.Item key={item.key}>
+          {console.log('parsePath', parsePath(item.path))}
+          {index === 0 ? '所在位置：' : ''}
+          {item.path && item.path !== location.pathname && index < breadcrumbList.length - 1 ? (
+            <Link to={parsePath(item.path)}>{item.menuTitle || item.name}</Link>
+          ) : (
+            item.menuTitle || item.name
+          )}
         </Breadcrumb.Item>
       ))}
     </Breadcrumb>
   )
 }
+
+export default withRouter(RouterBreadcrumb)

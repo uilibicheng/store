@@ -1,0 +1,40 @@
+/* components/modal-container/modal-container.wxss */
+.mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .6);
+  z-index: 99999;
+}
+
+.container {
+  position: absolute;
+  width: 650rpx;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /* background: #FFF9E3; */
+  border-radius: 16rpx;
+  box-sizing: border-box;
+}
+
+.container.adjust-position {
+  top: 54%;
+}
+
+.content {
+  width: 100%;
+  min-height: 200rpx;
+  overflow: hidden;
+}
+
+.icon-close {
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  right: 2rpx;
+  top: -56rpx;
+  opacity: .5;
+}

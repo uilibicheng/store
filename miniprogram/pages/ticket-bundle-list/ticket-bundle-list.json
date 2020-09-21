@@ -1,6 +1,0 @@
-{
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "burying-form": "/components/burying-form/burying-form"
-  }
-}

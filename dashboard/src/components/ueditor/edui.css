@@ -1,0 +1,7 @@
+.edui-default {
+  line-height: initial;
+}
+
+.edui-default ~ input[type='file'] {
+  height: 0;
+}

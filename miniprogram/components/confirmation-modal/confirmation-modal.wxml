@@ -1,5 +1,0 @@
-<custom-modal title="{{title}}" content="{{content}}" contentAlignLeft="{{contentAlignLeft}}" canScroll="{{canScroll}}">
-  <slot wx:if="{{!content}}" slot="content" name="content"></slot>
-  <view class="cancel" slot="btns" bindtap="handleCancel">取消</view>
-  <view class="confirm" slot="btns" bindtap="handleConfirm">确定</view>
-</custom-modal>

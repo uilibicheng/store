@@ -155,21 +155,21 @@ const codeMap = {
   '&clubs;': '♣',
   '&hearts;': '♥',
   '&diams;': '♦',
-  '&#39;': "'"
-};
+  '&#39;': "'",
+}
 
 /**
  * 转换特殊字符
  * @param  {String} str 待转换字符串
  * @return {String}     转换后的字符串
  */
-const transform = (str) => {
-  for (let code in codeMap) {
-    str = str.replace(new RegExp(code, 'g'), codeMap[code]);
+const transform = str => {
+  for (const code in codeMap) {
+    str = str.replace(new RegExp(code, 'g'), codeMap[code])
   }
-  return str;
-};
+  return str
+}
 
 module.exports = {
-  transform
+  transform,
 }

@@ -7,9 +7,7 @@ export default function retry(fn, limit = 2, failCallback = () => null) {
         limit -= 1
         retry(fn, limit, failCallback).apply(null, args)
       } else {
-        if (typeof failCallback === 'function') {
-          return failCallback()
-        }
+        typeof failCallback === 'function' && failCallback()
         return null
       }
     }
