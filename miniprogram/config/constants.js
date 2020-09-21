@@ -1,6 +1,4 @@
-export const BAAS_CLIENT_ID = '3663caaf1f7c50e85579'
-
-export const ENV_ID = 'ec67c77e63eb627a9cb5'
+export const BAAS_CLIENT_ID = 'b7a5589057d2da1e20d4'
 
 export const DEV = false  // 测试环境开关
 
@@ -18,7 +16,7 @@ export const BAAS_SCHEMA_ID = {
 const REMOTE_FUNCTION_PROD = {
   add_phone_number: 'add_phone_number',
   delete_phone_number: 'delete_phone_number',
-  get_store_by_order_id: 'get_store_by_order_id',
+  get_store_by_order_id: 'get_store _by_order_id',
   relate_order: 'relate_order',
   verify_invitation_code: 'verify_invitation_code',
   create_store: 'create_store',
