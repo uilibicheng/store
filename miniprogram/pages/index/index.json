@@ -4,6 +4,7 @@
     "page-header": "/components/page-header/page-header",
     "van-search": "@vant/weapp/search/index",
     "index-icon": "/components/index-icon/index-icon",
-    "index-card": "/components/index-card/index-card"
+    "index-card": "/components/index-card/index-card",
+    "van-toast": "@vant/weapp/toast/index"
   }
 }
