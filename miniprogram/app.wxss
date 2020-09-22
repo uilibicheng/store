@@ -2,7 +2,7 @@
 page {
   /* font-family: PingFangSC-Regular; */
   /* background-color: green; */
-  background-image: url('https://cloud-minapp-32931.cloud.ifanrusercontent.com/1jDmBV1Vs9IgyBVc.jpg');
+  /* background-image: url('https://cloud-minapp-32931.cloud.ifanrusercontent.com/1jDmBV1Vs9IgyBVc.jpg'); */
   background-size: 360rpx 360rpx;
   background-repeat: repeat;
 }

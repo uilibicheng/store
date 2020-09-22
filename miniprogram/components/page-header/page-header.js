@@ -17,7 +17,7 @@ Component({
   properties: {
     title: {
       type: String,
-      value: '小裁神',
+      value: '小美团',
     },
 
     selfStyle: {

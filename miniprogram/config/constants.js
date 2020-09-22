@@ -11,6 +11,8 @@ export const BAAS_SCHEMA_ID = {
   article_category: 'article_category',
   article: 'article',
   tailored: 'tailored',
+  banner:'banner',
+  program:'program'
 }
 
 const REMOTE_FUNCTION_PROD = {

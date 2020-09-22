@@ -1,140 +1,27 @@
 <!--pages/index/index.wxml-->
-<block wx:if="{{showPage}}">
-
-<page-header selfStyle="{{pageHeaderStyle}}" showPlaceholder="{{false}}" />
-
-<scroll-view
-  scroll-y class="page-scroll-container"
-  enable-back-to-top
-  refresher-enabled
-  refresher-triggered="{{refreshTriggered}}"
-  bindrefresherrefresh="onRefresh"
-  bindscroll="onScrollerScroll"
-  bindscrolltolower="onScrollerBottom">
-
-<view style="padding-top: {{statusBarHeight}}px; height: {{navBarHeight}}px;" />
-
-<view class="header">
-  <view class="header-info">
-
-    <view class="header-info-avatar" wx:if="{{isAuth}}">
-      <view class="avatar">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-    </view>
-    <view class="header-info-avatar" wx:else>
-      <image src="./images/pic-head.png" class="avatar"></image>
-      <view class="edit">
-        <image src="./images/icon-edit.png"></image>
-      </view>
-      <button class="auth-handler" open-type="getUserInfo" bindgetuserinfo="userInfoHandler" />
-    </view>
-
-    <view class="header-info-nickname">
-      <open-data type="userNickName"></open-data>
-    </view>
-
-    <view class="header-info-tel" wx:if="{{userPhoneList.length > 0}}">
-      {{userPhoneList[0]}}
-      <text class="more-tel" bindtap="navToAddPhoneNumber" wx:if="{{userPhoneList.length > 1}}">更多 ></text>
-    </view>
-
-    <view
-      wx:if="{{isAuth}}"
-      class="header-info-add-tel"
-      style="margin-top: {{userPhoneList.length > 0 ? 10 : 36}}rpx;"
-      bindtap="{{userPhoneList.length > 0 ? 'navToAddPhoneNumber' : 'navToAuth'}}">
-      <image src="./images/icon-addnum.png"></image>
-      添加号码
-    </view>
-    <view
-      wx:else
-      class="header-info-add-tel"
-      style="margin-top: {{userPhoneList.length > 0 ? 10 : 36}}rpx;">
-      <image src="./images/icon-addnum.png"></image>
-      添加号码
-      <button class="auth-handler" open-type="getUserInfo" bindgetuserinfo="userInfoHandler" />
-    </view>
-    
-  </view>
-
-  <image class="header-img" src="{{indexCoverList[coverIndex]}}"></image>
-
-  <view class="header-order-info">
-    <block>
-      <!-- <swiper class="header-order-swiper" vertical autoplay circular duration="800">
-        <swiper-item class="header-order-swiper-item" wx:for="{{storeNameList}}" wx:key="index">
-          <view class="header-order-shop">{{item}}</view>
+<block>
+  <!--头部-->
+  <page-header selfStyle="background-color: #ffffff;" />
+  <!--banner图-->
+  <view bindtap="test" class="page-banner swiper">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#ffffff">
+      <block wx:for="{{bannerList}}" wx:key="*this">
+        <swiper-item>
+          <view class="page-banner-div">
+            <image class="page-banner-img" src="{{item.image}}"></image>
+          </view>
         </swiper-item>
-      </swiper> -->
-      <view class="header-order-shop">{{slogan}}</view>
-      <view class="header-order-account" wx:if="{{userOrderInfo && userOrderInfo.objects.length > 0}}">
-        已有 <text>{{userOrderInfo.meta.total_count}}</text> 个订单
-      </view>
-      <view class="header-order-account" wx:else>
-        暂无订单
-      </view>
-    </block>
-    <!-- <view class="no-data" wx:else>暂无订单</view> -->
+      </block>
+    </swiper>
   </view>
-</view>
+  <!--搜索框-->
+  <van-search value="{{ searchValue }}" shape="round" placeholder="请输入商家名称" />
+  <!--选择图标-->
+  <index-icon programList="{{programList}}" />
 
-<view class="content-container">
-  <view class="content-label" wx:if="{{!isAuth || userPhoneList.length === 0}}">
-    <text>最新订单</text>
-  </view>
-  <view class="auth-panel" wx:if="{{!isAuth || userPhoneList.length === 0}}">
-    <view class="auth-tips">请先授权您的手机（绑定在店铺中留下的手机号码），以便匹配您的往期记录。</view>
-    <button class="auth-btn" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">马上授权</button>
-  </view>
-
-  <block wx:if="{{userOrderInfo && userOrderInfo.objects.length > 0}}">
-  <view class="content-label">
-    <text>最新订单</text>
-    <view class="content-label-search-order" bindtap="navToSearchOrder">
-      <image src="./images/icon-search.png"></image>
-      <text>搜索订单号</text>
-    </view>
-  </view>
-  <view class="content-latest-order" bindtap="navToOrderDetail">
-    <view class="latest-order-header">
-      <text class="label">{{userOrderInfo.objects[0].store_name_format}}</text>
-      <text>{{userOrderInfo.objects[0].created_at_format}}</text>
-    </view>
-    <scroll-view scroll-x	class="latest-order-info-scroll">
-      <view class="latest-order-info">
-        <view class="latest-order-info-item" wx:for="{{userOrderInfo.objects[0].product_list}}" wx:key="index">
-          <image src="./images/icon-home-{{item.clothes_type}}.png"></image>
-          <view class="item-name">{{clothesType[item.clothes_type]}}<text>{{item.clothes_type_index}}</text></view>
-          <view class="item-status">{{orderStatus[item.status]}}</view>
-        </view>
-        <view class="latest-order-info-item-placeholder"></view>
-      </view>
-    </scroll-view>
-  </view>
-  <view class="content-order-entrance" bindtap="navToOrderList">
-    <text>全部订单</text><image src="./images/icon-entrance.png"></image>
-  </view>
-  </block>
-
-  <view class="content-label">
-    <text>搭配小百科</text>
-  </view>
-
-  <view class="content-wiki-item" wx:for="{{wikiContentList}}" wx:key="id" data-index="{{index}}" catchtap="navToArticle">
-    <image class="cover" src="{{item.cover}}"></image>
-    <view class="info">
-      <view class="title">{{item.title}}</view>
-      <view class="date">{{item.created_at_format}}</view>
-    </view>
-  </view>
-
-</view>
-
-</scroll-view>
-
-<nav-bar />
-
-<contact-entrance />
-
+  <!--附近商家-->
+   <view class="page-business-title">附近商家</view>
+   <index-card/> 
+  <!--toast-->
+   <van-toast id="van-toast" />
 </block>

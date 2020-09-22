@@ -1,0 +1,44 @@
+/* components/index-icon/index-icon.wxss */
+
+.icon-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 16px 0 17px 0;
+}
+
+.icon-container-box {
+  width: 25%;
+  text-align: center;
+  margin-bottom: 10rpx;
+  position: relative;
+}
+
+.icon-container-img {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.icon-container-text {
+  padding: 0px 0 0px 0;
+  font-size: 24rpx;
+  font-weight: 400;
+  line-height: 15px;
+  text-align: center;
+  color: #666;
+}
+
+.icon-container-tag {
+  position: absolute;
+  background: linear-gradient(180deg, #f37e7e, #eb5555);
+  border-radius: 100rpx 100rpx 100rpx 0;
+  top: -20rpx;
+  left: 130rpx;
+  font-size: 20rpx;
+  padding: 4rpx 15rpx;
+  text-align: center;
+  color: #fff;
+  white-space: nowrap;
+  z-index: 50；;
+}

@@ -2,8 +2,8 @@
   "component": true,
   "usingComponents": {
     "page-header": "/components/page-header/page-header",
-    "nav-bar": "/components/nav-bar/nav-bar",
-    "contact-entrance": "/components/contact-entrance/contact-entrance"
-  },
-  "disableScroll": true
+    "van-search": "@vant/weapp/search/index",
+    "index-icon": "/components/index-icon/index-icon",
+    "index-card": "/components/index-card/index-card"
+  }
 }

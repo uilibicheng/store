@@ -4,7 +4,7 @@ import file from './file'
 import store from './store'
 import tailored from './tailored'
 import settings from './settings'
-
+import home from './home'
 
 export default {
   ...order,
@@ -13,4 +13,5 @@ export default {
   ...store,
   ...tailored,
   ...settings,
+  ...home
 }

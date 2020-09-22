@@ -2,6 +2,7 @@ syntax: glob
 
 node_modules/
 dist/
+miniprogram_npm/
 
 .vscode
 .DS_Store
