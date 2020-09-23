@@ -1,16 +1,18 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
-import {Form, Input, Button, InputNumber, Switch, Select, Cascader, TimePicker } from 'antd'
+import {Form, Input, Button, InputNumber, Switch, Select, Cascader, Radio } from 'antd'
 
 import io from '../io'
 import utils from '../utils'
 import FormItem from '../components/form-item'
 import Uploader from '../components/uploader'
+import Ueditor from '../components/ueditor'
 import Position from '../config/position'
 import withBaseTable from '../components/with-base-table'
-import { format } from 'prettier'
 
 const db = io.merchant
+const typeDb = io.merchantType
+const serviceDb = io.restaurantService
 
 class BannerEdit extends React.Component {
   state = {
@@ -19,6 +21,14 @@ class BannerEdit extends React.Component {
     meta: {},
     merchantList: [],
     searchName: '',
+    merchantType: [],
+    serviceList: [],
+    selectedService: [],
+    halfYearSales: {
+      real_sales: 0,
+      add_sales: 0,
+      total_sales: 0,
+    }
   }
 
   get id() {
@@ -28,6 +38,8 @@ class BannerEdit extends React.Component {
 
   componentDidMount() {
     this.init()
+    this.getMerchantTypeList()
+    this.getServiceList()
   }
 
   init() {
@@ -45,18 +57,48 @@ class BannerEdit extends React.Component {
     }
   }
 
-  handleSelectedPosition = () => {
+  getMerchantTypeList(params = {offset: 0, limit: 100}) {
+    return typeDb.find(params).then(res => {
+      const merchantType = res.data.objects
+      this.setState({merchantType})
+    })
+  }
 
+  getServiceList(params = {offset: 0, limit: 100}) {
+    return serviceDb.find(params).then(res => {
+      const serviceList = res.data.objects
+      this.setState({serviceList})
+    })
+  }
+
+  onSelectChange = values => {
+    this.setState({
+      selectedService: values
+    })
+  }
+
+  changeSale = (value, key) => {
+    let {halfYearSales} = this.state
+    halfYearSales[key] = Number(value)
+    halfYearSales.total_sales = halfYearSales.real_sales + halfYearSales.add_sales
+    this.setState({
+      halfYearSales,
+    })
   }
 
   handleSubmit = e => {
-    const {formData} = this.state
+    const {formData, halfYearSales, selectedService} = this.state
     e.preventDefault()
     this.props.form.validateFieldsAndScroll((err, data) => {
-      console.log('err', err, data, formData)
+      console.log('err', err, data)
       if (err) return
-      utils.form.formatFields(data)
-      data.serial_number = Number(data.serial_number)
+      data.half_year_sales = halfYearSales
+      data.service_list = selectedService || []
+      data.provice = data.location[0] || ''
+      data.city = data.location[1] || ''
+      data.county = data.location[2] || ''
+      delete data.location
+      console.log('data', data)
       const req = this.id ? db.update(this.id, data) : db.create(data)
       req.then(() => {
         this.goBack()
@@ -68,7 +110,40 @@ class BannerEdit extends React.Component {
 
   render() {
     const {getFieldDecorator} = this.props.form
-    const {formData, loading} = this.state
+    const {formData, loading, merchantType, serviceList, selectedService, halfYearSales} = this.state
+
+    const serviceColumn = [
+      {
+        title: '服务内容',
+        dataIndex: 'content',
+      },
+    ]
+    const rowSelection = {
+      selectedRowKeys: selectedService,
+      onChange: this.onSelectChange,
+    }
+
+    const salesColumn = [
+      {
+        title: '真实销量',
+        dataIndex: 'real_sales',
+        render: () => {
+          return <InputNumber min={0} style={{width: '100px'}} value={halfYearSales.real_sales} onChange={value => {this.changeSale(value, 'real_sales')}} />
+        },
+      },
+      {
+        title: '增加销量',
+        dataIndex: 'add_sales',
+        render: () => {
+          return <InputNumber min={0} style={{width: '100px'}} value={halfYearSales.add_sales} onChange={value => {this.changeSale(value, 'add_sales')}} />
+        },
+      },
+      {
+        title: '总销量',
+        dataIndex: 'total_sales',
+        render: () => <span>{halfYearSales.total_sales}</span>
+      },
+    ]
 
     return loading ? null : (
       <>
@@ -83,7 +158,7 @@ class BannerEdit extends React.Component {
             {getFieldDecorator('name', {
               initialValue: formData.name || '',
               rules: utils.form.setRules(),
-            })(<Input />)}
+            })(<Input placeholder="请输入商家名称" />)}
           </FormItem>
           <FormItem label='人均消费'>
             {getFieldDecorator('consumption_person', {
@@ -95,6 +170,18 @@ class BannerEdit extends React.Component {
                 <option value={1}>100-200</option>
                 <option value={2}>200-300</option>
                 <option value={3}>300以上</option>
+              </Select>
+            )}
+          </FormItem>
+          <FormItem label='商家类型'>
+            {getFieldDecorator('merchant_type_id', {
+              initialValue: formData.merchant_type_id,
+              rules: utils.form.setRules(),
+            })(
+              <Select placeholder="请选择商家类型" showSearch optionFilterProp="children">
+                {merchantType.map(item => {
+                  return <Option value={item.id}>{item.type}</Option>
+                })}
               </Select>
             )}
           </FormItem>
@@ -114,40 +201,70 @@ class BannerEdit extends React.Component {
             )}
           </FormItem>
           <FormItem label='详细地址'>
-            {getFieldDecorator('name', {
-              initialValue: formData.name || '',
+            {getFieldDecorator('address', {
+              initialValue: formData.address || '',
               rules: utils.form.setRules(),
-            })(<Input />)}
+            })(<Input placeholder="请选择详细地址" />)}
           </FormItem>
           <FormItem label='位置经度'>
-            {getFieldDecorator('name', {
-              initialValue: formData.name || '',
+            {getFieldDecorator('longitude', {
+              initialValue: formData.longitude || '',
               rules: utils.form.setRules(),
-            })(<Input />)}
+            })(<Input placeholder="请输入位置经度" />)}
           </FormItem>
           <FormItem label='位置纬度'>
-            {getFieldDecorator('name', {
-              initialValue: formData.name || '',
+            {getFieldDecorator('laitude', {
+              initialValue: formData.laitude || '',
               rules: utils.form.setRules(),
-            })(<Input />)}
+            })(<Input placeholder="请输入位置纬度" />)}
           </FormItem>
           <FormItem label='联系电话'>
-            {getFieldDecorator('name', {
-              initialValue: formData.name || '',
+            {getFieldDecorator('contact_number', {
+              initialValue: formData.contact_number || '',
               rules: utils.form.setRules(),
-            })(<Input />)}
+            })(<Input placeholder="请输入联系电话" />)}
           </FormItem>
-          {/* <FormItem label='营业时间'>
+          <FormItem label='营业时间'>
             {getFieldDecorator('opening_time', {
               initialValue: formData.opening_time || [],
               rules: utils.form.setRules(),
+            })(<Input placeholder="请输入营业时间，如：10:00-23:00" />)}
+          </FormItem>
+          <FormItem label='半年销量'>
+            <BaseTable
+              style={{width: '450px'}}
+              columns={salesColumn}
+              dataSource={[halfYearSales]}
+              pagination={false}
+            />
+          </FormItem>
+          <FormItem label='餐厅服务'>
+            <BaseTable
+              style={{width: '350px'}}
+              rowClassName={() => 'editable-row'}
+              columns={serviceColumn}
+              rowSelection={rowSelection}
+              dataSource={serviceList}
+              pagination={false}
+            />
+          </FormItem>
+          <FormItem label='状态'>
+            {getFieldDecorator('status', {
+              initialValue: formData.status || 1,
+              rules: utils.form.setRules({type: 'number'}),
             })(
-              <TimePicker />
+              <Radio.Group>
+                <Radio value={1}>正常</Radio>
+                <Radio value={0}>禁用</Radio>
+              </Radio.Group>
             )}
-          </FormItem> */}
-          {/* <FormItem label='半年销量'>
-            
-          </FormItem> */}
+          </FormItem>
+          <FormItem label='商家详情'>
+            {getFieldDecorator('details', {
+              initialValue: formData.details || '',
+              rules: utils.form.setRules({required: false}),
+            })(<Ueditor />)}
+          </FormItem>
           <FormItem>
             <Button onClick={this.goBack}>取消</Button>
             <Button type='primary' htmlType='submit'>
@@ -159,5 +276,7 @@ class BannerEdit extends React.Component {
     )
   }
 }
+
+const BaseTable = withBaseTable()
 
 export default withRouter(Form.create()(BannerEdit))

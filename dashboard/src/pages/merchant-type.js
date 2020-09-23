@@ -1,27 +1,21 @@
 import React from 'react'
-import {Link, generatePath, withRouter} from 'react-router-dom'
-import {Form, Input, Button, message, Popconfirm, Switch} from 'antd'
+import {withRouter} from 'react-router-dom'
+import {Form, Input, Button, message, Popconfirm} from 'antd'
 
 import io from '../io'
 import utils from '../utils'
-import {ROUTE} from '../route'
+import EditMerchantType from '../components/edit-merchant-type'
 import withBaseTable from '../components/with-base-table'
-import Add from '../components/add'
 
-const db = io.merchant
+const db = io.merchantType
 
-const CONSUMPTION_PERSON = {
-  0: '100以下',
-  1: '100-200',
-  2: '200-300',
-  3: '300以上',
-}
-
-class BannerSetting extends React.Component {
+class MerchantType extends React.Component {
   state = {
     meta: {},
     dataSource: [],
     searchName: '',
+    visible: false,
+    formData: {},
   }
 
   componentDidMount() {
@@ -30,7 +24,6 @@ class BannerSetting extends React.Component {
 
   getDataSource(params = {offset: 0, limit: 10}) {
     params.where = this.searchParams
-    params.expand = 'merchant_type_id'
 
     return db
       .find({
@@ -47,9 +40,18 @@ class BannerSetting extends React.Component {
     const {searchName} = this.state
     const params = {}
     if (searchName) {
-      params.name = {$contains: searchName}
+      params.type = {$contains: searchName}
     }
     return params
+  }
+
+  handleDisplayChange(key, data) {
+    const {meta} = this.state
+    data[key] = !data[key]
+    db.update(data.id, data).then(() => {
+      message.success('更新成功')
+      this.getDataSource({offset: meta.offset, limit: meta.limit})
+    })
   }
 
   handleInput = e => {
@@ -59,7 +61,39 @@ class BannerSetting extends React.Component {
     })
   }
 
+  handelSearch = () => {
+    this.getDataSource()
+  }
+
   handleEditRow = data => {
+    this.setState({
+      formData: data
+    })
+    this.handleShowAddModal()
+  }
+
+  handleShowAddModal = () => {
+    this.setState({
+      visible: true,
+    })
+  }
+
+  handleHideModal = () => {
+    this.setState({
+      visible: false,
+      formData: {}
+    })
+  }
+
+  handleSaveProgramData = data => {
+    const {formData} = this.state
+    const req = formData.id ? db.update(formData.id, data) : db.create(data)
+    let title = formData.id ? '更新成功' : '添加成功'
+    req.then(() => {
+      message.success(title)
+      this.handleHideModal()
+      this.getDataSource()
+    })
   }
 
   handleDeleta = id => {
@@ -70,7 +104,8 @@ class BannerSetting extends React.Component {
   }
 
   render() {
-    const columnsWidth = [60, 120, 110, 100, 180, 150, 60, 350]
+    const {visible, formData} = this.state
+    const columnsWidth = [60, 150, 180]
     const columns = [
       {
         title: '序号',
@@ -78,32 +113,8 @@ class BannerSetting extends React.Component {
         render: (val, row, index) => this.state.meta.offset + index + 1,
       },
       {
-        title: '商家名称',
-        dataIndex: 'name',
-      },
-      {
-        title: '人均消费/人',
-        dataIndex: 'consumption_person',
-        render: val => CONSUMPTION_PERSON[val],
-      },
-      {
         title: '商家类型',
-        dataIndex: 'merchant_type_id',
-        render: val => val.type,
-      },
-      {
-        title: '位置',
-        dataIndex: 'provice',
-        render: (val, row) => row.provice + '-' + row.city + '-' + row.county,
-      },
-      {
-        title: '详细位置',
-        dataIndex: 'address',
-      },
-      {
-        title: '状态',
-        dataIndex: 'status',
-        render: val => (val === 1 ? '正常' : '禁用'),
+        dataIndex: 'type',
       },
       {
         fixed: 'right',
@@ -111,17 +122,8 @@ class BannerSetting extends React.Component {
         key: 'action',
         render: (val, row) => (
           <>
-            <Button type='primary' ghost style={{margin: '0px 8px'}}>
-              <Link to={generatePath(ROUTE.MERCHANT_EDIT, {id: row.id})}>编辑</Link>
-            </Button>
-            <Button type='primary' ghost style={{margin: '0px 8px'}}>
-              <Link to={generatePath(ROUTE.BANNER_EDIT, {id: row.id})}>图片管理</Link>
-            </Button>
-            <Button type='primary' ghost style={{margin: '0px 8px'}}>
-              <Link to={generatePath(ROUTE.BANNER_EDIT, {id: row.id})}>优惠券</Link>
-            </Button>
-            <Button type='primary' ghost style={{margin: '0px 8px'}}>
-              <Link to={generatePath(ROUTE.BANNER_EDIT, {id: row.id})}>菜品管理</Link>
+            <Button type='primary' ghost style={{margin: '0px 8px'}} onClick={() => this.handleEditRow(row)}>
+              编辑
             </Button>
             <Popconfirm title='确认删除' onConfirm={() => this.handleDeleta(row.id)}>
               <Button type='danger' ghost>
@@ -132,9 +134,7 @@ class BannerSetting extends React.Component {
         ),
       },
     ].map((item, index) => {
-      if (columnsWidth[index]) {
-        item.width = columnsWidth[index]
-      }
+      item.width = columnsWidth[index]
       return item
     })
 
@@ -143,19 +143,21 @@ class BannerSetting extends React.Component {
     return (
       <>
         <div>
-          <span>商家名称：</span>
+          <span>商家类型：</span>
           <Input
             style={{width: 220, marginRight: 15, marginBottom: 15, marginLeft: 10}}
-            placeholder="请输入商家名称"
+            placeholder="请输入商家类型"
             value={this.state.searchName}
             onChange={this.handleInput}
           />
-          <Button type='primary' onClick={() => {this.getDataSource()}}>
+          <Button type='primary' onClick={this.handelSearch}>
             查询
           </Button>
         </div>
         <div style={{marginBottom: 15}}>
-        <Add path={generatePath(ROUTE.MERCHANT_ADD)} {...this.props} />
+          <Button type='primary' onClick={this.handleShowAddModal}>
+            新增
+          </Button>
         </div>
         <BaseTable
           {...this.props}
@@ -164,6 +166,13 @@ class BannerSetting extends React.Component {
           dataSource={this.state.dataSource}
           pagination={utils.pagination(this.state.meta, params => this.getDataSource(params))}
         />
+        {!visible ? null
+          : <EditMerchantType
+          visible={visible}
+          onCancel={this.handleHideModal}
+          formData={formData || {}}
+          onSubmit={this.handleSaveProgramData}
+        />}
       </>
     )
   }
@@ -171,12 +180,4 @@ class BannerSetting extends React.Component {
 
 const BaseTable = withBaseTable()
 
-export default withRouter(Form.create()(BannerSetting))
-
-const style = {
-  img: {
-    width: 80,
-    height: 80,
-    objectFit: 'contain'
-  }
-}
+export default withRouter(Form.create()(MerchantType))
