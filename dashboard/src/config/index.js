@@ -4,15 +4,17 @@ export const ENV_ID = 'ec67c77e63eb627a9cb5'
 export const CATEGORY_ID = DEV ? '' : ''
 
 const tableList = [
-  'access',
   'settings',
-  'admin_operation_log',
-  'store',
-  'tailored',
-  'order',
-  'invitation_code',
-  'article',
-  'article_category',
+  'program',
+  'banner',
+  'user',
+  'merchant_type',
+  'restaurant_service',
+  'merchant',
+  'merchant_banner',
+  'coupon',
+  'packages',
+  'menu',
 ]
 const table = {userprofile: '_userprofile', richtextcontent: '_richtextcontent'}
 tableList.forEach(item => {

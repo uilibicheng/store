@@ -3,9 +3,11 @@
   margin-right: 18px;
 }
 
-.ant-form-item-children input[type='text'],
+.ant-form-item-children input[type='text'] {
+  width: 250px;
+}
 .ant-form-item-children .ant-select {
-  width: 50%;
+  width: 250px;
 }
 
 .ant-form-item-children .ant-calendar-picker {

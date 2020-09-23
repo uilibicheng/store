@@ -18,9 +18,6 @@ export default class Acl {
   init() {
     return Promise.all([this._getSuperUserEmail(), this._getCurrentEmail()])
       .then(res => {
-        return this._getAccessList(this.currentEmail)
-      })
-      .then(res => {
         const {currentEmail, superAdminEmail} = this
         this.isSuperAdmin = currentEmail && superAdminEmail && currentEmail === superAdminEmail
         this.routeListWithAccess = routeList.map(route => this._genRouteWithAccess(route, true, this.isSuperAdmin))
@@ -48,18 +45,6 @@ export default class Acl {
       const {email} = res.data
       this.currentEmail = (email || '').trim()
     })
-  }
-
-  _getAccessList(email) {
-    return io.access
-      .first({
-        where: io.where.eq('email', email).export(),
-      })
-      .then(res => {
-        const result = res.data || {}
-        this.currentUser = result.name || ''
-        this.accessList = result.access || []
-      })
   }
 
   _genRouteWithoutAccess(route) {
