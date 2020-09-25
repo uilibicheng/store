@@ -19,6 +19,14 @@ export const ROUTE = {
   MERCHANT_LIST: '/merchant-list',
   MERCHANT_ADD: '/merchant-edit',
   MERCHANT_EDIT: '/merchant-edit/:id',
+  MERCHANT_BANNER_MANAGE: '/merchant-banner-manage/:merchantId',
+  MERCHANT_COUPON_MANAGE: '/merchant-coupon-manage/:merchantId',
+  MERCHANT_COUPON_ADD: '/merchant-coupon-edit/:merchantId/',
+  MERCHANT_COUPON_EDIT: '/merchant-coupon-edit/:merchantId/:id',
+  MERCHANT_MENU_MANAGE: '/merchant-menu-manage/:merchantId',
+  MERCHANT_PACKAGE_MANAGE: '/merchant-package-manage/:merchantId',
+  MERCHANT_PACKAGE_ADD: '/merchant-package-edit/:merchantId',
+  MERCHANT_PACKAGE_EDIT: '/merchant-package-edit/:merchantId/:id',
   MERCHANT_TYPE: '/merchant-type',
   RESTANURANT_SERVICE: '/restaurant-service',
 }
@@ -52,7 +60,15 @@ const routes = [
         path: ROUTE.MERCHANT_LIST,
         subRoute: [
           {'name': '新增商家', path: ROUTE.MERCHANT_ADD},
-          {'name': '变价商家', path: ROUTE.MERCHANT_EDIT},
+          {'name': '编辑商家', path: ROUTE.MERCHANT_EDIT},
+          {'name': '轮播图管理', path: ROUTE.MERCHANT_BANNER_MANAGE},
+          {'name': '优惠券管理', path: ROUTE.MERCHANT_COUPON_MANAGE},
+          {'name': '新增优惠券', path: ROUTE.MERCHANT_COUPON_ADD},
+          {'name': '编辑优惠券', path: ROUTE.MERCHANT_COUPON_EDIT},
+          {'name': '菜品管理', path: ROUTE.MERCHANT_MENU_MANAGE},
+          {'name': '套餐管理', path: ROUTE.MERCHANT_PACKAGE_MANAGE},
+          {'name': '新增套餐', path: ROUTE.MERCHANT_PACKAGE_ADD},
+          {'name': '编辑套餐', path: ROUTE.MERCHANT_PACKAGE_EDIT},
         ]
       },
       {

@@ -1,13 +1,13 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
-import {Form, Input, Modal} from 'antd'
+import {Form, Input, InputNumber, Modal, Radio} from 'antd'
 
 import utils from '../utils'
 import FormItem from '../components/form-item'
 import Uploader from '../components/uploader'
 import '../assets/tailored.css'
 
-class AddProgramModal extends React.Component {
+class EditMerchantBannerModal extends React.Component {
   hideModal = () => {
     const {onCancel, form} = this.props
     form.resetFields()
@@ -36,7 +36,7 @@ class AddProgramModal extends React.Component {
       form: {getFieldDecorator},
     } = this.props
     console.log('formData', formData)
-    const title = formData.id ? '编辑商家类型' : '新增商家类型'
+    const title = formData.id ? '编辑轮播图' : '新增轮播图'
 
     return (
       <Modal
@@ -49,17 +49,34 @@ class AddProgramModal extends React.Component {
         onOk={this.handleSubmit}
       >
         <Form>
-          <FormItem label='图标'>
+          <FormItem label='轮播图'>
             {getFieldDecorator('image', {
               initialValue: formData.image || '',
               rules: utils.form.setRules(),
             })(<Uploader />)}
           </FormItem>
-          <FormItem label='商家类型'>
-            {getFieldDecorator('type', {
-              initialValue: formData && formData.type ? formData.type : '',
+          <FormItem label='轮播图名称'>
+            {getFieldDecorator('name', {
+              initialValue: formData.name || '',
               rules: utils.form.setRules({}),
             })(<Input />)}
+          </FormItem>
+          <FormItem label='显示顺序'>
+            {getFieldDecorator('serial_number', {
+              initialValue: formData.serial_number || 1,
+              rules: utils.form.setRules({type: 'number'}),
+            })(<InputNumber min={1} step={1} />)}
+          </FormItem>
+          <FormItem label='状态'>
+            {getFieldDecorator('is_display', {
+              initialValue: formData.hasOwnProperty('is_display') ? formData.is_display : true,
+              rules: utils.form.setRules({type: 'boolean'}),
+            })(
+              <Radio.Group>
+                <Radio value={true}>显示</Radio>
+                <Radio value={false}>隐藏</Radio>
+              </Radio.Group>
+            )}
           </FormItem>
         </Form>
       </Modal>
@@ -67,4 +84,4 @@ class AddProgramModal extends React.Component {
   }
 }
 
-export default withRouter(Form.create()(AddProgramModal))
+export default withRouter(Form.create()(EditMerchantBannerModal))

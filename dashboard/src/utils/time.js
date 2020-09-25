@@ -9,11 +9,18 @@ export default {
   formatRange(range = []) {
     return [
       moment(range[0])
-        .second(0)
+        .startOf('day')
         .unix(),
       moment(range[1])
-        .second(0)
+        .endOf('day')
         .unix(),
+    ]
+  },
+
+  momentTimeStamp(stamp = []) {
+    return [
+      moment(stamp[0] * 1000),
+      moment(stamp[1] * 1000),
     ]
   },
 

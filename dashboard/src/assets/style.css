@@ -14,6 +14,10 @@
   width: 50%  !important;
 }
 
+.ant-form-item .ant-form-item-label {
+  margin-right: 10px;
+}
+
 /* 优化表格 */
 .ant-table-wrapper {
   background: #fff;

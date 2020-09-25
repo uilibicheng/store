@@ -47,7 +47,7 @@ class AddProgramModal extends React.Component {
         onOk={this.handleSubmit}
       >
         <Form>
-        <FormItem label='图标'>
+          <FormItem label='图标'>
             {getFieldDecorator('icon', {
               initialValue: formData.icon || '',
               rules: utils.form.setRules(),

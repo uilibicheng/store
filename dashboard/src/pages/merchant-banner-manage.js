@@ -4,12 +4,12 @@ import {Form, Input, Button, message, Popconfirm} from 'antd'
 
 import io from '../io'
 import utils from '../utils'
-import EditMerchantType from '../components/edit-merchant-type'
+import EditMerchantBannerModal from '../components/edit-merchant-banner-modal'
 import withBaseTable from '../components/with-base-table'
 
-const db = io.merchantType
+const db = io.merchantBanner
 
-class MerchantType extends React.Component {
+class MerchantBannerManager extends React.Component {
   state = {
     meta: {},
     dataSource: [],
@@ -22,7 +22,12 @@ class MerchantType extends React.Component {
     this.getDataSource()
   }
 
-  getDataSource(params = {offset: 0, limit: 10}) {
+  get merchantId() {
+    const {match} = this.props
+    return match.params.merchantId
+  }
+
+  getDataSource(params = {offset: 0, limit: 20}) {
     params.where = this.searchParams
 
     return db
@@ -39,19 +44,11 @@ class MerchantType extends React.Component {
   get searchParams() {
     const {searchName} = this.state
     const params = {}
+    params.merchant_id = {$eq: this.merchantId}
     if (searchName) {
-      params.type = {$contains: searchName}
+      params.name = {$contains: searchName}
     }
     return params
-  }
-
-  handleDisplayChange(key, data) {
-    const {meta} = this.state
-    data[key] = !data[key]
-    db.update(data.id, data).then(() => {
-      message.success('更新成功')
-      this.getDataSource({offset: meta.offset, limit: meta.limit})
-    })
   }
 
   handleInput = e => {
@@ -87,6 +84,9 @@ class MerchantType extends React.Component {
 
   handleSaveProgramData = data => {
     const {formData} = this.state
+    if (!formData.id) {
+      data.merchant_id = this.merchantId
+    }
     const req = formData.id ? db.update(formData.id, data) : db.create(data)
     let title = formData.id ? '更新成功' : '添加成功'
     req.then(() => {
@@ -105,7 +105,7 @@ class MerchantType extends React.Component {
 
   render() {
     const {visible, formData} = this.state
-    const columnsWidth = [60, 150, 150, 180]
+    const columnsWidth = [60, 150, 150, 130, 100, 180]
     const columns = [
       {
         title: '序号',
@@ -113,15 +113,24 @@ class MerchantType extends React.Component {
         render: (val, row, index) => this.state.meta.offset + index + 1,
       },
       {
-        title: '类型图片',
+        title: '轮播图片',
         dataIndex: 'image',
         render: val => {
-          return <img style={{width: 50, height: 50, objectFit: 'contain'}} src={val} />
+          return <img style={{width: 100, height: 50, objectFit: 'contain'}} src={val} />
         }
       },
       {
-        title: '商家类型',
-        dataIndex: 'type',
+        title: '轮播图名称',
+        dataIndex: 'name',
+      },
+      {
+        title: '顺序',
+        dataIndex: 'serial_number',
+      },
+      {
+        title: '状态',
+        dataIndex: 'is_display',
+        render: val => val ? '显示' : '隐藏',
       },
       {
         fixed: 'right',
@@ -150,10 +159,10 @@ class MerchantType extends React.Component {
     return (
       <>
         <div>
-          <span>商家类型：</span>
+          <span>图片名称：</span>
           <Input
             style={{width: 220, marginRight: 15, marginBottom: 15, marginLeft: 10}}
-            placeholder="请输入商家类型"
+            placeholder="请输入图片名称"
             value={this.state.searchName}
             onChange={this.handleInput}
           />
@@ -174,7 +183,7 @@ class MerchantType extends React.Component {
           pagination={utils.pagination(this.state.meta, params => this.getDataSource(params))}
         />
         {!visible ? null
-          : <EditMerchantType
+          : <EditMerchantBannerModal
           visible={visible}
           onCancel={this.handleHideModal}
           formData={formData || {}}
@@ -187,4 +196,4 @@ class MerchantType extends React.Component {
 
 const BaseTable = withBaseTable()
 
-export default withRouter(Form.create()(MerchantType))
+export default withRouter(Form.create()(MerchantBannerManager))

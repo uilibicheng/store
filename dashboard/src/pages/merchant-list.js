@@ -115,13 +115,16 @@ class BannerSetting extends React.Component {
               <Link to={generatePath(ROUTE.MERCHANT_EDIT, {id: row.id})}>编辑</Link>
             </Button>
             <Button type='primary' ghost style={{margin: '0px 8px'}}>
-              <Link to={generatePath(ROUTE.BANNER_EDIT, {id: row.id})}>图片管理</Link>
+              <Link to={generatePath(ROUTE.MERCHANT_BANNER_MANAGE, {merchantId: row.id})}>图片管理</Link>
             </Button>
             <Button type='primary' ghost style={{margin: '0px 8px'}}>
-              <Link to={generatePath(ROUTE.BANNER_EDIT, {id: row.id})}>优惠券</Link>
+              <Link to={generatePath(ROUTE.MERCHANT_COUPON_MANAGE, {merchantId: row.id})}>优惠券</Link>
             </Button>
             <Button type='primary' ghost style={{margin: '0px 8px'}}>
-              <Link to={generatePath(ROUTE.BANNER_EDIT, {id: row.id})}>菜品管理</Link>
+              <Link to={generatePath(ROUTE.MERCHANT_MENU_MANAGE, {merchantId: row.id})}>菜品管理</Link>
+            </Button>
+            <Button type='primary' ghost style={{margin: '0px 8px'}}>
+              <Link to={generatePath(ROUTE.MERCHANT_PACKAGE_MANAGE, {merchantId: row.id})}>套餐管理</Link>
             </Button>
             <Popconfirm title='确认删除' onConfirm={() => this.handleDeleta(row.id)}>
               <Button type='danger' ghost>

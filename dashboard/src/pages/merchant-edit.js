@@ -10,6 +10,7 @@ import Ueditor from '../components/ueditor'
 import Position from '../config/position'
 import withBaseTable from '../components/with-base-table'
 
+const { Option } = Select;
 const db = io.merchant
 const typeDb = io.merchantType
 const serviceDb = io.restaurantService
@@ -47,10 +48,14 @@ class BannerEdit extends React.Component {
     if (this.id) {
       db.get(this.id).then(res => {
         const formData = res.data || {}
+        formData.location = [formData.provice, formData.city, formData.county]
+        console.log('formData', formData)
         this.setState(
           {
             formData,
             loading: false,
+            halfYearSales: formData.half_year_sales,
+            selectedService: formData.service_list,
           },
         )
       })
@@ -175,7 +180,7 @@ class BannerEdit extends React.Component {
           </FormItem>
           <FormItem label='商家类型'>
             {getFieldDecorator('merchant_type_id', {
-              initialValue: formData.merchant_type_id,
+              initialValue: formData.merchant_type_id ? formData.merchant_type_id.id : '',
               rules: utils.form.setRules(),
             })(
               <Select placeholder="请选择商家类型" showSearch optionFilterProp="children">
@@ -188,7 +193,6 @@ class BannerEdit extends React.Component {
           <FormItem label='商家位置'>
             {getFieldDecorator('location', {
               initialValue: formData.location || [],
-              valuePropName: 'checked',
               rules: utils.form.setRules({type: 'array'}),
             })(
               <Cascader
@@ -250,7 +254,7 @@ class BannerEdit extends React.Component {
           </FormItem>
           <FormItem label='状态'>
             {getFieldDecorator('status', {
-              initialValue: formData.status || 1,
+              initialValue: formData.hasOwnProperty('status') ? formData.status : 1,
               rules: utils.form.setRules({type: 'number'}),
             })(
               <Radio.Group>
