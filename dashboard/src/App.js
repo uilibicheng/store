@@ -55,7 +55,7 @@ export default class App extends React.Component {
       <HashRouter>
         <ConfigProvider locale={zh_CN} autoInsertSpaceInButton={false}>
           <Layout>
-            <Sider {...style('sider')}>
+            <Sider {...style('sider')} style={{height: '100%', overflow: 'hidden'}}>
               <h1 className='title'>小美团</h1>
               <MenuPanel acl={acl} />
             </Sider>
