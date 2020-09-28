@@ -19,7 +19,7 @@ class MenuPanel extends React.Component {
         mode='inline'
         defaultOpenKeys={openKeys}
         selectedKeys={selectedKeys}
-        style={{height: '100%', borderRight: 0, overflowY: 'auto'}}
+        style={{height: '100%', borderRight: 0, overflow: 'hidden'}}
       >
         {routeListWithAccess.map(route => renderMenu(route, true))}
       </Menu>
