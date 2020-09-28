@@ -10,8 +10,7 @@ import withBaseTable from '../components/with-base-table'
 import SelectMenuModal from '../components/select-menu-modal'
 
 const { RangePicker } = DatePicker
-const db = io.coupon
-const merchantDb = io.merchant
+const db = io.packages
 
 class MerchantPackageEdit extends React.Component {
   state = {
@@ -52,13 +51,13 @@ class MerchantPackageEdit extends React.Component {
       db.get(this.id).then(res => {
         const formData = res.data || {}
         formData.period_of_validity = utils.time.momentTimeStamp(formData.period_of_validity)
-        console.log('formData', formData)
         this.setState(
           {
             formData,
             loading: false,
             sales: formData.sales,
             price: formData.price,
+            menuList: formData.menu,
           },
         )
       })
@@ -124,7 +123,7 @@ class MerchantPackageEdit extends React.Component {
   }
 
   handleSubmit = e => {
-    const {sales, price} = this.state
+    const {sales, price, menuList} = this.state
     e.preventDefault()
     this.props.form.validateFieldsAndScroll((err, data) => {
       console.log('err', err, data)
@@ -133,11 +132,12 @@ class MerchantPackageEdit extends React.Component {
       data.sales = sales
       data.price = price
       data.merchant_id = this.merchantId
+      data.menu = menuList
       console.log('data', data)
-      // const req = this.id ? db.update(this.id, data) : db.create(data)
-      // req.then(() => {
-      //   this.goBack()
-      // })
+      const req = this.id ? db.update(this.id, data) : db.create(data)
+      req.then(() => {
+        this.goBack()
+      })
     })
   }
 
@@ -297,7 +297,6 @@ class MerchantPackageEdit extends React.Component {
           visible={visible}
           onCancel={this.handleHideModal}
           menuList={menuList}
-          formData={formData || {}}
           onSubmit={this.handleSaveMenu}
         />}
       </>

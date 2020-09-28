@@ -1,7 +1,6 @@
 export const DEV = process.env.NODE_ENV === 'development'
 
 export const ENV_ID = 'ec67c77e63eb627a9cb5'
-export const CATEGORY_ID = DEV ? '' : ''
 
 const tableList = [
   'settings',

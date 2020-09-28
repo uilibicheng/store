@@ -25,15 +25,19 @@ class SelectMenuModal extends React.Component {
 
   componentDidMount() {
     this.getDataSource()
+    const {menuList} = this.props
+    let selectedMenuKey = menuList.map(item => {
+      return item.id
+    })
+    this.setState({
+      selectedMenuKey,
+      selectedMenu: menuList,
+    })
   }
 
   getDataSource(params = {offset: 0, limit: 5}) {
-    const {menuList} = this.props
+    // const {menuList} = this.props
     params.where = this.searchParams
-
-    const selectedMenuKey = menuList.map(item => {
-      return item.id
-    })
 
     return db
       .find({
@@ -45,8 +49,6 @@ class SelectMenuModal extends React.Component {
         this.setState({
           meta,
           dataSource: objects,
-          selectedMenuKey,
-          selectedMenu: menuList
         })
       })
   }
@@ -67,12 +69,56 @@ class SelectMenuModal extends React.Component {
     })
   }
 
-  onSelectChange = (selectedRowKeys, selectedRows) => {
-    console.log('selectedRows', selectedRows)
+  onSelect = (record, selected) => {
+    let {selectedMenu, selectedMenuKey} = this.state
+    if (selected) {
+      selectedMenu.push(record)
+      selectedMenuKey.push(record.id)
+    } else {
+      let index = selectedMenuKey.findIndex(item => item === record.id)
+      selectedMenu.splice(index, 1)
+      selectedMenuKey.splice(index, 1)
+    }
     this.setState({
-      selectedMenuKey: selectedRowKeys,
-      selectedMenu: selectedRows,
+      selectedMenu,
+      selectedMenuKey,
     })
+  }
+
+  onSelectAll = (selected, selectedRows, changeRows) => {
+    let {selectedMenu, selectedMenuKey} = this.state
+    if (selected) {
+      selectedMenu = [...selectedMenu, ...selectedRows]
+    } else {
+      changeRows.forEach(row => {
+        let index = selectedMenu.findIndex(item => item.id === row.id)
+        selectedMenu.splice(index, 1)
+      })
+    }
+    selectedMenu = this.initialData(selectedMenu)
+    selectedMenuKey = selectedMenu.map(item => {
+      return item.id
+    })
+    this.setState({
+      selectedMenu,
+      selectedMenuKey,
+    })
+  }
+
+  onSelectChange = () => {
+  }
+
+  initialData(arr) {
+    // 选中行去重
+    let res = []
+    let result = []
+      for (let i = 0; i < arr.length; i++) {
+        if (res.indexOf(arr[i].id) === -1) {
+          res.push(arr[i].id)
+          result.push(arr[i])
+        }
+      }
+      return result
   }
 
   handleSubmit = e => {
@@ -88,8 +134,9 @@ class SelectMenuModal extends React.Component {
     } = this.props
     const{selectedMenuKey} = this.state
     const title = '选择菜品'
+    console.log('selectedMenuKey', selectedMenuKey)
 
-    const columnsWidth = [60, 130, 140, 90, 90]
+    const columnsWidth = [60, 130, 150, 80, 80]
     const columns = [
       {
         title: '序号',
@@ -121,15 +168,18 @@ class SelectMenuModal extends React.Component {
     })
 
     const columnsScrollWidth = columnsWidth.reduce((count, i) => count + i)
+    // console.log('selectedMenuKey', selectedMenuKey)
     const rowSelection = {
       selectedRowKeys: selectedMenuKey,
+      onSelect: this.onSelect,
       onChange: this.onSelectChange,
+      onSelectAll: this.onSelectAll,
     }
     
     return (
       <Modal
         className='tailored-modal'
-        width='650px'
+        width='700px'
         visible={visible}
         title={title}
         okText='确定'
@@ -164,3 +214,5 @@ class SelectMenuModal extends React.Component {
 
 const BaseTable = withBaseTable()
 export default withRouter(Form.create()(SelectMenuModal))
+
+

@@ -104,7 +104,7 @@ class MerchantPackageManage extends React.Component {
         render: (val, row) => (
           <>
             <Button type='primary' ghost style={{margin: '0px 8px'}}>
-              <Link to={generatePath(ROUTE.MERCHANT_COUPON_EDIT, {merchantId: this.merchantId, id: row.id})}>编辑</Link>
+              <Link to={generatePath(ROUTE.MERCHANT_PACKAGE_EDIT, {merchantId: this.merchantId, id: row.id})}>编辑</Link>
             </Button>
             <Popconfirm title='确认删除' onConfirm={() => this.handleDeleta(row.id)}>
               <Button type='danger' ghost>
@@ -124,10 +124,10 @@ class MerchantPackageManage extends React.Component {
     return (
       <>
         <div>
-          <span>优惠券名称：</span>
+          <span>套餐名称：</span>
           <Input
             style={{width: 200, marginRight: 15, marginBottom: 15, marginLeft: 10}}
-            placeholder="请输入优惠券名称"
+            placeholder="请输入套餐名称"
             value={this.state.searchName}
             onChange={this.handleInput}
           />
