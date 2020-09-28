@@ -134,7 +134,6 @@ class SelectMenuModal extends React.Component {
     } = this.props
     const{selectedMenuKey} = this.state
     const title = '选择菜品'
-    console.log('selectedMenuKey', selectedMenuKey)
 
     const columnsWidth = [60, 130, 150, 80, 80]
     const columns = [
@@ -168,7 +167,6 @@ class SelectMenuModal extends React.Component {
     })
 
     const columnsScrollWidth = columnsWidth.reduce((count, i) => count + i)
-    // console.log('selectedMenuKey', selectedMenuKey)
     const rowSelection = {
       selectedRowKeys: selectedMenuKey,
       onSelect: this.onSelect,

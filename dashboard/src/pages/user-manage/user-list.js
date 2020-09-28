@@ -1,19 +1,26 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
-import {Form, Input, Button, message, Popconfirm} from 'antd'
+import {Form, Input, Button, message, Popconfirm, Select} from 'antd'
+import moment from 'moment'
+import {DATE_FORMAT, LEVEL} from '../../config/constants'
 
-import io from '../io'
-import utils from '../utils'
-import EditMerchantType from '../components/edit-merchant-type'
-import withBaseTable from '../components/with-base-table'
+import io from '../../io'
+import utils from '../../utils'
+import EditUserModal from '../../components/edit-user-modal'
+import withBaseTable from '../../components/with-base-table'
 
-const db = io.merchantType
+const db = io.userprofile
+const {Option} = Select
 
-class MerchantType extends React.Component {
+const SECOND = 86400
+
+class UserList extends React.Component {
   state = {
     meta: {},
     dataSource: [],
     searchName: '',
+    searchPhone: '',
+    searchLevel: '',
     visible: false,
     formData: {},
   }
@@ -37,10 +44,16 @@ class MerchantType extends React.Component {
   }
 
   get searchParams() {
-    const {searchName} = this.state
+    const {searchName, searchPhone, searchLevel} = this.state
     const params = {}
     if (searchName) {
-      params.type = {$contains: searchName}
+      params.nickname = {$contains: searchName}
+    }
+    if (searchPhone) {
+      params.phone = {$contains: searchPhone}
+    }
+    if (searchLevel) {
+      params.vip_level = {$eq: searchLevel}
     }
     return params
   }
@@ -54,14 +67,30 @@ class MerchantType extends React.Component {
     })
   }
 
-  handleInput = e => {
+  handleInput = (e, key) => {
     const {value} = e.target
     this.setState({
-      searchName: value
+      [key]: value
     })
   }
 
-  handelSearch = () => {
+  handleChangeLevel = value => {
+    this.setState({
+      searchLevel: value
+    })
+  }
+
+  handleReset = () => {
+    this.setState({
+      searchName: '',
+      searchPhone: '',
+      searchLevel: '',
+    }, () => {
+      this.handleSearch()
+    })
+  }
+
+  handleSearch = () => {
     this.getDataSource()
   }
 
@@ -85,7 +114,7 @@ class MerchantType extends React.Component {
     })
   }
 
-  handleSaveProgramData = data => {
+  handleSaveUserData = data => {
     const {formData} = this.state
     const req = formData.id ? db.update(formData.id, data) : db.create(data)
     let title = formData.id ? '更新成功' : '添加成功'
@@ -104,8 +133,9 @@ class MerchantType extends React.Component {
   }
 
   render() {
+    const nowDate = moment().endOf('day').unix()
     const {visible, formData} = this.state
-    const columnsWidth = [60, 150, 150, 180]
+    const columnsWidth = [60, 110, 150, 120, 180, 100, 120, 180]
     const columns = [
       {
         title: '序号',
@@ -113,15 +143,45 @@ class MerchantType extends React.Component {
         render: (val, row, index) => this.state.meta.offset + index + 1,
       },
       {
-        title: '类型图片',
-        dataIndex: 'image',
+        title: '头像',
+        dataIndex: 'avatar',
         render: val => {
           return <img style={{width: 50, height: 50, objectFit: 'contain'}} src={val} />
         }
       },
       {
-        title: '商家类型',
-        dataIndex: 'type',
+        title: '用户名',
+        dataIndex: 'nickname',
+      },
+      {
+        title: '手机号',
+        dataIndex: 'phone',
+      },
+      {
+        title: '创建时间',
+        dataIndex: 'created_at',
+        render: val => moment(val * 1000).format(DATE_FORMAT)
+      },
+      {
+        title: '会员等级',
+        dataIndex: 'vip_level',
+        render: val => LEVEL[val],
+      },
+      {
+        title: '会员期限',
+        dataIndex: 'deadline',
+        render: val => {
+          if (!val) {
+            return ''
+          }
+          if (moment().isAfter(val * 1000)) {
+            let day = Math.round((nowDate - val) / SECOND)
+            return `已过期${day}天`
+          } else {
+            let day = Math.round((val - nowDate) / SECOND)
+            return `${day}天`
+          }
+        }
       },
       {
         fixed: 'right',
@@ -150,21 +210,37 @@ class MerchantType extends React.Component {
     return (
       <>
         <div>
-          <span>商家类型：</span>
+          <span>用户名：</span>
           <Input
             style={{width: 220, marginRight: 15, marginBottom: 15, marginLeft: 10}}
-            placeholder="请输入商家类型"
+            placeholder="请输入用户名"
             value={this.state.searchName}
-            onChange={this.handleInput}
+            onChange={e => {this.handleInput(e, 'searchName')}}
           />
-          <Button type='primary' onClick={this.handelSearch}>
+          <span>手机号：</span>
+          <Input
+            style={{width: 220, marginRight: 15, marginBottom: 15, marginLeft: 10}}
+            placeholder="请输入手机号"
+            value={this.state.searchPhone}
+            onChange={e => {this.handleInput(e, 'searchPhone')}}
+          />
+          <Button type='primary' onClick={this.handleSearch}>
             查询
+          </Button>
+          <Button type='primary' style={{marginLeft: 15}} onClick={this.handleReset}>
+            重置
           </Button>
         </div>
         <div style={{marginBottom: 15}}>
-          <Button type='primary' onClick={this.handleShowAddModal}>
-            新增
-          </Button>
+          <span>会员等级：</span>
+          <Select style={{width: '200px'}} value={this.state.searchLevel} onChange={this.handleChangeLevel}>
+            <Option value="">全部</Option>
+            {
+              Object.keys(LEVEL).map(key => {
+                return <Option value={key}>{LEVEL[key]}</Option>
+              })
+            }
+          </Select>
         </div>
         <BaseTable
           {...this.props}
@@ -174,11 +250,11 @@ class MerchantType extends React.Component {
           pagination={utils.pagination(this.state.meta, params => this.getDataSource(params))}
         />
         {!visible ? null
-          : <EditMerchantType
+          : <EditUserModal
           visible={visible}
           onCancel={this.handleHideModal}
           formData={formData || {}}
-          onSubmit={this.handleSaveProgramData}
+          onSubmit={this.handleSaveUserData}
         />}
       </>
     )
@@ -187,4 +263,4 @@ class MerchantType extends React.Component {
 
 const BaseTable = withBaseTable()
 
-export default withRouter(Form.create()(MerchantType))
+export default withRouter(Form.create()(UserList))

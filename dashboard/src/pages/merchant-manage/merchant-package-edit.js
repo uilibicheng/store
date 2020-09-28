@@ -1,26 +1,22 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
-import moment from 'moment'
 import {Form, Input, Button, InputNumber, Select, Radio, DatePicker } from 'antd'
-import io from '../io'
-import utils from '../utils'
-import FormItem from '../components/form-item'
-import Uploader from '../components/uploader'
-import Ueditor from '../components/ueditor'
-import withBaseTable from '../components/with-base-table'
-import {COUPON_TYPE} from '../config/constants'
+import io from '../../io'
+import utils from '../../utils'
+import FormItem from '../../components/form-item'
+import Uploader from '../../components/uploader'
+import Ueditor from '../../components/ueditor'
+import withBaseTable from '../../components/with-base-table'
+import SelectMenuModal from '../../components/select-menu-modal'
 
-const { Option } = Select
 const { RangePicker } = DatePicker
-const db = io.coupon
-const merchantDb = io.merchant
+const db = io.packages
 
-class MerchantCouponEdit extends React.Component {
+class MerchantPackageEdit extends React.Component {
   state = {
     loading: true,
     formData: {},
     meta: {},
-    serviceList: [],
     selectedService: [],
     sales: {
       real_sales: 0,
@@ -31,7 +27,8 @@ class MerchantCouponEdit extends React.Component {
       original_price: 0,
       current_price: 0,
       discount: 0,
-    }
+    },
+    menuList: [],
   }
 
   get id() {
@@ -54,13 +51,13 @@ class MerchantCouponEdit extends React.Component {
       db.get(this.id).then(res => {
         const formData = res.data || {}
         formData.period_of_validity = utils.time.momentTimeStamp(formData.period_of_validity)
-        console.log('formData', formData)
         this.setState(
           {
             formData,
             loading: false,
             sales: formData.sales,
             price: formData.price,
+            menuList: formData.menu,
           },
         )
       })
@@ -93,70 +90,59 @@ class MerchantCouponEdit extends React.Component {
     })
   }
 
+  handleShowModal = () => {
+    this.setState({
+      visible: true
+    })
+  }
+
+  handleHideModal = () => {
+    this.setState({
+      visible: false,
+    })
+  }
+
+  handleSaveMenu = data => {
+    let menuList = data.reduce((result, item) => {
+      let obj = {}
+      obj.name = item. name
+      obj.image = item. image
+      obj.merchant_id = item. merchant_id
+      obj.id = item. id
+      obj.original_price = item. original_price
+      obj.current_price = item. current_price
+      obj.discount = item. discount
+      obj.is_recommend = item. is_recommend
+      result.push(obj)
+      return result
+    }, [])
+    this.setState({
+      menuList,
+    })
+  }
+
   handleSubmit = e => {
-    const {sales, price} = this.state
+    const {sales, price, menuList} = this.state
     e.preventDefault()
     this.props.form.validateFieldsAndScroll((err, data) => {
-      console.log('err', err, data)
       if (err) return
-      data.limit_buy_count = Number(data.limit_buy_count)
-      data.limit_times = Number(data.limit_times)
       data.period_of_validity = utils.time.formatRange(data.period_of_validity)
       data.sales = sales
       data.price = price
       data.merchant_id = this.merchantId
-      console.log('data', data)
+      data.menu = menuList
       const req = this.id ? db.update(this.id, data) : db.create(data)
       req.then(() => {
-        return this.getCouponList().then(res => {
-          console.log(1111, res)
-          let data = {
-            coupon_list: res
-          }
-          merchantDb.update(this.merchantId, data)
-          this.goBack()
-        })
+        this.goBack()
       })
     })
-  }
-
-  getCouponList(params = {offset: 0, limit: 1000}) {
-    params.where = this.searchParams
-
-    return db
-      .find({
-        ...params,
-      })
-      .then(res => {
-        const {objects} = res.data
-        let arr = objects.reduce((result, item) => {
-          let obj = {}
-          obj.name= item.name
-          obj.image= item.image
-          obj.merchant_id= item.merchant_id.id
-          obj.type= item.type
-          obj.condition= item.condition
-          obj.status= item.status
-          obj.limit_times= item.limit_times
-          obj.limit_buy_count= item.limit_buy_count
-          obj.period_of_validity= item.period_of_validity
-          obj.use_time= item.use_time
-          obj.sales= item.sales
-          obj.price= item.price
-          obj.use_rules= item.use_rules
-          obj.serial_number= item.serial_number
-          result.push(obj)
-          return result
-        }, [])
-        return arr
-      })
   }
 
   goBack = () => this.props.history.goBack()
 
   render() {
     const {getFieldDecorator, getFieldValue} = this.props.form
-    const {formData, loading, sales, price} = this.state
+    const {formData, loading, sales, price, menuList, visible} = this.state
 
     const salesColumn = [
       {
@@ -202,7 +188,20 @@ class MerchantCouponEdit extends React.Component {
       },
     ]
 
-    const couponType = getFieldValue('type')
+    const menuColumn = [
+      {
+        title: '菜品名称',
+        dataIndex: 'name',
+      },
+      {
+        title: '原价',
+        dataIndex: 'original_price',
+      },
+      {
+        title: '现价',
+        dataIndex: 'current_price',
+      },
+    ]
 
     return loading ? null : (
       <>
@@ -213,58 +212,23 @@ class MerchantCouponEdit extends React.Component {
               rules: utils.form.setRules(),
             })(<Uploader />)}
           </FormItem>
-          <FormItem label='优惠券名称'>
+          <FormItem label='名称'>
             {getFieldDecorator('name', {
               initialValue: formData.name || '',
               rules: utils.form.setRules(),
-            })(<Input placeholder="请输入优惠券名称" />)}
+            })(<Input placeholder="请输入套餐名称" />)}
           </FormItem>
-          <FormItem label='类型'>
-            {getFieldDecorator('type', {
-              initialValue: formData.type || 1,
-              rules: utils.form.setRules({type: 'number'}),
-            })(
-              <Select placeholder="请选择优惠券类型">
-                {Object.keys(COUPON_TYPE).map(key => {
-                  return <Option value={Number(key)}>{COUPON_TYPE[key]}</Option>
-                })}
-              </Select>
-            )}
+          <FormItem label='绑定菜品'>
+            <Button type='primary' onClick={this.handleShowModal}>绑定菜品</Button>
+            {!menuList.length ? null :
+              <BaseTable
+                style={{width: '450px'}}
+                columns={menuColumn}
+                dataSource={menuList}
+                pagination={false}
+              />
+            }
           </FormItem>
-          {couponType !== 1 ? null :
-            <FormItem label='条件'>
-              <span style={{marginRight: '10px'}}>满</span>
-              <Form.Item style={{display: 'inline-block', marginBottom: 0}}>
-                {getFieldDecorator('condition.satify_num', {
-                  initialValue: (formData.condition && formData.condition.satify_num) || null,
-                  rules: utils.form.setRules({type: 'number'}),
-                })(<InputNumber min={0} step={1} />)}
-              </Form.Item>
-              <span style={{marginLeft: '10px', marginRight: '10px'}}>减</span>
-              <Form.Item style={{display: 'inline-block', marginBottom: 0}}>
-                {getFieldDecorator('condition.reduce_num', {
-                  initialValue: (formData.condition && formData.condition.reduce_num) || null,
-                  rules: utils.form.setRules({type: 'number'}),
-                })(<InputNumber min={0} step={1} />)}
-              </Form.Item>
-            </FormItem>
-          }
-          {couponType !== 2 ? null :
-            <FormItem label='条件'>
-              {getFieldDecorator('condition.discount', {
-                initialValue: (formData.condition && formData.condition.discount) || '',
-                rules: utils.form.setRules(),
-              })(<Input type="number" style={{width: '250px'}} placeholder="请输入折扣数" addonAfter="折" />)}
-            </FormItem>
-          }
-          {couponType !== 3 ? null :
-            <FormItem label='条件'>
-              {getFieldDecorator('condition.limit', {
-                initialValue: (formData.condition && formData.condition.limit) || null,
-                rules: utils.form.setRules(),
-              })(<Input type="number" style={{width: '250px'}} placeholder="请输入代金额度" />)}
-            </FormItem>
-          }
           <FormItem label='已售'>
             <BaseTable
               style={{width: '450px'}}
@@ -280,18 +244,6 @@ class MerchantCouponEdit extends React.Component {
               dataSource={[price]}
               pagination={false}
             />
-          </FormItem>
-          <FormItem label='最大可叠加'>
-            {getFieldDecorator('limit_times', {
-              initialValue: String(formData.limit_times) || '',
-              rules: utils.form.setRules(),
-            })(<Input type="number" style={{width: '280px'}} placeholder="请设置用户可叠加张数" addonAfter="单位：张" />)}
-          </FormItem>
-          <FormItem label='可购买张数'>
-            {getFieldDecorator('limit_buy_count', {
-              initialValue: String(formData.limit_buy_count) || '',
-              rules: utils.form.setRules(),
-            })(<Input type="number" style={{width: '280px'}} placeholder="请设置用户可购买张数" addonAfter="单位：张" />)}
           </FormItem>
           <FormItem label='有效期'>
             {getFieldDecorator('period_of_validity', {
@@ -337,6 +289,13 @@ class MerchantCouponEdit extends React.Component {
             </Button>
           </FormItem>
         </Form>
+        {!visible ? null
+          : <SelectMenuModal
+          visible={visible}
+          onCancel={this.handleHideModal}
+          menuList={menuList}
+          onSubmit={this.handleSaveMenu}
+        />}
       </>
     )
   }
@@ -344,4 +303,4 @@ class MerchantCouponEdit extends React.Component {
 
 const BaseTable = withBaseTable()
 
-export default withRouter(Form.create()(MerchantCouponEdit))
+export default withRouter(Form.create()(MerchantPackageEdit))

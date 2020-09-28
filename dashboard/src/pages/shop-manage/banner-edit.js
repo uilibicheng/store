@@ -2,11 +2,11 @@ import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {Form, Input, Button, InputNumber, Switch} from 'antd'
 
-import io from '../io'
-import utils from '../utils'
-import FormItem from '../components/form-item'
-import Uploader from '../components/uploader'
-import withBaseTable from '../components/with-base-table'
+import io from '../../io'
+import utils from '../../utils'
+import FormItem from '../../components/form-item'
+import Uploader from '../../components/uploader'
+import withBaseTable from '../../components/with-base-table'
 
 const db = io.banner
 const merchantDb = io.merchant
@@ -71,7 +71,7 @@ class BannerEdit extends React.Component {
     })
   }
 
-  handelSearch = () => {
+  handleSearch = () => {
 
   }
 

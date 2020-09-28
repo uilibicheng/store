@@ -1,12 +1,12 @@
 import React from 'react'
 import {Link, generatePath, withRouter} from 'react-router-dom'
-import {Form, Input, Button, message, Popconfirm, Switch} from 'antd'
+import {Form, Input, Button, message, Popconfirm} from 'antd'
 
-import io from '../io'
-import utils from '../utils'
-import {ROUTE} from '../route'
-import withBaseTable from '../components/with-base-table'
-import Add from '../components/add'
+import io from '../../io'
+import utils from '../../utils'
+import {ROUTE} from '../../route'
+import withBaseTable from '../../components/with-base-table'
+import Add from '../../components/add'
 
 const db = io.merchant
 

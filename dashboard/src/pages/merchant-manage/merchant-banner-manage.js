@@ -1,23 +1,21 @@
 import React from 'react'
-import {Link, withRouter, generatePath} from 'react-router-dom'
-import {Form, Input, Button, message, Popconfirm, Select} from 'antd'
+import {withRouter} from 'react-router-dom'
+import {Form, Input, Button, message, Popconfirm} from 'antd'
 
-import io from '../io'
-import utils from '../utils'
-import {ROUTE} from '../route'
-import withBaseTable from '../components/with-base-table'
-import Add from '../components/add'
-import {COUPON_TYPE} from '../config/constants'
+import io from '../../io'
+import utils from '../../utils'
+import EditMerchantBannerModal from '../../components/edit-merchant-banner-modal'
+import withBaseTable from '../../components/with-base-table'
 
-const db = io.coupon
-const {Option} = Select
+const db = io.merchantBanner
 
 class MerchantBannerManager extends React.Component {
   state = {
     meta: {},
     dataSource: [],
     searchName: '',
-    searchType: '',
+    visible: false,
+    formData: {},
   }
 
   componentDidMount() {
@@ -31,7 +29,6 @@ class MerchantBannerManager extends React.Component {
 
   getDataSource(params = {offset: 0, limit: 20}) {
     params.where = this.searchParams
-    params.orderBy = 'serial_number'
 
     return db
       .find({
@@ -45,15 +42,12 @@ class MerchantBannerManager extends React.Component {
   }
 
   get searchParams() {
-    const {searchName, searchType} = this.state
+    const {searchName} = this.state
     const params = {}
+    params.merchant_id = {$eq: this.merchantId}
     if (searchName) {
       params.name = {$contains: searchName}
     }
-    if (searchType) {
-      params.type = {$eq: searchType}
-    }
-    params.merchant_id = {$eq: this.merchantId}
     return params
   }
 
@@ -64,14 +58,42 @@ class MerchantBannerManager extends React.Component {
     })
   }
 
-  handleChangeType = value => {
+  handleSearch = () => {
+    this.getDataSource()
+  }
+
+  handleEditRow = data => {
     this.setState({
-      searchType: value
+      formData: data
+    })
+    this.handleShowAddModal()
+  }
+
+  handleShowAddModal = () => {
+    this.setState({
+      visible: true,
     })
   }
 
-  handelSearch = () => {
-    this.getDataSource()
+  handleHideModal = () => {
+    this.setState({
+      visible: false,
+      formData: {}
+    })
+  }
+
+  handleSaveProgramData = data => {
+    const {formData} = this.state
+    if (!formData.id) {
+      data.merchant_id = this.merchantId
+    }
+    const req = formData.id ? db.update(formData.id, data) : db.create(data)
+    let title = formData.id ? '更新成功' : '添加成功'
+    req.then(() => {
+      message.success(title)
+      this.handleHideModal()
+      this.getDataSource()
+    })
   }
 
   handleDeleta = id => {
@@ -82,6 +104,7 @@ class MerchantBannerManager extends React.Component {
   }
 
   render() {
+    const {visible, formData} = this.state
     const columnsWidth = [60, 150, 150, 130, 100, 180]
     const columns = [
       {
@@ -90,13 +113,15 @@ class MerchantBannerManager extends React.Component {
         render: (val, row, index) => this.state.meta.offset + index + 1,
       },
       {
-        title: '优惠券名称',
-        dataIndex: 'name',
+        title: '轮播图片',
+        dataIndex: 'image',
+        render: val => {
+          return <img style={{width: 100, height: 50, objectFit: 'contain'}} src={val} />
+        }
       },
       {
-        title: '优惠券类型',
-        dataIndex: 'type',
-        render: val => COUPON_TYPE[val],
+        title: '轮播图名称',
+        dataIndex: 'name',
       },
       {
         title: '顺序',
@@ -104,8 +129,8 @@ class MerchantBannerManager extends React.Component {
       },
       {
         title: '状态',
-        dataIndex: 'status',
-        render: val => val ? '正常' : '禁用',
+        dataIndex: 'is_display',
+        render: val => val ? '显示' : '隐藏',
       },
       {
         fixed: 'right',
@@ -113,8 +138,8 @@ class MerchantBannerManager extends React.Component {
         key: 'action',
         render: (val, row) => (
           <>
-            <Button type='primary' ghost style={{margin: '0px 8px'}}>
-              <Link to={generatePath(ROUTE.MERCHANT_COUPON_EDIT, {merchantId: this.merchantId, id: row.id})}>编辑</Link>
+            <Button type='primary' ghost style={{margin: '0px 8px'}} onClick={() => this.handleEditRow(row)}>
+              编辑
             </Button>
             <Popconfirm title='确认删除' onConfirm={() => this.handleDeleta(row.id)}>
               <Button type='danger' ghost>
@@ -134,29 +159,21 @@ class MerchantBannerManager extends React.Component {
     return (
       <>
         <div>
-          <span>优惠券名称：</span>
+          <span>图片名称：</span>
           <Input
-            style={{width: 200, marginRight: 15, marginBottom: 15, marginLeft: 10}}
-            placeholder="请输入优惠券名称"
+            style={{width: 220, marginRight: 15, marginBottom: 15, marginLeft: 10}}
+            placeholder="请输入图片名称"
             value={this.state.searchName}
             onChange={this.handleInput}
           />
-          <Select
-            placeholder="请选择优惠券类型"
-            value={this.state.searchType}
-            onChange={this.handleChangeType}
-            style={{width: 180, marginRight: 15, marginBottom: 15}}>
-            <Option value="">全部</Option>
-            {Object.keys(COUPON_TYPE).map(key => {
-              return <Option value={Number(key)}>{COUPON_TYPE[key]}</Option>
-            })}
-          </Select>
-          <Button type='primary' onClick={this.handelSearch}>
+          <Button type='primary' onClick={this.handleSearch}>
             查询
           </Button>
         </div>
         <div style={{marginBottom: 15}}>
-          <Add path={generatePath(ROUTE.MERCHANT_COUPON_ADD, {merchantId: this.merchantId})} {...this.props} />
+          <Button type='primary' onClick={this.handleShowAddModal}>
+            新增
+          </Button>
         </div>
         <BaseTable
           {...this.props}
@@ -165,6 +182,13 @@ class MerchantBannerManager extends React.Component {
           dataSource={this.state.dataSource}
           pagination={utils.pagination(this.state.meta, params => this.getDataSource(params))}
         />
+        {!visible ? null
+          : <EditMerchantBannerModal
+          visible={visible}
+          onCancel={this.handleHideModal}
+          formData={formData || {}}
+          onSubmit={this.handleSaveProgramData}
+        />}
       </>
     )
   }

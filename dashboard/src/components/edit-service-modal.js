@@ -35,7 +35,6 @@ class AddProgramModal extends React.Component {
       formData,
       form: {getFieldDecorator},
     } = this.props
-    console.log('formData', formData)
     const title = formData.id ? '编辑服务' : '新增服务'
 
     return (

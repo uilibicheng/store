@@ -1,15 +1,17 @@
 import React from 'react'
-import {withRouter} from 'react-router-dom'
+import {generatePath, withRouter} from 'react-router-dom'
 import {Form, Input, Button, message, Popconfirm, Switch} from 'antd'
 
-import io from '../io'
-import utils from '../utils'
-import AddProgramModal from '../components/add-program-modal'
-import withBaseTable from '../components/with-base-table'
+import io from '../../io'
+import utils from '../../utils'
+import {ROUTE} from '../../route'
+import withBaseTable from '../../components/with-base-table'
+import EditServiceModal from '../../components/edit-service-modal'
+import Add from '../../components/add'
 
-const db = io.program
+const db = io.restaurantService
 
-class ProgramManage extends React.Component {
+class RestaurantService extends React.Component {
   state = {
     meta: {},
     dataSource: [],
@@ -40,7 +42,7 @@ class ProgramManage extends React.Component {
     const {searchName} = this.state
     const params = {}
     if (searchName) {
-      params.name = {$contains: searchName}
+      params.content = {$contains: searchName}
     }
     return params
   }
@@ -59,10 +61,6 @@ class ProgramManage extends React.Component {
     this.setState({
       searchName: value
     })
-  }
-
-  handelSearch = () => {
-    this.getDataSource()
   }
 
   handleEditRow = data => {
@@ -85,7 +83,7 @@ class ProgramManage extends React.Component {
     })
   }
 
-  handleSaveProgramData = data => {
+  handleSaveService = data => {
     const {formData} = this.state
     const req = formData.id ? db.update(formData.id, data) : db.create(data)
     let title = formData.id ? '更新成功' : '添加成功'
@@ -105,7 +103,7 @@ class ProgramManage extends React.Component {
 
   render() {
     const {visible, formData} = this.state
-    const columnsWidth = [60, 150, 150, 130, 100, 100, 180]
+    const columnsWidth = [80, 150, 100, 180]
     const columns = [
       {
         title: '序号',
@@ -113,33 +111,12 @@ class ProgramManage extends React.Component {
         render: (val, row, index) => this.state.meta.offset + index + 1,
       },
       {
-        title: '栏目名称',
-        dataIndex: 'name',
+        title: '服务内容',
+        dataIndex: 'content',
       },
       {
-        title: '图标',
-        dataIndex: 'icon',
-        render: val => {
-          return <img style={{width: 50, height: 50}} src={val} />
-        }
-      },
-      {
-        title: '角标内容',
-        dataIndex: 'corner_content',
-      },
-      {
-        title: '栏目是否显示',
-        dataIndex: 'is_display',
-        render: (val, row) => {
-          return <Switch checked={val} onChange={() => {this.handleDisplayChange('is_display', row)}}></Switch>
-        },
-      },
-      {
-        title: '角标是否显示',
-        dataIndex: 'is_corner_display',
-        render: (val, row) => {
-          return <Switch checked={val} onChange={() => {this.handleDisplayChange('is_corner_display', row)}}></Switch>
-        },
+        title: '显示顺序',
+        dataIndex: 'serial_number',
       },
       {
         fixed: 'right',
@@ -168,14 +145,14 @@ class ProgramManage extends React.Component {
     return (
       <>
         <div>
-          <span>栏目名称：</span>
+          <span>服务内容：</span>
           <Input
             style={{width: 220, marginRight: 15, marginBottom: 15, marginLeft: 10}}
-            placeholder="请输入栏目名称"
+            placeholder="请输入服务内容"
             value={this.state.searchName}
             onChange={this.handleInput}
           />
-          <Button type='primary' onClick={this.handelSearch}>
+          <Button type='primary' onClick={() => {this.getDataSource()}}>
             查询
           </Button>
         </div>
@@ -191,11 +168,11 @@ class ProgramManage extends React.Component {
           dataSource={this.state.dataSource}
           pagination={utils.pagination(this.state.meta, params => this.getDataSource(params))}
         />
-        <AddProgramModal
+        <EditServiceModal
           visible={visible}
           onCancel={this.handleHideModal}
           formData={formData || {}}
-          onSubmit={this.handleSaveProgramData}
+          onSubmit={this.handleSaveService}
         />
       </>
     )
@@ -204,4 +181,12 @@ class ProgramManage extends React.Component {
 
 const BaseTable = withBaseTable()
 
-export default withRouter(Form.create()(ProgramManage))
+export default withRouter(Form.create()(RestaurantService))
+
+const style = {
+  img: {
+    width: 80,
+    height: 80,
+    objectFit: 'contain'
+  }
+}

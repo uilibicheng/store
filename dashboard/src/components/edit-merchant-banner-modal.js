@@ -35,7 +35,6 @@ class EditMerchantBannerModal extends React.Component {
       formData,
       form: {getFieldDecorator},
     } = this.props
-    console.log('formData', formData)
     const title = formData.id ? '编辑轮播图' : '新增轮播图'
 
     return (

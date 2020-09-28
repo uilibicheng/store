@@ -2,14 +2,14 @@ import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {Form, Input, Button, message, Popconfirm, Switch} from 'antd'
 
-import io from '../io'
-import utils from '../utils'
-import EditMenuModal from '../components/edit-menu-modal'
-import withBaseTable from '../components/with-base-table'
+import io from '../../io'
+import utils from '../../utils'
+import AddProgramModal from '../../components/add-program-modal'
+import withBaseTable from '../../components/with-base-table'
 
-const db = io.menu
+const db = io.program
 
-class MerchantBannerManager extends React.Component {
+class ProgramManage extends React.Component {
   state = {
     meta: {},
     dataSource: [],
@@ -20,11 +20,6 @@ class MerchantBannerManager extends React.Component {
 
   componentDidMount() {
     this.getDataSource()
-  }
-
-  get merchantId() {
-    const {match} = this.props
-    return match.params.merchantId
   }
 
   getDataSource(params = {offset: 0, limit: 20}) {
@@ -44,11 +39,19 @@ class MerchantBannerManager extends React.Component {
   get searchParams() {
     const {searchName} = this.state
     const params = {}
-    params.merchant_id = {$eq: this.merchantId}
     if (searchName) {
       params.name = {$contains: searchName}
     }
     return params
+  }
+
+  handleDisplayChange(key, data) {
+    const {meta} = this.state
+    data[key] = !data[key]
+    db.update(data.id, data).then(() => {
+      message.success('更新成功')
+      this.getDataSource({offset: meta.offset, limit: meta.limit})
+    })
   }
 
   handleInput = e => {
@@ -58,7 +61,7 @@ class MerchantBannerManager extends React.Component {
     })
   }
 
-  handelSearch = () => {
+  handleSearch = () => {
     this.getDataSource()
   }
 
@@ -67,15 +70,6 @@ class MerchantBannerManager extends React.Component {
       formData: data
     })
     this.handleShowAddModal()
-  }
-
-  handleChange(key, data) {
-    const {meta} = this.state
-    data[key] = !data[key]
-    db.update(data.id, data).then(() => {
-      message.success('更新成功')
-      this.getDataSource({offset: meta.offset, limit: meta.limit})
-    })
   }
 
   handleShowAddModal = () => {
@@ -93,9 +87,6 @@ class MerchantBannerManager extends React.Component {
 
   handleSaveProgramData = data => {
     const {formData} = this.state
-    if (!formData.id) {
-      data.merchant_id = this.merchantId
-    }
     const req = formData.id ? db.update(formData.id, data) : db.create(data)
     let title = formData.id ? '更新成功' : '添加成功'
     req.then(() => {
@@ -114,7 +105,7 @@ class MerchantBannerManager extends React.Component {
 
   render() {
     const {visible, formData} = this.state
-    const columnsWidth = [60, 120, 150, 90, 90, 90, 100, 180]
+    const columnsWidth = [60, 150, 150, 130, 100, 100, 180]
     const columns = [
       {
         title: '序号',
@@ -122,33 +113,32 @@ class MerchantBannerManager extends React.Component {
         render: (val, row, index) => this.state.meta.offset + index + 1,
       },
       {
-        title: '图片',
-        dataIndex: 'image',
-        render: val => {
-          return <img style={{width: 100, height: 50, objectFit: 'contain'}} src={val} />
-        }
-      },
-      {
-        title: '菜品名称',
+        title: '栏目名称',
         dataIndex: 'name',
       },
       {
-        title: '原价',
-        dataIndex: 'original_price',
+        title: '图标',
+        dataIndex: 'icon',
+        render: val => {
+          return <img style={{width: 50, height: 50}} src={val} />
+        }
       },
       {
-        title: '现价',
-        dataIndex: 'current_price',
+        title: '角标内容',
+        dataIndex: 'corner_content',
       },
       {
-        title: '折扣',
-        dataIndex: 'discount',
-      },
-      {
-        title: '是否推荐',
-        dataIndex: 'is_recommend',
+        title: '栏目是否显示',
+        dataIndex: 'is_display',
         render: (val, row) => {
-          return <Switch checked={val} onChange={() => {this.handleChange('is_recommend', row)}}></Switch>
+          return <Switch checked={val} onChange={() => {this.handleDisplayChange('is_display', row)}}></Switch>
+        },
+      },
+      {
+        title: '角标是否显示',
+        dataIndex: 'is_corner_display',
+        render: (val, row) => {
+          return <Switch checked={val} onChange={() => {this.handleDisplayChange('is_corner_display', row)}}></Switch>
         },
       },
       {
@@ -178,14 +168,14 @@ class MerchantBannerManager extends React.Component {
     return (
       <>
         <div>
-          <span>菜品名称：</span>
+          <span>栏目名称：</span>
           <Input
             style={{width: 220, marginRight: 15, marginBottom: 15, marginLeft: 10}}
-            placeholder="请输入菜品名称"
+            placeholder="请输入栏目名称"
             value={this.state.searchName}
             onChange={this.handleInput}
           />
-          <Button type='primary' onClick={this.handelSearch}>
+          <Button type='primary' onClick={this.handleSearch}>
             查询
           </Button>
         </div>
@@ -201,13 +191,12 @@ class MerchantBannerManager extends React.Component {
           dataSource={this.state.dataSource}
           pagination={utils.pagination(this.state.meta, params => this.getDataSource(params))}
         />
-        {!visible ? null
-          : <EditMenuModal
+        <AddProgramModal
           visible={visible}
           onCancel={this.handleHideModal}
           formData={formData || {}}
           onSubmit={this.handleSaveProgramData}
-        />}
+        />
       </>
     )
   }
@@ -215,4 +204,4 @@ class MerchantBannerManager extends React.Component {
 
 const BaseTable = withBaseTable()
 
-export default withRouter(Form.create()(MerchantBannerManager))
+export default withRouter(Form.create()(ProgramManage))

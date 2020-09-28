@@ -8,27 +8,28 @@ import {lazy} from 'react'
  */
 export const ROUTE = {
   // 栏目
-  PROGRAM_MANAGE: '/program-manage',
+  PROGRAM_MANAGE: '/shop-manage/program-manage',
   // 轮播图
-  BANNER_SETTING: '/banner-setting',
-  BANNER_ADD: '/banner-edit',
-  BANNER_EDIT: '/banner-edit/:id',
+  BANNER_SETTING: '/shop-manage/banner-setting',
+  BANNER_ADD: '/shop-manage/banner-edit',
+  BANNER_EDIT: '/shop-manage/banner-edit/:id',
   // 用户
   USER_LIST: '/user-list',
   // 商家
-  MERCHANT_LIST: '/merchant-list',
-  MERCHANT_ADD: '/merchant-edit',
-  MERCHANT_EDIT: '/merchant-edit/:id',
-  MERCHANT_BANNER_MANAGE: '/merchant-banner-manage/:merchantId',
-  MERCHANT_COUPON_MANAGE: '/merchant-coupon-manage/:merchantId',
-  MERCHANT_COUPON_ADD: '/merchant-coupon-edit/:merchantId/',
-  MERCHANT_COUPON_EDIT: '/merchant-coupon-edit/:merchantId/:id',
-  MERCHANT_MENU_MANAGE: '/merchant-menu-manage/:merchantId',
-  MERCHANT_PACKAGE_MANAGE: '/merchant-package-manage/:merchantId',
-  MERCHANT_PACKAGE_ADD: '/merchant-package-edit/:merchantId',
-  MERCHANT_PACKAGE_EDIT: '/merchant-package-edit/:merchantId/:id',
-  MERCHANT_TYPE: '/merchant-type',
-  RESTANURANT_SERVICE: '/restaurant-service',
+  MERCHANT_LIST: '/merchant-manage/merchant-list',
+  MERCHANT_ADD: '/merchant-manage/merchant-edit',
+  MERCHANT_EDIT: '/merchant-manage/merchant-edit/:id',
+  MERCHANT_BANNER_MANAGE: '/merchant-manage/merchant-banner-manage/:merchantId',
+  MERCHANT_COUPON_MANAGE: '/merchant-manage/merchant-coupon-manage/:merchantId',
+  MERCHANT_COUPON_ADD: '/merchant-manage/merchant-coupon-edit/:merchantId/',
+  MERCHANT_COUPON_EDIT: '/merchant-manage/merchant-coupon-edit/:merchantId/:id',
+  MERCHANT_MENU_MANAGE: '/merchant-manage/merchant-menu-manage/:merchantId',
+  MERCHANT_PACKAGE_MANAGE: '/merchant-manage/merchant-package-manage/:merchantId',
+  MERCHANT_PACKAGE_ADD: '/merchant-manage/merchant-package-edit/:merchantId',
+  MERCHANT_PACKAGE_EDIT: '/merchant-manage/merchant-package-edit/:merchantId/:id',
+  MERCHANT_TYPE: '/merchant-manage/merchant-type',
+  RESTANURANT_SERVICE: '/merchant-manage/restaurant-service',
+  USER_LIST: '/user-manage/user-list'
 }
 
 /**
@@ -80,7 +81,16 @@ const routes = [
         path: ROUTE.RESTANURANT_SERVICE,
       }
     ]
-  }
+  },
+  {
+    menuTitle: '用户管理',
+    subRoute: [
+      {
+        menuTitle: '用户列表',
+        path: ROUTE.USER_LIST,
+      }
+    ]
+  },
 ]
 
 const lazyLoader = path => lazy(() => import(/* webpackChunkName: "chunk-[request]" */ `./pages/${parsePath(path)}`))

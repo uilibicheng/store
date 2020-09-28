@@ -2,13 +2,13 @@ import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {Form, Input, Button, InputNumber, Switch, Select, Cascader, Radio } from 'antd'
 
-import io from '../io'
-import utils from '../utils'
-import FormItem from '../components/form-item'
-import Uploader from '../components/uploader'
-import Ueditor from '../components/ueditor'
-import Position from '../config/position'
-import withBaseTable from '../components/with-base-table'
+import io from '../../io'
+import utils from '../../utils'
+import FormItem from '../../components/form-item'
+import Uploader from '../../components/uploader'
+import Ueditor from '../../components/ueditor'
+import Position from '../../config/position'
+import withBaseTable from '../../components/with-base-table'
 
 const { Option } = Select;
 const db = io.merchant
@@ -49,7 +49,6 @@ class BannerEdit extends React.Component {
       db.get(this.id).then(res => {
         const formData = res.data || {}
         formData.location = [formData.provice, formData.city, formData.county]
-        console.log('formData', formData)
         this.setState(
           {
             formData,
@@ -95,7 +94,6 @@ class BannerEdit extends React.Component {
     const {formData, halfYearSales, selectedService} = this.state
     e.preventDefault()
     this.props.form.validateFieldsAndScroll((err, data) => {
-      console.log('err', err, data)
       if (err) return
       data.half_year_sales = halfYearSales
       data.service_list = selectedService || []
@@ -103,7 +101,6 @@ class BannerEdit extends React.Component {
       data.city = data.location[1] || ''
       data.county = data.location[2] || ''
       delete data.location
-      console.log('data', data)
       const req = this.id ? db.update(this.id, data) : db.create(data)
       req.then(() => {
         this.goBack()

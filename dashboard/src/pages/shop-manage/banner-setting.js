@@ -1,16 +1,16 @@
 import React from 'react'
-import {Link, withRouter, generatePath} from 'react-router-dom'
-import {Form, Input, Button, message, Popconfirm} from 'antd'
+import {Link, generatePath, withRouter} from 'react-router-dom'
+import {Form, Input, Button, message, Popconfirm, Switch} from 'antd'
 
-import io from '../io'
-import utils from '../utils'
-import {ROUTE} from '../route'
-import withBaseTable from '../components/with-base-table'
-import Add from '../components/add'
+import io from '../../io'
+import utils from '../../utils'
+import {ROUTE} from '../../route'
+import withBaseTable from '../../components/with-base-table'
+import Add from '../../components/add'
 
-const db = io.packages
+const db = io.banner
 
-class MerchantPackageManage extends React.Component {
+class BannerSetting extends React.Component {
   state = {
     meta: {},
     dataSource: [],
@@ -21,14 +21,8 @@ class MerchantPackageManage extends React.Component {
     this.getDataSource()
   }
 
-  get merchantId() {
-    const {match} = this.props
-    return match.params.merchantId
-  }
-
   getDataSource(params = {offset: 0, limit: 20}) {
     params.where = this.searchParams
-    params.orderBy = 'serial_number'
 
     return db
       .find({
@@ -42,13 +36,21 @@ class MerchantPackageManage extends React.Component {
   }
 
   get searchParams() {
-    const {searchName, searchType} = this.state
+    const {searchName} = this.state
     const params = {}
     if (searchName) {
       params.name = {$contains: searchName}
     }
-    params.merchant_id = {$eq: this.merchantId}
     return params
+  }
+
+  handleDisplayChange(key, data) {
+    const {meta} = this.state
+    data[key] = !data[key]
+    db.update(data.id, data).then(() => {
+      message.success('更新成功')
+      this.getDataSource({offset: meta.offset, limit: meta.limit})
+    })
   }
 
   handleInput = e => {
@@ -58,8 +60,7 @@ class MerchantPackageManage extends React.Component {
     })
   }
 
-  handelSearch = () => {
-    this.getDataSource()
+  handleEditRow = data => {
   }
 
   handleDeleta = id => {
@@ -70,7 +71,7 @@ class MerchantPackageManage extends React.Component {
   }
 
   render() {
-    const columnsWidth = [60, 150, 150, 100, 180]
+    const columnsWidth = [60, 150, 150, 130, 100, 180]
     const columns = [
       {
         title: '序号',
@@ -78,24 +79,26 @@ class MerchantPackageManage extends React.Component {
         render: (val, row, index) => this.state.meta.offset + index + 1,
       },
       {
-        title: '图片',
+        title: '轮播图片',
         dataIndex: 'image',
         render: val => {
-          return <img style={{width: 100, height: 50, objectFit: 'contain'}} src={val} />
+          return <img style={style.img} src={val} />
         }
       },
       {
-        title: '套餐名称',
+        title: '轮播图名称',
         dataIndex: 'name',
       },
       {
-        title: '顺序',
+        title: '显示顺序',
         dataIndex: 'serial_number',
       },
       {
-        title: '状态',
-        dataIndex: 'status',
-        render: val => val ? '正常' : '禁用',
+        title: '栏目是否显示',
+        dataIndex: 'is_display',
+        render: (val, row) => {
+          return <Switch checked={val} onChange={() => {this.handleDisplayChange('is_display', row)}}></Switch>
+        },
       },
       {
         fixed: 'right',
@@ -104,7 +107,7 @@ class MerchantPackageManage extends React.Component {
         render: (val, row) => (
           <>
             <Button type='primary' ghost style={{margin: '0px 8px'}}>
-              <Link to={generatePath(ROUTE.MERCHANT_PACKAGE_EDIT, {merchantId: this.merchantId, id: row.id})}>编辑</Link>
+              <Link to={generatePath(ROUTE.BANNER_EDIT, {id: row.id})}>编辑</Link>
             </Button>
             <Popconfirm title='确认删除' onConfirm={() => this.handleDeleta(row.id)}>
               <Button type='danger' ghost>
@@ -124,19 +127,19 @@ class MerchantPackageManage extends React.Component {
     return (
       <>
         <div>
-          <span>套餐名称：</span>
+          <span>图片名称：</span>
           <Input
-            style={{width: 200, marginRight: 15, marginBottom: 15, marginLeft: 10}}
-            placeholder="请输入套餐名称"
+            style={{width: 220, marginRight: 15, marginBottom: 15, marginLeft: 10}}
+            placeholder="请输入图片名称"
             value={this.state.searchName}
             onChange={this.handleInput}
           />
-          <Button type='primary' onClick={this.handelSearch}>
+          <Button type='primary' onClick={() => {this.getDataSource()}}>
             查询
           </Button>
         </div>
         <div style={{marginBottom: 15}}>
-          <Add path={generatePath(ROUTE.MERCHANT_PACKAGE_ADD, {merchantId: this.merchantId})} {...this.props} />
+        <Add path={generatePath(ROUTE.BANNER_ADD)} {...this.props} />
         </div>
         <BaseTable
           {...this.props}
@@ -152,4 +155,12 @@ class MerchantPackageManage extends React.Component {
 
 const BaseTable = withBaseTable()
 
-export default withRouter(Form.create()(MerchantPackageManage))
+export default withRouter(Form.create()(BannerSetting))
+
+const style = {
+  img: {
+    width: 80,
+    height: 80,
+    objectFit: 'contain'
+  }
+}

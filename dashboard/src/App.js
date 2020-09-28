@@ -108,7 +108,7 @@ const componentStyles = css.resolve`
     top: 0;
     height: 100vh;
     width: 200px;
-    overflow: auto;
+    overflow: hidden;
   }
 
   .content {

@@ -1,27 +1,28 @@
 import React from 'react'
-import {Link, generatePath, withRouter} from 'react-router-dom'
-import {Form, Input, Button, message, Popconfirm, Switch} from 'antd'
+import {withRouter} from 'react-router-dom'
+import {Form, Input, Button, message, Popconfirm} from 'antd'
 
-import io from '../io'
-import utils from '../utils'
-import {ROUTE} from '../route'
-import withBaseTable from '../components/with-base-table'
-import Add from '../components/add'
+import io from '../../io'
+import utils from '../../utils'
+import EditMerchantType from '../../components/edit-merchant-type'
+import withBaseTable from '../../components/with-base-table'
 
-const db = io.banner
+const db = io.merchantType
 
-class BannerSetting extends React.Component {
+class MerchantType extends React.Component {
   state = {
     meta: {},
     dataSource: [],
     searchName: '',
+    visible: false,
+    formData: {},
   }
 
   componentDidMount() {
     this.getDataSource()
   }
 
-  getDataSource(params = {offset: 0, limit: 20}) {
+  getDataSource(params = {offset: 0, limit: 10}) {
     params.where = this.searchParams
 
     return db
@@ -39,7 +40,7 @@ class BannerSetting extends React.Component {
     const {searchName} = this.state
     const params = {}
     if (searchName) {
-      params.name = {$contains: searchName}
+      params.type = {$contains: searchName}
     }
     return params
   }
@@ -55,13 +56,44 @@ class BannerSetting extends React.Component {
 
   handleInput = e => {
     const {value} = e.target
-    console.log('value', value)
     this.setState({
       searchName: value
     })
   }
 
+  handleSearch = () => {
+    this.getDataSource()
+  }
+
   handleEditRow = data => {
+    this.setState({
+      formData: data
+    })
+    this.handleShowAddModal()
+  }
+
+  handleShowAddModal = () => {
+    this.setState({
+      visible: true,
+    })
+  }
+
+  handleHideModal = () => {
+    this.setState({
+      visible: false,
+      formData: {}
+    })
+  }
+
+  handleSaveProgramData = data => {
+    const {formData} = this.state
+    const req = formData.id ? db.update(formData.id, data) : db.create(data)
+    let title = formData.id ? '更新成功' : '添加成功'
+    req.then(() => {
+      message.success(title)
+      this.handleHideModal()
+      this.getDataSource()
+    })
   }
 
   handleDeleta = id => {
@@ -72,7 +104,8 @@ class BannerSetting extends React.Component {
   }
 
   render() {
-    const columnsWidth = [60, 150, 150, 130, 100, 180]
+    const {visible, formData} = this.state
+    const columnsWidth = [60, 150, 150, 180]
     const columns = [
       {
         title: '序号',
@@ -80,26 +113,15 @@ class BannerSetting extends React.Component {
         render: (val, row, index) => this.state.meta.offset + index + 1,
       },
       {
-        title: '轮播图片',
+        title: '类型图片',
         dataIndex: 'image',
         render: val => {
-          return <img style={style.img} src={val} />
+          return <img style={{width: 50, height: 50, objectFit: 'contain'}} src={val} />
         }
       },
       {
-        title: '轮播图名称',
-        dataIndex: 'name',
-      },
-      {
-        title: '显示顺序',
-        dataIndex: 'serial_number',
-      },
-      {
-        title: '栏目是否显示',
-        dataIndex: 'is_display',
-        render: (val, row) => {
-          return <Switch checked={val} onChange={() => {this.handleDisplayChange('is_display', row)}}></Switch>
-        },
+        title: '商家类型',
+        dataIndex: 'type',
       },
       {
         fixed: 'right',
@@ -107,8 +129,8 @@ class BannerSetting extends React.Component {
         key: 'action',
         render: (val, row) => (
           <>
-            <Button type='primary' ghost style={{margin: '0px 8px'}}>
-              <Link to={generatePath(ROUTE.BANNER_EDIT, {id: row.id})}>编辑</Link>
+            <Button type='primary' ghost style={{margin: '0px 8px'}} onClick={() => this.handleEditRow(row)}>
+              编辑
             </Button>
             <Popconfirm title='确认删除' onConfirm={() => this.handleDeleta(row.id)}>
               <Button type='danger' ghost>
@@ -128,19 +150,21 @@ class BannerSetting extends React.Component {
     return (
       <>
         <div>
-          <span>图片名称：</span>
+          <span>商家类型：</span>
           <Input
             style={{width: 220, marginRight: 15, marginBottom: 15, marginLeft: 10}}
-            placeholder="请输入图片名称"
+            placeholder="请输入商家类型"
             value={this.state.searchName}
             onChange={this.handleInput}
           />
-          <Button type='primary' onClick={() => {this.getDataSource()}}>
+          <Button type='primary' onClick={this.handleSearch}>
             查询
           </Button>
         </div>
         <div style={{marginBottom: 15}}>
-        <Add path={generatePath(ROUTE.BANNER_ADD)} {...this.props} />
+          <Button type='primary' onClick={this.handleShowAddModal}>
+            新增
+          </Button>
         </div>
         <BaseTable
           {...this.props}
@@ -149,6 +173,13 @@ class BannerSetting extends React.Component {
           dataSource={this.state.dataSource}
           pagination={utils.pagination(this.state.meta, params => this.getDataSource(params))}
         />
+        {!visible ? null
+          : <EditMerchantType
+          visible={visible}
+          onCancel={this.handleHideModal}
+          formData={formData || {}}
+          onSubmit={this.handleSaveProgramData}
+        />}
       </>
     )
   }
@@ -156,12 +187,4 @@ class BannerSetting extends React.Component {
 
 const BaseTable = withBaseTable()
 
-export default withRouter(Form.create()(BannerSetting))
-
-const style = {
-  img: {
-    width: 80,
-    height: 80,
-    objectFit: 'contain'
-  }
-}
+export default withRouter(Form.create()(MerchantType))
