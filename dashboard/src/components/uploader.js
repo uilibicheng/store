@@ -101,6 +101,7 @@ export default class Uploader extends React.Component {
           onError={this.onError}
           onPreview={this.togglePreview}
           onRemove={this.onRemove}
+          disabled={this.props.disabled}
         >
           {fileList.length < limit && UploadButton}
         </Upload>

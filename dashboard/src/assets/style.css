@@ -3,13 +3,19 @@
   margin-right: 18px;
 }
 
-.ant-form-item-children input[type='text'],
+.ant-form-item-children input[type='text'] {
+  width: 250px;
+}
 .ant-form-item-children .ant-select {
-  width: 50%;
+  width: 250px;
 }
 
 .ant-form-item-children .ant-calendar-picker {
   width: 50%  !important;
+}
+
+.ant-form-item .ant-form-item-label {
+  margin-right: 10px;
 }
 
 /* 优化表格 */

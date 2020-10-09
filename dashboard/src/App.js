@@ -11,7 +11,7 @@ import RouterBreadcrumb from './components/router-breadcrumb'
 
 const {Sider, Content} = Layout
 
-const Welcome = () => <Alert message='欢迎进入【小裁神 SUITLIFE】运营后台' />
+const Welcome = () => <Alert message='欢迎进入【小美团】运营后台' />
 const WithoutAccess = () => <Alert banner message='您没有当前页面的访问权限，请向管理员申请' />
 
 export default class App extends React.Component {
@@ -21,7 +21,9 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    getAcl().then(acl => this.setState({acl, loading: false}))
+    getAcl().then(acl => {
+      this.setState({acl, loading: false})
+    })
   }
 
   renderRoute(route, list = []) {
@@ -53,8 +55,8 @@ export default class App extends React.Component {
       <HashRouter>
         <ConfigProvider locale={zh_CN} autoInsertSpaceInButton={false}>
           <Layout>
-            <Sider {...style('sider')}>
-              <h1 className='title'>小裁神</h1>
+            <Sider {...style('sider')} style={{height: '100%', overflow: 'hidden'}}>
+              <h1 className='title'>小美团</h1>
               <MenuPanel acl={acl} />
             </Sider>
 
@@ -106,7 +108,7 @@ const componentStyles = css.resolve`
     top: 0;
     height: 100vh;
     width: 200px;
-    overflow: auto;
+    overflow: hidden;
   }
 
   .content {

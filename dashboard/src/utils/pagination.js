@@ -6,6 +6,7 @@ export default function pagination(meta = {}, onChange = () => {}) {
     pageSize: limit,
     current: offset / limit + 1,
     size: 'small',
+    hideOnSinglePage: true,
     showQuickJumper: true,
     showTotal: num => `共 ${num} 条数据`,
     onChange: (page, size) => {

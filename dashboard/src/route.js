@@ -7,26 +7,29 @@ import {lazy} from 'react'
  * 上线后文件名不允许更改，否则会影响权限控制
  */
 export const ROUTE = {
-  ADMIN_LIST: '/admin-list',
-  ADMIN_ADD: '/admin-edit',
-  ADMIN_EDIT: '/admin-edit/:id',
-  ADMIN_OPERATION: '/admin-operation-log',
-  WECHAT_USER_LIST: '/wechat-user-list',
-  STORE_LIST: '/store-list',
-  STORE_ADD: '/store-edit',
-  STORE_EDIT: '/store-edit/:id',
-  TAILORED_LIST: '/tailored-list',
-  TAILORED_ADD: '/tailored-edit',
-  TAILORED_EDIT: '/tailored-edit/:id',
-  INVITATION_CODE_LIST: '/invitation-code-list',
-  ORDER_LIST: '/order-list',
-  ORDER_EDIT: '/order-edit/:id',
-  ARTICLE_CATEGORY_LIST: '/article-category-list/:type?',
-  ARTICLE_CATEGORY_ADD: '/article-category-edit/:type',
-  ARTICLE_CATEGORY_EDIT: '/article-category-edit/:type/:id',
-  ARTICLE_LIST: '/article-list/:type?',
-  ARTICLE_ADD: '/article-edit/:type',
-  ARTICLE_EDIT: '/article-edit/:type/:id',
+  // 栏目
+  PROGRAM_MANAGE: '/shop-manage/program-manage',
+  // 轮播图
+  BANNER_SETTING: '/shop-manage/banner-setting',
+  BANNER_ADD: '/shop-manage/banner-edit',
+  BANNER_EDIT: '/shop-manage/banner-edit/:id',
+  // 用户
+  USER_LIST: '/user-list',
+  // 商家
+  MERCHANT_LIST: '/merchant-manage/merchant-list',
+  MERCHANT_ADD: '/merchant-manage/merchant-edit',
+  MERCHANT_EDIT: '/merchant-manage/merchant-edit/:id',
+  MERCHANT_BANNER_MANAGE: '/merchant-manage/merchant-banner-manage/:merchantId',
+  MERCHANT_COUPON_MANAGE: '/merchant-manage/merchant-coupon-manage/:merchantId',
+  MERCHANT_COUPON_ADD: '/merchant-manage/merchant-coupon-edit/:merchantId/',
+  MERCHANT_COUPON_EDIT: '/merchant-manage/merchant-coupon-edit/:merchantId/:id',
+  MERCHANT_MENU_MANAGE: '/merchant-manage/merchant-menu-manage/:merchantId',
+  MERCHANT_PACKAGE_MANAGE: '/merchant-manage/merchant-package-manage/:merchantId',
+  MERCHANT_PACKAGE_ADD: '/merchant-manage/merchant-package-edit/:merchantId',
+  MERCHANT_PACKAGE_EDIT: '/merchant-manage/merchant-package-edit/:merchantId/:id',
+  MERCHANT_TYPE: '/merchant-manage/merchant-type',
+  RESTANURANT_SERVICE: '/merchant-manage/restaurant-service',
+  USER_LIST: '/user-manage/user-list'
 }
 
 /**
@@ -34,86 +37,59 @@ export const ROUTE = {
  */
 const routes = [
   {
+    menuTitle: '门店管理',
+    subRoute: [
+      {
+        menuTitle: '栏目管理',
+        path: ROUTE.PROGRAM_MANAGE,
+      },
+      {
+        menuTitle: '轮播图设置',
+        path: ROUTE.BANNER_SETTING,
+        subRoute: [
+          {name: '新增轮播图', path: ROUTE.BANNER_ADD},
+          {name: '编辑轮播图', path: ROUTE.BANNER_EDIT},
+        ]
+      },
+    ],
+  },
+  {
     menuTitle: '商家管理',
     subRoute: [
       {
         menuTitle: '商家列表',
-        path: ROUTE.STORE_LIST,
+        path: ROUTE.MERCHANT_LIST,
         subRoute: [
-          {name: '添加商家', path: ROUTE.STORE_ADD},
-          {name: '编辑商家', path: ROUTE.STORE_EDIT},
-        ],
-      },
-    ],
-  },
-  {
-    menuTitle: '邀请码管理',
-    subRoute: [
-      {
-        menuTitle: '邀请码列表',
-        path: ROUTE.INVITATION_CODE_LIST,
-      },
-    ],
-  },
-  {
-    menuTitle: '量体管理',
-    subRoute: [
-      {
-        menuTitle: '量体列表',
-        path: ROUTE.TAILORED_LIST,
-        subRoute: [
-          {name: '新增量体表', path: ROUTE.TAILORED_ADD},
-          {name: '编辑量体表', path: ROUTE.TAILORED_EDIT},
-        ],
-      },
-    ],
-  },
-  {
-    menuTitle: '订单管理',
-    subRoute: [
-      {
-        menuTitle: '订单列表',
-        path: ROUTE.ORDER_LIST,
-        subRoute: [{name: '编辑订单', path: ROUTE.ORDER_EDIT}],
-      },
-    ],
-  },
-  {
-    menuTitle: '文章分类管理',
-    path: ROUTE.ARTICLE_CATEGORY_LIST,
-    subRoute: [
-      {name: '新增文章分类', path: ROUTE.ARTICLE_CATEGORY_ADD},
-      {name: '编辑文章分类', path: ROUTE.ARTICLE_CATEGORY_EDIT},
-    ],
-  },
-  {
-    menuTitle: '文章管理',
-    path: ROUTE.ARTICLE_LIST,
-    subRoute: [
-      {name: '新增文章', path: ROUTE.ARTICLE_ADD},
-      {name: '编辑文章', path: ROUTE.ARTICLE_EDIT},
-    ],
-  },
-  {
-    menuTitle: '权限管理',
-    subRoute: [
-      {
-        menuTitle: '管理员列表',
-        path: ROUTE.ADMIN_LIST,
-        subRoute: [
-          {name: '新增管理员', path: ROUTE.ADMIN_ADD},
-          {name: '编辑管理员', path: ROUTE.ADMIN_EDIT},
-        ],
+          {'name': '新增商家', path: ROUTE.MERCHANT_ADD},
+          {'name': '编辑商家', path: ROUTE.MERCHANT_EDIT},
+          {'name': '轮播图管理', path: ROUTE.MERCHANT_BANNER_MANAGE},
+          {'name': '优惠券管理', path: ROUTE.MERCHANT_COUPON_MANAGE},
+          {'name': '新增优惠券', path: ROUTE.MERCHANT_COUPON_ADD},
+          {'name': '编辑优惠券', path: ROUTE.MERCHANT_COUPON_EDIT},
+          {'name': '菜品管理', path: ROUTE.MERCHANT_MENU_MANAGE},
+          {'name': '套餐管理', path: ROUTE.MERCHANT_PACKAGE_MANAGE},
+          {'name': '新增套餐', path: ROUTE.MERCHANT_PACKAGE_ADD},
+          {'name': '编辑套餐', path: ROUTE.MERCHANT_PACKAGE_EDIT},
+        ]
       },
       {
-        menuTitle: '管理员操作记录',
-        path: ROUTE.ADMIN_OPERATION,
+        menuTitle: '商家类型',
+        path: ROUTE.MERCHANT_TYPE,
       },
       {
-        menuTitle: '微信用户列表',
-        path: ROUTE.WECHAT_USER_LIST,
-      },
-    ],
+        menuTitle: '餐厅服务',
+        path: ROUTE.RESTANURANT_SERVICE,
+      }
+    ]
+  },
+  {
+    menuTitle: '用户管理',
+    subRoute: [
+      {
+        menuTitle: '用户列表',
+        path: ROUTE.USER_LIST,
+      }
+    ]
   },
 ]
 
