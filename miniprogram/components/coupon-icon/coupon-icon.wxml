@@ -1,0 +1,6 @@
+<view class="icon-container-box" bindtap="handleIcon" data-index="{{index}}">
+  <image class="icon-container-img" src="{{couponMerchantType.image}}"></image>
+  <text class="icon-container-text">
+         {{couponMerchantType.type}}
+        </text>
+</view>

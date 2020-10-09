@@ -29,7 +29,9 @@ textarea {
   color: transparent;
   display: none;
 }
-
+page{
+  background: #f1f1f1;
+}
 /* .common-page {
   background-color: green;
   position: relative;

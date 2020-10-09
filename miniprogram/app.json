@@ -16,12 +16,13 @@
     "pages/business-order/business-order",
     "pages/business-create-order/business-create-order",
     "pages/wiki-picture/wiki-picture",
-    "pages/business-verification/business-verification"
+    "pages/business-verification/business-verification",
+    "pages/coupon/coupon"
   ],
   "tabBar": {
-    "custom": true,
-    "color": "#7A7E83",
-    "selectedColor": "#3cc51f",
+    "custom": false,
+    "color": "#bfbfbf",
+    "selectedColor": "#f58619",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
@@ -32,28 +33,10 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/order-list/order-list",
-        "iconPath": "components/nav-bar/images/icon-tab-order-list-normal.png",
-        "selectedIconPath": "components/nav-bar/images/icon-tab-order-list-pressed.png",
-        "text": "订单"
-      },
-      {
-        "pagePath": "pages/wiki/wiki",
-        "iconPath": "components/nav-bar/images/icon-tab-wiki-normal.png",
-        "selectedIconPath": "components/nav-bar/images/icon-tab-wiki-pressed.png",
-        "text": "小百科"
-      },
-      {
-        "pagePath": "pages/business-index/business-index",
-        "iconPath": "components/business-nav-bar/images/icon-tab-business-index-normal.png",
-        "selectedIconPath": "components/business-nav-bar/images/icon-tab-business-index-pressed.png",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/business-order-list/business-order-list",
-        "iconPath": "components/business-nav-bar/images/icon-tab-business-order-list-normal.png",
-        "selectedIconPath": "components/business-nav-bar/images/icon-tab-business-order-list-pressed.png",
-        "text": "订单"
+        "pagePath": "pages/coupon/coupon",
+        "iconPath": "components/nav-bar/images/icon-tab-coupon-normal.png",
+        "selectedIconPath": "components/nav-bar/images/icon-tab-coupon-pressed.png",
+        "text": "优惠活动"
       }
     ]
   },

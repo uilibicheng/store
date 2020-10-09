@@ -1,4 +1,52 @@
 /* components/index-card/index-card.wxss */
 .card-container{
-  pa
+  padding: 0 30rpx;
+}
+.card-container-box{
+  background-color: #ffffff;
+  padding: 40rpx;
+  border-radius: 20rpx;
+  display: flex;
+  position: relative;
+  margin: 40rpx 0;
+}
+.card-container-img{
+  width: 200rpx;
+  height: 200rpx;
+}
+.card-container-right{
+  display: inline-block;
+  vertical-align: top;
+  flex: 1;
+  margin-left: 20rpx;
+}
+.card-container-title{
+  font-weight: bold;
+}
+.card-container-price{
+  margin: 35rpx 0;
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 40rpx;
+}
+.card-container-discount{
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  font-size: 80rpx;
+  color: #ff9419;
+  font-weight: bold;
+}
+.card-container-discountText{
+  font-size: 24rpx;
+}
+.card-container-tag{
+  background-color:  #ff9419;
+  color: #ffffff;
+  font-size: 28rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 0 20rpx 0 20rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
 }

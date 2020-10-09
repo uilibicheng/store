@@ -5,6 +5,7 @@ import store from './store'
 import tailored from './tailored'
 import settings from './settings'
 import home from './home'
+import coupon from './coupon'
 
 export default {
   ...order,
@@ -13,5 +14,6 @@ export default {
   ...store,
   ...tailored,
   ...settings,
-  ...home
+  ...home,
+  ...coupon
 }

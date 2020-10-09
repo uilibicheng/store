@@ -1,24 +1,17 @@
-/* components/index-icon/index-icon.wxss */
-
-.icon-container {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  padding: 16px 0 17px 0;
-}
+/* components/coupon-icon/coupon-icon.wxss *//* components/index-icon/index-icon.wxss */
 
 .icon-container-box {
-  width: 25%;
+  margin: 0 30rpx;
   text-align: center;
   margin-bottom: 10rpx;
   position: relative;
+  display: inline-block;
 }
 
 .icon-container-img {
-  width: 100rpx;
-  height: 100rpx;
-   border-radius: 100rpx;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 200rpx;
 }
 
 .icon-container-text {

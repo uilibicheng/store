@@ -1,0 +1,23 @@
+/* pages/coupon/coupon.wxss */
+.page-coupon-tab{
+  font-size:40rpx !important;
+  font-weight: bold !important;
+}
+.page-coupon-input{
+  margin-top: 20rpx;
+}
+.page-coupon-tab{
+   background: #f1f1f1;
+}
+.van-search__content {
+  background: #fff !important;
+}
+.page-coupon-type{
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+.page-coupon-more{
+  margin-left: 25rpx;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+}

@@ -1,18 +1,29 @@
 /* pages/index/index.wxss */
-.page-banner{
 
+.page-banner {
 }
-.page-banner-div{
-  padding:0 30rpx;
+
+.page-banner-div {
+  padding: 0 30rpx;
   height: 100%;
 }
-.page-banner-img{
+
+.page-banner-img {
   width: 100%;
   height: 100%;
   border-radius: 20rpx;
   overflow: hidden;
 }
-.page-business-title{
+
+.page-business-title {
   margin-left: 30rpx;
   font-weight: bold;
+}
+
+.page-search-input {
+  margin-top: 40rpx;
+}
+
+.van-search__content {
+  background: #fff !important;
 }

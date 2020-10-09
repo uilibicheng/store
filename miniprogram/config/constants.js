@@ -12,7 +12,9 @@ export const BAAS_SCHEMA_ID = {
   article: 'article',
   tailored: 'tailored',
   banner:'banner',
-  program:'program'
+  program:'program',
+  merchant:'merchant',
+  merchant_type:'merchant_type'
 }
 
 const REMOTE_FUNCTION_PROD = {

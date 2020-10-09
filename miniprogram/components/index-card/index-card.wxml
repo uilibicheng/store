@@ -1,11 +1,15 @@
 <!--components/index-card/index-card.wxml-->
 <view class="card-container">
-   <!-- <view class="card-container-box">
-    <image src="http://image.wbiaotest.cn/mall/158821478981620022800004(1).jpg"></image>
-    <view>
-    <text>捕鱼达人海鲜餐厅</text>
-     <text>￥100/人|海鲜|厦滘</text>
-     <van-tag round type="primary">标签</van-tag>
+  <view wx:for="{{merchantList}}" wx:key="index" class="card-container-box">
+    <image class="card-container-img" src="{{item.logo}}"></image>
+    <view class="card-container-right">
+      <view class="card-container-title">{{item.name}}</view>
+      <view class="card-container-price">￥{{item.consumption_person_money}}/人 | {{item.merchant_type_id.type}} | {{item.address}}</view>
+      <van-tag wx:if="{{item.coupon_list}}" size="medium" color="#fff5e9" text-color="#ff9419" round type="primary">{{item.coupon_list[0].name}}</van-tag>
     </view>
-   </view> -->
+    <view wx:if="{{item.disount}}" class="card-container-discount">{{item.disount}}
+      <text class="card-container-discountText">折</text>
+    </view>
+    <view class="card-container-tag">会员买单</view>
+  </view>
 </view>

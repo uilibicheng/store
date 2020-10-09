@@ -161,6 +161,12 @@
 					"pathName": "pages/index/index",
 					"query": "scene=5e68ee7555d540343b32a6ea",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/coupon/coupon",
+					"pathName": "pages/coupon/coupon",
+					"scene": null
 				}
 			]
 		}
