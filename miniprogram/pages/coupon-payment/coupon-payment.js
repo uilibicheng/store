@@ -20,7 +20,7 @@ Page({
 
   getCurrentUser() {
     wx.BaaS.auth.getCurrentUser().then(user => {
-      let phone = user._attribute._phone || ''
+      let phone = user._attribute.phone || ''
       this.setData({
         phone,
         bindPhone: phone,
@@ -61,7 +61,7 @@ Page({
     if (!this.data.phone) {
       wx.BaaS.auth.getCurrentUser()
         .then(user => {
-          return user.setMobilePhone(this.data.bindPhone)
+          return user.set('phone', this.data.bindPhone).update()
         })
     }
     wx.showToast({
