@@ -1,0 +1,13 @@
+<view class="content">
+  <view class="box-wrap">
+  </view>
+  <view class="footer">
+    <view class="price-wrap">
+      <text class="price-unit">￥</text>{{couponInfo.price.current_price}} 元
+      <text class="orginial-price">￥ {{couponInfo.price.original_price}}</text>
+    </view>
+    <view class="footer-btn">
+      立即抢购
+    </view>
+  </view>
+</view>

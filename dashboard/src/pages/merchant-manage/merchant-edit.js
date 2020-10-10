@@ -91,7 +91,7 @@ class BannerEdit extends React.Component {
   }
 
   handleSubmit = e => {
-    const {formData, halfYearSales, selectedService} = this.state
+    const {formData, halfYearSales, selectedService, merchantType} = this.state
     e.preventDefault()
     this.props.form.validateFieldsAndScroll((err, data) => {
       if (err) return
@@ -100,6 +100,11 @@ class BannerEdit extends React.Component {
       data.provice = data.location[0] || ''
       data.city = data.location[1] || ''
       data.county = data.location[2] || ''
+      merchantType.forEach(item => {
+        if (item.id === data.merchant_type_id) {
+          data.merchant_type = item.type
+        }
+      })
       delete data.location
       const req = this.id ? db.update(this.id, data) : db.create(data)
       req.then(() => {

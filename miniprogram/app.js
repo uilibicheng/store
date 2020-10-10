@@ -70,14 +70,5 @@ App({
   },
 
   globalData: {
-    // indexCoverIndex: 0,
-    isStoreUser: false,
-    userStoreInfo: null, // 更新用户信息时使用
-    orderInfo: null, // 进入订单详情页、量体详情页使用
-    orderInfoIndex: null, // 记录进入的订单 index，返回列表时使用
-    modifiedOrderInfo: null, // 修改了订单信息时使用
-    articleInfo: null, // 进入文章页使用
-    tagName: null, // 进入图鉴页使用
-    autoFocus: false, // 进入订单列表页是否自动对焦
   },
 })

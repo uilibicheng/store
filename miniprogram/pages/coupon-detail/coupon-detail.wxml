@@ -1,0 +1,80 @@
+<view class="content">
+  <view class="box-wrap header">
+    <view class="header-top">
+      <view class="shop-name">
+        {{merchantInfo.name}}
+      </view>
+      <view class="shop-sales">
+        销量 {{couponInfo.sales.total_sales}}
+      </view>
+    </view>
+    
+    <view class="coupon-name">
+      {{couponInfo.name}}
+    </view>
+
+    <view class="coupon-price">
+      <view>
+        <text class="cpupon-price-symbol">￥</text>{{couponInfo.price.current_price}} 元
+      </view>
+      <view class="coupon-discount">
+        {{couponInfo.price.discount}} 折
+      </view>
+    </view>
+      
+    <view class="use-time">
+      {{couponInfo.use_time}}
+    </view>
+  </view>
+
+  <!-- 店铺信息 -->
+  <view class="box-wrap merchant">
+    <image class="logo" src="{{merchantInfo.logo}}" mode="aspectFit" />
+    <view class="merchang-info">
+      <view>
+        {{merchantInfo.name}}
+      </view>
+      <view class="merchant-info-intro">
+        <view>
+          ￥{{merchantInfo.consumption_type}}/人 |
+        </view>
+        <view>
+          <text decode="{{true}}">&nbsp;</text>{{merchantInfo.merchant_type}} |
+        </view>
+        <view>
+          <text decode="{{true}}">&nbsp;</text>{{merchantInfo.county}}
+        </view>
+      </view>
+    </view>
+    <view class="phone-wrap" bindtap="makePhoneCall">
+      <image class="phone" src="../../assets/images/phone.png" mode="aspectFit" />
+      <view>
+        电话
+      </view>
+    </view>
+  </view>
+
+  <view class="box-wrap tip-wrap">
+    <view class="tip-title">
+      温馨提示
+    </view>
+    <view class="tip-block">
+      <view class="tip">有效期：</view>
+      {{couponInfo.startTime}} 至 {{couponInfo.endTime}}
+    </view>
+    <view class="tip-block">
+      <view class="tip">使用规则：</view>
+      <rich-text class="" nodes="{{couponInfo.use_rules}}">
+      </rich-text>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="price-wrap">
+      <text class="price-unit">￥</text>{{couponInfo.price.current_price}} 元
+      <text class="orginial-price">￥ {{couponInfo.price.original_price}}</text>
+    </view>
+    <view class="footer-btn" bindtap="jumpToPayment">
+      立即抢购
+    </view>
+  </view>
+</view>
