@@ -14,7 +14,9 @@ export const BAAS_SCHEMA_ID = {
   banner:'banner',
   program:'program',
   merchant:'merchant',
-  merchant_type:'merchant_type'
+  merchant_type:'merchant_type',
+  coupon:'coupon',
+  packages:'packages'
 }
 
 const REMOTE_FUNCTION_PROD = {

@@ -1,0 +1,54 @@
+.coupon-card-container {
+  background-color: #ffff;
+  border-radius: 20rpx;
+  margin: 20rpx;
+  padding: 20rpx;
+}
+
+.coupon-card-text {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.coupon-card-name {
+  display: inline-block;
+  font-weight: bold;
+}
+
+.coupon-card-sell {
+  width: 40%;
+  display: inline-block;
+  text-align: right;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.coupon-card-money {
+  display: inline-block;
+  color: #ff9419;
+  margin-right: 20rpx;
+}
+
+.coupon-card-flex {
+  display: flex;
+  justify-content: space-between;
+  margin: 20rpx 0;
+}
+
+.coupon-card-button{
+  color: #ffff;
+  padding: 10rpx 40rpx;
+  background-color: #ff9419;
+  border-radius: 50rpx;
+}
+.coupon-card-price{
+  display: inline-block;
+  margin-left: 30rpx;
+}
+.coupon-card-merchantName{
+  font-size: 26rpx;
+}
+.coupon-card-merchantMoney{
+  font-size: 26rpx;
+  color: #666;
+}

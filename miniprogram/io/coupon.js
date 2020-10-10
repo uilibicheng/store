@@ -8,5 +8,22 @@ export default {
       .setQuery(query)
       .limit(1000)
       .find()
+  },
+  getCouponList() {
+    const getTable = () => new wx.BaaS.TableObject(BAAS_SCHEMA_ID.coupon)
+    const query = new wx.BaaS.Query()
+    return getTable()
+      .setQuery(query)
+      .expand(['merchant_id'])
+      .limit(1000)
+      .find()
+  },
+  getCouponPackages(){
+    const getTable = () => new wx.BaaS.TableObject(BAAS_SCHEMA_ID.packages)
+    const query = new wx.BaaS.Query()
+    return getTable()
+      .setQuery(query)
+      .limit(1000)
+      .find()
   }
 }

@@ -1,6 +1,6 @@
 <!--pages/coupon/coupon.wxml-->
 <page-header title="优惠活动" selfStyle="background-color: #f1f1f1;" />
-<van-tabs swipeable nav-class="page-coupon-tab" tab-active-class="page-coupon-tab" color="#ff9419" active="{{ active }}" bind:change="onChange" sticky>
+<van-tabs bind:change="onChange" swipeable nav-class="page-coupon-tab" tab-active-class="page-coupon-tab" color="#ff9419" active="{{ active }}" bind:change="onChange" sticky>
   <van-tab title="优惠券"></van-tab>
   <van-tab title="性价比套餐"></van-tab>
 </van-tabs>
@@ -9,9 +9,14 @@
 <van-search custom-class="page-coupon-input" background="#f1f1f1" value="{{ searchValue }}" shape="round" placeholder="请输入商家名称" />
 
 <view class="page-coupon-type">
-<coupon-icon wx:for="{{merchantTypeList}}" wx:key="index" couponMerchantType="{{item}}"/>
-
-<van-dropdown-menu active-color="#ff9419">
-  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
-</van-dropdown-menu>
+  <coupon-icon wx:for="{{merchantTypeList}}" wx:key="index" couponMerchantType="{{item}}" />
 </view>
+<van-dropdown-menu  active-color="#ff9419">
+  <van-dropdown-item bind:change="onSwitch1Change" value="{{ value1 }}" options="{{ option1 }}" />
+</van-dropdown-menu>
+<block wx:if="{{active==0}}">
+  <coupon-card wx:for="{{couponList}}" wx:key="index" couponItem="{{item}}" />
+</block>
+<block wx:else>
+  <coupon-packages wx:for="{{couponPackagesList}}" wx:key="index" couponItem="{{item}}" />
+</block>

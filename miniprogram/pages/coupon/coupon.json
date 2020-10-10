@@ -7,6 +7,8 @@
     "van-search": "@vant/weapp/search/index",
     "coupon-icon": "/components/coupon-icon/coupon-icon",
     "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
-    "van-dropdown-item": "@vant/weapp/dropdown-item/index"
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+    "coupon-card": "/components/coupon-card/coupon-card",
+    "coupon-packages":"/components/coupon-packages/coupon-packages"
   }
 }

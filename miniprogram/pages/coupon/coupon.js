@@ -9,7 +9,7 @@ Page({
     merchantTypeList: [],
     value1: -1,
     option1: [{
-      text: '全部',
+        text: '全部',
         value: -1
       },
       {
@@ -28,7 +28,9 @@ Page({
         text: '300以上',
         value: 3
       },
-    ]
+    ],
+    couponList: [],
+    couponPackagesList:[]
   },
 
   /**
@@ -36,6 +38,8 @@ Page({
    */
   onLoad: function(options) {
     this.getMerchantTypeLists()
+    this.getCouponLists()
+    this.getCouponPackages()
   },
 
   getMerchantTypeLists: function() {
@@ -48,6 +52,36 @@ Page({
         merchantTypeList: res.data.objects
       })
     })
+  },
+  getCouponLists: function() {
+    const tempMoney = {
+      0: '100以下',
+      1: '100-200',
+      2: '200-300',
+      3: '300以上'
+    }
+    return io.getCouponList().then(res => {
+      res.data.objects.forEach(item => {
+        item.merchant_id.consumption_person_money = tempMoney[item.merchant_id.consumption_person]
+      })
+      this.setData({
+        couponList: res.data.objects
+      })
+    })
+  },
+  getCouponPackages: function () {
+    return io.getCouponPackages().then(res => {
+      this.setData({
+        couponPackagesList: res.data.objects
+      })
+    })
+  },
+  onChange: function (active){
+    this.setData({
+      active: active.detail.index
+    })
+  },
+  onSwitch1Change: function (value){
+    console.log(value)
   }
-
 })
