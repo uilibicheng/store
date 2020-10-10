@@ -7,6 +7,14 @@ Component({
     couponMerchantType:{
       type:Object,
       value:{}
+    },
+    iconActive:{
+      type: Number,
+      value: 0
+    },
+    index:{
+      type: Number,
+      value: 0
     }
   },
 
@@ -21,6 +29,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    handleIcon:function(event){
+      console.log(event)
+      this.triggerEvent('couponIconChange', { event: event.currentTarget.dataset })
+    }
   }
 })

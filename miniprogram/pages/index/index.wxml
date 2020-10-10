@@ -1,7 +1,7 @@
 <!--pages/index/index.wxml-->
 <block>
   <!--头部-->
-  <page-header selfStyle="background-color: #f1f1f1;" />
+  <!-- <page-header selfStyle="background-color: #f1f1f1;" /> -->
   <!--banner图-->
   <view bindtap="test" class="page-banner swiper">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#ffffff">

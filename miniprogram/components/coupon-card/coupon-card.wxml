@@ -11,7 +11,7 @@
       <van-tag type="warning" color="#ff9419">{{couponItem.price.discount}}折</van-tag>
     </view>
 
-    <view class="coupon-card-button">抢购</view>
+    <view  class="coupon-card-button"  bindtap="buyCoupon" data-item="{{couponItem}}">抢购</view>
   </view>
 
   <view>

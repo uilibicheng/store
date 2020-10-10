@@ -30,7 +30,8 @@ Page({
       },
     ],
     couponList: [],
-    couponPackagesList:[]
+    couponPackagesList:[],
+    iconActive:0
   },
 
   /**
@@ -83,5 +84,28 @@ Page({
   },
   onSwitch1Change: function (value){
     console.log(value)
+  },
+  couponIconChange: function (event){
+    this.setData({
+      iconActive: event.detail.event.index
+    })
+    return io.getCouponList().then(res => {
+      if (event.detail.event.index==0){
+        this.setData({
+          couponList: res.data.objects
+        })
+      }else{
+        const arr = []
+        res.data.objects.forEach(item => {
+          if (event.detail.event.item.type == item.merchant_id.merchant_type) {
+            arr.push(item)
+          }
+        })
+        this.setData({
+          couponList: arr
+        })
+      }
+      
+    })
   }
 })
