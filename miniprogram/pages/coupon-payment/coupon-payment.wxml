@@ -1,12 +1,81 @@
 <view class="content">
-  <view class="box-wrap">
-  </view>
-  <view class="footer">
-    <view class="price-wrap">
-      <text class="price-unit">￥</text>{{couponInfo.price.current_price}} 元
-      <text class="orginial-price">￥ {{couponInfo.price.original_price}}</text>
+  <view class="box-wrap header">
+    <image class="coupon-img" src="{{couponInfo.image}}" mode="aspectFit" />
+    <view>
+      <view class="coupon-name">
+        {{couponInfo.name}}
+      </view>
+      <view class="coupon-time">
+        {{couponInfo.use_time}}
+      </view>
+      <view class="header-price-wrap">
+        <text class="header-price-unit">￥</text>{{couponInfo.price.current_price}}
+        <text class="header-orginial-price">￥{{couponInfo.price.original_price}}</text>
+      </view> 
     </view>
-    <view class="footer-btn">
+  </view>
+
+  <view class="box-wrap container">
+    <view class="container-row">
+      <view class="row-title">
+        购买数量
+      </view>
+      <view class="change-num-wrap">
+        <view class="change-num" data-type="substract" bindtap="changeCount">
+          -
+        </view>
+        <view class="change-num row-num">
+          {{count}}
+        </view>
+        <view class="change-num active-change" data-type="add" bindtap="changeCount">
+          +
+        </view>
+      </view>
+    </view>
+    <view class="container-row">
+      <view class="row-title">
+        优惠券
+      </view>
+      <view class="no-text">
+        无可用
+      </view>
+    </view>
+    <view class="container-row">
+      <view class="row-title">
+        使用积分
+      </view>
+      <view class="no-text">
+        暂不支持积分兑换用
+      </view>
+    </view>
+    <view class="container-row">
+      <view class="row-title">
+        手机号码
+      </view>
+      <view class="row-phone" wx:if="{{phone}}">
+        {{phone}}
+      </view>
+      <view class="row-phone" wx:else>
+        <input bindinput="handleInput" class="phone-input" value="{{bindPhone}}" placeholder="请输入手机号码" />
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-left">
+      <view class="price-wrap">
+        <view class="price-title">
+          实付金额：
+        </view>
+        <view>
+          <text class="price-unit">￥</text>{{couponInfo.price.current_price * count}}
+        </view>
+      </view>
+      <view class="footer-detail">
+        明细 <image class="footer-arrow" src="../../assets/images/arrow.png" />
+      </view>
+    </view>
+    <view class="footer-btn" bindtap="handleBuy">
       立即抢购
     </view>
   </view>
