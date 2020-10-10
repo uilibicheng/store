@@ -17,7 +17,9 @@
     "pages/business-create-order/business-create-order",
     "pages/wiki-picture/wiki-picture",
     "pages/business-verification/business-verification",
-    "pages/coupon/coupon"
+    "pages/coupon/coupon",
+    "pages/coupon-detail/coupon-detail",
+    "pages/coupon-payment/coupon-payment"
   ],
   "tabBar": {
     "custom": false,
@@ -45,8 +47,7 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "小美团",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#eeeeee",
-    "navigationStyle": "custom"
+    "backgroundColor": "#eeeeee"
   },
   "navigateToMiniProgramAppIdList": [],
   "plugins": {

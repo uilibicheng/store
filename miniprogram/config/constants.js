@@ -19,6 +19,13 @@ export const BAAS_SCHEMA_ID = {
   packages:'packages'
 }
 
+export const CONSUMPTION_TYPE = {
+  0: '100以下',
+  1: '100-200',
+  2: '200-300',
+  3: '300以上',
+}
+
 const REMOTE_FUNCTION_PROD = {
   add_phone_number: 'add_phone_number',
   delete_phone_number: 'delete_phone_number',
