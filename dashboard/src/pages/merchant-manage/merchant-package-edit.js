@@ -259,6 +259,12 @@ class MerchantPackageEdit extends React.Component {
               rules: utils.form.setRules(),
             })(<Input placeholder="请输入使用时间，如：10:00-23:00" />)}
           </FormItem>
+          <FormItem label='套餐描述'>
+            {getFieldDecorator('description', {
+              initialValue: formData.description || [],
+              rules: utils.form.setRules(),
+            })(<Input placeholder="请输入套餐描述" />)}
+          </FormItem>
           <FormItem label='使用规则'>
             {getFieldDecorator('use_rules', {
               initialValue: formData.use_rules || '',

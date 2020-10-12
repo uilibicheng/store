@@ -16,101 +16,74 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.shop-name {
-  font-size: 28rpx;
-  color: #1E1E1E;
-}
-
-.shop-sales {
-  font-size: 26rpx;
-  color: #DEA764;
-}
-
-.coupon-name {
-  margin-top: 20rpx;
-  font-size: 36rpx;
-  color: #2D2D2D;
+  color: #333333;
+  font-size: 38rpx;
   font-weight: bold;
 }
 
-.coupon-price {
+.header-sale {
+  color: #A5A5A5;
+  font-size: 24rpx;
+  font-weight: normal;
+}
+
+.header-img {
+  margin-top: 15rpx;
+  width: 500rpx;
+  height: 300rpx;
+}
+
+.header-desc {
+  margin-top: 25rpx;
+  font-size: 28rpx;
+  color: #5B5B5B;
+}
+
+.package {
+  margin-top: 30rpx;
+}
+
+.package-title {
+  font-size: 36rpx;
+  color: #333333;
+  font-weight: bold;
+}
+
+.menu {
+  display: block;
   margin-top: 20rpx;
-  font-size: 26rpx;
-  color: #DEA764;
-  display: flex;
-  align-items: center;
 }
 
-.cpupon-price-symbol {
-  font-size: 20rpx;
+.menu-item {
+  margin-left: 30rpx;
+  list-style-type: disc;
+  display:list-item;
+  font-size: 22rpx;
+  margin-bottom: 20rpx;
 }
 
-.coupon-discount {
-  margin-left: 40rpx;
-  padding: 0 15rpx;
-  font-size: 20rpx;
-  height: 35rpx;
-  line-height: 35rpx;
-  border: 2rpx solid #DEA764;
-  border-left: none;
-  position: relative;
-}
-
-.coupon-discount::before {
-  position: absolute;
-  top: 5rpx;
-  left: -13rpx;
-  content: '';
-  display: inline-block;
-  width: 22rpx;
-  height: 22rpx;
-  border-top: 2rpx solid #DEA764;
-  border-left: 2rpx solid #DEA764;
-  transform: rotate(-45deg);
-}
-
-.use-time {
-  margin-top: 30rpx;
-  font-size: 26rpx;
-  color: #A3A3A3;
-}
-
-/* 商家信息 */
-.merchant {
-  margin-top: 30rpx;
+.item-block {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  color: #3F3F3F;
+  font-size: 26rpx;
 }
 
-.logo {
-  width: 100rpx;
-  height: 100rpx;
+.package-price-wrap {
+  font-size: 26rpx;
+  color: #F88F08;
+  font-weight: bold;
 }
 
-.merchang-info {
-  width: 500rpx;
-  font-size: 28rpx;
-  color: #1E1E1E;
+.package-price-unit {
+  font-size: 18rpx;
 }
 
-.merchant-info-intro {
-  margin-top: 20rpx;
-  display: flex;
-  display: flex;
-  font-size: 24rpx;
-  color: #919191;
-}
-
-.phone-wrap {
-  font-size: 24rpx;
-}
-
-.phone {
-  width: 50rpx;
-  height: 50rpx;
+.package-original-price {
+  font-size: 18rpx;
+  color: #ACACAC;
+  text-decoration: line-through;
 }
 
 .tip-wrap {

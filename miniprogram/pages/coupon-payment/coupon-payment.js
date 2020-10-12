@@ -1,11 +1,9 @@
 import io from '../../io/index'
 import {timestampToTime} from '../../utils/common'
-import {CONSUMPTION_TYPE} from '../../config/constants'
 
 Page({
   data: {
-    couponInfo: {},
-    merchantInfo: {},
+    paymentInfo: {},
     count: 1,
     phone: '',
     bindPhone: '',
@@ -14,7 +12,11 @@ Page({
   onLoad(params) {
     this.getCurrentUser()
     if (params.id) {
-      this.getCouponDetail(params.id)
+      if (params.type === 'coupon') {
+        this.getCouponDetail(params.id)
+      } else if (params.type === 'package') {
+        this.getPackagesDetail(params.id)
+      }
     }
   },
 
@@ -30,15 +32,24 @@ Page({
 
   getCouponDetail(id) {
     return io.getCouponDetail(id).then(res => {
-      let couponInfo = res.data
-      let merchantInfo = res.data.merchant_id
-      merchantInfo.consumption_type = CONSUMPTION_TYPE[merchantInfo.consumption_person]
-      couponInfo.startTime = timestampToTime(couponInfo.period_of_validity[0])
-      couponInfo.endTime = timestampToTime(couponInfo.period_of_validity[1])
+      let paymentInfo = res.data
+      paymentInfo.startTime = timestampToTime(paymentInfo.period_of_validity[0])
+      paymentInfo.endTime = timestampToTime(paymentInfo.period_of_validity[1])
 
       this.setData({
-        couponInfo,
-        merchantInfo,
+        paymentInfo,
+      })
+    })
+  },
+
+  getPackagesDetail(id) {
+    return io.getPackageDetail(id).then(res => {
+      let paymentInfo = res.data
+      paymentInfo.startTime = timestampToTime(paymentInfo.period_of_validity[0])
+      paymentInfo.endTime = timestampToTime(paymentInfo.period_of_validity[1])
+
+      this.setData({
+        paymentInfo,
       })
     })
   },
@@ -74,7 +85,7 @@ Page({
   changeCount(e) {
     let type = e.currentTarget.dataset.type
     let count = this.data.count
-    let limit_buy_count = this.data.couponInfo.limit_buy_count
+    let limit_buy_count = this.data.paymentInfo.limit_buy_count
     if (type === 'add') {
       if (count >= limit_buy_count) {
         wx.showToast({

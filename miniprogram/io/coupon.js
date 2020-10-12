@@ -33,5 +33,9 @@ export default {
   getCouponDetail(id) {
     const getTable = () => new wx.BaaS.TableObject(BAAS_SCHEMA_ID.coupon)
     return getTable().expand('merchant_id').get(id)
+  },
+  getPackageDetail(id) {
+    const getTable = () => new wx.BaaS.TableObject(BAAS_SCHEMA_ID.packages)
+    return getTable().get(id)
   }
 }

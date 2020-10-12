@@ -1,0 +1,56 @@
+<view class="content">
+  <view class="box-wrap header">
+    <view class="header-top">
+      {{packageInfo.name}}
+      <view class="header-sale">
+        销量 {{packageInfo.sales.total_sales}}
+      </view>
+    </view>
+    <image class="header-img" src="{{packageInfo.image}}" mode="aspectFill" />
+    <view class="header-desc">
+      {{packageInfo.description}}
+    </view>
+  </view>
+
+  <view class="box-wrap package">
+    <view class="package-title">
+      套餐菜品
+    </view>
+    <ul class="menu">
+      <li wx:for="{{packageInfo.menu}}" class="menu-item" wx:key="index">
+        <view class="item-block">
+          {{item.name}}
+          <view class="package-price-wrap">
+            <text class="package-price-unit">￥</text>{{item.current_price}}
+            <text class="package-original-price">￥{{item.original_price}}</text>
+          </view>
+        </view>
+      </li>
+    </ul>
+  </view>
+
+  <view class="box-wrap tip-wrap">
+    <view class="tip-title">
+      温馨提示
+    </view>
+    <view class="tip-block">
+      <view class="tip">有效期：</view>
+      {{packageInfo.startTime}} 至 {{packageInfo.endTime}}
+    </view>
+    <view class="tip-block">
+      <view class="tip">使用规则：</view>
+      <rich-text class="" nodes="{{packageInfo.use_rules}}">
+      </rich-text>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="price-wrap">
+      <text class="price-unit">￥</text>{{packageInfo.price.current_price}} 元
+      <text class="orginial-price">￥ {{packageInfo.price.original_price}}</text>
+    </view>
+    <view class="footer-btn" bindtap="jumpToPayment">
+      立即抢购
+    </view>
+  </view>
+</view>
