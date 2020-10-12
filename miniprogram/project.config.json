@@ -79,10 +79,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "优惠券付款",
 					"pathName": "pages/coupon-payment/coupon-payment",
-					"query": "id=5f6d985c00ba6f257f1ab73c",
+					"query": "id=5f7055af9d8c9c02bb397234&type=package",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "套餐详情",
+					"pathName": "pages/package-detail/package-detail",
+					"query": "id=5f7055af9d8c9c02bb397234",
 					"scene": null
 				}
 			]

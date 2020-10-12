@@ -34,7 +34,7 @@ Page({
 
   jumpToPayment() {
     wx.navigateTo({
-      url: `/pages/coupon-payment/coupon-payment?id=${id}`
+      url: `/pages/coupon-payment/coupon-payment?id=${id}&type=coupon`
     })
   },
 

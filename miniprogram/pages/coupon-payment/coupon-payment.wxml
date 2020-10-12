@@ -1,16 +1,16 @@
 <view class="content">
   <view class="box-wrap header">
-    <image class="coupon-img" src="{{couponInfo.image}}" mode="aspectFit" />
+    <image class="coupon-img" src="{{paymentInfo.image}}" mode="aspectFit" />
     <view>
       <view class="coupon-name">
-        {{couponInfo.name}}
+        {{paymentInfo.name}}
       </view>
       <view class="coupon-time">
-        {{couponInfo.use_time}}
+        {{paymentInfo.use_time}}
       </view>
       <view class="header-price-wrap">
-        <text class="header-price-unit">￥</text>{{couponInfo.price.current_price}}
-        <text class="header-orginial-price">￥{{couponInfo.price.original_price}}</text>
+        <text class="header-price-unit">￥</text>{{paymentInfo.price.current_price}}
+        <text class="header-orginial-price">￥{{paymentInfo.price.original_price}}</text>
       </view> 
     </view>
   </view>
@@ -68,7 +68,7 @@
           实付金额：
         </view>
         <view>
-          <text class="price-unit">￥</text>{{couponInfo.price.current_price * count}}
+          <text class="price-unit">￥</text>{{paymentInfo.price.current_price * count}}
         </view>
       </view>
       <view class="footer-detail">

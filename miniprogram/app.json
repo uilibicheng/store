@@ -4,7 +4,8 @@
     "pages/business-verification/business-verification",
     "pages/coupon/coupon",
     "pages/coupon-detail/coupon-detail",
-    "pages/coupon-payment/coupon-payment"
+    "pages/coupon-payment/coupon-payment",
+    "pages/package-detail/package-detail"
   ],
   "tabBar": {
     "custom": false,
