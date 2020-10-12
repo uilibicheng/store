@@ -23,7 +23,6 @@ Component({
    */
   methods: {
     buyCoupon: function (event){
-      console.log()
       router.push({
         name: 'coupon-detail',
         data: {
