@@ -193,8 +193,7 @@ class BannerSetting extends React.Component {
           </Button>
         </div>
         <div style={{marginBottom: 15}}>
-        <Add path={generatePath(ROUTE.MERCHANT_ADD)} {...this.props} />
-        <Button>折扣</Button>
+          <Add path={generatePath(ROUTE.MERCHANT_ADD)} {...this.props} />
         </div>
         <BaseTable
           {...this.props}
