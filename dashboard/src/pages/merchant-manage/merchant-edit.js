@@ -100,6 +100,9 @@ class BannerEdit extends React.Component {
       data.provice = data.location[0] || ''
       data.city = data.location[1] || ''
       data.county = data.location[2] || ''
+      data.disount = Number(data.disount)
+      data.vip_discount = Number(data.vip_discount)
+      data.real_discount = Number(data.real_discount)
       merchantType.forEach(item => {
         if (item.id === data.merchant_type_id) {
           data.merchant_type = item.type
@@ -235,6 +238,24 @@ class BannerEdit extends React.Component {
               initialValue: formData.opening_time || [],
               rules: utils.form.setRules(),
             })(<Input placeholder="请输入营业时间，如：10:00-23:00" />)}
+          </FormItem>
+          <FormItem label='非会员折扣'>
+            {getFieldDecorator('disount', {
+              initialValue: String(formData.disount) || '',
+              rules: utils.form.setRules(),
+            })(<Input type="number" style={{width: '250px'}} placeholder="请输入非会员折扣" addonAfter="折" />)}
+          </FormItem>
+          <FormItem label='会员折扣'>
+            {getFieldDecorator('vip_discount', {
+              initialValue: String(formData.vip_discount) || '',
+              rules: utils.form.setRules(),
+            })(<Input type="number" style={{width: '250px'}} placeholder="请输入会员折扣" addonAfter="折" />)}
+          </FormItem>
+          <FormItem label='商家实际折扣'>
+            {getFieldDecorator('real_discount', {
+              initialValue: String(formData.real_discount) || '',
+              rules: utils.form.setRules(),
+            })(<Input type="number" style={{width: '250px'}} placeholder="请输入商家实际折扣" addonAfter="折" />)}
           </FormItem>
           <FormItem label='半年销量'>
             <BaseTable

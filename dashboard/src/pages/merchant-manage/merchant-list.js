@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, generatePath, withRouter} from 'react-router-dom'
-import {Form, Input, Button, message, Popconfirm} from 'antd'
+import {Form, Input, Button, message, Popconfirm, Select} from 'antd'
 
 import io from '../../io'
 import utils from '../../utils'
@@ -9,6 +9,8 @@ import withBaseTable from '../../components/with-base-table'
 import Add from '../../components/add'
 
 const db = io.merchant
+const typeDb = io.merchantType
+const Option = Select.Option
 
 const CONSUMPTION_PERSON = {
   0: '100以下',
@@ -22,10 +24,24 @@ class BannerSetting extends React.Component {
     meta: {},
     dataSource: [],
     searchName: '',
+    searchType: '',
+    merchantTypeList: [],
   }
 
   componentDidMount() {
     this.getDataSource()
+    this.getMerchantTypeList()
+  }
+
+  getMerchantTypeList(params = {offset: 0, limit: 500}) {
+    return typeDb
+      .find({
+        ...params,
+      })
+      .then(res => {
+        const {objects} = res.data
+        this.setState({merchantTypeList: objects})
+      })
   }
 
   getDataSource(params = {offset: 0, limit: 10}) {
@@ -44,10 +60,13 @@ class BannerSetting extends React.Component {
   }
 
   get searchParams() {
-    const {searchName} = this.state
+    const {searchName, searchType} = this.state
     const params = {}
     if (searchName) {
       params.name = {$contains: searchName}
+    }
+    if (searchType) {
+      params.merchant_type = {$contains: searchType}
     }
     return params
   }
@@ -59,7 +78,10 @@ class BannerSetting extends React.Component {
     })
   }
 
-  handleEditRow = data => {
+  handleChange = value => {
+    this.setState({
+      searchType: value
+    })
   }
 
   handleDeleta = id => {
@@ -153,12 +175,25 @@ class BannerSetting extends React.Component {
             value={this.state.searchName}
             onChange={this.handleInput}
           />
+          <Select
+            style={{width: 150, marginRight: 15, marginBottom: 15, marginLeft: 10}}
+            placeholder="请选择商家类型"
+            showSearch
+            allowClear
+            optionFilterProp="children"
+            value={this.state.searchType}
+            onChange={this.handleChange}>
+            <Option value="">全部</Option>
+            {this.state.merchantTypeList.map((item, index) => {
+              return <Option value={item.type} key={index}>{item.type}</Option>
+            })}
+          </Select>
           <Button type='primary' onClick={() => {this.getDataSource()}}>
             查询
           </Button>
         </div>
         <div style={{marginBottom: 15}}>
-        <Add path={generatePath(ROUTE.MERCHANT_ADD)} {...this.props} />
+          <Add path={generatePath(ROUTE.MERCHANT_ADD)} {...this.props} />
         </div>
         <BaseTable
           {...this.props}
