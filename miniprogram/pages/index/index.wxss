@@ -1,8 +1,11 @@
 /* pages/index/index.wxss */
 
 .page-banner {
+  margin-top: 30rpx;
 }
-
+.page-banner-swiper{
+   height: 360rpx;
+}
 .page-banner-div {
   padding: 0 30rpx;
   height: 100%;

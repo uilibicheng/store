@@ -4,11 +4,11 @@
   <!-- <page-header selfStyle="background-color: #f1f1f1;" /> -->
   <!--banner图-->
   <view bindtap="test" class="page-banner swiper">
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#ffffff">
+    <swiper class="page-banner-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#ffffff">
       <block wx:for="{{bannerList}}" wx:key="*this">
         <swiper-item>
           <view class="page-banner-div">
-            <image class="page-banner-img" src="{{item.image}}"></image>
+            <image class="page-banner-img" src="{{item.image}}" mode="aspectFill"></image>
           </view>
         </swiper-item>
       </block>

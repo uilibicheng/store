@@ -15,6 +15,7 @@
 .page-coupon-type{
   white-space: nowrap;
   overflow-x: scroll;
+  margin-bottom: 20rpx;
 }
 .page-coupon-more{
   margin-left: 25rpx;

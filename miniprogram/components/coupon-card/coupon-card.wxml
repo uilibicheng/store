@@ -1,5 +1,5 @@
 <view class="coupon-card-container">
-  <view class="coupon-card-text">周一至周日 {{couponItem.use_time}} 不限张数 全场通用</view>
+  <view class="coupon-card-text">{{couponItem.use_time}}</view>
   <view class="coupon-card-flex">
     <view class="coupon-card-name">{{couponItem.name}}</view>
     <view class="coupon-card-sell">已售{{couponItem.sales.total_sales}}</view>
@@ -15,7 +15,7 @@
   </view>
 
   <view>
-    <van-image width="30" height="30" round src="https://img.yzcdn.cn/vant/cat.jpeg" />
+    <van-image width="30" height="30" round src="{{couponItem.merchant_id.logo}}" />
     <view class="coupon-card-price">
       <text class="coupon-card-merchantName">{{couponItem.merchant_id.name}}</text>
       <view class="coupon-card-merchantMoney">￥{{couponItem.merchant_id.consumption_person_money}}/人 | {{couponItem.merchant_id.merchant_type}} | {{couponItem.merchant_id.address}} </view>
