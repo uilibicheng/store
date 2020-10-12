@@ -47,7 +47,7 @@ Page({
     return io.getMerchantTypeList().then(res => {
       res.data.objects.unshift({
         type: '全部美食',
-        image: 'https://cloud-minapp-26038.cloud.ifanrusercontent.com/1kLO4Prjdyiq8Fid.png'
+        image: './images/all.png'
       })
       this.setData({
         merchantTypeList: res.data.objects
