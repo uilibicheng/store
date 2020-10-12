@@ -85,7 +85,7 @@ class MerchantCouponEdit extends React.Component {
     let {price} = this.state
     price[key] = Number(value)
     if (price.original_price) {
-      price.discount = ((price.current_price / price.original_price) * 10).toFixed(2)
+      price.discount = Number(((price.current_price / price.original_price) * 10).toFixed(2).replace(/(0$)|(.00$)/, ''))
     }
     this.setState({
       price,
