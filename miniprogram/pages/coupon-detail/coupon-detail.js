@@ -11,7 +11,6 @@ Page({
   },
 
   onLoad(params) {
-    console.log(11, params)
     if (params.id) {
       id = params.id
       this.getCouponDetail(params.id)
