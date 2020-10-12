@@ -52,3 +52,6 @@
   font-size: 26rpx;
   color: #666;
 }
+.coupon-card-div{
+  border-top: 0.5rpx solid rgba(0, 0, 0, 0.1);
+}
