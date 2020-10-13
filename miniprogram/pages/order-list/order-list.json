@@ -1,9 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "page-header": "/components/page-header/page-header",
-    "nav-bar": "/components/nav-bar/nav-bar",
-    "contact-entrance": "/components/contact-entrance/contact-entrance"
-  },
-  "disableScroll": true
-}

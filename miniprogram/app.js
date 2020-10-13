@@ -1,7 +1,5 @@
 // app.js
 import * as constants from './config/constants'
-// import router from './lib/router'
-// import io from './io/index'
 import baas from './lib/baas'
 
 App({
@@ -12,24 +10,6 @@ App({
     wx.BaaS = requirePlugin('sdkPlugin')
     wx.BaaS.wxExtend(wx.login, wx.getUserInfo, wx.requestPayment)
     wx.BaaS.init(constants.BAAS_CLIENT_ID, {autoLogin: true, env: constants.DEV ? constants.ENV_ID : undefined})
-
-    // wx.checkSession({
-    //   success: res => {
-    //     console.log('checkSession success', res)
-    //     baas.authLogin().then(user => {
-    //       console.log('app.js user =>', user)
-    //       this.globalData.isStoreUser = !!user.is_store_user
-    //     })
-    //   },
-    //   fail: err => {
-    //     console.log('checkSession fail', err)
-    //     wx.BaaS.auth.logout()
-    //     baas.authLogin().then(user => {
-    //       console.log('app.js user =>', user)
-    //       this.globalData.isStoreUser = !!user.is_store_user
-    //     })
-    //   },
-    // })
 
     baas.authLogin().then(user => {
       console.log('app.js user =>', user)
@@ -67,8 +47,5 @@ App({
       wx.BaaS.ErrorTracker.track('热更新失败')
       console.log('热更新失败')
     })
-  },
-
-  globalData: {
   },
 })
