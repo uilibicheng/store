@@ -35,14 +35,15 @@ Component({
         })
       })
     },
-    getMerchantLists() {
+    getMerchantLists(data = {name: ''}) {
       const tempMoney = {
         0: '100以下',
         1: '100-200',
         2: '200-300',
         3: '300以上'
       }
-      return io.getMerchantList().then(res => {
+      console.log('data', data)
+      return io.getMerchantList(data).then(res => {
         res.data.objects.forEach(item => {
           item.consumption_person_money = tempMoney[item.consumption_person]
         })
@@ -50,6 +51,10 @@ Component({
           merchantList: res.data.objects
         })
       })
+    },
+
+    onSearch(e) {
+      this.getMerchantLists({name: e.detail.value})
     }
   }
 })

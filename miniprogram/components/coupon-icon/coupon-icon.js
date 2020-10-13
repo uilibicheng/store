@@ -30,7 +30,6 @@ Component({
    */
   methods: {
     handleIcon:function(event){
-      console.log(event)
       this.triggerEvent('couponIconChange', { event: event.currentTarget.dataset })
     }
   }

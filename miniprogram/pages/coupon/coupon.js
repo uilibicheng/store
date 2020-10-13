@@ -1,5 +1,6 @@
 // pages/coupon/coupon.js
 import io from '../../io/index'
+const DEFAULT_MERCHANT_TYPE = '全部美食'
 Page({
   /**
    * 页面的初始数据
@@ -9,7 +10,7 @@ Page({
     merchantTypeList: [],
     value1: -1,
     option1: [{
-        text: '全部',
+        text: '全 部',
         value: -1
       },
       {
@@ -30,8 +31,13 @@ Page({
       },
     ],
     couponList: [],
+    allCouponList: [],
     couponPackagesList:[],
-    iconActive:0
+    allCouponPackagesList:[],
+    iconActive:0,
+    searchMerchantIds: [],
+    consumptionPersonType: -1,
+    merchantType: DEFAULT_MERCHANT_TYPE,
   },
 
   /**
@@ -46,7 +52,7 @@ Page({
   getMerchantTypeLists: function() {
     return io.getMerchantTypeList().then(res => {
       res.data.objects.unshift({
-        type: '全部美食',
+        type: DEFAULT_MERCHANT_TYPE,
         image: './images/all.png'
       })
       this.setData({
@@ -61,19 +67,21 @@ Page({
       2: '200-300',
       3: '300以上'
     }
-    return io.getCouponList().then(res => {
+    return io.getCouponList(this.data.searchMerchantIds).then(res => {
       res.data.objects.forEach(item => {
         item.merchant_id.consumption_person_money = tempMoney[item.merchant_id.consumption_person]
       })
       this.setData({
-        couponList: res.data.objects
+        couponList: res.data.objects,
+        allCouponList: res.data.objects,
       })
     })
   },
   getCouponPackages: function () {
-    return io.getCouponPackages().then(res => {
+    return io.getCouponPackages(this.data.searchMerchantIds).then(res => {
       this.setData({
-        couponPackagesList: res.data.objects
+        couponPackagesList: res.data.objects,
+        allCouponPackagesList: res.data.objects,
       })
     })
   },
@@ -82,30 +90,58 @@ Page({
       active: active.detail.index
     })
   },
-  onSwitch1Change: function (value){
-    console.log(value)
+  onSwitch1Change: function (e){
+    this.setData({
+      consumptionPersonType: e.detail
+    }, () => {
+      this.couponListChange()
+    })
   },
   couponIconChange: function (event){
+    let type = event.detail.event.item.type
     this.setData({
-      iconActive: event.detail.event.index
+      iconActive: event.detail.event.index,
+      merchantType: type,
+    }, () => {
+      this.couponListChange()
     })
-    return io.getCouponList().then(res => {
-      if (event.detail.event.index==0){
-        this.setData({
-          couponList: res.data.objects
-        })
-      }else{
-        const arr = []
-        res.data.objects.forEach(item => {
-          if (event.detail.event.item.type == item.merchant_id.merchant_type) {
-            arr.push(item)
-          }
-        })
-        this.setData({
-          couponList: arr
-        })
-      }
-      
+  },
+  listFilter(type, arr, key) {
+    let newArr = []
+    if (type === -1 || type === DEFAULT_MERCHANT_TYPE) {
+      newArr = arr
+    } else {
+      newArr = arr.filter(item => {
+        return type === item.merchant_id[key]
+      })
+    }
+    return newArr
+  },
+  couponListChange() {
+    let consumptionPersonType = this.data.consumptionPersonType
+    let merchantType = this.data.merchantType
+
+    let couponList = this.listFilter(merchantType, this.data.allCouponList, 'merchant_type')
+    couponList = this.listFilter(consumptionPersonType, couponList, 'consumption_person')
+
+    let couponPackagesList = this.listFilter(merchantType, this.data.allCouponPackagesList, 'merchant_type')
+    couponPackagesList = this.listFilter(consumptionPersonType, couponPackagesList, 'consumption_person')
+
+    this.setData({
+      couponList,
+      couponPackagesList,
+    })
+  },
+  onSearch(e) {
+    io.getMerchantList({name: e.detail.value}).then(res => {
+      let searchMerchantIds = res.data.objects.map(item => {
+        return item.id
+      })
+      this.setData({
+        searchMerchantIds,
+      })
+      this.getCouponLists()
+      this.getCouponPackages()
     })
   }
 })

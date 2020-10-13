@@ -5,6 +5,7 @@
     "van-search": "@vant/weapp/search/index",
     "index-icon": "/components/index-icon/index-icon",
     "index-card": "/components/index-card/index-card",
+    "search-input": "/components/search-input/search-input",
     "van-toast": "@vant/weapp/toast/index"
   }
 }
