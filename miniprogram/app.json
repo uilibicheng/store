@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/business-verification/business-verification",
     "pages/coupon/coupon",
     "pages/coupon-detail/coupon-detail",
     "pages/coupon-payment/coupon-payment",

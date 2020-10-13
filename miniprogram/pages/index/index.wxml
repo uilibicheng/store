@@ -15,7 +15,8 @@
     </swiper>
   </view>
   <!--搜索框-->
-  <van-search custom-class="page-search-input" background="#f1f1f1" value="{{ searchValue }}" shape="round" placeholder="请输入商家名称" />
+  <!-- <van-search custom-class="page-search-input" background="#f1f1f1" value="{{ searchValue }}" shape="round" placeholder="请输入商家名称" /> -->
+  <search-input bind:onsearch="onSearch" />
   <!--选择图标-->
   <index-icon programList="{{programList}}" />
 

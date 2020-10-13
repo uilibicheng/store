@@ -27,6 +27,7 @@
   width: 170rpx;
   margin-left: 15rpx;
 }
-.van-dropdown-menu__item{
-  justify-content: left !important;
+.van-dropdown-menu__item {
+  display: flex;
+  justify-content: flex-start !important;
 }

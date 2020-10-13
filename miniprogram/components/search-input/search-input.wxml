@@ -1,0 +1,13 @@
+<!--components/index-icon/index-icon.wxml-->
+<view class="search-input">
+  <!--搜索框-->
+  <van-search
+    custom-class="page-search-input"
+    background="#f1f1f1"
+    use-action-slot
+    bind:search="onSearch"
+    bind:change="onChange"
+    bind:cancel="onCancel"
+    value="{{ searchValue }}"
+    shape="round" placeholder="请输入商家名称" />
+</view>
