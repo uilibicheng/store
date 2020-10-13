@@ -24,6 +24,9 @@
 } 
 .van-dropdown-menu{
   background: #f1f1f1 !important;
-  width: 100rpx;
+  width: 170rpx;
   margin-left: 15rpx;
+}
+.van-dropdown-menu__item{
+  justify-content: left !important;
 }
