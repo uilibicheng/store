@@ -32,23 +32,3 @@ textarea {
 page{
   background: #f1f1f1;
 }
-/* .common-page {
-  background-color: green;
-  position: relative;
-  min-height: 100vh;
-  z-index: 0;
-  overflow: hidden;
-} */
-
-/* .common-page::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  background-image: url('https://cloud-minapp-30347.cloud.ifanrusercontent.com/1i9nmnZF54wIX9G6.png');
-  background-size: 68rpx 46rpx;
-  background-repeat: repeat;
-} */

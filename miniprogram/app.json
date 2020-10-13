@@ -16,14 +16,14 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "components/nav-bar/images/icon-tab-index-normal.png",
-        "selectedIconPath": "components/nav-bar/images/icon-tab-index-pressed.png",
+        "iconPath": "assets/images/icon-tab-index-normal.png",
+        "selectedIconPath": "assets/images/icon-tab-index-pressed.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/coupon/coupon",
-        "iconPath": "components/nav-bar/images/icon-tab-coupon-normal.png",
-        "selectedIconPath": "components/nav-bar/images/icon-tab-coupon-pressed.png",
+        "iconPath": "assets/images/icon-tab-coupon-normal.png",
+        "selectedIconPath": "assets/images/icon-tab-coupon-pressed.png",
         "text": "优惠活动"
       }
     ]

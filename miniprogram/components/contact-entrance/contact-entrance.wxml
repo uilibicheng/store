@@ -1,6 +1,0 @@
-<!--components/contact-entrance/contact-entrance.wxml-->
-<view class="container">
-  <image src="./icon-service.png"></image>
-  <button plain open-type="contact" class="contact" wx:if="{{isAuth}}"></button>
-  <button class="contact" open-type="getUserInfo" bindgetuserinfo="userInfoHandler" wx:if="{{!isAuth}}" />
-</view>

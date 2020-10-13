@@ -1,9 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "page-header": "/components/page-header/page-header",
-    "normal-counter": "/components/normal-counter/normal-counter",
-    "contact-entrance": "/components/contact-entrance/contact-entrance"
-  },
-  "disableScroll": true
-}
