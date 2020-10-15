@@ -16,7 +16,10 @@ export const BAAS_SCHEMA_ID = {
   merchant:'merchant',
   merchant_type:'merchant_type',
   coupon:'coupon',
-  packages:'packages'
+  packages:'packages',
+  merchant_banner:'merchant_banner',
+  restaurant_service:'restaurant_service',
+  menu:'menu'
 }
 
 export const CONSUMPTION_TYPE = {

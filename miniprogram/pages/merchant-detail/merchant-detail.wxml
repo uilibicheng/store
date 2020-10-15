@@ -1,0 +1,61 @@
+<!--banner图-->
+<view  class="page-banner swiper">
+  <swiper wx:if="{{bannerList.length!=0}}" class="page-banner-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#ffffff">
+    <block wx:for="{{bannerList}}" wx:key="index">
+      <swiper-item>
+        <view class="page-banner-div">
+          <image class="page-banner-img" src="{{item.image}}" mode="aspectFill"></image>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <van-image class="page-banner-logo" width="80" height="80" round src="{{merchantDetail.logo}}" />
+</view>
+
+<view class="page-detail-message">
+  <view class="page-detail-messageName">
+    {{merchantDetail.name}}
+  </view>
+  <view class="page-detail-messagePrice">￥{{merchantDetail.consumption_person_money}}/人 | {{merchantDetail.merchant_type_id.type}} | {{merchantDetail.address}}</view>
+  <view class="page-detail-messageTime">
+    营业时间 {{merchantDetail.opening_time}}
+  </view>
+  <text wx:for="{{restaurant_service}}" wx:key="index" class="page-detail-messageService">{{item.content}}</text>
+  <view class="page-detail-messageAddressFlex">
+    <view class="page-detail-messageAddress">{{merchantDetail.provice+merchantDetail.city+merchantDetail.county+merchantDetail.address}}</view>
+
+    <view class="page-detail-messageIconDiv">
+      <image class="page-detail-messageIcon" src="images/gps.png" />
+      <text class="page-detail-messageIconText">导航</text>
+    </view>
+
+    <view class="page-detail-messageIconDivPhone" bindtap="handCallPhone">
+      <image class="page-detail-messageIconPhone" src="images/phone.png" />
+      <text class="page-detail-messageIconText">电话</text>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{couponList.length!=0}}"  class="page-detail-messageCoupon">
+<coupon-card wx:for="{{couponList}}" wx:key="index" couponItem="{{item}}" isShowShop="0" />
+</view>
+
+<view wx:if="{{couponPackagesList.length!=0}}" class="page-detail-messagePackage">
+<view class="page-detail-messagePackageText">到店套餐</view>
+ <coupon-packages isShowShop="0" wx:for="{{couponPackagesList}}" wx:key="index" couponItem="{{item}}"/> 
+</view>
+
+<view wx:if="{{menuList.length!=0}}" class="page-detail-messagePackage">
+<view class="page-detail-messagePackageText">推荐菜品</view>
+<view class="page-detail-messageMenu">
+<view wx:for="{{menuList}}" wx:key="index"  class="page-detail-messageMenuDiv">
+ <van-image width="100" height="100" src="{{item.image}}" />
+  <view class="page-detail-messageMenuName">{{item.name}}</view>
+</view>
+</view>
+</view>
+
+<view wx:if="{{merchantDetail.details!=''}}" class="page-detail-messagePackage">
+<view class="page-detail-messagePackageText">商家介绍</view>
+ <rich-text nodes="{{merchantDetail.details}}"></rich-text> 
+</view>

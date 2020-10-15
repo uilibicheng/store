@@ -48,4 +48,6 @@ App({
       console.log('热更新失败')
     })
   },
+  globalData: {
+  }
 })

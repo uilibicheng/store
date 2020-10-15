@@ -12,6 +12,9 @@
 .van-search__content {
   background: #fff !important;
 }
+.page-coupon-list{
+  padding: 0 20rpx;
+}
 .page-coupon-type{
   white-space: nowrap;
   overflow-x: scroll;

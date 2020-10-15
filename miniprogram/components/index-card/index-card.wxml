@@ -1,6 +1,6 @@
 <!--components/index-card/index-card.wxml-->
 <view class="card-container">
-  <view wx:for="{{merchantList}}" wx:key="index" class="card-container-box">
+  <view wx:for="{{merchantList}}" wx:key="index" class="card-container-box" bindtap="goTo" data-item="{{item}}">
     <image class="card-container-img" src="{{item.logo}}"></image>
     <view class="card-container-right">
       <view class="card-container-title">{{item.name}}</view>

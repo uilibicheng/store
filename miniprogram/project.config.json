@@ -98,6 +98,13 @@
 					"pathName": "pages/coupon/coupon",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "商家详情",
+					"pathName": "pages/merchant-detail/merchant-detail",
+					"query": "id=5f6b23891652f63cb38c0d94",
+					"scene": null
 				}
 			]
 		}

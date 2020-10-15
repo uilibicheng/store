@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-image": "@vant/weapp/image/index",
+    "coupon-card": "/components/coupon-card/coupon-card",
+    "coupon-packages": "/components/coupon-packages/coupon-packages"
+  },
+  "navigationBarTitleText": "商家详情"
+}

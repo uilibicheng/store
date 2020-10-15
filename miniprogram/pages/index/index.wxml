@@ -3,7 +3,7 @@
   <!--头部-->
   <!-- <page-header selfStyle="background-color: #f1f1f1;" /> -->
   <!--banner图-->
-  <view bindtap="test" class="page-banner swiper">
+  <view class="page-banner swiper">
     <swiper class="page-banner-swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#ffffff">
       <block wx:for="{{bannerList}}" wx:key="*this">
         <swiper-item>

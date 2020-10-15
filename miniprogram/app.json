@@ -4,7 +4,8 @@
     "pages/coupon/coupon",
     "pages/coupon-detail/coupon-detail",
     "pages/coupon-payment/coupon-payment",
-    "pages/package-detail/package-detail"
+    "pages/package-detail/package-detail",
+    "pages/merchant-detail/merchant-detail"
   ],
   "tabBar": {
     "custom": false,

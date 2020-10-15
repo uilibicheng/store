@@ -1,6 +1,6 @@
-<view class="coupon-packages-contant">
-  <image class="coupon-packages-shopIcon" src="./images/shop.png" />
-  <view class="coupon-packages-shopName">木屋烧烤</view>
+<view class="{{isShowShop==1?'coupon-packages-contant':'coupon-packages-contants'}}">
+  <image wx:if="{{isShowShop==1}}" class="coupon-packages-shopIcon" src="./images/shop.png" />
+  <view wx:if="{{isShowShop==1}}" class="coupon-packages-shopName">{{couponItem.merchant_id.name}}</view>
   <view class="coupon-packages-flex">
     <van-image width="100" height="100" src="{{couponItem.image}}" />
     <view class="coupon-packages-right">

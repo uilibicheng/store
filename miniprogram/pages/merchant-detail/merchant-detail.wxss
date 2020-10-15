@@ -1,0 +1,127 @@
+.page-banner {
+  margin-top: 30rpx;
+  position: relative;
+}
+
+.page-banner-swiper {
+  height: 360rpx;
+}
+
+.page-banner-div {
+  padding: 0 30rpx;
+  height: 100%;
+}
+
+.page-banner-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx 20rpx 0 0;
+  overflow: hidden;
+}
+
+.page-banner-logo {
+  position: absolute;
+  right: 50rpx;
+  bottom: -80rpx;
+}
+
+.page-detail-message {
+  padding: 40rpx 30rpx;
+  background-color: #f9f9f9;
+  margin: 0 30rpx;
+  border-radius: 0 0 20rpx 20rpx;
+}
+
+.page-detail-messageName {
+  font-size: 40rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.page-detail-messagePrice {
+  font-size: 24rpx;
+  color: #999;
+  margin: 20rpx 0;
+}
+
+.page-detail-messageTime {
+  margin-bottom: 30rpx;
+}
+
+.page-detail-messageService {
+  border-radius: 50rpx;
+  padding: 10rpx 15rpx;
+  background-color: rgba(255, 222, 173, 0.3);
+  color: #ffa500;
+  font-size: 26rpx;
+  margin-right: 20rpx;
+}
+
+.page-detail-messageAddress {
+  font-size: 24rpx;
+  color: #333;
+  width: 450rpx;
+}
+
+.page-detail-messageAddressFlex {
+  margin-top: 100rpx;
+  display: flex;
+}
+
+.page-detail-messageIconDiv {
+  width: 50rpx;
+  line-height: 1;
+  margin-right: 80rpx;
+}
+
+.page-detail-messageIconText{
+  font-size: 24rpx;
+}
+
+.page-detail-messageIcon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.page-detail-messageIconDivPhone{
+  width: 50rpx;
+  line-height: 1;
+}
+
+.page-detail-messageIconPhone{
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.page-detail-messageCoupon{
+  margin: 30rpx;
+}
+
+.page-detail-messagePackage{
+  margin: 30rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx 20rpx;
+}
+
+.page-detail-messagePackageText{
+  font-size: 35rpx;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.page-detail-messageMenu{
+  display: flex;
+  overflow-x: scroll;
+  max-width: 800rpx;
+  margin-top: 30rpx;
+}
+
+.page-detail-messageMenuDiv{
+  margin-right: 20rpx;
+}
+
+.page-detail-messageMenuName{
+  margin-top: 10rpx;
+}

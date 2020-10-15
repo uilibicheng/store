@@ -8,6 +8,10 @@ Component({
     couponItem: {
       type: Object,
       value: {}
+    },
+    isShowShop:{
+      type: Number,
+      value: 1
     }
   },
 

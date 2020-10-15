@@ -14,9 +14,9 @@
 <van-dropdown-menu active-color="#ff9419">
   <van-dropdown-item bind:change="onSwitch1Change" value="{{ value1 }}" options="{{ option1 }}" />
 </van-dropdown-menu>
-<block wx:if="{{active==0}}">
+<view class="page-coupon-list" wx:if="{{active==0}}">
   <coupon-card wx:for="{{couponList}}" wx:key="index" couponItem="{{item}}" />
-</block>
+</view>
 <block wx:else>
   <coupon-packages wx:for="{{couponPackagesList}}" wx:key="index" couponItem="{{item}}" />
 </block>

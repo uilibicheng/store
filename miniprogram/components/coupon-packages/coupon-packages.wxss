@@ -4,6 +4,12 @@
   border-radius: 20rpx;
   margin: 20rpx;
   padding: 20rpx;
+ 
+}
+.coupon-packages-contants{
+  background-color: #ffff;
+  border-radius: 20rpx;
+  margin: 50rpx 0;
   position: relative;
 }
 .coupon-packages-shopIcon{
@@ -18,6 +24,7 @@
 }
 .coupon-packages-flex{
   display: flex;
+  position: relative;
 }
 .coupon-packages-right{
   margin-left: 20rpx;
@@ -36,7 +43,7 @@
   right: 20rpx;
   font-size: 24rpx;
   color: #999;
-  top: 120rpx;
+  top: 70rpx;
 }
 .coupon-packages-sellMoney{
   margin-top: 20rpx;

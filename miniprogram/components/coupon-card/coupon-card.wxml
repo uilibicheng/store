@@ -14,7 +14,7 @@
     <view  class="coupon-card-button"  bindtap="buyCoupon" data-item="{{couponItem}}">抢购</view>
   </view>
 
-  <view class="coupon-card-div">
+  <view class="coupon-card-div" wx:if="{{isShowShop==1}}">
     <van-image width="30" height="30" round src="{{couponItem.merchant_id.logo}}" />
     <view class="coupon-card-price">
       <text class="coupon-card-merchantName">{{couponItem.merchant_id.name}}</text>
